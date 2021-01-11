@@ -1,0 +1,24 @@
+Package: StatCompLab
+Type: Package
+Title: Workshop Material For UoE Statistical Computing
+Version: 0.1.0
+Authors@R: 
+    person(given = "Finn",
+           family = "Lindgren",
+           role = c("aut", "cre"),
+           email = "finn.lindgren@ed.ac.uk")
+Description: Workshop assignments (as vignettes) and learnr tutorials For
+    MATH10093, Statistical Computing
+License: CC BY 4.0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends:
+  learnr,
+  gradethis
+Remotes:
+  rstudio-education/gradethis@f1a0aa4964c7b02bdb5329591adce2ac7d26160c
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
