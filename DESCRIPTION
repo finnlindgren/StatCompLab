@@ -20,7 +20,10 @@ Depends:
 Remotes:
   rstudio-education/gradethis@f1a0aa4964c7b02bdb5329591adce2ac7d26160c
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
 URL: https://finnlindgren.github.io/StatCompLab, https://github.com/finnlindgren/StatCompLab
 BugReports: https://github.com/finnlindgren/StatCompLab/issues
+VignetteBuilder: knitr
