@@ -7,8 +7,8 @@ Authors@R:
            family = "Lindgren",
            role = c("aut", "cre"),
            email = "finn.lindgren@ed.ac.uk")
-Description: Workshop assignments (as vignettes) and learnr tutorials For
-    MATH10093, Statistical Computing
+Description: Contains Workshop assignments (as vignettes) and learnr tutorials For
+    MATH10093, Statistical Computing. 
 License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
@@ -21,7 +21,9 @@ Suggests:
   gradethis (<= 0.2.0.9000),
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    tidyverse,
+    ggplot2
 Config/testthat/edition: 3
 URL: https://finnlindgren.github.io/StatCompLab, https://github.com/finnlindgren/StatCompLab
 BugReports: https://github.com/finnlindgren/StatCompLab/issues
