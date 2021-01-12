@@ -22,7 +22,8 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    ggplot2
+    ggplot2,
+    rsconnect
 Config/testthat/edition: 3
 URL: https://finnlindgren.github.io/StatCompLab, https://github.com/finnlindgren/StatCompLab
 BugReports: https://github.com/finnlindgren/StatCompLab/issues
