@@ -89,4 +89,4 @@ File$\rightarrow$New~File$\rightarrow$R~Script
 
 During the lab, remember to save the script file regularly, to avoid losing any work (on both rstudio.cloud and regular RStudio, unsaved changes may still be remembered by the system, but it is much safer to explicitly save the files, and this will also be essential when we start `git` for version control).
 
-3. Now switch to the `Tutorial01` tutorial, either in the `Tutorials` pane (look for the `StatCompLab` package in the list of tutorials)
+3. Now switch to the `Tutorial01` tutorial, either in the `Tutorials` pane (look for the `StatCompLab` package in the list of tutorials) or by running `learnr::run_tutorial("Tutorial01", package = "StatCompLab")`.
