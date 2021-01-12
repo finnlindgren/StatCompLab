@@ -5,11 +5,12 @@ runtime: shiny_prerendered
 description: "Statistical Computing: Lab tutorial 1"
 tutorial:
   id: "com.example.StatCompTutorial01"
-  version: 1.2
+  version: 1.3
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
+library(ggplot2)
 knitr::opts_chunk$set(
   echo = FALSE,
   dev = "png",
@@ -27,6 +28,7 @@ data_pred <- cbind(newdata,
 pred <- cbind(newdata,
               predict(mod, newdata, interval = "prediction"))
 library(ggplot2)
+theme_set(theme_bw())
 ```
 
 ## Linear model estimation
@@ -108,7 +110,6 @@ ggplot(...) +
 ```
 Structure the code by adding a linebreak _after_ each `+` operation.
 ```{r pred-plot-solution}
-library(ggplot2)
 data_pred <- cbind(newdata,
                    data.frame(fit = predict(mod, newdata)))
 ggplot(data) +
