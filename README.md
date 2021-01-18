@@ -18,7 +18,7 @@ You can install (and later upgrade) the package from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("finnlindgren/StatCompLab")
+devtools::install_github("finnlindgren/StatCompLab", build_vignettes = TRUE)
 ```
 
 ## Example
