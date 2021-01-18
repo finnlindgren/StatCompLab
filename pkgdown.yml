@@ -3,7 +3,8 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   Lab01: Lab01.html
-last_built: 2021-01-12T19:19Z
+  Lab02: Lab02.html
+last_built: 2021-01-18T04:38Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles
