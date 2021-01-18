@@ -16,6 +16,12 @@ knitr::opts_chunk$set(
   dev = "png",
   dev.args = list(type = "cairo-png")
 )
+require(gradethis)
+learnr::tutorial_options(
+    exercise.timelimit = 120,
+    exercise.checker = grade_learnr
+#    exercise.error.check.code = exercise.error.check.code
+  )
 
 ###
 set.seed(123L)
@@ -130,6 +136,25 @@ pred <- cbind(
 ```{r prediction-int-solution}
 pred <- cbind(newdata,
               predict(mod, newdata, interval = "prediction"))
+```
+
+```{r prediction-int-check-not, eval=FALSE}
+grade_this({
+  msg <- character(0)
+  if (!is.data.frame(.result)) {msg <- c(msg, "The result should be a data.frame")}
+  if (length(msg) == 0) {
+    for (nm in c("z", "fit", "lwr", "upr")) {
+      if (!(nm %in% names(.result))) {
+        msg <- c(msg, paste0("Column '", nm, "' is missing"))
+      }
+    }
+  }
+  if (length(msg) == 0) {
+    graded(correct = TRUE, message = "OK!")
+  } else {
+    graded(correct = FALSE, message = paste0(msg, collapse = "\n\n"))
+  }
+})
 ```
 
 Use the `geom_ribbon(data = ..., aes(x = ..., ymin = ..., ymax = ...), alpha = 0.25)` function to add the prediction intervals to the figure. The `alpha` parameter sets the "transparency" of the ribbon. Experiment with different values between 0 and 1. The result should look similar to this:
