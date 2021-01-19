@@ -50,29 +50,90 @@ code script file for later use.
 
 Note: This lab sheet contains supplementary course notes about optimisation and the R language.
 
-### Git and creating an R project from GitHub 
+## Working with git/github/RStudio
 
-1. Open `RStudio` with the project you created last week, and start a new code file to hold the code for this lab.
+### Initial authentication
+
+If you're working on `rstudio.cloud`, first click on your name in the top right corner and go to `Authentication`. Activate github access, including "Private repo access also enabled".
+You should be redirected to authenticate yourself with github. (Without this step, creating a new project from a github repository becomes more complicated.)
+
+If you're working on a local computer, Sections 9-12 of [happygitwithr.com](https://happygitwithr.com/push-pull-github.html) has useful
+information for setting up the system; Section 10 discusses how to configure the
+system so that it can remember your github access details. This should normally only be needed once, and should not need to be setup again for new projects. The procedure
+is similar to the setup described below that is needed for `rstudio.cloud` Projects,
+but for local computer setup it can be done globally for all R projects.
+
+### Creating a new RStudio Project from github
+
+After setting up the initial github authentication, follow these steps:
+
+1. Go to [github.com/StatComp20](https://github.com/StatComp20)
+2. You should see a Repository called `lab02-`username where "username" is your github username.
+3. Click on the repository to see what it contains. Use the "Code" button to
+copy the HTTPS version of the URL that can be used to create a "Clone".
+4. Now open [rstudio.cloud](https://rstudio.cloud), and go to the `Statistical Computing` workspace.
+5. Create a "New Project from Git Repository" based on the URL to your git repository
+6. In the project, open the file `lab02_code.R`, and use it to hold the code for this lab.
 During the lab, remember to save the script file regularly, to avoid losing any work.
-2. Recall the options and keyboard shortcuts introduced in Lab 1.
-3. Whenever you encounter a function you're not yet familiar with, use the help system to read the 
-documentation!
-4. If you're on `rstudio.cloud`, the `StatCompLab` package will already be installed. Otherwise, run `remotes::install_github("https://github.org/finnlindgren/StatCompLab/")`
+You will also use git to synchronise the file contents with the github repository.
 
+Note 1: If you're running on a local RStudio installation, steps 4 and 5 above
+should be replaced by first opening RStudio, and then choosing "File->New repository->Version control->Git"
 
-The `remotes::install_github` syntax means that R will use the function `install\_github` from the package `remotes`, without having to load all the functions into the global environment, as would be done with `library("remotes")`.  In some cases, `R`/`RStudio` will detect that some related packages have newer versions, and ask if you want it to first upgrade those packages; it is generally safe to accept such upgrades from the CRAN repository, but from other sources, including `github`, you can decline such updates unless you know that you need a development version of a package.
+Note 2: If you're on `rstudio.cloud`, the `StatCompLab` package will already be installed. Otherwise, run `remotes::install_github("finnlindgren/StatCompLab/", build_vignettes = TRUE)`
+
+The `remotes::install_github` syntax means that R will use the function `install_github` from the package `remotes`, without having to load all the functions into the global environment, as would be done with `library("remotes")`.  In some cases, `R`/`RStudio` will detect that some related packages have newer versions, and ask if you want it to first upgrade those packages; it is generally safe to accept such upgrades from the CRAN repository, but from other sources, including `github`, you can decline such updates unless you know that you need a development version of a package.
 
 In addition to the lab and tutorial documents, the `StatCompLab` package includes a graphical interactive tool for exploring optimisation methods, based on the R interactive `shiny` system.
 
 ### Basic git usage
 
-(This section will be expanded for the workshop sessions on 20 January)
+A version control _repository_ is a place where files under the control of git
+are kept and kept track of over time.
 
-* `clone`; In RStudio, Create new Project from Version Control; `github.com/StatComp20/lab02-username`
-* `add`
-* `commit`
-* `push`
-* `pull`
+After cloning the repository to `rstudio.cloud`, you need to setup authentication within the project (the same method can be used when initially setting up authentication on your own computer, but there you have more options, such as SSH public key authentication, see
+[happygitwithr.com](https://happygitwithr.com/push-pull-github.html)):
+
+1. On [github](https:://github.com/StatComp20), go to your own user (icon in the top right corner)
+"Settings"->"Developer settings"->"Personal access tokens"
+2. Create a new token (a "PAT"), and copy it to safe place
+3. In your RStudio project `Console` pane, run `credentials::set_github_pat()` to add the new token
+4. In the `Terminal` pane, run
+  `git config --global credential.helper 'cache --timeout=10000000', which sets a cache timeout of a bit over 16 weeks before it should need you to authenticate in this project again.
+
+You will need to go through this procedure for each `rstudio.cloud` git
+project you create in the future. (If you store the PAT in a safe place you can reuse it for all the projects, but it's safer to only use it once, and delete the copy after running `set_github_pat()`)
+
+Use `credentials::credential_helper_get()`, `..._list()` and `..._set()` to
+control what method is used to store the authentication information. On your own computer,
+you can set it to a method (usually called "store") that stores the information permanently instead of just caching it for a limited time.
+  
+The basic `git` operations, `clone`, `add`, `commit`, `push`, and `pull`
+
+* The process used to copy a git repository from github to either `rstudio.cloud` or your local machine is to create a `clone`; Initially, the cloned repository is identical
+to the original, but local changes can be made.
+* `add` and `commit`: When changes to one or several files are "done", we need to
+  tell `git` to collect the changes and store them.  With `git`, one needs to first
+  tell it which file changes to _add_ (called _staging_ in git), and then to _commit_
+  the changes.
+* `push`: When we're happy with our local changes and want to make them available either
+  to ourselves on a different computer, or to others with access to the github copy of the repository, we _push_ the commits.  On `rstudio.cloud`, unless you setup authentication
+  as described on [happygitwithr.com](https://happygitwithr.com/push-pull-github.html), you will need to enter your github username and password.
+* `pull`: To get access to changes made in the github repository, we can _pull_
+  the commits that were made there since the last time we either _cloned_ or _pulled_.
+  
+Task:
+  
+1. Open the `lab02_code.R` file and add a line containing `library(StatCompLab)`
+2. Save the file
+3. In the `Git` pane, press `Commit` and select the changed file (a tick mark should appear indicating the file as being _Staged_, and the display also shows what has changed; this can also be done before pressing Commit)
+4. Enter an informative "Commit message", e.g. "Load StatCompLab"
+5. Press "Commit", and it should soon indicate success
+6. Press "Push" to push the changes to github,
+  and, if asked, enter your github login credentials
+7. Go to the repository on github and click the `lab02_code.R` there to see that
+  your change has been included
+
 
 ## Optimisation exploration
 
