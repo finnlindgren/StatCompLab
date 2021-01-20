@@ -94,7 +94,7 @@ are kept and kept track of over time.
 After cloning the repository to `rstudio.cloud`, you need to setup authentication within the project (the same method can be used when initially setting up authentication on your own computer, but there you have more options, such as SSH public key authentication, see
 [happygitwithr.com](https://happygitwithr.com/push-pull-github.html)):
 
-1. On [github](https:://github.com/StatComp20), go to your own user (icon in the top right corner)
+1. On [github.com/StatComp20](https://github.com/StatComp20), go to your own user (icon in the top right corner)
 "Settings"->"Developer settings"->"Personal access tokens"
 2. Create a new token (a "PAT"), with the "repo" access option enabled.
 Copy the generated string to safe place
