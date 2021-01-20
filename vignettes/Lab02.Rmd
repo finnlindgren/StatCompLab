@@ -99,7 +99,10 @@ After cloning the repository to `rstudio.cloud`, you need to setup authenticatio
 2. Create a new token (a "PAT"), and copy it to safe place
 3. In your RStudio project `Console` pane, run `credentials::set_github_pat()` to add the new token
 4. In the `Terminal` pane, run
-  `git config --global credential.helper 'cache --timeout=10000000', which sets a cache timeout of a bit over 16 weeks before it should need you to authenticate in this project again.
+```
+git config --global credential.helper "cache --timeout=10000000"
+```
+which sets a cache timeout of a bit over 16 weeks before it should need you to authenticate in this project again.
 
 You will need to go through this procedure for each `rstudio.cloud` git
 project you create in the future. (If you store the PAT in a safe place you can reuse it for all the projects, but it's safer to only use it once, and delete the copy after running `set_github_pat()`)
