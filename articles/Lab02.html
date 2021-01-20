@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -134,8 +134,10 @@
 <li>On <a href="https:://github.com/StatComp20">github</a>, go to your own user (icon in the top right corner) “Settings”-&gt;“Developer settings”-&gt;“Personal access tokens”</li>
 <li>Create a new token (a “PAT”), and copy it to safe place</li>
 <li>In your RStudio project <code>Console</code> pane, run <code>credentials::set_github_pat()</code> to add the new token</li>
-<li>In the <code>Terminal</code> pane, run `git config –global credential.helper ‘cache –timeout=10000000’, which sets a cache timeout of a bit over 16 weeks before it should need you to authenticate in this project again.</li>
+<li>In the <code>Terminal</code> pane, run</li>
 </ol>
+<pre><code>git config --global credential.helper "cache --timeout=10000000"</code></pre>
+<p>which sets a cache timeout of a bit over 16 weeks before it should need you to authenticate in this project again.</p>
 <p>You will need to go through this procedure for each <code>rstudio.cloud</code> git project you create in the future. (If you store the PAT in a safe place you can reuse it for all the projects, but it’s safer to only use it once, and delete the copy after running <code>set_github_pat()</code>)</p>
 <p>Use <code>credentials::credential_helper_get()</code>, <code>..._list()</code> and <code>..._set()</code> to control what method is used to store the authentication information. On your own computer, you can set it to a method (usually called “store”) that stores the information permanently instead of just caching it for a limited time.</p>
 <p>The basic <code>git</code> operations, <code>clone</code>, <code>add</code>, <code>commit</code>, <code>push</code>, and <code>pull</code></p>
@@ -166,7 +168,7 @@
 <a href="#optimisation-exploration" class="anchor"></a>Optimisation exploration</h2>
 <p>The optimisation methods discussed in the lecture (Gradient Descent, Newton and the Quasi-Newton method BFGS, see Lecture 2) are all based on starting from a current best estimate of a minimum, finding a search direction, and then performing a line search to find a new, better, estimate. The <em>Nelder-Mead Simplex</em> method works in a similar way, but doesn’t use any derivatives of the target function; it only uses function evaluations, and keeps track of a set of local points (<span class="math inline">\(m+1\)</span> points, if <span class="math inline">\(m\)</span> is the dimension of the problem). For 2D problems the method updates a triangle of points. In each iteration, it attempts to move away from the “worst” point, by performing a simple line search. In addition to the basis line search, it will reduce or expand the triangle. Expansion happens similarly to the adaptive step length in the Gradient Descent method.</p>
 <p>Start the <code>optimisation</code> shiny app:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">StatCompLab</span><span class="fu">::</span><span class="fu"><a href="../reference/optimisation.html">optimisation</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>For the “Simple (1D)” and “Simple (2D)” functions, familiarise yourself with the “Step”, “Converge”, and “Reset” buttons. Choose different optimisation starting points by clicking in the figure.</li>
@@ -201,14 +203,14 @@ costs at least <span class="math inline">\(m\)</span> extra function evaluations
 <h2 class="hasAnchor">
 <a href="#functions" class="anchor"></a>Functions</h2>
 <p>A function in R can have a <code>name</code>, <code>arguments</code> (<code>parameters</code>), and a return <code>value</code>. A function is defined through</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">thename</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">arguments</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">expressions</span>
 <span class="op">}</span></code></pre></div>
 <p>where <code>expressions</code> is one or more lines of code. The result of the last evaluated expression in the function is the value returned to the caller.</p>
 <p>Each input parameter can have a <em>default value</em>, so that the caller doesn’t have to specify it unless they want a different value. Sometimes, a <code>NULL</code> default value is used, and the parameter checked internally with <code><a href="https://rdrr.io/r/base/NULL.html">is.null(parameter)</a></code> to determine if the user supplied something.</p>
 <p>It is good practice to refer to the parameters by name when calling a function (instead of relying on the order of the parameters; the first parameter is a common exception to this practice), especially for parameters that have default values. Example:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_function</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">param1</span>, <span class="va">param2</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">param3</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">{</span>
   <span class="co"># 'if': run a block of code if a logical statement is true</span>
   <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">param2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
@@ -228,7 +230,7 @@ costs at least <span class="math inline">\(m\)</span> extra function evaluations
 <span class="fu">my_function</span><span class="op">(</span><span class="fl">1</span>, param2 <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
 <span class="co">#&gt; [1] 3</span></code></pre></div>
 <p>The main optimisation function in R is <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code>, which has the following call syntax:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span><span class="va">par</span>, <span class="va">fn</span>, gr <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>,
       method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Nelder-Mead"</span>, <span class="st">"BFGS"</span>, <span class="st">"CG"</span>, <span class="st">"L-BFGS-B"</span>, <span class="st">"SANN"</span>,
                  <span class="st">"Brent"</span><span class="op">)</span>,
@@ -236,13 +238,13 @@ costs at least <span class="math inline">\(m\)</span> extra function evaluations
       control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>, hessian <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Here, the <code>method</code> parameter appears to have a whole vector as its default value. However, this is merely a way to show the user all the permitted values. If the user does not supply anything specific, the first value, <code>"Nelder-Mead"</code> will be used.</p>
 <p>You may have briefly encountered the special <code>...</code> parameter syntax in an earlier lab. It means that <em>there may be additional parameters specified here by the caller, that should be passed on to another function that is called internally</em>. For <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code>, those extra parameters are passed on to the target function that the user supplies. A call to <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> to minimise the function defined by <code>myTargetFunction()</code> might take this form:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="va">start_par</span>,
              fn <span class="op">=</span> <span class="va">myTargetFunction</span>,
              extra1 <span class="op">=</span> <span class="va">value1</span>,
              extra2 <span class="op">=</span> <span class="va">value2</span><span class="op">)</span></code></pre></div>
 <p>When <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> uses the function <code>myTargetFunction()</code>, it will be called like this:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">myTargetFunction</span><span class="op">(</span><span class="va">current_par</span>, extra1 <span class="op">=</span> <span class="va">value1</span>, extra2 <span class="op">=</span> <span class="va">value2</span><span class="op">)</span></code></pre></div>
 <div id="estimating-a-complicated-model" class="section level3">
 <h3 class="hasAnchor">
@@ -258,16 +260,22 @@ x_i &amp;= \frac{i-1}{n-1} \\
 y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
 \end{aligned}
 \]</span> Use the following code to simulate synthetic random data from this model, where both the mean and standard deviation of each observation depends on two model parameters via a common set of covariates.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span>
 <span class="va">theta_true</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>,
            mean <span class="op">=</span> <span class="va">X</span> <span class="op">%*%</span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
            sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op">%*%</span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Plot the data. <code>{r echo=TRUE,eval=TRUE}= library(ggplot2) theme_set(theme_bw()) ggplot(data.frame(x = X[, 2], y = y)) +   geom_point(aes(x, y))</code></p>
+<p>Plot the data.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="Lab02_files/figure-html/unnamed-chunk-8-1.png" width="720" style="display: block; margin: auto;"></p>
 <p>Write a function <code>neg_log_lik &lt;- function(theta, y, X) {</code>(Code goes here)<code>}</code> that evalues the negative log-likelihood for the model. See <code><a href="https://rdrr.io/r/stats/Normal.html">?dnorm</a></code>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">neg_log_lik</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">theta</span>, <span class="va">y</span>, <span class="va">X</span><span class="op">)</span> <span class="op">{</span>
   <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">y</span>,
              mean <span class="op">=</span> <span class="va">X</span> <span class="op">%*%</span> <span class="va">theta</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
@@ -275,14 +283,14 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
              log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>With the aid of the help text for <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code>, find the maximum likelihood parameter estimates for our statistical model using the BFGS method with numerical derivatives. Use <span class="math inline">\((0,0,0,0)\)</span> as the starting point for the optimisation.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
              fn <span class="op">=</span> <span class="va">neg_log_lik</span>, y <span class="op">=</span> <span class="va">y</span>, X <span class="op">=</span> <span class="va">X</span>,
              method <span class="op">=</span> <span class="st">"BFGS"</span><span class="op">)</span></code></pre></div>
 <p>Check the <code><a href="https://rdrr.io/r/stats/optim.html">?optim</a></code> help text for information about what the result object contains. Did the optimisation converge?</p>
 <p>Answer: The optimisation converged if <code>opt$convergence</code> is <code>0</code>. Or at least <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> <em>thinks</em> it coverged, since it triggered it’s convergence tolerances.</p>
 <p>Compute and store the estimated expectations and <span class="math inline">\(\sigma\)</span> values like this:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,
                    y <span class="op">=</span> <span class="va">y</span>,
                    expectation_true <span class="op">=</span> <span class="va">X</span> <span class="op">%*%</span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
@@ -290,20 +298,20 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
                    expectation_est <span class="op">=</span> <span class="va">X</span> <span class="op">%*%</span> <span class="va">opt</span><span class="op">$</span><span class="va">par</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
                    sigma_est <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op">%*%</span> <span class="va">opt</span><span class="op">$</span><span class="va">par</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The estimates of <span class="math inline">\(\sigma_i\)</span> as a function of <span class="math inline">\(x_i\)</span> should look similar to this:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">sigma_true</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">sigma_est</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">xlab</span><span class="op">(</span><span class="st">"x"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ylab</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="Lab02_files/figure-html/unnamed-chunk-9-1.png" width="720" style="display: block; margin: auto;"></p>
-<p>The <code><a href="https://rdrr.io/r/base/expression.html">expression(sigma)</a></code> y-axis label is a way of making R try to interpret an R expression and format it more like a mathematical expression, with greek letters, etc. For example, <code>ylab(expression(theta[3] + x[i] * theta[4]))</code> would be formatted as <span class="math inline">\(\theta_3+x_i\theta_4\)</span>.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sigma_true</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sigma_est</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"x"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="Lab02_files/figure-html/unnamed-chunk-10-1.png" width="720" style="display: block; margin: auto;"></p>
+<p>The <code><a href="https://rdrr.io/r/base/expression.html">expression(sigma)</a></code> y-axis label is a way of making R try to interpret an R expression and format it more like a mathematical expression, with greek letters, etc. For example, <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab(expression(theta[3] + x[i] * theta[4]))</a></code> would be formatted as <span class="math inline">\(\theta_3+x_i\theta_4\)</span>.</p>
 </div>
 <div id="data-wrangling" class="section level3">
 <h3 class="hasAnchor">
 <a href="#data-wrangling" class="anchor"></a>Data wrangling</h3>
 <p>To help  produce proper figure labels, we can use data wrangling methods from a set of R packages commonly referred to as the <code>tidyverse</code>. The idea is to convert our data frame that has each type of output as separate data columns into a format where the values of the true and estimated expectations and standard deviations are stored in a single column, and other, new columns encode what each row contains.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span><span class="op">)</span>
 <span class="va">data_long</span> <span class="op">&lt;-</span>
   <span class="va">data</span> <span class="op">%&gt;%</span>
@@ -328,15 +336,15 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
 <span class="co">#&gt; # … with 390 more rows</span></code></pre></div>
 <p>Here, we collected all the true and estimated expectations and standard deviations into a single column <code>value</code>, and introduced new columns <code>property</code> and <code>type</code>, containing strings (characters) indicating “expectation”/“sigma” and “est”/“true”. Take a look at the original and new <code>data</code> and <code>data_long</code> objects to see how they differ.</p>
 <p>We can now plot all the results with a single <code>ggplot</code> call:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">data_long</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>col <span class="op">=</span> <span class="va">type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">property</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
-<p><img src="Lab02_files/figure-html/unnamed-chunk-11-1.png" width="720" style="display: block; margin: auto;"> The function <code>facet_wrap</code> splits the plot in two parts; one based on the data for all <code>data_long</code> rows where <code>property</code> is “expectation”, and one based on the data for all <code>data_long</code> rows where <code>property</code> is “sigma”. The colour is chosed based on <code>type</code>, as shown in a common legend for the whole plot.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">property</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<p><img src="Lab02_files/figure-html/unnamed-chunk-12-1.png" width="720" style="display: block; margin: auto;"> The function <code>facet_wrap</code> splits the plot in two parts; one based on the data for all <code>data_long</code> rows where <code>property</code> is “expectation”, and one based on the data for all <code>data_long</code> rows where <code>property</code> is “sigma”. The colour is chosed based on <code>type</code>, as shown in a common legend for the whole plot.</p>
 <ul>
 <li>Rerun the optimisation with the extra parameter <code>hessian = TRUE</code>, to obtain a numeric approximation to the Hessian of the target function at the optimum, and compute its inverse (see <code><a href="https://rdrr.io/r/base/solve.html">?solve</a></code>), which is an estimate of the covariance matrix for the error of the parameter estimates. In a future Computer Lab we will use this to evaluate approximate confidence and prediction intervals.</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
              fn <span class="op">=</span> <span class="va">neg_log_lik</span>, y <span class="op">=</span> <span class="va">y</span>, X <span class="op">=</span> <span class="va">X</span>,
              method <span class="op">=</span> <span class="st">"BFGS"</span>,
