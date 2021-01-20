@@ -257,7 +257,7 @@ y <- rnorm(n = n,
 ```
 
 Plot the data.
-```{r echo=TRUE,eval=TRUE}=
+```{r echo=TRUE,eval=TRUE}
 library(ggplot2)
 theme_set(theme_bw())
 ggplot(data.frame(x = X[, 2], y = y)) +
