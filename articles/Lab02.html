@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@
 <p>After cloning the repository to <code>rstudio.cloud</code>, you need to setup authentication within the project (the same method can be used when initially setting up authentication on your own computer, but there you have more options, such as SSH public key authentication, see <a href="https://happygitwithr.com/push-pull-github.html">happygitwithr.com</a>):</p>
 <ol style="list-style-type: decimal">
 <li>On <a href="https:://github.com/StatComp20">github</a>, go to your own user (icon in the top right corner) “Settings”-&gt;“Developer settings”-&gt;“Personal access tokens”</li>
-<li>Create a new token (a “PAT”), and copy it to safe place</li>
+<li>Create a new token (a “PAT”), with the “repo” access option enabled. Copy the generated string to safe place</li>
 <li>In your RStudio project <code>Console</code> pane, run <code>credentials::set_github_pat()</code> to add the new token</li>
 <li>In the <code>Terminal</code> pane, run</li>
 </ol>
@@ -186,7 +186,7 @@ costs at least <span class="math inline">\(m\)</span> extra function evaluations
 </ol>
 <p>Hint: find the “Evaluations:” information in the app. You may need to use the “Converge” button multiple times, since it will only do at most 500 iterations each time.</p>
 <p>Also note the total number of iterations needed by each method. How do they compare?</p>
-<p>Answer: <span class="math inline">\(m=2\)</span>, so the number of function evaluations is given by <code>#f + 2 * #gradient + 8 * #hessian</code></p>
+<p>Answer: <span class="math inline">\(m=2\)</span>, so the number of function evaluations is given by <code>#f + 2 * #gradient + 8 * #hessian</code> (2 extra function evaluations are needed for first order differences for the gradient, and 8 extra points are needed for the second order differences needed for the second order derivatives; we’ll revisit this in week 9)</p>
 <ul>
 <li>Nelder-Mead: <span class="math inline">\(202\)</span> (103 iterations)</li>
 <li>Gradient Descent: <span class="math inline">\(14132+2\cdot 9405 = 3.2942\times 10^{4}\)</span> (9404 iterations)</li>
