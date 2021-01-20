@@ -96,7 +96,8 @@ After cloning the repository to `rstudio.cloud`, you need to setup authenticatio
 
 1. On [github](https:://github.com/StatComp20), go to your own user (icon in the top right corner)
 "Settings"->"Developer settings"->"Personal access tokens"
-2. Create a new token (a "PAT"), and copy it to safe place
+2. Create a new token (a "PAT"), with the "repo" access option enabled.
+Copy the generated string to safe place
 3. In your RStudio project `Console` pane, run `credentials::set_github_pat()` to add the new token
 4. In the `Terminal` pane, run
 ```
@@ -170,7 +171,7 @@ Also note the total number of iterations needed by each method. How do they comp
 
 Answer:
 $m=2$, so the number of function evaluations is given by
-`#f + 2 * #gradient + 8 * #hessian`
+`#f + 2 * #gradient + 8 * #hessian` (2 extra function evaluations are needed for first order differences for the gradient, and 8 extra points are needed for the second order differences needed for the second order derivatives; we'll revisit this in week 9)
 
 * Nelder-Mead: $202$ (103 iterations)
 * Gradient Descent: $14132+2\cdot 9405 = `r 14132+2*9405`$ (9404 iterations)
