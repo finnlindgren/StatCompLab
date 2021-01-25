@@ -19,14 +19,16 @@ Remotes:
 Depends:
   shiny
 Suggests:
-  learnr (<= 0.10.1),
-  gradethis (<= 0.2.0.9000),
+    learnr (<= 0.10.1),
+    gradethis (<= 0.2.0.9000),
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    ggplot2,
     rsconnect
 Config/testthat/edition: 3
 URL: https://finnlindgren.github.io/StatCompLab, https://github.com/finnlindgren/StatCompLab
 BugReports: https://github.com/finnlindgren/StatCompLab/issues
 VignetteBuilder: knitr
+Imports: 
+    spatstat,
+    ggplot2
