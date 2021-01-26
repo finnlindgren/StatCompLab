@@ -53,3 +53,15 @@ code script file for later use.
 and restart you R session, via the RStudio `Session` menu.
 3. Open the `Tutorial 03` tutorial in the Tutorial pane and work through the
   tasks.
+
+When running the `install_github()` function, R/RStudio will often ask you if
+you want to upgrade other packages that it lists. This is usually what you need,
+and you can then enter the number of the option to upgrade all of them. If you're unsure,
+you can instead choose the option to upgrade only the `CRAN` packages. `CRAN` is
+a centralised collection of R packages that have stronger stability than development
+versions from github, and unless you know you need a development version, you can
+usually stick with only CRAN packages. Notable exceptions are the `StatCompLab`
+package itself, and the `gradethis` package that is used by some
+of the documents in the `StatCompLab` package, but during the course you should
+only need to install `gradethis` once; we only use a specific development version
+of that package, and do not use the more recent development versions.
