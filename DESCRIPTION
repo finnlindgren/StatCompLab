@@ -23,7 +23,7 @@ Imports:
     gradethis (<= 0.2.0.9000),
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
     spatstat,
     ggplot2
 Suggests:
@@ -32,4 +32,3 @@ Config/testthat/edition: 3
 URL: https://finnlindgren.github.io/StatCompLab, https://github.com/finnlindgren/StatCompLab
 BugReports: https://github.com/finnlindgren/StatCompLab/issues
 VignetteBuilder: knitr
-Imports: 
