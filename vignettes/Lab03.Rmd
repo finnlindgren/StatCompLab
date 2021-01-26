@@ -1,0 +1,55 @@
+---
+title: "Lab03"
+author: "Finn Lindgren"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab03}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+in-header:
+  - \newcommand{\X}{\boldsymbol{X}}
+  - \newcommand{\bp}{\boldsymbol{\beta}}
+  - \newcommand{\mv}[1]{\boldsymbol{#1}}
+  - \newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+  - \newcommand{\pN}{\mathsf{N}}
+---
+
+# Statistical computing MATH10093: Computer lab 3
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png",
+  dev.args = list(type = "cairo-png")
+)
+solutions <- FALSE
+knitr::opts_chunk$set(
+#  fig.path = "figure/lab02-",
+  fig.align = "center",
+  fig.show = "hold",
+  size = "small",
+  fig.width = 7.5,
+  fig.height = 5
+#  out.width = "\\linewidth",
+#  out.height = "0.65\\linewidth"
+)
+set.seed(12345L)
+library(ggplot2)
+theme_set(theme_bw())
+library(StatCompLab)
+```
+
+
+In this lab session you will explore Monte Carlo integration methods.
+You will not hand in anything, but you should keep your
+code script file for later use.
+
+1. Go to your project clone of your lab 2 repository.
+  During the lab, store new code in one or more new files and commit and push
+  them to github, as in lab 2.
+2. Upgrade the `StatCompLab` package to version `>= 0.3.0`, with
+`devtools::install_github("finnlindgren/StatCompLab", build_vignettes = TRUE)`
+and restart you R session, via the RStudio `Session` menu.
+3. Open the `Tutorial 03` tutorial in the Tutorial pane and work through the
+  tasks.
