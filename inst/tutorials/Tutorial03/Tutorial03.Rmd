@@ -55,8 +55,11 @@ set.seed(12345L)
 ## Introduction
 
 * In this lab session you will explore Monte Carlo integration and importance sampling.
-* Open your github repository clone project from Lab 2 (either on [https://rstudio.cloud](https://rstudio.cloud) or on your own computer
+* Open your github repository clone project from Lab 2 (either on [https://rstudio.cloud](https://rstudio.cloud) or on your own computer and
+upgrade the `StatCompLab` package (see the `Lab03` vignette for more details)
 * Save your work for this lab in one or several new files in the project, and commit and push the changes to github (see Lab 2 for more information)
+* In your code script, start with `library(StatCompLab)` to get access to the
+`arch_loglike` function needed for one of the tasks.
 
 `r begin_sol(!solutions)`
 The accompanying `Tutorial03Solutions` tutorial document contains the
