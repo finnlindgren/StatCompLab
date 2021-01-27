@@ -1,5 +1,6 @@
 ---
 title: "Tutorial 03: Monte Carlo integration"
+author: "Finn Lindgren"
 output: learnr::tutorial
 runtime: shiny_prerendered
 description: "Statistical Computing: Lab tutorial 3"
@@ -23,29 +24,40 @@ in-header:
   - \newcommand{\mmd}{\mathrm{d}}
   - \newcommand{\md}{\,\mmd}
 ---
+```{r eval=FALSE}
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab03}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+```
 
 ```{r setup, include=FALSE}
-solutions <- FALSE
-begin_sol <- function(sol = solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
-end_sol <- function(sol = solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
+.tutorial <- TRUE
+.solutions <- TRUE
+begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
+end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
 
 library(StatCompLab)
-library(learnr)
-library(ggplot2)
-knitr::opts_chunk$set(
-  echo = FALSE,
-  dev = "png",
-  dev.args = list(type = "cairo-png")
-)
-require(gradethis)
-learnr::tutorial_options(
+if (.tutorial) {
+  library(learnr)
+  require(gradethis)
+  learnr::tutorial_options(
     exercise.timelimit = 120,
     exercise.checker = grade_learnr,
     exercise.startover = TRUE,
     exercise.diagnostics = TRUE,
     exercise.completion = TRUE
-#    exercise.error.check.code = exercise.error.check.code.
+    #    exercise.error.check.code = exercise.error.check.code.
   )
+}
+library(ggplot2)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  dev = "png",
+  dev.args = list(type = "cairo-png"),
+  fig.width = 6
+)
 
 library(ggplot2)
 theme_set(theme_bw())
@@ -61,10 +73,10 @@ upgrade the `StatCompLab` package (see the `Lab03` vignette for more details)
 * In your code script, start with `library(StatCompLab)` to get access to the
 `arch_loglike` function needed for one of the tasks.
 
-`r begin_sol(!solutions)`
-The accompanying `Tutorial03Solutions` tutorial document contains the
+`r begin_sol(!.solutions)`
+The accompanying `Tutorial03solutions` tutorial document contains the
 solutions explicitly, to make it easier to review the material after the workshops.
-`r end_sol(!solutions)`
+`r end_sol(!.solutions)`
 
 ## Overdispersed Poisson distribution
 
@@ -95,7 +107,7 @@ Consider the following simulation code:
 ```{r echo=TRUE,eval=TRUE}
 Y <- rpois(30, lambda = 2 * exp(-1/2 + rnorm(30, sd = 2)))
 ```
-```{r quiz1}
+```{r quiz1,eval=.tutorial}
 question(
   "What parameter value combination is used in the simulation?",
   answer("$\\mu=-1/2$, $\\sigma=2$"),
@@ -197,7 +209,7 @@ ggplot(data.frame(m = m,
 ```
 
 `r begin_sol()`
-```{r poisson-mc-show,echo=solutions,eval=solutions,ref.label="poisson-mc-solution"}
+```{r poisson-mc-show,echo=.solutions,eval=.solutions,ref.label="poisson-mc-solution"}
 ```
 
 In the plot, the overdispersed Poisson probability function (that we just computed) is compared with the plain Poisson probability function for the same expectation value. Lines between values are included for clarity.
@@ -227,11 +239,10 @@ doverpois <- function(m, mu, sigma, K) {
              P_Y = P_Y,
              P_Poisson = dpois(m, lambda = exp(mu + sigma^2/2)))
 }
-doverpois
 ```
 
 `r begin_sol()`
-```{r poisson-mc2-show,echo=solutions,eval=solutions,ref.label="poisson-mc2-solution",results="hide"}
+```{r poisson-mc2-show,echo=.solutions,eval=.solutions,ref.label="poisson-mc2-solution",results="hide"}
 ```
 `r end_sol()`
 
@@ -241,7 +252,7 @@ ggplot(doverpois(m = 0:30, mu = log(8) - 0.125, sigma = 0.5, K = 10000))
 ```
 
 `r begin_sol()`
-```{r poisson-mc2-plot,echo=solutions,eval=solutions}
+```{r poisson-mc2-plot,echo=.solutions,eval=.solutions}
 suppressPackageStartupMessages(library(ggplot2))
 ggplot(doverpois(m = 0:30, mu = log(8)-0.125, sigma = 0.5, K = 10000)) +
   geom_point(aes(m, P_Y, col = "MC")) +
@@ -264,9 +275,11 @@ Original inscription, in Latin:
   Danorum ceciderunt Gutenses, hic sepulti, orate pro eis!''
 </blockquote>
   <!--
-#    "I Herrens {\aa}r 1361, tredje dagen efter S:t Jacob, f\"oll utanf\"or
-#    Visbys portar gutarna i danskarnas h\"ander. H\"ar \"ar de begravda.
-#    Bed f\"or dem."
+<blockquote>
+    "I Herrens {\aa}r 1361, tredje dagen efter S:t Jacob, f\"oll utanf\"or
+    Visbys portar gutarna i danskarnas h\"ander. H\"ar \"ar de begravda.
+    Bed f\"or dem."
+</blockquote>
 -->
 
 English translation:
@@ -396,7 +409,7 @@ Write a function `estimate` that takes inputs `y`, `xi`, `a`, `b`, and `K` and i
 ```{r archaeology-mc, exercise=TRUE, exercise.lines=12}
 
 ```
-```{r archaeology-mc-hint-1}
+```{r archaeology-mc-hint-1,eval=FALSE}
 estimate <- function(y, xi, a, b, K) {
   samples <- data.frame(
     N = rgeom(K, prob = xi),
@@ -405,9 +418,8 @@ estimate <- function(y, xi, a, b, K) {
   loglike <- arch_loglike(param = samples, y = y)
   ...
 }
-estimate
 ```
-```{r archaeology-mc-solution}
+```{r archaeology-mc-solution,eval=FALSE}
 estimate <- function(y, xi, a, b, K) {
   samples <- data.frame(
     N = rgeom(K, prob = xi),
@@ -419,15 +431,14 @@ estimate <- function(y, xi, a, b, K) {
     E_N = mean(samples$N * exp(loglike) / p_y),
     E_phi = mean(samples$phi * exp(loglike) / p_y))
 }
-estimate
 ```
 
 Test the function by running `estimate(y=c(237,256), xi=1/1001, a=0.5, b=0.5, K=10000)`
 
 `r begin_sol()`
-```{r archaeology-mc-show,echo=solutions,eval=solutions,ref.label="archaeology-mc-solution",results="hide"}
+```{r archaeology-mc-show,echo=.solutions,eval=.solutions,ref.label="archaeology-mc-solution",results="hide"}
 ```
-```{r archaeology-mc-show,echo=solutions,eval=solutions}
+```{r archaeology-mc-show,echo=.solutions,eval=.solutions}
 estimate(y = c(237, 256), xi = 1/1001, a = 0.5, b = 0.5, K = 10000)
 ```
 `r end_sol()`
