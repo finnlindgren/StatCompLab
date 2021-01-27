@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
 <ol style="list-style-type: decimal">
 <li>Go to your project clone of your lab 2 repository. During the lab, store new code in one or more new files and commit and push them to github, as in lab 2.</li>
 <li>Upgrade the <code>StatCompLab</code> package to version <code>&gt;= 0.3.0</code>, with <code>devtools::install_github("finnlindgren/StatCompLab", build_vignettes = TRUE)</code> and restart you R session, via the RStudio <code>Session</code> menu.</li>
-<li>Open the <code>Tutorial 03</code> tutorial in the Tutorial pane and work through the tasks.</li>
+<li>Open the <code>Tutorial 03</code> tutorial in the Tutorial pane and work through the tasks. If you get the message “Connection refused” in rstudio.cloud, the reload your browser window and start the <code>Tutorial 03</code> tutorial again.</li>
 </ol>
 <p>When running the <code>install_github()</code> function, R/RStudio will often ask you if you want to upgrade other packages that it lists. This is usually what you need, and you can then enter the number of the option to upgrade all of them. If you’re unsure, you can instead choose the option to upgrade only the <code>CRAN</code> packages. <code>CRAN</code> is a centralised collection of R packages that have stronger stability than development versions from github, and unless you know you need a development version, you can usually stick with only CRAN packages. Notable exceptions are the <code>StatCompLab</code> package itself, and the <code>gradethis</code> package that is used by some of the documents in the <code>StatCompLab</code> package, but during the course you should only need to install <code>gradethis</code> once; we only use a specific development version of that package, and do not use the more recent development versions.</p>
 </div>
