@@ -5,7 +5,9 @@ articles:
   Lab01: Lab01.html
   Lab02: Lab02.html
   Lab03: Lab03.html
-last_built: 2021-01-27T09:37Z
+  Tutorial03: Tutorial03.html
+  Tutorial03Solutions: Tutorial03Solutions.html
+last_built: 2021-01-27T21:34Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles
