@@ -2,7 +2,7 @@
 title: "Lab03"
 author: "Finn Lindgren"
 output: rmarkdown::html_vignette
-vignette: >
+vignette: |
   %\VignetteIndexEntry{Lab03}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}

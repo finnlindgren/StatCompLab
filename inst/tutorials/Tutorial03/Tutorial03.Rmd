@@ -24,17 +24,10 @@ in-header:
   - \newcommand{\mmd}{\mathrm{d}}
   - \newcommand{\md}{\,\mmd}
 ---
-```{r eval=FALSE}
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Lab03}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
-```
 
 ```{r setup, include=FALSE}
 .tutorial <- TRUE
-.solutions <- TRUE
+.solutions <- FALSE
 begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
 end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
 

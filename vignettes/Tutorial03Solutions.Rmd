@@ -1,8 +1,7 @@
 ---
 title: 'Tutorial 03: Monte Carlo integration (solutions)'
 author: Finn Lindgren
-output: learnr::tutorial
-runtime: shiny_prerendered
+output: rmarkdown::html_vignette
 description: 'Statistical Computing: Lab tutorial 3'
 tutorial:
   id: shinyapps.finnlindgren.StatCompTutorial03
@@ -23,11 +22,15 @@ in-header:
 - \newcommand{\pGeom}{\proper{Geom}}
 - \newcommand{\mmd}{\mathrm{d}}
 - \newcommand{\md}{\,\mmd}
+vignette: |
+  %\VignetteIndexEntry{Tutorial 03: Monte Carlo integration (solutions)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 
 ```{r setup, include=FALSE}
-.tutorial <- TRUE
+.tutorial <- FALSE
 .solutions <- TRUE
 begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
 end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
