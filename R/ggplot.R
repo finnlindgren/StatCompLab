@@ -27,6 +27,8 @@
 #' }
 #' @export
 #' @examples
+#' library(ggplot2)
+#'
 #' n <- 100
 #' df <- data.frame(
 #'   x = c(rnorm(n, 0, 10), rnorm(n, 0, 10)),
@@ -52,7 +54,7 @@ stat_ewcdf <- function(mapping = NULL, data = NULL,
                        na.rm = FALSE,
                        show.legend = NA,
                        inherit.aes = TRUE) {
-  layer(
+  ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = StatEwcdf,

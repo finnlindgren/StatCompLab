@@ -1,7 +1,7 @@
 Package: StatCompLab
 Type: Package
 Title: Workshop Material For UoE Statistical Computing
-Version: 0.3.4
+Version: 0.3.5
 Authors@R: 
     person(given = "Finn",
            family = "Lindgren",
@@ -25,7 +25,8 @@ Imports:
     knitr,
     rmarkdown,
     spatstat,
-    ggplot2
+    ggplot2,
+    tidyverse
 Suggests:
     rsconnect
 Config/testthat/edition: 3

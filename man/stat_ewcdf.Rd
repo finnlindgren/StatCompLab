@@ -46,6 +46,8 @@ and the underlying visual tasks are somewhat more challenging.
 }
 
 \examples{
+library(ggplot2)
+
 n <- 100
 df <- data.frame(
   x = c(rnorm(n, 0, 10), rnorm(n, 0, 10)),

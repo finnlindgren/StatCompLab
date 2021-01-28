@@ -6,6 +6,7 @@
 #
 #    http://shiny.rstudio.com/
 #
+#' @importFrom graphics contour curve lines points
 
 optimisation.app <- function() {
   # Define UI for application that illustrates optimisation methods
@@ -395,7 +396,7 @@ optimisation.app <- function() {
 
   # Define server logic required to draw a histogram
   server <- function(input, output, session) {
-    state <- reactiveValues(
+    state <- shiny::reactiveValues(
       x.state = list(
         x = get.fn("simple.1d")$x.default,
         converged = FALSE,
