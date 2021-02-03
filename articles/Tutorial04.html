@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
       </span>
     </div>
 
@@ -246,7 +246,7 @@ This can happen when $n$ or $\lambda$ are close to zero.
 \]</span> that has probability density function <span class="math inline">\(p(\lambda) = a \exp(-a \lambda)\)</span>.</p>
 <p>One can show that the exact posterior distribution for <span class="math inline">\(\lambda\)</span> given <span class="math inline">\(\boldsymbol{y}\)</span> is a <span class="math inline">\(\mathsf{Gamma}(1 + \sum_{i=1}^n y_i, a + n)\)</span> distribution (using the shape&amp;rate parameterisation), and credible intervals can be constructed from quantiles of this distribution.</p>
 <p>In cases where the theoretical construction is impractical, an alternative is to instead construct samples from the posterior distribution, and extract empirical quantiles from this sample. Here, we will use importance sampling to achieve this.</p>
-<p>Let <span class="math inline">\(\theta=\log(\theta)\)</span>, so that <span class="math inline">\(\lambda=\exp(\theta)\)</span>. Show that the prior probability density for <span class="math inline">\(\theta\)</span> is <span class="math inline">\(p(\theta)=a \exp\left( \theta-ae^\theta \right)\)</span>.</p>
+<p>Let <span class="math inline">\(\theta=\log(\lambda)\)</span>, so that <span class="math inline">\(\lambda=\exp(\theta)\)</span>. Show that the prior probability density for <span class="math inline">\(\theta\)</span> is <span class="math inline">\(p(\theta)=a \exp\left( \theta-ae^\theta \right)\)</span>.</p>
 <div id="gaussian-approximation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#gaussian-approximation" class="anchor"></a>Gaussian approximation</h3>
