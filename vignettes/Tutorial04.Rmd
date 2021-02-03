@@ -73,8 +73,10 @@ In this lab session you will explore
 * Laplace approximation and importance sampling for approximate Bayesian credible interval construction
 
 1. Open your github repository clone project from Lab 2 (either on [https://rstudio.cloud](https://rstudio.cloud) or on your own computer and upgrade the `StatCompLab` package (see the `Lab03` vignette for more details)
-2. Download the `RMDemo.Rmd` file from Learn and upload to the Rstudio project and rename it to `Lab4.Rmd`
-3. During this lab, modify the `Lab4.Rmd` document and add new code and text commentary for the lab to the document.
+2. Download the `RMDemo.Rmd` and `my_code.R` files from Learn and upload to the Rstudio project and rename the `.Rmd` file to `Lab4.Rmd`
+3. During this lab, modify the `Lab4.Rmd` document and add new code and text commentary for the lab to the document. (You can remove the demonstration parts of the file when you don't need them anymore, and/or keep a separate copy of it.) When pressing the "knit" button, the RMarkdown file will be run in
+its own R environment, so you need to include any needed `library()` calls in a code chnk in the file,
+normally an inital "setup" chunk.
 
 `r begin_sol(!.solutions)`
 The accompanying `Tutorial04Solutions` tutorial/vignette documents contain the
