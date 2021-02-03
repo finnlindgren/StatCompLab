@@ -12,4 +12,3 @@ inst/tutorials/*/*.synctex.gz
 inst/tutorials/*/*.tex
 inst/tutorials/*/figure/
 vignettes/figure/
-utils/
