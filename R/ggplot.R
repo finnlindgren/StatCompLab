@@ -3,7 +3,7 @@
 
 #' Compute empirical weighted cumulative distribution
 #'
-#' Version of `ggplot2::stat_ecdf` that adds a `weight` property for each
+#' Version of `ggplot2::stat_ecdf` that adds a `weights` property for each
 #' observation, to produce an empirical weighted cumulative distribution function.
 #' The empirical cumulative distribution function (ECDF) provides an alternative
 #' visualisation of distribution. Compared to other visualisations that rely on
@@ -25,6 +25,7 @@
 #'   \item{x}{x in data}
 #'   \item{y}{cumulative density corresponding x}
 #' }
+#' @seealso wquantile
 #' @export
 #' @examples
 #' library(ggplot2)
@@ -35,14 +36,14 @@
 #'   g = gl(2, n),
 #'   w = c(rep(1/n, n), sort(runif(n))^sqrt(n))
 #' )
-#' ggplot(df, aes(x, weight = w)) + stat_ewcdf(geom = "step")
+#' ggplot(df, aes(x, weights = w)) + stat_ewcdf(geom = "step")
 #'
 #' # Don't go to positive/negative infinity
-#' ggplot(df, aes(x, weight = w)) + stat_ewcdf(geom = "step", pad = FALSE)
+#' ggplot(df, aes(x, weights = w)) + stat_ewcdf(geom = "step", pad = FALSE)
 #'
 #' # Multiple ECDFs
-#' ggplot(df, aes(x, colour = g, weight = w)) + stat_ewcdf()
-#' ggplot(df, aes(x, colour = g, weight = w)) +
+#' ggplot(df, aes(x, colour = g, weights = w)) + stat_ewcdf()
+#' ggplot(df, aes(x, colour = g, weights = w)) +
 #'   stat_ewcdf() +
 #'   facet_wrap(vars(g), ncol = 1)
 
@@ -84,7 +85,7 @@ NULL
 
 StatEwcdf <- ggplot2::ggproto(
   "StatEwcdf", ggplot2::Stat,
-  required_aes = c("x|y", "weight"),
+  required_aes = c("x|y", "weights"),
 
   default_aes = ggplot2::aes(y = ggplot2::after_stat(y)),
 
@@ -100,9 +101,9 @@ StatEwcdf <- ggplot2::ggproto(
     if (!has_x && !has_y) {
       rlang::abort("stat_ewcdf() requires an x or y aesthetic.")
     }
-    has_weight <- !(is.null(data$weight) && is.null(params$weight))
-#    if (!has_weight) {
-#      rlang::abort("stat_ewcdf() requires a weight aesthetic.")
+    has_weights <- !(is.null(data$weights) && is.null(params$weights))
+#    if (!has_weights) {
+#      rlang::abort("stat_ewcdf() requires a weights aesthetic.")
 #    }
 
     params
@@ -120,10 +121,14 @@ StatEwcdf <- ggplot2::ggproto(
     if (pad) {
       x <- c(-Inf, x, Inf)
     }
-    if (is.null(data$weight)) {
+    if (is.null(data$weights)) {
       data_ecdf <- ecdf(data$x)(x)
     } else {
-      data_ecdf <- spatstat::ewcdf(data$x, weights=data$weight/sum(data$weight))(x)
+      data_ecdf <-
+        spatstat::ewcdf(
+          data$x,
+          weights = data$weights / sum(data$weights)
+        )(x)
     }
 
     df_ecdf <- vctrs::new_data_frame(list(x = x, y = data_ecdf), n = length(x))
@@ -132,3 +137,90 @@ StatEwcdf <- ggplot2::ggproto(
   }
 )
 
+
+
+
+
+#' Weighted sample quantiles
+#'
+#' Calculates empirical sample quantiles with optional weights, for given
+#' probabilities. Like in `quantile()`, the smallest observation corresponds to
+#' a probability of 0 and the largest to a probability of 1.
+#' Interpolation between discrete values is done when `type=7`, as in `quantile()`.
+#' Use `type=1` to only generate quantile values from the raw input samples.
+#'
+#' @param x
+#'   numeric vector whose sample quantiles are wanted.
+#'  `NA` and `NaN` values are not allowed in numeric vectors unless `na.rm` is TRUE.
+#' @param probs
+#'   numeric vector of probabilities with values in [0,1].
+#' @param na.rm
+#'   logical; if true, any `NA` and `NaN`'s are removed from `x` before the
+#'   quantiles are computed.
+#' @param type numeric, 1 for no interpolation, or 7, for interpolated quantiles.
+#'   Default is 7.
+#' @param weights numeric vector of non-negative weights, the same length as
+#' `x`, or `NULL`. The weights are normalised to sum to 1.
+#'   If `NULL`, then `wquantile(x)` behaves the same as `quantile(x)`, with
+#'   equal weight for each sample value.
+#' @param ... Additional arguments, currently ignored
+#' @seealso stat_ewcdf
+#' @export
+#' @examples
+#' # Some random numbers
+#' x <- rnorm(100)
+#'
+#' # Plain quantiles:
+#' quantile(x)
+#'
+#' # Larger values given larger weight, on average shifting the quantiles upward:
+#' wquantile(x, weights = sort(runif(length(x))))
+
+wquantile <- function(x,
+                      probs = seq(0, 1, 0.25),
+                      na.rm = FALSE,
+                      type = 7,
+                      weights = NULL, ...) {
+  if (is.null(weights) || (length(weights) == 1)) {
+    weights <- rep(1, length(x))
+  }
+  stopifnot(all(weights >= 0))
+  stopifnot(length(weights) == length(x))
+
+  if (length(x) == 1) {
+    return(rep(x, length(probs)))
+  }
+
+  n <- length(x)
+  q <- numeric(length(probs))
+  reorder <- order(x)
+  weights <- weights[reorder]
+  x <- x[reorder]
+  wecdf <- pmin(1, cumsum(weights) / sum(weights))
+  if (type == 1) {
+  } else {
+    weights2 <- (weights[-n] + weights[-1]) / 2
+    wecdf2 <- pmin(1, cumsum(weights2) / sum(weights2))
+  }
+  for (pr_idx in seq_along(probs)) {
+    pr <- probs[pr_idx]
+    if (pr <= 0) {
+      q[pr_idx] <- x[1]
+    } else if (pr >= 1) {
+      q[pr_idx] <- x[n]
+    } else {
+      if (type == 1) {
+        j <- 1 + pmax(0, pmin(n - 1, sum(wecdf <= pr))) # 1 to n
+        q[pr_idx] <- x[j]
+      } else {
+        j <- 1 + pmax(0, pmin(n - 2, sum(wecdf2 <= pr))) # 1 to n-1
+        # Interpolate within each interval
+        g <- (pr - c(0, wecdf2)[j]) / (wecdf2[j] - c(0, wecdf2)[j])
+        # j + 1 is at most n
+        q[pr_idx] <- (1 - g) * x[j] + g * x[j + 1]
+      }
+    }
+  }
+
+  q
+}

@@ -28,7 +28,7 @@ and (Inf, 1)}
 a warning.  If \code{TRUE} silently removes missing values.}
 }
 \description{
-Version of \code{ggplot2::stat_ecdf} that adds a \code{weight} property for each
+Version of \code{ggplot2::stat_ecdf} that adds a \code{weights} property for each
 observation, to produce an empirical weighted cumulative distribution function.
 The empirical cumulative distribution function (ECDF) provides an alternative
 visualisation of distribution. Compared to other visualisations that rely on
@@ -54,14 +54,17 @@ df <- data.frame(
   g = gl(2, n),
   w = c(rep(1/n, n), sort(runif(n))^sqrt(n))
 )
-ggplot(df, aes(x, weight = w)) + stat_ewcdf(geom = "step")
+ggplot(df, aes(x, weights = w)) + stat_ewcdf(geom = "step")
 
 # Don't go to positive/negative infinity
-ggplot(df, aes(x, weight = w)) + stat_ewcdf(geom = "step", pad = FALSE)
+ggplot(df, aes(x, weights = w)) + stat_ewcdf(geom = "step", pad = FALSE)
 
 # Multiple ECDFs
-ggplot(df, aes(x, colour = g, weight = w)) + stat_ewcdf()
-ggplot(df, aes(x, colour = g, weight = w)) +
+ggplot(df, aes(x, colour = g, weights = w)) + stat_ewcdf()
+ggplot(df, aes(x, colour = g, weights = w)) +
   stat_ewcdf() +
   facet_wrap(vars(g), ncol = 1)
+}
+\seealso{
+wquantile
 }
