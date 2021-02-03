@@ -35,8 +35,8 @@ vignette: |
 ```{r setup, include=FALSE}
 .tutorial <- FALSE
 .solutions <- TRUE
-begin_sol <- function(sol = .solutions) {if (!sol && !.all_sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
-end_sol <- function(sol = .solutions) {if (!sol && !.all_sol) {"-->\n"} else {"\n<hr />\n"}}
+begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
+end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
 
 library(StatCompLab)
 if (.tutorial) {
