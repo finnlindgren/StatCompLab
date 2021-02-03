@@ -63,13 +63,14 @@ set.seed(1234L)
 ## Introduction
 
 In this lab session you will explore
+
 * using RMarkdown to organise text and code
 * maximum likelihood estimator sampling distributions and approximate confidence interval construction
 * Laplace approximation and importance sampling for approximate Bayesian credible interval construction
 
 1. Open your github repository clone project from Lab 2 (either on [https://rstudio.cloud](https://rstudio.cloud) or on your own computer and upgrade the `StatCompLab` package (see the `Lab03` vignette for more details)
-* Download the `RMDemo.Rmd` file from Learn and upload to the Rstudio project and rename it to `Lab4.Rmd`
-* During this lab, modify the `Lab4.Rmd` document and add new code and text commentary for the lab to the document.
+2. Download the `RMDemo.Rmd` file from Learn and upload to the Rstudio project and rename it to `Lab4.Rmd`
+3. During this lab, modify the `Lab4.Rmd` document and add new code and text commentary for the lab to the document.
 
 `r begin_sol(!.solutions)`
 The accompanying `Tutorial04Solutions` tutorial/vignette documents contain the
