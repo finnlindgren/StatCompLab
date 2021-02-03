@@ -289,7 +289,7 @@ In cases where the theoretical construction is impractical, an alternative is to
 instead construct samples from the posterior distribution, and extract empirical
 quantiles from this sample. Here, we will use importance sampling to achieve this.
 
-Let $\theta=\log(\theta)$, so that $\lambda=\exp(\theta)$.
+Let $\theta=\log(\lambda)$, so that $\lambda=\exp(\theta)$.
 Show that the prior probability density for $\theta$
 is $p(\theta)=a \exp\left( \theta-ae^\theta \right)$.
 
