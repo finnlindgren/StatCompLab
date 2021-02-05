@@ -120,7 +120,7 @@ Note that we don't have any corresponding $y$-values yet!
 
 Use `predict()`, `plot()`, and `geom_line()` to plot the linear predictor and the original data points in a single figure. Also add the true predictor with the help of `geom_abline(intercept = ..., slope = ...)` (use the `col` parameter to set a different color!). Create a new data frame and supply it directly to `geom_line` to override the original data:
 
-```{r pred-plot, exercise=TRUE}
+```{r pred-plot, exercise=TRUE,eval=FALSE}
 data_pred <- cbind(newdata,
                    data.frame(fit = predict(mod, newdata)))
 ggplot(...) +
@@ -148,7 +148,7 @@ data_pred <- cbind(newdata,
 ## Prediction intervals
 
 Now modify the plotting code to also show _prediction intervals_. Hint: use the `interval="prediction"` parameter for `predict()`, and combine the output (which is now a matrix, and there is no need to convert it to a `data.frame` first) with `newdata` with the help of `cbind`. The resulting `data.frame` should have variables named `z`, `fit`, `lwr`, and `upr`, and the whole object should be called `pred`.
-```{r prediction-int, exercise=TRUE}
+```{r prediction-int, exercise=TRUE, eval=FALSE}
 pred <- cbind(
   newdata,
   predict(...)
@@ -183,7 +183,7 @@ grade_this({
 `r end_sol()`
 
 Use the `geom_ribbon(data = ..., aes(x = ..., ymin = ..., ymax = ...), alpha = 0.25)` function to add the prediction intervals to the figure. The `alpha` parameter sets the "transparency" of the ribbon. Experiment with different values between 0 and 1. The result should look similar to this:
-```{r plot-pred-int, exercise=TRUE}
+```{r plot-pred-int, exercise=TRUE, eval=FALSE}
 ggplot(data) +
   geom_point(aes(z, y)) +
   geom_line(data = pred, aes(z, fit)) +
@@ -213,7 +213,7 @@ abline(0, 2, col = 2)
 Note: This section introduces _functions_ that will be discussed in more detail in week 2.
 
 Let's say we want to redo the data analysis using different models (after all, we only know the true model because we generated synthetic data!).  Instead of copying the plotting code for each new model, let's create a function instead!  Start with the following skeleton code, and fill in the missing bits:
-```{r multiple-function, exercise=TRUE}
+```{r multiple-function, exercise=TRUE, eval=FALSE}
 # x: a formula
 # newdata: data for prediction
 # xname: A string containing the name of the variable on the x-axis
@@ -253,7 +253,7 @@ Remark: Why can we use the `+ geom_*` technique to add to the plot drawn by `plo
 ### Further plotting details
 
 You can change the plot lables and add a title by adding calls to `xlab()`, `ylab()`, and `ggtitle()` to the plot:
-```{r plot-extra,exercise=TRUE}
+```{r plot-extra,exercise=TRUE,eval=FALSE}
 plot_predictions <- function(x, newdata, xname = "x", ???, ...) {
   ???
   ggplot(???) +
@@ -325,34 +325,36 @@ formulas <- c(y ~ 1,
               y ~ z + I(z^2) + I(z^3))
 ```
 Look at the lecture slides and use the `lapply()` technique to estimate all four models and store the result in a variable called `mods`.
-```{r lapply-lm, exercise=TRUE}
+```{r lapply-lm, exercise=TRUE,eval=FALSE}
 formulas <- c(y ~ 1,
               y ~ z,
               y ~ z + I(z^2),
               y ~ z + I(z^2) + I(z^3))
 mods <- lapply(...)
 ```
-```{r lapply-lm-hint}
+```{r lapply-lm-hint,eval=FALSE}
 formulas <- c(y ~ 1,
               y ~ z,
               y ~ z + I(z^2),
               y ~ z + I(z^2) + I(z^3))
 mods <- lapply(formulas, function(x) lm(...))
 ```
-```{r lapply-lm-solution}
+```{r lapply-lm-solution,eval=FALSE}
 formulas <- c(y ~ 1,
               y ~ z,
               y ~ z + I(z^2),
               y ~ z + I(z^2) + I(z^3))
 mods <- lapply(formulas, function(x) lm(x, data))
 ```
-```{r ref.label="lapply-lm-solution"}
+`r begin_sol()`
+```{r ref.label="lapply-lm-solution",eval=TRUE,echo=.solutions}
 ```
+`r end_sol()`
 
 ### Plotting multiple results
 
 You can now use something like the following code to plot all the results:
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=.solutions}
 for (k in seq_along(formulas)) {
   pl <-
     plot_prediction(mods[[k]], newdata, xname = "z", ylab = "y") +
