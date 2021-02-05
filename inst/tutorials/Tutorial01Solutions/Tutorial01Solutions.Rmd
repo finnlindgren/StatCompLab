@@ -71,7 +71,7 @@ data <- data.frame(z = z, y = 2 * z + rnorm(length(z), sd = 4))
 What does `rep()`, `length()`, and `rnorm()` do?
 Look at the help pages by running `?rep`, `?rnorm`, and `?length` in the interactive `Console` window, or searching for them in the `Help` pane.
 
-```{r linear-model-parameters}
+```{r linear-model-parameters,eval=.tutorial}
 question(
   "What values of $\\beta_0$, $\\beta_z$, and $\\sigma_e^2$ did the synthetic data generation use?",
   answer("$\\beta_0=0$, $\\beta_z=2$, and $\\sigma_e^2=4$",
