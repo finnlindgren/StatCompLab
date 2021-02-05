@@ -1,16 +1,20 @@
 ---
-title: "Tutorial 01: R and linear models"
-author: "Finn Lindgren"
-output: learnr::tutorial
-runtime: shiny_prerendered
-description: "Statistical Computing: Lab tutorial 1"
+title: 'Tutorial 01: R and linear models'
+author: Finn Lindgren
+output: rmarkdown::html_vignette
+description: 'Statistical Computing: Lab tutorial 1'
 tutorial:
-  id: "com.example.StatCompTutorial01"
+  id: com.example.StatCompTutorial01
   version: 1.3
+vignette: |
+  %\VignetteIndexEntry{Tutorial 01: R and linear models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
+
 ```{r setup, include=FALSE}
-.tutorial <- TRUE
+.tutorial <- FALSE
 .solutions <- FALSE
 begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
 end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
@@ -366,3 +370,4 @@ Look at the help text for `seq_along()`! Storing the plot as an object, `pl`, an
 **Note:** We will look at ways of combining multiple plots later.
 
 Does the information displayed in the plots match your intuition about the different models?
+
