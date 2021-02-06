@@ -2,30 +2,36 @@
 title: 'StatComp Project 1 (2020/21): Numerical statistics'
 author: "Finn Lindgren"
 output:
+  rmarkdown::html_vignette:
+    number_sections: yes
   html_document:
     number_sections: yes
   pdf_document:
     number_sections: yes
 description: 'Statistical Computing (2020/21): Coursework project 1'
+vignette: |
+  %\VignetteIndexEntry{StatComp Project 1 (2020/21): Numerical statistics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 in-header:
-- \newcommand{\bm}[1]{\boldsymbol{#1}}
-- \newcommand{\wh}[1]{\widehat{#1}}
-- \newcommand{\ol}[1]{\overline{#1}}
-- \newcommand{\wt}[1]{\widetilde{#1}}
-- \newcommand{\mv}[1]{\boldsymbol{#1}}
-- \newcommand{\proper}[1]{\mathsf{#1}}
-- \newcommand{\pP}{\proper{P}}
-- \newcommand{\pE}{\proper{E}}
-- \newcommand{\pVar}{\proper{Var}}
-- \newcommand{\pPo}{\proper{Poisson}}
-- \newcommand{\pN}{\proper{Normal}}
-- \newcommand{\pBin}{\proper{Bin}}
-- \newcommand{\pBeta}{\proper{Beta}}
-- \newcommand{\pGeom}{\proper{Geom}}
-- \newcommand{\pExp}{\proper{Exp}}
-- \newcommand{\pGamma}{\proper{Gamma}}
-- \newcommand{\mmd}{\mathrm{d}}
-- \newcommand{\md}{\,\mmd}
+  - \newcommand{\bm}[1]{\boldsymbol{#1}}
+  - \newcommand{\wh}[1]{\widehat{#1}}
+  - \newcommand{\ol}[1]{\overline{#1}}
+  - \newcommand{\wt}[1]{\widetilde{#1}}
+  - \newcommand{\mv}[1]{\boldsymbol{#1}}
+  - \newcommand{\proper}[1]{\mathsf{#1}}
+  - \newcommand{\pP}{\proper{P}}
+  - \newcommand{\pE}{\proper{E}}
+  - \newcommand{\pVar}{\proper{Var}}
+  - \newcommand{\pPo}{\proper{Poisson}}
+  - \newcommand{\pN}{\proper{Normal}}
+  - \newcommand{\pBin}{\proper{Bin}}
+  - \newcommand{\pBeta}{\proper{Beta}}
+  - \newcommand{\pGeom}{\proper{Geom}}
+  - \newcommand{\pExp}{\proper{Exp}}
+  - \newcommand{\pGamma}{\proper{Gamma}}
+  - \newcommand{\mmd}{\mathrm{d}}
+  - \newcommand{\md}{\,\mmd}
 ---
 
 ```{r setup, include=FALSE}
