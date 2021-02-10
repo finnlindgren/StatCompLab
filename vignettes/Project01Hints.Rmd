@@ -74,7 +74,7 @@ fast_fun <- function(N) {
 }
 ```
 
-Not as fast, but a bit more compact; using matrix indexing doesn't need memory reallocation, but is a bit slower than vector indexing:
+Not as fast, but a bit more compact; using matrix indexing doesn't need memory reallocation, but is a bit slower than vector indexing. A potential drawback is that his method only works when all the columns in the output data.frame should be of the same type (numeric).
 ```{r}
 ok_fun <- function(N) {
   result <- matrix(0, N, 2)
