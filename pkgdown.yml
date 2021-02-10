@@ -6,13 +6,14 @@ articles:
   Lab02: Lab02.html
   Lab03: Lab03.html
   Project01: Project01.html
+  Project01Hints: Project01Hints.html
   Tutorial01: Tutorial01.html
   Tutorial01Solutions: Tutorial01Solutions.html
   Tutorial03: Tutorial03.html
   Tutorial03Solutions: Tutorial03Solutions.html
   Tutorial04: Tutorial04.html
   Tutorial04Solutions: Tutorial04Solutions.html
-last_built: 2021-02-06T00:59Z
+last_built: 2021-02-10T10:25Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles
