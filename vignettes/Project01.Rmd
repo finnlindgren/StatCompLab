@@ -4,15 +4,13 @@ author: "Finn Lindgren"
 output:
   rmarkdown::html_vignette:
     number_sections: yes
-  html_document:
-    number_sections: yes
   pdf_document:
     number_sections: yes
 description: 'Statistical Computing (2020/21): Coursework project 1'
 vignette: |
+  %\VignetteEncoding{UTF-8}
   %\VignetteIndexEntry{StatComp Project 1 (2020/21): Numerical statistics}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 in-header:
   - \newcommand{\bm}[1]{\boldsymbol{#1}}
   - \newcommand{\wh}[1]{\widehat{#1}}
