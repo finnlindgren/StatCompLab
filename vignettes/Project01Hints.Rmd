@@ -1,0 +1,109 @@
+---
+title: "Project 1 hints"
+author: "Finn Lindgren"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: |
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Part 1
+
+## Avoiding long running times
+
+### The problem
+
+Collecting the confidence intervals into a data.frame inside a loop can be slow.
+
+A common issue when combining results computed in loops is that using `rbind` in each step of the loop to add one or a few rows to a large vector or data.frame can be very slow; instead of linear computational cost in the size of the output, the cost can become quadratic; it needs to reallocate memory and copy the previous results, for each new version of the result object.
+
+### The solution
+
+The key is to avoid reallocating memory by instead pre-allocating the whole result object before the loop. However there are some subtleties to this, and the examples blow show the differences between approaches.
+
+A common solution is to work with simpler intermediate data structures within the loop, and then collect the results at the end.
+Indexing into simple vectors is much cheaper than reallocating and copying memory.
+
+Slow:
+```{r}
+slow_fun <- function(N) {
+  result <- data.frame()
+  for (loop in seq_len(N)) {
+    result <- rbind(
+      result,
+      data.frame(A = cos(loop), B = sin(loop))
+    )
+  }
+  result
+}
+```
+
+Better, but even data.frame indexing assignments causes some memory reallocation:
+```{r}
+better_fun <- function(N) {
+  result <- data.frame(A = numeric(N), B = numeric(N))
+  for (loop in seq_len(N)) {
+    result[loop, ] <- c(cos(loop), sin(loop))
+  }
+  result
+}
+```
+
+Fast; several orders of magnitude faster (see timings below) by avoiding memory reallocation inside the loop:
+```{r}
+fast_fun <- function(N) {
+  result_A <- numeric(N)
+  result_B <- numeric(N)
+  for (loop in seq_len(N)) {
+    result_A[loop] <- cos(loop)
+    result_B[loop] <- sin(loop)
+  }
+  data.frame(
+    A = result_A,
+    B = result_B
+  )
+}
+```
+
+Not as fast, but a bit more compact; using matrix indexing doesn't need memory reallocation, but is a bit slower than vector indexing:
+```{r}
+ok_fun <- function(N) {
+  result <- matrix(0, N, 2)
+  for (loop in seq_len(N)) {
+    result[loop, ] <- c(cos(loop), sin(loop))
+  }
+  colnames(result) <- c("A", "B")
+  as.data.frame(result)
+}
+```
+
+Benchmark timing comparisons:
+
+```{r}
+N <- 1000
+bench::mark(
+  slow = slow_fun(N),
+  better = better_fun(N),
+  fast = fast_fun(N),
+  ok = ok_fun(N)
+)
+```
+
+```{r}
+N <- 10000
+bench::mark(
+  slow = slow_fun(N),
+  better = better_fun(N),
+  fast = fast_fun(N),
+  ok = ok_fun(N)
+)
+```
