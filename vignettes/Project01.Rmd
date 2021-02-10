@@ -235,7 +235,6 @@ p(\bm{N},\bm{Y}) = \frac{B(\wt{a},\wt{b})}{B(a,b)} \prod_{j=1}^J \left[
 p(N_j)
 \prod_{i=1}^2
 {N_j \choose Y_{j,i}}
-{N_j \choose Y_{j,i}}
 \right],
 $$
 where $p(N_j)$ is the probability mass function for the Geometric distribution prior
