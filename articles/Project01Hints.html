@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -196,10 +196,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow        460.2ms  469.7ms      2.13    27.6MB     7.45</span>
-<span class="co">#&gt; 2 better       76.5ms   80.2ms     11.8     15.9MB     9.87</span>
-<span class="co">#&gt; 3 fast        387.7µs  460.2µs   2000.        89KB     4.00</span>
-<span class="co">#&gt; 4 ok          638.8µs  819.5µs   1085.     106.4KB    22.0</span></code></pre></div>
+<span class="co">#&gt; 1 slow        450.5ms  459.4ms      2.18    27.6MB     7.62</span>
+<span class="co">#&gt; 2 better       68.3ms   73.4ms     13.3     15.9MB     9.48</span>
+<span class="co">#&gt; 3 fast        402.7µs  462.7µs   1977.        89KB     6.00</span>
+<span class="co">#&gt; 4 ok          652.2µs    782µs   1092.     106.4KB    22.0</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
@@ -212,10 +212,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow          7.27s    7.27s     0.137    2.28GB     9.35</span>
-<span class="co">#&gt; 2 better        1.22s    1.22s     0.820    1.49GB    36.9 </span>
-<span class="co">#&gt; 3 fast         1.92ms   2.27ms   419.     156.34KB     1.99</span>
-<span class="co">#&gt; 4 ok           6.96ms   8.18ms   113.     390.86KB     9.94</span></code></pre></div>
+<span class="co">#&gt; 1 slow          6.31s    6.31s     0.158    2.28GB    10.8 </span>
+<span class="co">#&gt; 2 better        1.16s    1.16s     0.861    1.49GB    39.6 </span>
+<span class="co">#&gt; 3 fast          2.3ms   2.34ms   404.     156.34KB     2.00</span>
+<span class="co">#&gt; 4 ok           7.02ms   7.69ms   121.     390.86KB     7.94</span></code></pre></div>
 </div>
 </div>
 </div>
