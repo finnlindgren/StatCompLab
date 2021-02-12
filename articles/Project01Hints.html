@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
       </span>
     </div>
 
@@ -112,7 +112,7 @@
       <h1 data-toc-skip>Project 01 Hints</h1>
                         <h4 class="author">Finn Lindgren</h4>
             
-            <h4 class="date">2021-02-10</h4>
+            <h4 class="date">2021-02-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/master/vignettes/Project01Hints.Rmd"><code>vignettes/Project01Hints.Rmd</code></a></small>
       <div class="hidden name"><code>Project01Hints.Rmd</code></div>
@@ -196,10 +196,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow        450.5ms  459.4ms      2.18    27.6MB     7.62</span>
-<span class="co">#&gt; 2 better       68.3ms   73.4ms     13.3     15.9MB     9.48</span>
-<span class="co">#&gt; 3 fast        402.7µs  462.7µs   1977.        89KB     6.00</span>
-<span class="co">#&gt; 4 ok          652.2µs    782µs   1092.     106.4KB    22.0</span></code></pre></div>
+<span class="co">#&gt; 1 slow        469.2ms  473.2ms      2.11    27.6MB     7.40</span>
+<span class="co">#&gt; 2 better       71.7ms   78.3ms     12.6     15.9MB     8.98</span>
+<span class="co">#&gt; 3 fast        399.1µs  494.6µs   1880.        89KB     6.00</span>
+<span class="co">#&gt; 4 ok          682.5µs  854.9µs    998.     106.4KB    20.0</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
@@ -212,10 +212,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow          6.31s    6.31s     0.158    2.28GB    10.8 </span>
-<span class="co">#&gt; 2 better        1.16s    1.16s     0.861    1.49GB    39.6 </span>
-<span class="co">#&gt; 3 fast          2.3ms   2.34ms   404.     156.34KB     2.00</span>
-<span class="co">#&gt; 4 ok           7.02ms   7.69ms   121.     390.86KB     7.94</span></code></pre></div>
+<span class="co">#&gt; 1 slow          6.78s    6.78s     0.148    2.28GB    10.2 </span>
+<span class="co">#&gt; 2 better        1.21s    1.21s     0.828    1.49GB    38.1 </span>
+<span class="co">#&gt; 3 fast         2.15ms   2.49ms   395.     156.34KB     1.99</span>
+<span class="co">#&gt; 4 ok           6.91ms   7.89ms    89.0    390.86KB     5.93</span></code></pre></div>
 </div>
 </div>
 </div>
