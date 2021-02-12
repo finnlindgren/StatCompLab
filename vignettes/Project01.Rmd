@@ -169,6 +169,9 @@ The function must return a data frame with `m` rows and two columns, named
 2. Show mathematically that the widths of the $\lambda$-intervals for
 parameterisation type 1 and 2 are always identical to each other, for any given
 observation vector $\bm{y}$ and confidence level $1-\alpha$.
+Note: You should ignore the cases where the $\theta$- or $\lambda$-intervals
+extend below $0$ (for case 1, when the normal quantile $z$ has $\ol{y} < z^2/n$,
+and for case 2, when $4\ol{y} < z^2/n$).
 3. In your `my_code.R` file, define a function
 `tidy_multi_pois_CI(m, n, lambda, alpha)` that takes the same inputs as `multi_pois_CI` except for the `type` argument. The function must return a data frame with `3*m` rows and three
 columns, named
