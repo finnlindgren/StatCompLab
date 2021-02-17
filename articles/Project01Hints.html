@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
       </span>
     </div>
 
@@ -112,7 +112,7 @@
       <h1 data-toc-skip>Project 01 Hints</h1>
                         <h4 class="author">Finn Lindgren</h4>
             
-            <h4 class="date">2021-02-12</h4>
+            <h4 class="date">2021-02-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/master/vignettes/Project01Hints.Rmd"><code>vignettes/Project01Hints.Rmd</code></a></small>
       <div class="hidden name"><code>Project01Hints.Rmd</code></div>
@@ -121,21 +121,18 @@
 
     
     
-<div id="part-1" class="section level1">
+<div id="avoiding-long-running-times" class="section level1">
 <h1 class="hasAnchor">
-<a href="#part-1" class="anchor"></a>Part 1</h1>
-<div id="avoiding-long-running-times" class="section level2">
+<a href="#avoiding-long-running-times" class="anchor"></a>Avoiding long running times</h1>
+<div id="the-problem" class="section level2">
 <h2 class="hasAnchor">
-<a href="#avoiding-long-running-times" class="anchor"></a>Avoiding long running times</h2>
-<div id="the-problem" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-problem" class="anchor"></a>The problem</h3>
+<a href="#the-problem" class="anchor"></a>The problem</h2>
 <p>Collecting the confidence intervals into a data.frame inside a loop can be slow.</p>
 <p>A common issue when combining results computed in loops is that using <code>rbind</code> in each step of the loop to add one or a few rows to a large vector or data.frame can be very slow; instead of linear computational cost in the size of the output, the cost can become quadratic; it needs to reallocate memory and copy the previous results, for each new version of the result object.</p>
 </div>
-<div id="the-solution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-solution" class="anchor"></a>The solution</h3>
+<div id="the-solution" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-solution" class="anchor"></a>The solution</h2>
 <p>The key is to avoid reallocating memory by instead pre-allocating the whole result object before the loop. However there are some subtleties to this, and the examples blow show the differences between approaches.</p>
 <p>A common solution is to work with simpler intermediate data structures within the loop, and then collect the results at the end. Indexing into simple vectors is much cheaper than reallocating and copying memory.</p>
 <p>Slow:</p>
@@ -196,10 +193,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow        469.2ms  473.2ms      2.11    27.6MB     7.40</span>
-<span class="co">#&gt; 2 better       71.7ms   78.3ms     12.6     15.9MB     8.98</span>
-<span class="co">#&gt; 3 fast        399.1µs  494.6µs   1880.        89KB     6.00</span>
-<span class="co">#&gt; 4 ok          682.5µs  854.9µs    998.     106.4KB    20.0</span></code></pre></div>
+<span class="co">#&gt; 1 slow        434.7ms  436.9ms      2.29    27.6MB     8.01</span>
+<span class="co">#&gt; 2 better       64.1ms   69.8ms     14.1     15.9MB    10.6 </span>
+<span class="co">#&gt; 3 fast        390.4µs  418.4µs   2254.        89KB     6.00</span>
+<span class="co">#&gt; 4 ok          636.8µs  709.6µs   1233.     106.4KB    24.0</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
@@ -212,10 +209,91 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow          6.78s    6.78s     0.148    2.28GB    10.2 </span>
-<span class="co">#&gt; 2 better        1.21s    1.21s     0.828    1.49GB    38.1 </span>
-<span class="co">#&gt; 3 fast         2.15ms   2.49ms   395.     156.34KB     1.99</span>
-<span class="co">#&gt; 4 ok           6.91ms   7.89ms    89.0    390.86KB     5.93</span></code></pre></div>
+<span class="co">#&gt; 1 slow             6s       6s     0.167    2.28GB    12.2 </span>
+<span class="co">#&gt; 2 better        1.18s    1.18s     0.849    1.49GB    39.1 </span>
+<span class="co">#&gt; 3 fast            2ms   2.04ms   470.     156.34KB     1.99</span>
+<span class="co">#&gt; 4 ok           6.24ms   6.74ms   135.     390.86KB    11.9</span></code></pre></div>
+</div>
+</div>
+<div id="dynamically-generated-column-names" class="section level1">
+<h1 class="hasAnchor">
+<a href="#dynamically-generated-column-names" class="anchor"></a>Dynamically generated column names</h1>
+<p>When the size of a matrix or data.frame depends on a parameter, e.g. <span class="math display">\[J\]</span> in the second part of the project, we sometimes need a way to dynamically generate column names. The <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> function can be used for this.</p>
+<p>For example, if we want a data.frame of size <span class="math inline">\(n\times m\)</span>, with column names <code>Name1</code>, <code>Name2</code>, etc, we can use</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, <span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># Create a matrix with some values in it</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Name"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
+<p>The resulting object looks like this:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span>
+<span class="co">#&gt;        Name1     Name2       Name3</span>
+<span class="co">#&gt; 1 0.07879313 0.3436822 0.526418109</span>
+<span class="co">#&gt; 2 0.79820242 0.5398276 0.569943583</span>
+<span class="co">#&gt; 3 0.61262723 0.3287560 0.292147582</span>
+<span class="co">#&gt; 4 0.24664349 0.6635645 0.732444122</span>
+<span class="co">#&gt; 5 0.34669600 0.6631887 0.008833606</span></code></pre></div>
+</div>
+<div id="avoiding-unnecessary-for-loops" class="section level1">
+<h1 class="hasAnchor">
+<a href="#avoiding-unnecessary-for-loops" class="anchor"></a>Avoiding unnecessary for-loops</h1>
+<p>Since most operations and functions in R are vectorised, the code can often be written in a clear way by avoiding unnecessary for-loops. As a simple example, say that we want to compute <span class="math inline">\(\sum_{k=1}^{100} \cos(k)\)</span>.</p>
+<p>A for-loop solution of the style that would be a good solution in a high performance low-level language like C might look like this:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">result</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>By taking advantage of vectorised calling of <code><a href="https://rdrr.io/r/base/Trig.html">cos()</a></code>, and the function <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, we can reformulate into a shorter and more clear vectorised solution:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Other commonly used functions involving vectors of <code>TRUE</code> and <code>FALSE</code> are <code><a href="https://rdrr.io/r/base/all.html">all()</a></code> and <code><a href="https://rdrr.io/r/base/any.html">any()</a></code>. For example,</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span> <span class="co"># FALSE == 0, TRUE == 1</span>
+<span class="co">#&gt; [1] 3</span></code></pre></div>
+<p>Both <code>sum</code>, <code>any</code>, and <code>all</code> also operate across all elements of a matrix. For row-wise and column-wise sums, see <code><a href="https://rdrr.io/r/base/colSums.html">rowSums()</a></code>and <code><a href="https://rdrr.io/r/base/colSums.html">colSums()</a></code>.</p>
+</div>
+<div id="latex-equations" class="section level1">
+<h1 class="hasAnchor">
+<a href="#latex-equations" class="anchor"></a>LaTeX equations</h1>
+<div id="aligning-equations-in-multi-step-derivations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#aligning-equations-in-multi-step-derivations" class="anchor"></a>Aligning equations in multi-step derivations</h2>
+<p>When typesetting multi-step derivations, one should align the equations. In LaTeX, this can be done with the <code>align</code> or <code>align*</code> environments. In some case, that might not work in RMarkdown, but one can then use the <code>aligned</code> environment instead.</p>
+<div id="example-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-1" class="anchor"></a>Example 1</h3>
+<pre><code>\begin{align*}
+\frac{\partial}{\partial x}f(x, y) &amp;= \frac{\partial}{\partial x}\exp(2x+3y) \\
+&amp;= 2\exp(2x+3y)
+\end{align*}</code></pre>
+<p>Result:</p>
+<p><span class="math display">\[\begin{align*}
+\frac{\partial}{\partial x}f(x, y) &amp;= \frac{\partial}{\partial x}\exp(2x+3y) \\
+&amp;= 2\exp(2x+3y)
+\end{align*}\]</span></p>
+</div>
+<div id="example-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-2" class="anchor"></a>Example 2</h3>
+<pre><code>$$
+\begin{aligned}
+\frac{\partial}{\partial x}f(x, y) &amp;= \frac{\partial}{\partial x}\exp(2x+3y) \\
+&amp;= 2\exp(2x+3y)
+\end{aligned}
+$$</code></pre>
+<p>Result:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial}{\partial x}f(x, y) &amp;= \frac{\partial}{\partial x}\exp(2x+3y) \\
+&amp;= 2\exp(2x+3y)
+\end{aligned}
+\]</span></p>
 </div>
 </div>
 </div>
