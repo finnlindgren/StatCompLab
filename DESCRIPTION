@@ -24,7 +24,7 @@ Imports:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    spatstat,
+    spatstat.geom,
     ggplot2,
     tidyverse,
     bench
