@@ -291,7 +291,7 @@ all weights would be (in theory if not numerically) positive.
 To further improve the
 method, we can choose different values of the probability parameter for the samples,
 and also adapt it differently for each $j$. Without motivation, you can use values
-$\xi_j=1/(1 + 3 N^\text{min}_j)$ when sampling, so that
+$\xi_j=1/(1 + 4 N^\text{min}_j)$ when sampling, so that
 $N_j^{[k]}=N^\text{min}_j + \pGeom(\xi_j)$.
 
 Note: Due to the nature of the geometric distribution,
