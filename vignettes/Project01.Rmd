@@ -300,7 +300,7 @@ least $N^\text{min}_j$.
 
 To take this different sampling method into account, the log-weights need to be
 defined as
-$\log[w^{[k]}]=\log[p(\bm{N}^{[k]},\bm{Y})]-\log[\wt{p}(\bm{N}^{[k]}-\bm{N}^\text{min}_j)]$,
+$\log[w^{[k]}]=\log[p(\bm{N}^{[k]},\bm{Y})]-\log[\wt{p}(\bm{N}^{[k]})]$,
 where $\wt{p}(\bm{N}^{[k]})=\prod_{j=1}^J p_{\pGeom(\xi_j)}(N_j^{[k]}-\bm{N}^\text{min}_j)$,
 the product of $J$ different geometric distribution probabilities.
 
