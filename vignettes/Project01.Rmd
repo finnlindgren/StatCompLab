@@ -2,9 +2,9 @@
 title: 'StatComp Project 1 (2020/21): Numerical statistics'
 author: "Finn Lindgren"
 output:
-  rmarkdown::html_vignette:
-    number_sections: yes
   pdf_document:
+    number_sections: yes
+  rmarkdown::html_vignette:
     number_sections: yes
 pkgdown:
   number_sections: yes
@@ -301,7 +301,7 @@ least $N^\text{min}_j$.
 To take this different sampling method into account, the log-weights need to be
 defined as
 $\log[w^{[k]}]=\log[p(\bm{N}^{[k]},\bm{Y})]-\log[\wt{p}(\bm{N}^{[k]})]$,
-where $\wt{p}(\bm{N}^{[k]})=\prod_{j=1}^J p_{\pGeom(\xi_j)}(N_j^{[k]}-\bm{N}^\text{min}_j)$,
+where $\wt{p}(\bm{N}^{[k]})=\prod_{j=1}^J p_{\pGeom(\xi_j)}(N_j^{[k]}-N^\text{min}_j)$,
 the product of $J$ different geometric distribution probabilities.
 
 You may adapt this example code (the details will depend on which vectorisation
