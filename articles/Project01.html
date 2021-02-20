@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
       </span>
     </div>
 
@@ -211,7 +211,7 @@ p(N_j)
 <p>As an alternative, we can use sampling distributions that are better adapted to the posterior distributions. Let <span class="math inline">\(N^\text{min}_j=\min(Y_{j,1}, Y_{j,2})\)</span> be the smallest allowed value to sample, for each <span class="math inline">\(j=1,\dots,J\)</span>. This would eliminate all the impossible combinations, so that all weights would be (in theory if not numerically) positive.</p>
 <p>To further improve the method, we can choose different values of the probability parameter for the samples, and also adapt it differently for each <span class="math inline">\(j\)</span>. Without motivation, you can use values <span class="math inline">\(\xi_j=1/(1 + 3 N^\text{min}_j)\)</span> when sampling, so that <span class="math inline">\(N_j^{[k]}=N^\text{min}_j + \mathsf{Geom}(\xi_j)\)</span>.</p>
 <p>Note: Due to the nature of the geometric distribution, this is also equivalent to an ordinary <span class="math inline">\(\mathsf{Geom}(\xi_j)\)</span> conditioned on being at least <span class="math inline">\(N^\text{min}_j\)</span>.</p>
-<p>To take this different sampling method into account, the log-weights need to be defined as <span class="math inline">\(\log[w^{[k]}]=\log[p(\boldsymbol{N}^{[k]},\boldsymbol{Y})]-\log[\widetilde{p}(\boldsymbol{N}^{[k]}-\boldsymbol{N}^\text{min}_j)]\)</span>, where <span class="math inline">\(\widetilde{p}(\boldsymbol{N}^{[k]})=\prod_{j=1}^J p_{\mathsf{Geom}(\xi_j)}(N_j^{[k]}-\boldsymbol{N}^\text{min}_j)\)</span>, the product of <span class="math inline">\(J\)</span> different geometric distribution probabilities.</p>
+<p>To take this different sampling method into account, the log-weights need to be defined as <span class="math inline">\(\log[w^{[k]}]=\log[p(\boldsymbol{N}^{[k]},\boldsymbol{Y})]-\log[\widetilde{p}(\boldsymbol{N}^{[k]})]\)</span>, where <span class="math inline">\(\widetilde{p}(\boldsymbol{N}^{[k]})=\prod_{j=1}^J p_{\mathsf{Geom}(\xi_j)}(N_j^{[k]}-N^\text{min}_j)\)</span>, the product of <span class="math inline">\(J\)</span> different geometric distribution probabilities.</p>
 <p>You may adapt this example code (the details will depend on which vectorisation method you use):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matrix of minimum allowed N for each j, repeated K times</span>
