@@ -284,7 +284,7 @@ will influence the practical estimates and credible intervals.
 
 As an alternative, we
 can use sampling distributions that are better adapted to the posterior distributions.
-Let $N^\text{min}_j=\min(Y_{j,1}, Y_{j,2})$ be the smallest allowed value to sample,
+Let $N^\text{min}_j=\max(Y_{j,1}, Y_{j,2})$ be the smallest allowed value to sample,
 for each $j=1,\dots,J$. This would eliminate all the impossible combinations, so that
 all weights would be (in theory if not numerically) positive.
 
