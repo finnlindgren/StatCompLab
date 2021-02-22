@@ -310,6 +310,7 @@ method you use):
 # matrix of minimum allowed N for each j, repeated K times
 N_min <- matrix(rep(pmax(Y[, 1], Y[, 2]), each = K), K, J)
 xi_sample <- 1 / (1 + 4 * N_min)
+xi_sample <- matrix(xi_sample, K, J, byrow = TRUE)
 # Sample values and call log_prob_NY for each sample,
 # store N-values in a K-by-J matrix, and log(p_NY)-values in a vector log_PY
 N <- matrix(rgeom(..., prob = xi_sample), K, J) + N_min
