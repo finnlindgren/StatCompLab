@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.12</span>
       </span>
     </div>
 
@@ -217,7 +217,6 @@ p(N_j)
 <code class="sourceCode R"><span class="co"># matrix of minimum allowed N for each j, repeated K times</span>
 <span class="va">N_min</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span><span class="op">(</span><span class="va">Y</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">Y</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, each <span class="op">=</span> <span class="va">K</span><span class="op">)</span>, <span class="va">K</span>, <span class="va">J</span><span class="op">)</span>
 <span class="va">xi_sample</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">N_min</span><span class="op">)</span>
-<span class="va">xi_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">xi_sample</span>, <span class="va">K</span>, <span class="va">J</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># Sample values and call log_prob_NY for each sample,</span>
 <span class="co"># store N-values in a K-by-J matrix, and log(p_NY)-values in a vector log_PY</span>
 <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Geometric.html">rgeom</a></span><span class="op">(</span><span class="va">...</span>, prob <span class="op">=</span> <span class="va">xi_sample</span><span class="op">)</span>, <span class="va">K</span>, <span class="va">J</span><span class="op">)</span> <span class="op">+</span> <span class="va">N_min</span>
