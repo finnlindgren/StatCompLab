@@ -1,7 +1,7 @@
 Package: StatCompLab
 Type: Package
 Title: Workshop Material For UoE Statistical Computing
-Version: 0.5.12
+Version: 0.6.0
 Authors@R: 
     person(given = "Finn",
            family = "Lindgren",
@@ -17,7 +17,8 @@ RoxygenNote: 7.1.1
 Remotes:
   rstudio-education/gradethis@f1a0aa4964c7b02bdb5329591adce2ac7d26160c
 Depends:
-  shiny
+    shiny,
+    R (>= 2.10)
 Imports:
     learnr (<= 0.10.1),
     gradethis (<= 0.2.0.9000),

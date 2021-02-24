@@ -2,7 +2,10 @@
 
 export(StatEwcdf)
 export(arch_loglike)
+export(filament1_estimate)
+export(filament1_predict)
 export(optimisation)
+export(proper_score)
 export(stat_ewcdf)
 export(wquantile)
 import(shiny)

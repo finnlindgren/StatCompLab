@@ -1,0 +1,463 @@
+---
+title: 'Tutorial 06: Prediction assessment with proper scores'
+author: Finn Lindgren
+output: rmarkdown::html_vignette
+description: 'Statistical Computing: Lab tutorial 6'
+tutorial:
+  id: shinyapps.finnlindgren.StatCompTutorial06
+  version: 1.0
+in-header:
+- \newcommand{\bm}[1]{\boldsymbol{#1}}
+- \newcommand{\wh}[1]{\widehat{#1}}
+- \newcommand{\ol}[1]{\overline{#1}}
+- \newcommand{\wt}[1]{\widetilde{#1}}
+- \newcommand{\mv}[1]{\boldsymbol{#1}}
+- \newcommand{\proper}[1]{\mathsf{#1}}
+- \newcommand{\pP}{\proper{P}}
+- \newcommand{\pE}{\proper{E}}
+- \newcommand{\pVar}{\proper{Var}}
+- \newcommand{\pPo}{\proper{Poisson}}
+- \newcommand{\pN}{\proper{Normal}}
+- \newcommand{\pBin}{\proper{Bin}}
+- \newcommand{\pBeta}{\proper{Beta}}
+- \newcommand{\pGeom}{\proper{Geom}}
+- \newcommand{\pExp}{\proper{Exp}}
+- \newcommand{\pGamma}{\proper{Gamma}}
+- \newcommand{\mmd}{\mathrm{d}}
+- \newcommand{\md}{\,\mmd}
+vignette: |
+  %\VignetteIndexEntry{Tutorial 06: Prediction assessment with proper scores}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+.tutorial <- FALSE
+.solutions <- FALSE
+begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
+end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
+
+library(StatCompLab)
+if (.tutorial) {
+  library(learnr)
+  require(gradethis)
+  learnr::tutorial_options(
+    exercise.timelimit = 120,
+    exercise.checker = grade_learnr,
+    exercise.startover = TRUE,
+    exercise.diagnostics = TRUE,
+    exercise.completion = TRUE
+    #    exercise.error.check.code = exercise.error.check.code.
+  )
+}
+library(ggplot2)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  dev = "png",
+  dev.args = list(type = "cairo-png"),
+  fig.width = 6
+)
+
+library(ggplot2)
+theme_set(theme_bw())
+set.seed(1234L)
+```
+
+## Introduction
+
+In this lab session you will explore
+
+* Probabilistic prediction and proper scores
+
+1. Open your github repository clone project from Lab 2 (either on [https://rstudio.cloud](https://rstudio.cloud) or on your own computer and upgrade the `StatCompLab` package (see the `Lab03` vignette for more details)
+2. During this lab, you can either work in a `.R` file or a new `.Rmd` file.
+
+`r begin_sol(!.solutions)`
+The accompanying `Tutorial06Solutions` tutorial/vignette documents contain the
+solutions explicitly, to make it easier to review the material after the workshops.
+`r end_sol(!.solutions)`
+
+## 3D printer
+
+The aim is to build and assess statistical models of material use in a 3D printer.^[Special thanks to Sten Lindgren for providing the printer data.] The printer uses rolls of _filament_ that gets heated and squeezed through a moving nozzle, gradually building objects. The objects are first designed in a CAD program (Computer Aided Design), that also estimates how much material will be required to print the object.
+
+The data can be loaded with `data("filament1", package = "StatCompLab")`, and contains information about one
+3D-printed object per row. The columns are
+
+* `Index`: an observation index
+* `Date`: printing dates
+* `Material`: the printing material, identified by its colour
+* `CAD_Weight`: the object weight (in gram) that the CAD software calculated
+* `Actual_Weight`: the actual weight of the object (in gram) after printing
+
+If the CAD system and printer were both perfect, the `CAD_Weight` and `Actual_Weight` values would be equal for each object.
+ In reality, there is both random variation, for example due to varying humidity and temperature, and systematic deviations due to the CAD system not having perfect information about the properties of the printing materials.
+ 
+When looking at the data (see below) it's clear that the variability of the data
+is larger for larger values of `CAD_Weight`.  The printer operator wants to know which of two models, named A and B, are better at capturing the distributions of the
+random deviations.
+
+Both models use a linear model for coneection between `CAD_Weight` and `Actual_Weight`.
+We denote the CAD weight for observations $i$ by `x_i`, and the corresponding actual
+weight by $y_i$. The two models are defined by
+
+* Model A: $y_i \sim \pN[\theta_1 + \theta_2 x_i, \exp(\theta_3 + \theta_4 x_i)]$
+* Model B: $y_i \sim \pN[\theta_1 + \theta_2 x_i, \exp(\theta_3) + \exp(\theta_4) x_i^2)]$
+
+The printer operator reasons that due to random fluctuations in the material properties (such as the density) and room temperature should lead to a _relative_ error
+instead of an additive error, and this leads them to model B as an approximation of that.
+The basic physics assumption is that the error in the CAD software calculation of the weight is proportional to the weight itself.  Model A on the other hand is slightly more mathematically convenient, but has no such motivation in physics.
+
+Start by loading the data and plot it.
+```{r load-data, exercise=TRUE}
+
+```
+```{r load-data-hint-1,eval=FALSE}
+# Load the data
+# Print it with ggplot
+```
+```{r load-data-hint-2,eval=FALSE}
+data("filament1", package = "StatCompLab")
+suppressPackageStartupMessages(library(tidyverse))
+ggplot(filament1, aes(CAD_Weight, Actual_Weight)) +
+  geom_point()
+```
+```{r load-data-solution,eval=FALSE}
+data("filament1", package = "StatCompLab")
+suppressPackageStartupMessages(library(tidyverse))
+ggplot(filament1, aes(CAD_Weight, Actual_Weight, colour = Material)) +
+  geom_point()
+```
+```{r,include=FALSE,eval=TRUE}
+data("filament1", package = "StatCompLab")
+suppressPackageStartupMessages(library(tidyverse))
+```
+`r begin_sol()`
+```{r load-data-show,echo=.solutions,eval=TRUE,ref.label="load-data-solution",results="hide"}
+```
+`r end_sol()`
+
+
+## Estimate and predict
+
+Next week, we will assess model predictions using cross validation, where data
+is split into separate parts for parameter estimation and prediction assessment,
+in order to avoid
+or reduce bias in the prediction assessments. For simplicity this week, we will
+start by using the entire data set for both parameter estimation and
+prediction assessment.
+
+
+### Estimate
+
+First, use `filament1_estimate` from the `StatCompLab` package to estimate the
+two models A and B using the `filament1` data. See the help text for information.
+
+```{r estimate, exercise=TRUE}
+
+```
+
+```{r estimate-hint-1,eval=FALSE}
+fit_A <- filament1_estimate(...)
+fit_B <- ...
+```
+
+```{r estimate-hint-2,eval=FALSE}
+fit_A <- filament1_estimate(filament1, "A")
+fit_B <- ...
+```
+
+```{r estimate-solution, eval=FALSE}
+fit_A <- filament1_estimate(filament1, "A")
+fit_B <- filament1_estimate(filament1, "B")
+```
+
+`r begin_sol()`
+```{r estimate-show,echo=.solutions,eval=TRUE,ref.label="estimate-solution",results="hide"}
+```
+`r end_sol()`
+
+
+### Prediction
+
+Next, use `filament1_predict()` to compute probabilistic predictions of `Actual_Weight`
+using the two estimated models.
+
+```{r predict, exercise=TRUE}
+
+```
+
+```{r predict-hint-1,eval=FALSE}
+pred_A <- filament1_predict(...)
+pred_B <- ...
+```
+
+```{r predict-hint-2,eval=FALSE}
+pred_A <- filament1_predict(fit_A, newdata = ...)
+pred_B <- ...
+```
+
+```{r predict-solution, eval=FALSE}
+pred_A <- filament1_predict(fit_A, newdata = filament1)
+pred_B <- filament1_predict(fit_B, newdata = filament1)
+```
+
+`r begin_sol()`
+```{r predict-show,echo=.solutions,eval=TRUE,ref.label="predict-solution",results="hide"}
+```
+`r end_sol()`
+
+
+Inspect the predictions by drawing figures, e.g. with `geom_ribbon(aes(CAD_Weight, ymin = lwr, ymax = upr), alpha = 0.25)` (the `alpha` here is for transparency), together with the observed data. It can be useful to join the predictions and data into new data.frame objects to get access to both the prediction information and data when plotting.
+
+
+```{r predplot, exercise=TRUE}
+
+```
+
+```{r predplot-hint-1,eval=FALSE}
+ggplot(mapping = aes(CAD_Weight)) +
+  geom_line(aes(y = mean, ...), data = cbind(pred_A, filament1)) +
+  geom_line(...) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, fill = "A"),
+              data = cbind(pred_A, filament1),
+              alpha = 0.25) +
+  geom_ribbon(...) +
+  geom_point(aes(y = Actual_Weight), data = filament1)
+```
+
+```{r predplot-hint-2,eval=FALSE}
+ggplot(mapping = aes(CAD_Weight)) +
+  geom_line(aes(y = mean, col = "A"), data = cbind(pred_A, filament1)) +
+  geom_line(...) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, fill = "A"),
+              data = cbind(pred_A, filament1),
+              alpha = 0.25) +
+  geom_ribbon(...) +
+  geom_point(aes(y = Actual_Weight), data = filament1)
+```
+
+```{r predplot-solution, eval=FALSE}
+ggplot(mapping = aes(CAD_Weight)) +
+  geom_line(aes(y = mean, col = "A"), data = cbind(pred_A, filament1)) +
+  geom_line(aes(y = mean, col = "B"), data = cbind(pred_B, filament1)) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, fill = "A"),
+              data = cbind(pred_A, filament1),
+              alpha = 0.25) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, fill = "B"),
+              data = cbind(pred_B, filament1),
+              alpha = 0.25) +
+  geom_point(aes(y = Actual_Weight), data = filament1)
+```
+
+`r begin_sol()`
+```{r predplot-show,echo=.solutions,eval=.solutions,ref.label="predplot-solution",results="hide"}
+```
+
+A more compact alternative is to first collect all the data into a common data
+object, using the techniques introduced in the later sections of this lab:
+```{r ,echo=.solutions,eval=FALSE}
+ggplot(rbind(cbind(pred_A, filament1, model = "A"),
+             cbind(pred_B, filament1, model = "B")),
+       mapping = aes(CAD_Weight)) +
+  geom_line(aes(y = mean, col = model)) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, fill = model), alpha = 0.25) +
+  geom_point(aes(y = Actual_Weight), data = filament1)
+```
+Here, the `geom_point` call gets its own `data` input to ensure each data point is
+only plotted once.
+`r end_sol()`
+
+
+## Prediction Scores
+
+Now, use the score calculator function `proper_score` from the StatCompLab
+package to compute the squared error, Dawid-Sebastiani, and Interval scores (with target coverage probability 90%). It's useful to joint the prediction information and data set with `cbind`, so that e.g. `mutate()` can have access to all the needed information.
+
+```{r scores, exercise=TRUE}
+
+```
+
+```{r scores-hint-1,eval=FALSE}
+score_A <- cbind(pred_A, filament1) %>%
+  mutate(
+    se = ...,
+    ds = ...,
+    interval = ...
+  )
+score_B <- ...
+```
+
+```{r scores-hint-2,eval=FALSE}
+score_A <- cbind(pred_A, filament1) %>%
+  mutate(
+    se = proper_score("se", Actual_Weight, mean = mean),
+    ds = ...,
+    interval = ...
+  )
+score_B <- ...
+```
+
+```{r scores-solution, eval=FALSE}
+score_A <- cbind(pred_A, filament1) %>%
+  mutate(
+    se = proper_score("se", Actual_Weight, mean = mean),
+    ds = proper_score("ds", Actual_Weight, mean = mean, sd = sd),
+    interval = proper_score("interval", Actual_Weight,
+                            lwr = lwr, upr = upr, alpha = 0.1)
+  )
+score_B <- cbind(pred_B, filament1) %>%
+  mutate(
+    se = proper_score("se", Actual_Weight, mean = mean),
+    ds = proper_score("ds", Actual_Weight, mean = mean, sd = sd),
+    interval = proper_score("interval", Actual_Weight,
+                            lwr = lwr, upr = upr, alpha = 0.1)
+  )
+```
+
+`r begin_sol()`
+```{r scores-show,echo=.solutions,eval=TRUE,ref.label="scores-solution",results="hide"}
+```
+See the next section for a more compact alternative.
+`r end_sol()`
+
+
+
+As a basic summary of the results, compute the average score $\ol{S}(\{F_i,y_i\})$ for each model and type of score, and present the result with `knitr::kable()`.
+
+```{r score-summary, exercise=TRUE}
+
+```
+
+```{r score-summary-hint-1,eval=FALSE}
+# 1. Join the A-scores with a 'model' variable with cbind
+# 2. Do the same for B, and then join the two with rbind
+# 3. Use group_by() and summarise() to collect the average scores
+#    for each model and each type of score
+# 4. Display the result with knitr::kable()
+```
+
+```{r score-summary-hint-2,eval=FALSE}
+score_AB <-
+  rbind(cbind(score_A, model = ...),
+        cbind(...)) %>%
+  group_by(model) %>%
+          summarise(se = mean(se),
+                    ds = ...,
+                    interval = ...)
+```
+
+```{r score-summary-solution, eval=FALSE}
+score_AB <-
+  rbind(cbind(score_A, model = "A"),
+        cbind(score_B, model = "B")) %>%
+  group_by(model) %>%
+          summarise(se = mean(se),
+                    ds = mean(ds),
+                    interval = mean(interval))
+knitr::kable(score_AB)
+```
+
+`r begin_sol()`
+```{r score-summary-show,echo=.solutions,eval=TRUE,ref.label="score-summary-solution",results=.solutions}
+```
+`r end_sol()`
+
+Do the scores indicate that one of the models is better or worse than the other?
+Do the three score types agree with each other?
+
+`r begin_sol()`
+The squared error score doesn't really care about the difference between the two models,
+since it doesn't directly involve the variance model (the paramter estimates for the mean are different, but not by much). The other two scores indicate that model B is better than model A.
+`r end_sol()`
+
+
+## Data splitting
+
+Now, use the `sample()` function to generate a random selection of the
+rows of the data set, and split it into two parts, with ca 50% to be used for
+parameter estimation, and 50% to be used for prediction assessment.
+
+```{r split, exercise=TRUE}
+
+```
+```{r split-hint, eval=FALSE}
+idx_est <- sample(..., # The observation indices,
+                  size = ..., # half of the number of data rows,
+                  replace = FALSE)
+filament1_est <- filament1 %>% filter(...)
+filament1_pred <- filament1 %>% filter(!(...))
+```
+```{r split-solution, eval=FALSE}
+idx_est <- sample(filament1$Index,
+                  size = round(nrow(filament1) * 0.5),
+                  replace = FALSE)
+filament1_est <- filament1 %>% filter(Index %in% idx_est)
+filament1_pred <- filament1 %>% filter(!(Index %in% idx_est))
+```
+`r begin_sol()`
+```{r split-show,echo=.solutions,eval=TRUE,ref.label="split-solution",results="hide"}
+```
+`r end_sol()`
+
+Redo the previous analysis for the problem using this division of the data.
+
+```{r newanalysis, exercise=TRUE}
+
+```
+
+```{r newanalysis-hint,eval=FALSE}
+fit_A <- filament1_estimate(filament1_est, "A")
+fit_B <- ...
+pred_A <- filament1_predict(fit_A, newdata = filament1_pred)
+pred_B <- ...
+# Collect the predictions into a joint structure first, to avoid having
+# to repeat the score calculation code
+scores <- rbind(cbind(pred_A, filament1_pred, model = "A"),
+                  ...) %>%
+  mutate(
+    se = ...,
+    ds = ...,
+    interval = ...
+  )
+score_summary <- scores
+  summarise(se = mean(se),
+            ds = mean(ds),
+            interval = mean(interval))
+```
+
+```{r newanalysis-solution, eval=FALSE}
+fit_A <- filament1_estimate(filament1_est, "A")
+fit_B <- filament1_estimate(filament1_est, "B")
+pred_A <- filament1_predict(fit_A, newdata = filament1_pred)
+pred_B <- filament1_predict(fit_B, newdata = filament1_pred)
+scores <-
+  rbind(cbind(pred_A, filament1_pred, model = "A"),
+        cbind(pred_B, filament1_pred, model = "B")) %>%
+  mutate(
+    se = proper_score("se", Actual_Weight, mean = mean),
+    ds = proper_score("ds", Actual_Weight, mean = mean, sd = sd),
+    interval = proper_score("interval", Actual_Weight,
+                            lwr = lwr, upr = upr, alpha = 0.1)
+  )
+
+score_summary <- scores %>%
+  group_by(model) %>%
+  summarise(se = mean(se),
+            ds = mean(ds),
+            interval = mean(interval))
+knitr::kable(score_summary)
+```
+
+`r begin_sol()`
+```{r newanalysis-show,echo=.solutions,eval=TRUE,ref.label="newanalysis-solution",results=.solutions}
+```
+`r end_sol()`
+ 
+Do the score results agree with the previous results?
+
+`r begin_sol()`
+The results will have some more random variability due to the smaller size of the estimation and prediction sets, but will likely agree with the previous results.
+`r end_sol()`
+
