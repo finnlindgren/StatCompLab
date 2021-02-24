@@ -147,7 +147,7 @@ prediction assessment.
 
 ### Estimate
 
-First, use `filament1_estimate` from the `StatCompLab` package to estimate the
+First, use `filament1_estimate()` from the `StatCompLab` package to estimate the
 two models A and B using the `filament1` data. See the help text for information.
 
 ```{r estimate, exercise=TRUE}
@@ -268,7 +268,7 @@ only plotted once.
 
 ## Prediction Scores
 
-Now, use the score calculator function `proper_score` from the StatCompLab
+Now, use the score calculator function `proper_score()` from the StatCompLab
 package to compute the squared error, Dawid-Sebastiani, and Interval scores (with target coverage probability 90%). It's useful to joint the prediction information and data set with `cbind`, so that e.g. `mutate()` can have access to all the needed information.
 
 ```{r scores, exercise=TRUE}
