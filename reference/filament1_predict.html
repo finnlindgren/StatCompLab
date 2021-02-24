@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StatEwcdf ggproto object — StatEwcdf • StatCompLab</title>
+<title>Predict values for a filament model — filament1_predict • StatCompLab</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="StatEwcdf ggproto object — StatEwcdf" />
-<meta property="og:description" content="StatEwcdf ggproto object" />
+<meta property="og:title" content="Predict values for a filament model — filament1_predict" />
+<meta property="og:description" content="Uses an estimated filament model to predict new observations" />
 
 
 
@@ -156,18 +156,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>StatEwcdf ggproto object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/finnlindgren/StatCompLab/blob/master/R/ggplot.R'><code>R/ggplot.R</code></a></small>
-    <div class="hidden name"><code>StatEwcdf.Rd</code></div>
+    <h1>Predict values for a filament model</h1>
+    <small class="dont-index">Source: <a href='https://github.com/finnlindgren/StatCompLab/blob/master/R/scores.R'><code>R/scores.R</code></a></small>
+    <div class="hidden name"><code>filament1_predict.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>StatEwcdf ggproto object</p>
+    <p>Uses an estimated filament model to predict new observations</p>
     </div>
 
+    <pre class="usage"><span class='fu'>filament1_predict</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>newdata</span>, alpha <span class='op'>=</span> <span class='fl'>0.05</span>, df <span class='op'>=</span> <span class='cn'>Inf</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>The estimation object, like the output from <code><a href='filament1_estimate.html'>filament1_estimate()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>newdata</th>
+      <td><p>The data to use for prediction.
+Must have a column <code>CAD_Weight</code></p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>The target coverage error for the prediction intervals, Default: 0.05</p></td>
+    </tr>
+    <tr>
+      <th>df</th>
+      <td><p>The degrees of freedom for t-quantiles for the prediction interval
+construction, Default: Inf</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments, currently ignored</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A data.frame with variables <code>mean</code>, <code>sd</code>, <code>lwr</code>, and <code>upr</code>, summarising
+the prediction distribution for each row of <code>newdata</code>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='co'>#EXAMPLE1</span>
+ <span class='op'>}</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StatEwcdf ggproto object — StatEwcdf • StatCompLab</title>
+<title>Calculate proper scores — proper_score • StatCompLab</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="StatEwcdf ggproto object — StatEwcdf" />
-<meta property="og:description" content="StatEwcdf ggproto object" />
+<meta property="og:title" content="Calculate proper scores — proper_score" />
+<meta property="og:description" content="Calculates proper scores for probabilistic predictions" />
 
 
 
@@ -156,18 +156,83 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>StatEwcdf ggproto object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/finnlindgren/StatCompLab/blob/master/R/ggplot.R'><code>R/ggplot.R</code></a></small>
-    <div class="hidden name"><code>StatEwcdf.Rd</code></div>
+    <h1>Calculate proper scores</h1>
+    <small class="dont-index">Source: <a href='https://github.com/finnlindgren/StatCompLab/blob/master/R/scores.R'><code>R/scores.R</code></a></small>
+    <div class="hidden name"><code>proper_score.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>StatEwcdf ggproto object</p>
+    <p>Calculates proper scores for probabilistic predictions</p>
     </div>
 
+    <pre class="usage"><span class='fu'>proper_score</span><span class='op'>(</span><span class='va'>type</span>, <span class='va'>obs</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>type</th>
+      <td><p>A string indicating the type of score to calculate. One of
+"se", "ae", "ds", or "interval". See Details below.</p></td>
+    </tr>
+    <tr>
+      <th>obs</th>
+      <td><p>A vector of observations</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional named arguments needed for each type of score, see
+Details below.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A vector of calculated scores, one for each observation</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Each score type takes additional arguments that define the prediction model
+information to be used in the score calculations. Unless specified otherwise,
+the extra arguments should either be scalars (applying to all the predictions)
+or vectors of the same length as the <code>obs</code> vector.</p><dl>
+<dt>se</dt><dd><p>Squared error score. Requires <code>mean</code>, defining the prediction mean</p></dd>
+<dt>ae</dt><dd><p>Absolute error score. Requires <code>median</code>, defining the prediction median</p></dd>
+<dt>ds</dt><dd><p>Dawid-Sebastiani score. Requires <code>mean</code> and <code>sd</code>, defining the mean and
+standard deviation of the predictions</p></dd>
+<dt>interval</dt><dd><p>Squared error score. Requires <code>lwr</code> and <code>upr</code>, defining the
+lower and upper prediction interval endpoints, and <code>alpha</code>, defining the
+prediction error probability targeted by the prediction intervals</p></dd>
+
+</dl><p>The scores \(S_{type}(F_i,y_i)\) are defined as in the lecture notes,
+with <code>obs[i]</code> equal to \(y_i\) and each prediction distribution
+\(F_i\) defined by additional named arguments.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Five realisations of N(3, 3^2)</span>
+<span class='va'>obs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span>, mean <span class='op'>=</span> <span class='fl'>3</span>, sd <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+
+<span class='co'># One prediction for each observation. Only one of the predictions describes</span>
+<span class='co'># the true model</span>
+<span class='va'>F_mean</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>
+<span class='va'>F_median</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>
+<span class='va'>F_sd</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>
+<span class='va'>F_lwr</span> <span class='op'>&lt;-</span> <span class='va'>F_mean</span> <span class='op'>-</span> <span class='va'>F_sd</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.9</span><span class='op'>)</span>
+<span class='va'>F_upr</span> <span class='op'>&lt;-</span> <span class='va'>F_mean</span> <span class='op'>-</span> <span class='va'>F_sd</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.1</span><span class='op'>)</span>
+
+<span class='co'># Compute the scores</span>
+<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  se <span class='op'>=</span> <span class='fu'>proper_score</span><span class='op'>(</span><span class='st'>"se"</span>, <span class='va'>obs</span>, mean <span class='op'>=</span> <span class='va'>F_mean</span><span class='op'>)</span>,
+  ae <span class='op'>=</span> <span class='fu'>proper_score</span><span class='op'>(</span><span class='st'>"ae"</span>, <span class='va'>obs</span>, median <span class='op'>=</span> <span class='va'>F_median</span><span class='op'>)</span>,
+  ds <span class='op'>=</span> <span class='fu'>proper_score</span><span class='op'>(</span><span class='st'>"ds"</span>, <span class='va'>obs</span>, mean <span class='op'>=</span> <span class='va'>F_mean</span>, sd <span class='op'>=</span> <span class='va'>F_sd</span><span class='op'>)</span>,
+  interval <span class='op'>=</span> <span class='fu'>proper_score</span><span class='op'>(</span><span class='st'>"interval"</span>, <span class='va'>obs</span>,
+                          lwr <span class='op'>=</span> <span class='va'>F_lwr</span>, upr <span class='op'>=</span> <span class='va'>F_upr</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt;            se        ae       ds  interval
+#&gt; 1  4.84057444 2.2001306 4.840574 11.748893
+#&gt; 2  3.11858352 1.7659512 2.165940  5.126206
+#&gt; 3 53.46228520 7.3117908 8.137478 42.360671
+#&gt; 4  1.03370707 1.0167139 2.837195 10.252413
+#&gt; 5  0.01831741 0.1353418 3.219609 12.815516</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -13,7 +13,9 @@ articles:
   Tutorial03Solutions: Tutorial03Solutions.html
   Tutorial04: Tutorial04.html
   Tutorial04Solutions: Tutorial04Solutions.html
-last_built: 2021-02-22T22:14Z
+  Tutorial06: Tutorial06.html
+  Tutorial06Solutions: Tutorial06Solutions.html
+last_built: 2021-02-24T01:54Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles
