@@ -108,7 +108,7 @@ The assignment is submitted by pushing your work to the github repository
 before your submission deadline.
 Make sure you include your name, student number, and github username in both `report.Rmd`
 and `my_code.R`. When submitting, also include a generated html version of the report,
-with filename `project.html`. Normally, generated images are automatically
+with filename `report.html`. Normally, generated images are automatically
 included in the html file itself; otherwise they need to be added to the repository as well.
 
 It is strongly recommended to commit and push to github frequently.
