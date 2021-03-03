@@ -384,7 +384,7 @@ with the yearly averages of TMIN as a column (as in the previous `pivot_wider` o
 with missing values removed with `filter()`.
 
 ```{r sum6, exercise=TRUE}
-data <-
+
 ```
 ```{r sum6-hint-1,eval=FALSE}
 data <- ghcnd %>%
