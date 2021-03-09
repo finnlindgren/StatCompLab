@@ -418,7 +418,7 @@ data <- ghcnd %>%
 Now, using the whole `data` estimate a linear model for TMIN, with `lm()` formula
 `TMIN ~ 1 + Year`, and compute the
 average 80% Interval score (use `proper_score()` that you used in lab 6)
-for predictiton intervals for each of the TMIN observations in `data`.
+for prediction intervals for each of the TMIN observations in `data`.
 See `?predict.lm` for documentation for the `predict()` method for models estimated with `lm()`.
 
 ```{r sum8, exercise=TRUE}
