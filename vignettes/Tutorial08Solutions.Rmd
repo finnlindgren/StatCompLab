@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial 08: Floating point computations and matrix factorisations (solutions)'
+title: 'Tutorial 08: Floating point computations and least squares (solutions)'
 author: Finn Lindgren
 output: rmarkdown::html_vignette
 description: 'Statistical Computing: Lab tutorial 8'
@@ -26,7 +26,7 @@ in-header:
 - \newcommand{\mmd}{\mathrm{d}}
 - \newcommand{\md}{\,\mmd}
 vignette: |
-  %\VignetteIndexEntry{Tutorial 08: Floating point computations and matrix factorisations (solutions)}
+  %\VignetteIndexEntry{Tutorial 08: Floating point computations and least squares (solutions)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -68,7 +68,8 @@ set.seed(1234L)
 
 In this lab session you will explore
 
-* matrix factorisation methods and condition numbers for least squares estimation of statistical linear models
+* Speed of matrix computations
+* Floating point accuracy in least squares estimation of statistical linear models
 
 1. Open your github repository clone project from Lab 2 (either on [https://rstudio.cloud](https://rstudio.cloud) or on your own computer and upgrade the `StatCompLab` package (see the `Lab03` vignette for more details)
 2. During this lab, you can work in a `.R` file, but working with code chunks in a `.Rmd` is highly recommended.
