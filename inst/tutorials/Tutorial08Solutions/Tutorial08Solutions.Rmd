@@ -70,7 +70,7 @@ In this lab session you will explore
 
 1. Open your github repository clone project from Lab 2 (either on [https://rstudio.cloud](https://rstudio.cloud) or on your own computer and upgrade the `StatCompLab` package (see the `Lab03` vignette for more details)
 2. During this lab, you can work in a `.R` file, but working with code chunks in a `.Rmd` is highly recommended.
-3. Make sure you update the `StatCompLab` package to version 0.7.0 or higher.
+3. Make sure you update the `StatCompLab` package to version 0.8.2 or higher.
 
 For measuring relative running times of different methods, we'll use the `bench` package.
 You won't need to load the package with `library`. Instead, check if `bench::mark()` runs without
