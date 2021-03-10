@@ -335,7 +335,7 @@ pl +
 ```
 `r end_sol()`
 
-Use the `model.matrix(mod1)` function to extract the $\mv{X}$ matrix for the vector formulation of the model, $\mv{y}=\mv{X}+\mv{e}$, and store in `X1`.
+Use the `model.matrix(mod1)` function to extract the $\mv{X}$ matrix for the vector formulation of the model, $\mv{y}=\mv{X}\mv{\beta}+\mv{e}$, and store in `X1`.
 (See `?model.matrix` for more information).
 Then use the direct _normal equations_ solve shown in Lecture 8, $(\mv{X}^\top\mv{X})^{-1}\mv{X}^\top\mv{y}$, to estimate the $\beta$ parameters. Does it work?
 
