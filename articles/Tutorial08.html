@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.3</span>
       </span>
     </div>
 
@@ -273,7 +273,7 @@ $$
 
 <img src="Tutorial08_files/figure-html/unnamed-chunk-13-1.png" width="576" />
 -->
-<p>Use the <code><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix(mod1)</a></code> function to extract the <span class="math inline">\(\boldsymbol{X}\)</span> matrix for the vector formulation of the model, <span class="math inline">\(\boldsymbol{y}=\boldsymbol{X}+\boldsymbol{e}\)</span>, and store in <code>X1</code>. (See <code><a href="https://rdrr.io/r/stats/model.matrix.html">?model.matrix</a></code> for more information). Then use the direct <em>normal equations</em> solve shown in Lecture 8, <span class="math inline">\((\boldsymbol{X}^\top\boldsymbol{X})^{-1}\boldsymbol{X}^\top\boldsymbol{y}\)</span>, to estimate the <span class="math inline">\(\beta\)</span> parameters. Does it work?</p>
+<p>Use the <code><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix(mod1)</a></code> function to extract the <span class="math inline">\(\boldsymbol{X}\)</span> matrix for the vector formulation of the model, <span class="math inline">\(\boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{e}\)</span>, and store in <code>X1</code>. (See <code><a href="https://rdrr.io/r/stats/model.matrix.html">?model.matrix</a></code> for more information). Then use the direct <em>normal equations</em> solve shown in Lecture 8, <span class="math inline">\((\boldsymbol{X}^\top\boldsymbol{X})^{-1}\boldsymbol{X}^\top\boldsymbol{y}\)</span>, to estimate the <span class="math inline">\(\beta\)</span> parameters. Does it work?</p>
 <!--
 
 

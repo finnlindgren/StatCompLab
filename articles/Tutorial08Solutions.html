@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.3</span>
       </span>
     </div>
 
@@ -201,18 +201,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">76.4ms</td>
-<td align="right">13.07223</td>
+<td align="right">79.6ms</td>
+<td align="right">12.58946</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
 <td align="right">22.3ms</td>
-<td align="right">43.77157</td>
+<td align="right">44.11257</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">22.1ms</td>
-<td align="right">45.26788</td>
+<td align="right">22.3ms</td>
+<td align="right">44.30371</td>
 </tr>
 </tbody>
 </table>
@@ -256,18 +256,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">693.46ms</td>
-<td align="right">1.442046</td>
+<td align="right">778.23ms</td>
+<td align="right">1.284974</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">707.59ms</td>
-<td align="right">1.413258</td>
+<td align="right">801.22ms</td>
+<td align="right">1.248093</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">2.19ms</td>
-<td align="right">447.409680</td>
+<td align="right">2.37ms</td>
+<td align="right">414.584280</td>
 </tr>
 </tbody>
 </table>
@@ -296,13 +296,13 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">832ms</td>
-<td align="right">1.201309</td>
+<td align="right">926ms</td>
+<td align="right">1.079715</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">271ms</td>
-<td align="right">3.693125</td>
+<td align="right">288ms</td>
+<td align="right">3.477726</td>
 </tr>
 </tbody>
 </table>
@@ -372,7 +372,7 @@ y_i &amp;= \mu_i + e_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + e_i ?
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"Estimated"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Tutorial08Solutions_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
 <hr>
-<p>Use the <code><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix(mod1)</a></code> function to extract the <span class="math inline">\(\boldsymbol{X}\)</span> matrix for the vector formulation of the model, <span class="math inline">\(\boldsymbol{y}=\boldsymbol{X}+\boldsymbol{e}\)</span>, and store in <code>X1</code>. (See <code><a href="https://rdrr.io/r/stats/model.matrix.html">?model.matrix</a></code> for more information). Then use the direct <em>normal equations</em> solve shown in Lecture 8, <span class="math inline">\((\boldsymbol{X}^\top\boldsymbol{X})^{-1}\boldsymbol{X}^\top\boldsymbol{y}\)</span>, to estimate the <span class="math inline">\(\beta\)</span> parameters. Does it work?</p>
+<p>Use the <code><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix(mod1)</a></code> function to extract the <span class="math inline">\(\boldsymbol{X}\)</span> matrix for the vector formulation of the model, <span class="math inline">\(\boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{e}\)</span>, and store in <code>X1</code>. (See <code><a href="https://rdrr.io/r/stats/model.matrix.html">?model.matrix</a></code> for more information). Then use the direct <em>normal equations</em> solve shown in Lecture 8, <span class="math inline">\((\boldsymbol{X}^\top\boldsymbol{X})^{-1}\boldsymbol{X}^\top\boldsymbol{y}\)</span>, to estimate the <span class="math inline">\(\beta\)</span> parameters. Does it work?</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
