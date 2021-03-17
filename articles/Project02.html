@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -232,10 +232,9 @@
 <div id="estimation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#estimation" class="anchor"></a>Estimation</h2>
-<p>Choose a weather station, and construct and estimate linear model that uses daily <code>TMAX</code> at the other weather stations as covariates for <code>TMAX</code> at the chosen station.</p>
+<p>Choose a weather station, and make code for estimating a linear model that uses daily <code>TMAX</code> at the other weather stations as covariates for <code>TMAX</code> at the chosen station. Present and discuss the result of estimating a separate model for each month of the year.</p>
 <p>Organise your code so that you can easily change the input data without having to change the estimation code. You’ll need to be able to run the estimation for different subsets of the data.</p>
 <p>Hint: Start by considering what structure would be easiest to have the data in, and then use combinations of <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>, <code>select()</code> and related functions to achieve that. The <code>pivot_wider</code> can be used to create one data column for each station.</p>
-<p>Present and discuss the result of estimating a separate model for each month of the year.</p>
 </div>
 <div id="assessment" class="section level2">
 <h2 class="hasAnchor">

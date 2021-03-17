@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -214,10 +214,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow        504.3ms  504.3ms      1.98    27.6MB     7.93</span>
-<span class="co">#&gt; 2 better       76.9ms   82.4ms     12.1     15.9MB     8.67</span>
-<span class="co">#&gt; 3 fast        424.4µs  500.4µs   1935.        89KB     4.00</span>
-<span class="co">#&gt; 4 ok          709.4µs  865.4µs    936.     106.4KB    17.9</span></code></pre></div>
+<span class="co">#&gt; 1 slow        444.7ms  446.9ms      2.24    27.6MB     7.83</span>
+<span class="co">#&gt; 2 better       69.3ms   74.3ms     13.7     15.9MB     9.76</span>
+<span class="co">#&gt; 3 fast        421.5µs  472.2µs   2032.        89KB     4.00</span>
+<span class="co">#&gt; 4 ok          699.8µs  818.6µs   1012.     106.4KB    20.0</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
@@ -230,10 +230,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow          6.77s    6.77s     0.148    2.28GB     7.98</span>
-<span class="co">#&gt; 2 better        1.28s    1.28s     0.778    1.49GB    24.1 </span>
-<span class="co">#&gt; 3 fast         2.17ms   2.42ms   400.     156.34KB     1.99</span>
-<span class="co">#&gt; 4 ok           6.96ms   7.87ms   121.     390.86KB     9.93</span></code></pre></div>
+<span class="co">#&gt; 1 slow          6.66s    6.66s     0.150    2.28GB     7.35</span>
+<span class="co">#&gt; 2 better         1.1s     1.1s     0.912    1.49GB    29.2 </span>
+<span class="co">#&gt; 3 fast         2.23ms   2.34ms   421.     156.34KB     0   </span>
+<span class="co">#&gt; 4 ok           6.79ms   7.33ms   130.     390.86KB    10.0</span></code></pre></div>
 </div>
 </div>
 <div id="dynamically-generated-column-names" class="section level1">
@@ -248,12 +248,12 @@
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span>
-<span class="co">#&gt;        Name1      Name2     Name3</span>
-<span class="co">#&gt; 1 0.73220373 0.03872373 0.9228801</span>
-<span class="co">#&gt; 2 0.20491299 0.50419921 0.8748057</span>
-<span class="co">#&gt; 3 0.09887896 0.12599789 0.9982320</span>
-<span class="co">#&gt; 4 0.06544454 0.35468880 0.7344912</span>
-<span class="co">#&gt; 5 0.30506685 0.39996349 0.6257359</span></code></pre></div>
+<span class="co">#&gt;        Name1     Name2     Name3</span>
+<span class="co">#&gt; 1 0.41782717 0.5640996 0.1880723</span>
+<span class="co">#&gt; 2 0.33080748 0.2824814 0.7029950</span>
+<span class="co">#&gt; 3 0.18863807 0.1107801 0.5092059</span>
+<span class="co">#&gt; 4 0.09150635 0.7045064 0.7319962</span>
+<span class="co">#&gt; 5 0.81553604 0.5321610 0.9403007</span></code></pre></div>
 </div>
 <div id="avoiding-unnecessary-for-loops" class="section level1">
 <h1 class="hasAnchor">
