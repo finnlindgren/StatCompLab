@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
       </span>
     </div>
 
@@ -70,6 +70,9 @@
     </li>
     <li>
       <a href="../articles/Project02.html">StatComp Project 2 (2020/21): Scottish weather</a>
+    </li>
+    <li>
+      <a href="../articles/Project02Hints.html">Project 02 Hints</a>
     </li>
     <li>
       <a href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
@@ -204,18 +207,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">77.4ms</td>
-<td align="right">12.85932</td>
+<td align="right">63.3ms</td>
+<td align="right">15.81956</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
-<td align="right">22.8ms</td>
-<td align="right">43.76638</td>
+<td align="right">21ms</td>
+<td align="right">47.63045</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">22.6ms</td>
-<td align="right">42.77572</td>
+<td align="right">19.5ms</td>
+<td align="right">50.79034</td>
 </tr>
 </tbody>
 </table>
@@ -259,18 +262,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">757.3ms</td>
-<td align="right">1.320540</td>
+<td align="right">646.74ms</td>
+<td align="right">1.546222</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">748.2ms</td>
-<td align="right">1.336485</td>
+<td align="right">647.28ms</td>
+<td align="right">1.544935</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">2.3ms</td>
-<td align="right">426.674537</td>
+<td align="right">2.02ms</td>
+<td align="right">480.469322</td>
 </tr>
 </tbody>
 </table>
@@ -299,13 +302,13 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">876ms</td>
-<td align="right">1.141204</td>
+<td align="right">859ms</td>
+<td align="right">1.163661</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">280ms</td>
-<td align="right">3.571390</td>
+<td align="right">238ms</td>
+<td align="right">4.171584</td>
 </tr>
 </tbody>
 </table>
