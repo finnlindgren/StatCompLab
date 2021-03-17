@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -67,6 +67,9 @@
     </li>
     <li>
       <a href="../articles/Project01Hints.html">Project 01 Hints</a>
+    </li>
+    <li>
+      <a href="../articles/Project02.html">StatComp Project 2 (2020/21): Scottish weather</a>
     </li>
     <li>
       <a href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
@@ -130,7 +133,7 @@
       <h1 data-toc-skip>Project 01 Hints</h1>
                         <h4 class="author">Finn Lindgren</h4>
             
-            <h4 class="date">2021-03-10</h4>
+            <h4 class="date">2021-03-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/master/vignettes/Project01Hints.Rmd"><code>vignettes/Project01Hints.Rmd</code></a></small>
       <div class="hidden name"><code>Project01Hints.Rmd</code></div>
@@ -211,10 +214,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow          514ms    514ms      1.95    27.6MB     7.78</span>
-<span class="co">#&gt; 2 better       76.3ms   79.4ms     12.7     15.9MB     9.08</span>
-<span class="co">#&gt; 3 fast          410µs    486µs   1894.        89KB     4.00</span>
-<span class="co">#&gt; 4 ok          641.2µs  841.9µs    995.     106.4KB    18.0</span></code></pre></div>
+<span class="co">#&gt; 1 slow          469ms  472.5ms      2.12    27.6MB     7.41</span>
+<span class="co">#&gt; 2 better       68.8ms   75.5ms     13.4     15.9MB     9.54</span>
+<span class="co">#&gt; 3 fast        449.1µs  473.6µs   1948.        89KB     4.00</span>
+<span class="co">#&gt; 4 ok          692.6µs  795.9µs   1022.     106.4KB    20.0</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
@@ -227,10 +230,10 @@
 <span class="co">#&gt; # A tibble: 4 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 slow          6.31s    6.31s     0.158    2.28GB     8.24</span>
-<span class="co">#&gt; 2 better        1.13s    1.13s     0.886    1.49GB    28.4 </span>
-<span class="co">#&gt; 3 fast         2.04ms   2.35ms   411.     156.34KB     2.00</span>
-<span class="co">#&gt; 4 ok           6.45ms   7.35ms   130.     390.86KB     9.99</span></code></pre></div>
+<span class="co">#&gt; 1 slow           6.5s     6.5s     0.154    2.28GB     7.54</span>
+<span class="co">#&gt; 2 better        1.07s    1.07s     0.934    1.49GB    29.9 </span>
+<span class="co">#&gt; 3 fast         2.29ms   2.36ms   414.     156.34KB     0   </span>
+<span class="co">#&gt; 4 ok           6.59ms   7.33ms   129.     390.86KB     9.93</span></code></pre></div>
 </div>
 </div>
 <div id="dynamically-generated-column-names" class="section level1">
@@ -245,12 +248,12 @@
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span>
-<span class="co">#&gt;        Name1     Name2     Name3</span>
-<span class="co">#&gt; 1 0.76129982 0.3181582 0.4251594</span>
-<span class="co">#&gt; 2 0.92623531 0.1538252 0.3001146</span>
-<span class="co">#&gt; 3 0.84359891 0.2418692 0.4381078</span>
-<span class="co">#&gt; 4 0.07897392 0.6829678 0.2517238</span>
-<span class="co">#&gt; 5 0.40991005 0.4427483 0.3098389</span></code></pre></div>
+<span class="co">#&gt;        Name1      Name2      Name3</span>
+<span class="co">#&gt; 1 0.58091299 0.07786453 0.22022133</span>
+<span class="co">#&gt; 2 0.33694556 0.15326061 0.03506953</span>
+<span class="co">#&gt; 3 0.14860656 0.92355292 0.55034112</span>
+<span class="co">#&gt; 4 0.04088701 0.54219413 0.48588135</span>
+<span class="co">#&gt; 5 0.26077842 0.76075863 0.45817252</span></code></pre></div>
 </div>
 <div id="avoiding-unnecessary-for-loops" class="section level1">
 <h1 class="hasAnchor">

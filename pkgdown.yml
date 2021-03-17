@@ -7,6 +7,7 @@ articles:
   Lab03: Lab03.html
   Project01: Project01.html
   Project01Hints: Project01Hints.html
+  Project02: Project02.html
   Tutorial01: Tutorial01.html
   Tutorial01Solutions: Tutorial01Solutions.html
   Tutorial03: Tutorial03.html
@@ -19,7 +20,7 @@ articles:
   Tutorial07Solutions: Tutorial07Solutions.html
   Tutorial08: Tutorial08.html
   Tutorial08Solutions: Tutorial08Solutions.html
-last_built: 2021-03-10T15:53Z
+last_built: 2021-03-17T03:02Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles
