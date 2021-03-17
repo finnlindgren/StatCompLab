@@ -197,9 +197,9 @@ Present and discuss the results.
 
 ## Estimation
 
-Choose a weather station, and construct and estimate linear model that uses
+Choose a weather station, and make code for estimating a linear model that uses
 daily `TMAX` at the other weather stations as covariates for `TMAX` at the
-chosen station.
+chosen station. Present and discuss the result of estimating a separate model for each month of the year.
 
 Organise your code so that you can easily change the input data
 without having to change the estimation code. You'll need to be able to run the
@@ -210,7 +210,6 @@ to have the data in, and then use combinations of `filter()`, `select()` and
 related functions to achieve that.  The `pivot_wider` can be used to create one
 data column for each station.
 
-Present and discuss the result of estimating a separate model for each month of the year.
 
 ## Assessment
 
