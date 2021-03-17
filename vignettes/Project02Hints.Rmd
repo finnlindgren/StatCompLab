@@ -1,0 +1,62 @@
+---
+title: "Project 02 Hints"
+author: "Finn Lindgren"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: |
+  %\VignetteIndexEntry{Project 02 Hints}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Extracting information from linear model objects
+
+When we've estimated a linear model with `lm()`, we often want to extract information
+to be used in presentation of results (tables and figures) or in further calculations.
+You've already used the `predict()` function for calculating predictions and
+prediction uncertainties. In Project 2, you also need to access information
+about the estimated parameters and their uncertainty.
+
+Let's say we've estimated a simple model:
+```{r}
+fit <- lm(y ~ 1 + x, data = data.frame(x = rnorm(10), y = rnorm(10)))
+```
+
+## Basic option
+
+The coefficient estimates can be extracted with
+```{r}
+coef(fit)
+```
+
+The coefficient estimates and uncertainty information can be extracted with
+```{r}
+summary(fit)$coefficients
+```
+To extract specific elements:
+```{r}
+coefs <- summary(fit)$coefficients
+coefs["x", "Estimate"]
+coefs["x", "Std. Error"]
+```
+
+## Tidy option
+
+The `broom` package can provide the same information in a similar way:
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+library(broom)
+tidy(fit)
+tidy(fit) %>%
+  filter(term == "x") %>%
+  pull(std.error)
+```
