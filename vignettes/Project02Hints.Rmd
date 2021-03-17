@@ -36,9 +36,23 @@ fit <- lm(y ~ 1 + x, data = data.frame(x = rnorm(10), y = rnorm(10)))
 The coefficient estimates can be extracted with
 ```{r}
 coef(fit)
+coef(fit)["x"]
 ```
 
-The coefficient estimates and uncertainty information can be extracted with
+The estimated covariance matrix of the coefficient estimates can be extracted with
+```{r}
+vcov(fit)
+```
+To get Standard Error for a coefficient, extract the diagonal element and take
+the square root.
+```{r}
+sqrt(vcov(fit)["x", "x"])
+```
+
+The coefficient information can be combined with standard errors to construct approximate
+confidence intervals, which in the project can be plotted with `geom_ribbon()`.
+
+The coefficient estimates and uncertainty information can also be extracted with
 ```{r}
 summary(fit)$coefficients
 ```
@@ -51,7 +65,9 @@ coefs["x", "Std. Error"]
 
 ## Tidy option
 
-The `broom` package can provide the same information in a similar way:
+The `broom` package can provide the same information in a similar way, but for
+this particular type of problem it doesn't really add any value over the basic
+approach:
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
 library(broom)
