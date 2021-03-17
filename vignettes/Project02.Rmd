@@ -81,7 +81,7 @@ set.seed(1234L)
 ```
 
 This document can either be accessed in html form on (https://finnlindgren.github.io/StatCompLab/), as
-a vignette in `StatCompLab` version 0.9.0 or later, with `vignette("Project01", "StatCompLab")`, or in pdf format on Learn.
+a vignette in `StatCompLab` version 0.9.0 or later, with `vignette("Project02", "StatCompLab")`, or in pdf format on Learn.
 
 1. You have been assigned a `project02-username` repository on 
 [https://github.com/StatComp20/](https://github.com/StatComp20/). Use `git` to
