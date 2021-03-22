@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -136,7 +136,7 @@
       <h1 data-toc-skip>Project 02 Hints</h1>
                         <h4 class="author">Finn Lindgren</h4>
             
-            <h4 class="date">2021-03-17</h4>
+            <h4 class="date">2021-03-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/master/vignettes/Project02Hints.Rmd"><code>vignettes/Project02Hints.Rmd</code></a></small>
       <div class="hidden name"><code>Project02Hints.Rmd</code></div>
@@ -159,34 +159,34 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
 <span class="co">#&gt; (Intercept)           x </span>
-<span class="co">#&gt;   0.3658264  -0.2318460</span>
+<span class="co">#&gt;   0.2346944   0.6333552</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">[</span><span class="st">"x"</span><span class="op">]</span>
 <span class="co">#&gt;         x </span>
-<span class="co">#&gt; -0.231846</span></code></pre></div>
+<span class="co">#&gt; 0.6333552</span></code></pre></div>
 <p>The estimated covariance matrix of the coefficient estimates can be extracted with</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html">vcov</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
 <span class="co">#&gt;              (Intercept)            x</span>
-<span class="co">#&gt; (Intercept)  0.101206669 -0.007430851</span>
-<span class="co">#&gt; x           -0.007430851  0.098970860</span></code></pre></div>
+<span class="co">#&gt; (Intercept)  0.055891440 -0.008232894</span>
+<span class="co">#&gt; x           -0.008232894  0.041065262</span></code></pre></div>
 <p>To get Standard Error for a coefficient, extract the diagonal element and take the square root.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html">vcov</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"x"</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3145963</span></code></pre></div>
+<span class="co">#&gt; [1] 0.2026457</span></code></pre></div>
 <p>The coefficient information can be combined with standard errors to construct approximate confidence intervals, which in the project can be plotted with <code><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon()</a></code>.</p>
 <p>The coefficient estimates and uncertainty information can also be extracted with</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span>
-<span class="co">#&gt;               Estimate Std. Error    t value  Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)  0.3658264  0.3181300  1.1499275 0.2833866</span>
-<span class="co">#&gt; x           -0.2318460  0.3145963 -0.7369634 0.4821955</span></code></pre></div>
+<span class="co">#&gt;              Estimate Std. Error   t value   Pr(&gt;|t|)</span>
+<span class="co">#&gt; (Intercept) 0.2346944  0.2364137 0.9927276 0.34991605</span>
+<span class="co">#&gt; x           0.6333552  0.2026457 3.1254320 0.01411235</span></code></pre></div>
 <p>To extract specific elements:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coefs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span>
 <span class="va">coefs</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Estimate"</span><span class="op">]</span>
-<span class="co">#&gt; [1] -0.231846</span>
+<span class="co">#&gt; [1] 0.6333552</span>
 <span class="va">coefs</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Std. Error"</span><span class="op">]</span>
-<span class="co">#&gt; [1] 0.3145963</span></code></pre></div>
+<span class="co">#&gt; [1] 0.2026457</span></code></pre></div>
 </div>
 <div id="tidy-option" class="section level2">
 <h2 class="hasAnchor">
@@ -199,12 +199,12 @@
 <span class="co">#&gt; # A tibble: 2 x 5</span>
 <span class="co">#&gt;   term        estimate std.error statistic p.value</span>
 <span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 (Intercept)    0.366     0.318     1.15    0.283</span>
-<span class="co">#&gt; 2 x             -0.232     0.315    -0.737   0.482</span>
+<span class="co">#&gt; 1 (Intercept)    0.235     0.236     0.993  0.350 </span>
+<span class="co">#&gt; 2 x              0.633     0.203     3.13   0.0141</span>
 <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span> <span class="op">==</span> <span class="st">"x"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pull</span><span class="op">(</span><span class="va">std.error</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3145963</span></code></pre></div>
+<span class="co">#&gt; [1] 0.2026457</span></code></pre></div>
 </div>
 </div>
   </div>

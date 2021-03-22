@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -211,27 +211,40 @@
 <code>Value</code>: Daily measured temperature (in degrees Celsius) or precipitation (in mm)</li>
 </ul>
 </div>
-<div id="climate-trends" class="section level1">
+<div id="climate-trends-and-variability" class="section level1">
 <h1 class="hasAnchor">
-<a href="#climate-trends" class="anchor"></a>Climate trends</h1>
+<a href="#climate-trends-and-variability" class="anchor"></a>Climate trends and variability</h1>
+<p>Note: For this first half of the assignment, you should essentially ignore the missing data; when defining monthly averages, just take the average of whatever observations are available in each month. If you construct the averages with <code>group_by()</code> and <code>summarise()</code>&amp;<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, that will essentially happen by itself.</p>
 <div id="monthly-trends" class="section level2">
 <h2 class="hasAnchor">
 <a href="#monthly-trends" class="anchor"></a>Monthly trends</h2>
 <p>In Tutorial07, you looked at annual averages. Now, aggregate the data to monthly averages instead, and estimate the long-term temporal trend in <code>TMIN</code> for each month, for each weather station. (You can use a for-loop to iterate over the months when estimating the trend.)</p>
 <p>Collect the results into a suitable data structure, and draw a figure that shows how the climate trend varies across the year, for each station (use <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> or similar).</p>
 <p>Discuss the results.</p>
+<p>Note: When presenting the results, you may choose to scale the estimates to more a more humanly interpretable scale, such as “change per decade” (multiply by 10) or “change per century” (multiply by 100), instead of the “change per year” that a basic analysis provides. Alternatively, suitable scaling can be applied to the <code>Year</code> covariate before using it in the models.</p>
 </div>
 <div id="seasonally-varying-variability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#seasonally-varying-variability" class="anchor"></a>Seasonally varying variability</h2>
 <p>Is the temperature variability the same for each month of the year?</p>
-<p>Choose a weather station, and for each month, perform a randomisation test for whether the the variance of the daily <code>TMIN</code> residuals from the monthly averages is larger than the overall residual variance. Define the residuals as <span class="math inline">\(R_t = T_t - \overline{T}_{m(t)}\)</span>, where <span class="math inline">\(T_t\)</span> is <code>TMIN</code> at time <span class="math inline">\(t\)</span>, and <span class="math inline">\(\overline{T}_{m(t)}\)</span> is the average temperature in the month of time <span class="math inline">\(t\)</span>.</p>
+<p>Choose a weather station, and for each month, perform a randomisation test for whether the the variance of the daily <code>TMIN</code> residuals from the monthly averages is larger than the overall residual variance. Define the residuals as <span class="math inline">\(R_t = T_t - \overline{T}_{m(t)}\)</span>, where <span class="math inline">\(T_t\)</span> is <code>TMIN</code> at time <span class="math inline">\(t\)</span>, and <span class="math inline">\(\overline{T}_{m(t)}\)</span> is the average TMIN-value in the month of time <span class="math inline">\(t\)</span>.</p>
 <p>Present and discuss the results.</p>
+<p>Notes:</p>
+<ul>
+<li>The monthly averages are the same as for the trend estimation, i.e. you need to group by both <code>Year</code> and <code>Month</code> before calling <code>summarise()</code>.</li>
+<li>The hypotheses to be tested are of the form <span class="math display">\[
+\begin{aligned}
+H_0:&amp;\text{The residual variance is the same for all months of the year}\\
+H_1:&amp;\text{The residual variance for January is higher than the overall variance}
+\end{aligned}
+\]</span> and similarly for February, March, etc.</li>
+</ul>
 </div>
 </div>
 <div id="spatial-weather-prediction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#spatial-weather-prediction" class="anchor"></a>Spatial weather prediction</h1>
+<p>Note: For this second half of the project, you should remove all data points from days that have a missing value in one or more of the stations. After rearranging the data to have one temperature column for each station, this can be done with the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function.</p>
 <div id="estimation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#estimation" class="anchor"></a>Estimation</h2>
