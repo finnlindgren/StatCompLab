@@ -168,7 +168,13 @@ The `ghcnd_values` data frame has 7 variables:
 * `Value`: Daily measured temperature (in degrees Celsius) or precipitation (in mm)
 
 
-# Climate trends
+# Climate trends and variability
+
+Note: For this first half of the assignment,
+you should essentially ignore the missing data; when defining monthly averages,
+just take the average of whatever observations are available in each month.
+If you construct the averages with `group_by()` and `summarise()`&`mean()`,
+that will essentially happen by itself.
 
 ## Monthly trends
 
@@ -183,17 +189,44 @@ how the climate trend varies across the year, for each station
 
 Discuss the results.
 
+Note: When presenting the results, you may choose to scale the estimates to more
+a more humanly interpretable scale, such as "change per decade" (multiply by 10) or
+"change per century" (multiply by 100), instead of the "change per year" that a
+basic analysis provides.
+Alternatively, suitable scaling can be applied to the `Year` covariate before using
+it in the models.
+
 ## Seasonally varying variability
 
 Is the temperature variability the same for each month of the year?
 
 Choose a weather station, and for each month, perform a randomisation test for
 whether the the variance of the daily `TMIN` residuals from the monthly averages
-is larger than the overall residual variance. Define the residuals as $R_t = T_t - \ol{T}_{m(t)}$, where $T_t$ is `TMIN` at time $t$, and $\ol{T}_{m(t)}$ is the average temperature in the month of time $t$.
+is larger than the overall residual variance. Define the residuals as
+$R_t = T_t - \ol{T}_{m(t)}$, where $T_t$ is `TMIN` at time $t$, and $\ol{T}_{m(t)}$
+is the average TMIN-value in the month of time $t$.
 
 Present and discuss the results.
 
+Notes:
+
+- The monthly averages are the same as for the trend estimation, i.e. you need
+to group by both `Year` and `Month` before calling `summarise()`.
+- The hypotheses to be tested are of the form
+$$
+\begin{aligned}
+H_0:&\text{The residual variance is the same for all months of the year}\\
+H_1:&\text{The residual variance for January is higher than the overall variance}
+\end{aligned}
+$$
+and similarly for February, March, etc.
+
 # Spatial weather prediction
+
+Note: For this second half of the project, you should remove all data points
+from days that have a missing value in one or more of the stations. After
+rearranging the data to have one temperature column for each station,
+this can be done with the `filter()` function.
 
 ## Estimation
 
