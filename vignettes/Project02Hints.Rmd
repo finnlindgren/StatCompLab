@@ -14,8 +14,12 @@ vignette: |
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  dev = "png",
+  dev.args = list(type = "cairo-png"),
+  fig.width = 6
 )
+set.seed(12345L)
 ```
 
 # Extracting information from linear model objects
@@ -76,3 +80,60 @@ tidy(fit) %>%
   filter(term == "x") %>%
   pull(std.error)
 ```
+
+## Prediction variances
+
+The `predict()` function can provide prediction standard errors, with `se.fit`, but those are only half the story when predicting new data. The standard errors only include the uncertainty information about the linear predictor curve. For full prediction uncertainty,
+we need to take the observation variation into account, which `lm()` estimated
+via the variance of the residuals. Since the residuals for new observations is assumed to be conditionally independent of the predictor curve, the prediction variance
+can be estimated as the
+sum of the square of the prediction standard error and the residual variance,
+if the degrees of freedom is large.
+For the help text for `lm()` we see that when `se.fit=TRUE`, the output list
+contains the elements
+
+* `fit`: vector or matrix (depending on the `interval` argument)
+* `se.fit`: standard error of predicted means
+* `residual.scale`: residual standard deviations
+* `df`: degrees of freedom for residual
+
+
+```{r}
+df <- tibble(x = rnorm(10), y = 2 + x + rnorm(10, sd = 0.1))
+fit <- lm(y ~ x, data = df)
+df_pred <- data.frame(x = seq(-2, 2, length.out = 100))
+pred <- predict(fit, newdata = df_pred, se.fit = TRUE)
+sd_pred <- sqrt(pred$se.fit^2 + pred$residual.scale^2)
+ggplot(cbind(df_pred, se.fit = pred$se.fit, sd_pred = sd_pred)) +
+  geom_line(aes(x, se.fit, colour = "se.fit")) +
+  geom_line(aes(x, sd_pred, colour = "sd_pred")) +
+  ylab("Std. deviations")
+```
+
+We can check our logic by comparing our own prediction interval construction to that obstained with `interval="prediction"`:
+```{r}
+pred <- predict(fit, newdata = df_pred, se.fit = TRUE, interval = "prediction")
+sd_pred <- sqrt(pred$se.fit^2 + pred$residual.scale^2)
+ggplot(cbind(df_pred,
+             as.data.frame(pred$fit),
+             se.fit = pred$se.fit,
+             sd_pred = sd_pred)) +
+  geom_line(aes(x, fit)) +
+  geom_ribbon(aes(x,
+                  ymin = fit - qnorm(0.975) * sd_pred,
+                  ymax = fit - qnorm(0.025) * sd_pred,
+                  fill = "our method"), alpha = 0.2) +
+  geom_ribbon(aes(x,
+                  ymin = lwr,
+                  ymax = upr,
+                  fill = "predict"), alpha = 0.2)
+```
+
+There is a small difference between the two methods, which is explained by the
+relatively small degrees of freedom, `r pred$df`, as seen from the matching
+ratios for the $t$- and Normal quantiles, and for the interval widths
+```{r}
+c(qt(0.975, df = pred$df) / qnorm(0.975),
+  mean((pred$fit[, "upr"] - pred$fit[, "lwr"]) / (2 * qnorm(0.975) * sd_pred)))
+```
+For large degrees of freedom, such as for the daily spatial weather prediction in the project, this difference is negligible, and the `sd_pred` value is a suitable estimate of the prediction standard deviation.
