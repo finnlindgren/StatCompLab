@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
       </span>
     </div>
 
@@ -363,7 +363,7 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
 <a href="#data-wrangling" class="anchor"></a>Data wrangling</h3>
 <p>To help  produce proper figure labels, we can use data wrangling methods from a set of R packages commonly referred to as the <code>tidyverse</code>. The idea is to convert our data frame that has each type of output as separate data columns into a format where the values of the true and estimated expectations and standard deviations are stored in a single column, and other, new columns encode what each row contains.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span><span class="op">)</span>
 <span class="va">data_long</span> <span class="op">&lt;-</span>
   <span class="va">data</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>,
@@ -371,7 +371,7 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
                names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"property"</span>, <span class="st">"type"</span><span class="op">)</span>,
                names_pattern <span class="op">=</span> <span class="st">"(.*)_(.*)"</span><span class="op">)</span>
 <span class="va">data_long</span>
-<span class="co">#&gt; # A tibble: 400 x 5</span>
+<span class="co">#&gt; # A tibble: 400 × 5</span>
 <span class="co">#&gt;         x     y property    type  value</span>
 <span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 0       2.08 expectation true  2    </span>

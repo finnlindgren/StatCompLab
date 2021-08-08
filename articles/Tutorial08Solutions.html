@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
       </span>
     </div>
 
@@ -160,7 +160,7 @@
 <p>For measuring relative running times of different methods, we’ll use the <code>bench</code> package. You won’t need to load the package with <code>library</code>. Instead, check if <code><a href="https://rdrr.io/pkg/bench/man/mark.html">bench::mark()</a></code> runs without errors. If it doesn’t, and it’s because the package is not installed, then install it with <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("bench")</a></code> in the R Console.</p>
 <p>Suggested code for the setup code chunk:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://finnlindgren.github.io/StatCompLab">StatCompLab</a></span><span class="op">)</span></code></pre></div>
 <!--
 
@@ -207,18 +207,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">68.5ms</td>
-<td align="right">14.4423</td>
+<td align="right">79.3ms</td>
+<td align="right">12.63471</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
-<td align="right">19.8ms</td>
-<td align="right">50.3518</td>
+<td align="right">22.1ms</td>
+<td align="right">44.92600</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">19.4ms</td>
-<td align="right">51.0028</td>
+<td align="right">22ms</td>
+<td align="right">45.14821</td>
 </tr>
 </tbody>
 </table>
@@ -262,18 +262,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">673.28ms</td>
-<td align="right">1.485276</td>
+<td align="right">769.23ms</td>
+<td align="right">1.300007</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">669.31ms</td>
-<td align="right">1.494068</td>
+<td align="right">734.82ms</td>
+<td align="right">1.360878</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">2.06ms</td>
-<td align="right">463.316272</td>
+<td align="right">2.23ms</td>
+<td align="right">435.574739</td>
 </tr>
 </tbody>
 </table>
@@ -302,13 +302,13 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">781ms</td>
-<td align="right">1.279978</td>
+<td align="right">874ms</td>
+<td align="right">1.144397</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">247ms</td>
-<td align="right">4.043815</td>
+<td align="right">292ms</td>
+<td align="right">3.425753</td>
 </tr>
 </tbody>
 </table>
