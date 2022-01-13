@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -54,9 +50,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Lab01.html">Lab01</a>
-    </li>
-    <li>
       <a href="../articles/Lab02.html">Lab02</a>
     </li>
     <li>
@@ -115,7 +108,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/finnlindgren/StatCompLab/">
+  <a href="https://github.com/finnlindgren/StatCompLab/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -134,19 +127,19 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Tutorial 04: Uncertainty and integration</h1>
-                        <h4 class="author">Finn Lindgren</h4>
+                        <h4 data-toc-skip class="author">Finn Lindgren</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/master/vignettes/Tutorial04.Rmd"><code>vignettes/Tutorial04.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/Tutorial04.Rmd" class="external-link"><code>vignettes/Tutorial04.Rmd</code></a></small>
       <div class="hidden name"><code>Tutorial04.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>In this lab session you will explore</p>
 <ul>
 <li>using RMarkdown to organise text and code</li>
@@ -154,19 +147,19 @@
 <li>Laplace approximation and importance sampling for approximate Bayesian credible interval construction</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Open your github repository clone project from Lab 2 (either on <a href="https://rstudio.cloud">https://rstudio.cloud</a> or on your own computer and upgrade the <code>StatCompLab</code> package (see the <code>Lab03</code> vignette for more details)</li>
+<li>Open your github repository clone project from Lab 2 (either on <a href="https://rstudio.cloud" class="external-link">https://rstudio.cloud</a> or on your own computer and upgrade the <code>StatCompLab</code> package (see the <code>Lab03</code> vignette for more details)</li>
 <li>Download the <code>RMDemo.Rmd</code> and <code>my_code.R</code> files from Learn and upload to the Rstudio project and rename the <code>.Rmd</code> file to <code>Lab4.Rmd</code>
 </li>
-<li>During this lab, modify the <code>Lab4.Rmd</code> document and add new code and text commentary for the lab to the document. (You can remove the demonstration parts of the file when you don’t need them anymore, and/or keep a separate copy of it.) When pressing the “knit” button, the RMarkdown file will be run in its own R environment, so you need to include any needed <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> calls in a code chnk in the file, normally an inital “setup” chunk.</li>
+<li>During this lab, modify the <code>Lab4.Rmd</code> document and add new code and text commentary for the lab to the document. (You can remove the demonstration parts of the file when you don’t need them anymore, and/or keep a separate copy of it.) When pressing the “knit” button, the RMarkdown file will be run in its own R environment, so you need to include any needed <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> calls in a code chnk in the file, normally an inital “setup” chunk.</li>
 </ol>
 <hr>
 <p><strong>Solution:</strong></p>
 <p>The accompanying <code>Tutorial04Solutions</code> tutorial/vignette documents contain the solutions explicitly, to make it easier to review the material after the workshops.</p>
 <hr>
 </div>
-<div id="three-alternatives-for-poisson-parameter-confidence-intervals" class="section level2">
-<h2 class="hasAnchor">
-<a href="#three-alternatives-for-poisson-parameter-confidence-intervals" class="anchor"></a>Three alternatives for Poisson parameter confidence intervals</h2>
+<div class="section level2">
+<h2 id="three-alternatives-for-poisson-parameter-confidence-intervals">Three alternatives for Poisson parameter confidence intervals<a class="anchor" aria-label="anchor" href="#three-alternatives-for-poisson-parameter-confidence-intervals"></a>
+</h2>
 <p>Consider the Poisson model for observations <span class="math inline">\(\boldsymbol{y}=\{y_1,\dots,y_n\}\)</span>: <span class="math display">\[
 \begin{aligned}
 y_i &amp; \sim \mathsf{Poisson}(\lambda), \quad\text{independent for $i=1,\dots,n$.}
@@ -202,9 +195,9 @@ $$
 $$
 which is equal to $n\lambda$ for all $y_i$ values, so the inverse of the expected Hessian is $1/(n\lambda)$.
 -->
-<div id="interval-construction" class="section level3">
-<h3 class="hasAnchor">
-<a href="#interval-construction" class="anchor"></a>Interval construction</h3>
+<div class="section level3">
+<h3 id="interval-construction">Interval construction<a class="anchor" aria-label="anchor" href="#interval-construction"></a>
+</h3>
 <p>Use the approximation method for large <span class="math inline">\(n\)</span> from the lecture to construct approximate confidence intervals for <span class="math inline">\(\lambda\)</span> using each of the three parameterisations. Define three functions, CI1, CI2, and CI3, each taking paramters</p>
 <ul>
 <li>
@@ -220,19 +213,19 @@ which is equal to $n\lambda$ for all $y_i$ values, so the inverse of the expecte
 -->
 <p>You can use the following code to test your functions, storing each interval as a row of a matrix with <code>rbind</code> (“bind” as “rows”, see also <code>cbind</code> for combining columns):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0 2 2 2 4</code></pre>
+<code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 0 2 2 2 4</span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span>
   <span class="st">"Method 1"</span> <span class="op">=</span> <span class="fu">CI1</span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,
   <span class="st">"Method 2"</span> <span class="op">=</span> <span class="fu">CI2</span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,
   <span class="st">"Method 3"</span> <span class="op">=</span> <span class="fu">CI3</span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
 <span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">CI</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span></code></pre></div>
-<p>We can print the result as a table in our RMarkdown by using a separate codechunk, calling the <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> function:</p>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">CI</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span></code></pre></div>
+<p>We can print the result as a table in our RMarkdown by using a separate codechunk, calling the <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable</a></code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">CI</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">CI</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -269,9 +262,9 @@ This can happen when $n$ or $\lambda$ are close to zero.
 <p>For each approximate confidence interval construction method, we might ask the question of whether it fulfils the definition of an actual confidence interval construction method; that <span class="math inline">\(\mathsf{P}_{\boldsymbol{y}|\theta}(\theta\in \text{CI}(\boldsymbol{y})|\theta)\geq 1-\alpha\)</span> for all <span class="math inline">\(\theta\)</span> (or at least for a relevant subset of the parameter space). In coursework project 1, you will investigate the accuracy of some approximate confidence interval construction methods.</p>
 </div>
 </div>
-<div id="bayesian-credible-intervals" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bayesian-credible-intervals" class="anchor"></a>Bayesian credible intervals</h2>
+<div class="section level2">
+<h2 id="bayesian-credible-intervals">Bayesian credible intervals<a class="anchor" aria-label="anchor" href="#bayesian-credible-intervals"></a>
+</h2>
 <p>Assume a true value of <span class="math inline">\(\lambda=10\)</span>, and simulate a sample of <span class="math inline">\(\boldsymbol{y}\)</span> of size <span class="math inline">\(n=5\)</span>.</p>
 <!--
 
@@ -283,9 +276,9 @@ This can happen when $n$ or $\lambda$ are close to zero.
 <p>One can show that the exact posterior distribution for <span class="math inline">\(\lambda\)</span> given <span class="math inline">\(\boldsymbol{y}\)</span> is a <span class="math inline">\(\mathsf{Gamma}(1 + \sum_{i=1}^n y_i, a + n)\)</span> distribution (using the shape&amp;rate parameterisation), and credible intervals can be constructed from quantiles of this distribution.</p>
 <p>In cases where the theoretical construction is impractical, an alternative is to instead construct samples from the posterior distribution, and extract empirical quantiles from this sample. Here, we will use importance sampling to achieve this.</p>
 <p>Let <span class="math inline">\(\theta=\log(\lambda)\)</span>, so that <span class="math inline">\(\lambda=\exp(\theta)\)</span>. Show that the prior probability density for <span class="math inline">\(\theta\)</span> is <span class="math inline">\(p(\theta)=a \exp\left( \theta-ae^\theta \right)\)</span>.</p>
-<div id="gaussian-approximation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#gaussian-approximation" class="anchor"></a>Gaussian approximation</h3>
+<div class="section level3">
+<h3 id="gaussian-approximation">Gaussian approximation<a class="anchor" aria-label="anchor" href="#gaussian-approximation"></a>
+</h3>
 <!--
 
 From probability theory, we know that $p(\theta)=p(\lambda) \frac{d\lambda(\theta)}{d\theta}$, so that
@@ -300,9 +293,9 @@ p(\theta|\boldsymbol{y}) = \frac{p(\theta) p(\boldsymbol{y}|\theta)}{p(\boldsymb
 \]</span> and by taking derivatives we find the mode at <span class="math inline">\(\widetilde{\theta}=\log\left(\frac{1+n\overline{y}}{a+n}\right)\)</span>, and negated Hessian <span class="math inline">\(1+n\overline{y}\)</span> at the mode.</p>
 <p>With this information we can construct a Gaussian approximation to the posterior distribution, <span class="math inline">\(\widetilde{p}(\theta|\boldsymbol{y})\sim\mathsf{Normal}(\widetilde{\theta},\frac{1}{1+n\overline{y}})\)</span>.</p>
 </div>
-<div id="importance-sampling" class="section level3">
-<h3 class="hasAnchor">
-<a href="#importance-sampling" class="anchor"></a>Importance sampling</h3>
+<div class="section level3">
+<h3 id="importance-sampling">Importance sampling<a class="anchor" aria-label="anchor" href="#importance-sampling"></a>
+</h3>
 <p>Simulate a sample <span class="math inline">\(\boldsymbol{x}=\{x_1,\dots,x_m\}\)</span> from this Gaussian approximation of the posterior distribution, for some large <span class="math inline">\(m &gt; 10000\)</span>, with hyperparameter <span class="math inline">\(a=1/5\)</span>.</p>
 <!--
 
@@ -321,10 +314,10 @@ w_k = \left.\frac{p(\theta)p(\boldsymbol{y}|\theta)}{\widetilde{p}(\theta|\bolds
 
 -->
 </div>
-<div id="cumulative-distribution-function-comparison" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cumulative-distribution-function-comparison" class="anchor"></a>Cumulative distribution function comparison</h3>
-<p>With <code>ggplot</code>, use <code>geom_function</code> to plot the theoretical posterior cumulative distribution function for <span class="math inline">\(\lambda\)</span> (the CDF from the Gamma distribution given above, see <code><a href="https://rdrr.io/r/stats/GammaDist.html">pgamma()</a></code>) and compare it to the approximation given by the importance sampling. The <code><a href="../reference/stat_ewcdf.html">stat_ewcdf()</a></code> function from the StatCompLab should be used to plot the cdf for the weighted sample <span class="math inline">\(\lambda_k=\exp(x_k)\)</span>, with (unnormalised) weights <span class="math inline">\(w_k\)</span>. Also include the unweighted sample, with <code>stat_ecwf()</code>. How close does the approximations come to the true posterior distribution?</p>
+<div class="section level3">
+<h3 id="cumulative-distribution-function-comparison">Cumulative distribution function comparison<a class="anchor" aria-label="anchor" href="#cumulative-distribution-function-comparison"></a>
+</h3>
+<p>With <code>ggplot</code>, use <code>geom_function</code> to plot the theoretical posterior cumulative distribution function for <span class="math inline">\(\lambda\)</span> (the CDF from the Gamma distribution given above, see <code><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">pgamma()</a></code>) and compare it to the approximation given by the importance sampling. The <code><a href="../reference/stat_ewcdf.html">stat_ewcdf()</a></code> function from the StatCompLab should be used to plot the cdf for the weighted sample <span class="math inline">\(\lambda_k=\exp(x_k)\)</span>, with (unnormalised) weights <span class="math inline">\(w_k\)</span>. Also include the unweighted sample, with <code>stat_ecwf()</code>. How close does the approximations come to the true posterior distribution?</p>
 <!--
 
 The importance sampling version is virtually indistinguishable from the true posterior distribution.
@@ -346,11 +339,13 @@ The unweighted sample is very close to the true posterior distribution; for this
 
 
       <footer><div class="copyright">
-  <p>Developed by Finn Lindgren.</p>
+  <p></p>
+<p>Developed by Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -358,6 +353,8 @@ The unweighted sample is very close to the true posterior distribution; for this
 
   
 
+
+  
 
   </body>
 </html>

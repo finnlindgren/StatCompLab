@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -54,9 +50,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Lab01.html">Lab01</a>
-    </li>
-    <li>
       <a href="../articles/Lab02.html">Lab02</a>
     </li>
     <li>
@@ -115,7 +108,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/finnlindgren/StatCompLab/">
+  <a href="https://github.com/finnlindgren/StatCompLab/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -134,55 +127,55 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab02</h1>
-                        <h4 class="author">Finn Lindgren</h4>
+                        <h4 data-toc-skip class="author">Finn Lindgren</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/master/vignettes/Lab02.Rmd"><code>vignettes/Lab02.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/Lab02.Rmd" class="external-link"><code>vignettes/Lab02.Rmd</code></a></small>
       <div class="hidden name"><code>Lab02.Rmd</code></div>
 
     </div>
 
     
     
-<div id="statistical-computing-math10093-computer-lab-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#statistical-computing-math10093-computer-lab-2" class="anchor"></a>Statistical computing MATH10093: Computer lab 2</h1>
+<div class="section level2">
+<h2 id="statistical-computing-math10093-computer-lab-2">Statistical computing MATH10093: Computer lab 2<a class="anchor" aria-label="anchor" href="#statistical-computing-math10093-computer-lab-2"></a>
+</h2>
 <p>In this lab session you will explore optimisation methods, and practice writing R functions that can be supplied to the standard optimisation routine in R, in order to perform numerical parameter estimation. You will not hand in anything, but you should keep your code script file for later use.</p>
 <p>Note: This lab sheet contains supplementary course notes about optimisation and the R language.</p>
-<div id="working-with-gitgithubrstudio" class="section level2">
-<h2 class="hasAnchor">
-<a href="#working-with-gitgithubrstudio" class="anchor"></a>Working with git/github/RStudio</h2>
-<div id="initial-authentication" class="section level3">
-<h3 class="hasAnchor">
-<a href="#initial-authentication" class="anchor"></a>Initial authentication</h3>
+<div class="section level3">
+<h3 id="working-with-gitgithubrstudio">Working with git/github/RStudio<a class="anchor" aria-label="anchor" href="#working-with-gitgithubrstudio"></a>
+</h3>
+<div class="section level4">
+<h4 id="initial-authentication">Initial authentication<a class="anchor" aria-label="anchor" href="#initial-authentication"></a>
+</h4>
 <p>If you’re working on <code>rstudio.cloud</code>, first click on your name in the top right corner and go to <code>Authentication</code>. Activate github access, including “Private repo access also enabled”. You should be redirected to authenticate yourself with github. (Without this step, creating a new project from a github repository becomes more complicated.)</p>
-<p>If you’re working on a local computer, Sections 9-12 of <a href="https://happygitwithr.com/push-pull-github.html">happygitwithr.com</a> has useful information for setting up the system; Section 10 discusses how to configure the system so that it can remember your github access details. This should normally only be needed once, and should not need to be setup again for new projects. The procedure is similar to the setup described below that is needed for <code>rstudio.cloud</code> Projects, but for local computer setup it can be done globally for all R projects.</p>
+<p>If you’re working on a local computer, Sections 9-12 of <a href="https://happygitwithr.com/push-pull-github.html" class="external-link">happygitwithr.com</a> has useful information for setting up the system; Section 10 discusses how to configure the system so that it can remember your github access details. This should normally only be needed once, and should not need to be setup again for new projects. The procedure is similar to the setup described below that is needed for <code>rstudio.cloud</code> Projects, but for local computer setup it can be done globally for all R projects.</p>
 </div>
-<div id="creating-a-new-rstudio-project-from-github" class="section level3">
-<h3 class="hasAnchor">
-<a href="#creating-a-new-rstudio-project-from-github" class="anchor"></a>Creating a new RStudio Project from github</h3>
+<div class="section level4">
+<h4 id="creating-a-new-rstudio-project-from-github">Creating a new RStudio Project from github<a class="anchor" aria-label="anchor" href="#creating-a-new-rstudio-project-from-github"></a>
+</h4>
 <p>After setting up the initial github authentication, follow these steps:</p>
 <ol style="list-style-type: decimal">
-<li>Go to <a href="https://github.com/StatComp20">github.com/StatComp20</a>
+<li>Go to <a href="https://github.com/StatComp20" class="external-link">github.com/StatComp20</a>
 </li>
 <li>You should see a Repository called <code>lab02-</code>username where “username” is your github username.</li>
 <li>Click on the repository to see what it contains. Use the “Code” button to copy the HTTPS version of the URL that can be used to create a “Clone”.</li>
-<li>Now open <a href="https://rstudio.cloud">rstudio.cloud</a>, and go to the <code>Statistical Computing</code> workspace.</li>
+<li>Now open <a href="https://rstudio.cloud" class="external-link">rstudio.cloud</a>, and go to the <code>Statistical Computing</code> workspace.</li>
 <li>Create a “New Project from Git Repository” based on the URL to your git repository</li>
 <li>In the project, open the file <code>lab02_code.R</code>, and use it to hold the code for this lab. During the lab, remember to save the script file regularly, to avoid losing any work. You will also use git to synchronise the file contents with the github repository.</li>
 </ol>
 <p>Note 1: If you’re running on a local RStudio installation, steps 4 and 5 above should be replaced by first opening RStudio, and then choosing “File-&gt;New repository-&gt;Version control-&gt;Git”</p>
-<p>Note 2: If you’re on <code>rstudio.cloud</code>, the <code>StatCompLab</code> package will already be installed. Otherwise, run <code><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github("finnlindgren/StatCompLab/", build_vignettes = TRUE)</a></code></p>
-<p>The <code><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github</a></code> syntax means that R will use the function <code>install_github</code> from the package <code>remotes</code>, without having to load all the functions into the global environment, as would be done with <code><a href="https://remotes.r-lib.org">library("remotes")</a></code>. In some cases, <code>R</code>/<code>RStudio</code> will detect that some related packages have newer versions, and ask if you want it to first upgrade those packages; it is generally safe to accept such upgrades from the CRAN repository, but from other sources, including <code>github</code>, you can decline such updates unless you know that you need a development version of a package.</p>
+<p>Note 2: If you’re on <code>rstudio.cloud</code>, the <code>StatCompLab</code> package will already be installed. Otherwise, run <code>remotes::install_github("finnlindgren/StatCompLab/", build_vignettes = TRUE)</code></p>
+<p>The <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github</a></code> syntax means that R will use the function <code>install_github</code> from the package <code>remotes</code>, without having to load all the functions into the global environment, as would be done with <code><a href="https://remotes.r-lib.org" class="external-link">library("remotes")</a></code>. In some cases, <code>R</code>/<code>RStudio</code> will detect that some related packages have newer versions, and ask if you want it to first upgrade those packages; it is generally safe to accept such upgrades from the CRAN repository, but from other sources, including <code>github</code>, you can decline such updates unless you know that you need a development version of a package.</p>
 <p>In addition to the lab and tutorial documents, the <code>StatCompLab</code> package includes a graphical interactive tool for exploring optimisation methods, based on the R interactive <code>shiny</code> system.</p>
 </div>
-<div id="basic-git-usage" class="section level3">
-<h3 class="hasAnchor">
-<a href="#basic-git-usage" class="anchor"></a>Basic git usage</h3>
+<div class="section level4">
+<h4 id="basic-git-usage">Basic git usage<a class="anchor" aria-label="anchor" href="#basic-git-usage"></a>
+</h4>
 <p>A version control <em>repository</em> is a place where files under the control of git are kept and kept track of over time.</p>
-<p>After cloning the repository to <code>rstudio.cloud</code>, you need to setup authentication within the project (the same method can be used when initially setting up authentication on your own computer, but there you have more options, such as SSH public key authentication, see <a href="https://happygitwithr.com/push-pull-github.html">happygitwithr.com</a>):</p>
+<p>After cloning the repository to <code>rstudio.cloud</code>, you need to setup authentication within the project (the same method can be used when initially setting up authentication on your own computer, but there you have more options, such as SSH public key authentication, see <a href="https://happygitwithr.com/push-pull-github.html" class="external-link">happygitwithr.com</a>):</p>
 <ol style="list-style-type: decimal">
-<li>On <a href="https://github.com/StatComp20">github.com/StatComp20</a>, go to your own user (icon in the top right corner) “Settings”-&gt;“Developer settings”-&gt;“Personal access tokens”</li>
+<li>On <a href="https://github.com/StatComp20" class="external-link">github.com/StatComp20</a>, go to your own user (icon in the top right corner) “Settings”-&gt;“Developer settings”-&gt;“Personal access tokens”</li>
 <li>Create a new token (a “PAT”), with the “repo” access option enabled. Copy the generated string to safe place</li>
 <li>In your RStudio project <code>Console</code> pane, run <code>credentials::set_github_pat()</code> to add the new token</li>
 <li>In the <code>Terminal</code> pane, run</li>
@@ -197,7 +190,7 @@
 <li>
 <code>add</code> and <code>commit</code>: When changes to one or several files are “done”, we need to tell <code>git</code> to collect the changes and store them. With <code>git</code>, one needs to first tell it which file changes to <em>add</em> (called <em>staging</em> in git), and then to <em>commit</em> the changes.</li>
 <li>
-<code>push</code>: When we’re happy with our local changes and want to make them available either to ourselves on a different computer, or to others with access to the github copy of the repository, we <em>push</em> the commits. On <code>rstudio.cloud</code>, unless you setup authentication as described on <a href="https://happygitwithr.com/push-pull-github.html">happygitwithr.com</a>, you will need to enter your github username and password.</li>
+<code>push</code>: When we’re happy with our local changes and want to make them available either to ourselves on a different computer, or to others with access to the github copy of the repository, we <em>push</em> the commits. On <code>rstudio.cloud</code>, unless you setup authentication as described on <a href="https://happygitwithr.com/push-pull-github.html" class="external-link">happygitwithr.com</a>, you will need to enter your github username and password.</li>
 <li>
 <code>pull</code>: To get access to changes made in the github repository, we can <em>pull</em> the commits that were made there since the last time we either <em>cloned</em> or <em>pulled</em>.</li>
 </ul>
@@ -214,9 +207,9 @@
 </ol>
 </div>
 </div>
-<div id="optimisation-exploration" class="section level2">
-<h2 class="hasAnchor">
-<a href="#optimisation-exploration" class="anchor"></a>Optimisation exploration</h2>
+<div class="section level3">
+<h3 id="optimisation-exploration">Optimisation exploration<a class="anchor" aria-label="anchor" href="#optimisation-exploration"></a>
+</h3>
 <p>The optimisation methods discussed in the lecture (Gradient Descent, Newton and the Quasi-Newton method BFGS, see Lecture 2) are all based on starting from a current best estimate of a minimum, finding a search direction, and then performing a line search to find a new, better, estimate. The <em>Nelder-Mead Simplex</em> method works in a similar way, but doesn’t use any derivatives of the target function; it only uses function evaluations, and keeps track of a set of local points (<span class="math inline">\(m+1\)</span> points, if <span class="math inline">\(m\)</span> is the dimension of the problem). For 2D problems the method updates a triangle of points. In each iteration, it attempts to move away from the “worst” point, by performing a simple line search. In addition to the basis line search, it will reduce or expand the triangle. Expansion happens similarly to the adaptive step length in the Gradient Descent method.</p>
 <p>Start the <code>optimisation</code> shiny app:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -250,21 +243,21 @@ costs at least <span class="math inline">\(m\)</span> extra function evaluations
 <li>How far out can the optimisation start for the “Spiral” function? E.g., try the “Newton” method, starting in the top right corner of the figure.</li>
 </ol>
 </div>
-<div id="functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#functions" class="anchor"></a>Functions</h2>
+<div class="section level3">
+<h3 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
+</h3>
 <p>A function in R can have a <code>name</code>, <code>arguments</code> (<code>parameters</code>), and a return <code>value</code>. A function is defined through</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">thename</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">arguments</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">expressions</span>
 <span class="op">}</span></code></pre></div>
 <p>where <code>expressions</code> is one or more lines of code. The result of the last evaluated expression in the function is the value returned to the caller.</p>
-<p>Each input parameter can have a <em>default value</em>, so that the caller doesn’t have to specify it unless they want a different value. Sometimes, a <code>NULL</code> default value is used, and the parameter checked internally with <code><a href="https://rdrr.io/r/base/NULL.html">is.null(parameter)</a></code> to determine if the user supplied something.</p>
+<p>Each input parameter can have a <em>default value</em>, so that the caller doesn’t have to specify it unless they want a different value. Sometimes, a <code>NULL</code> default value is used, and the parameter checked internally with <code>is.null(parameter)</code> to determine if the user supplied something.</p>
 <p>It is good practice to refer to the parameters by name when calling a function (instead of relying on the order of the parameters; the first parameter is a common exception to this practice), especially for parameters that have default values. Example:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_function</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">param1</span>, <span class="va">param2</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">param3</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">{</span>
   <span class="co"># 'if': run a block of code if a logical statement is true</span>
-  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">param2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">param2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">param1</span> <span class="op">+</span> <span class="va">param3</span>
   <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
     <span class="co"># 'else', companion to 'if':</span>
@@ -280,26 +273,26 @@ costs at least <span class="math inline">\(m\)</span> extra function evaluations
 <span class="co">#&gt; [1] 5</span>
 <span class="fu">my_function</span><span class="op">(</span><span class="fl">1</span>, param2 <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
 <span class="co">#&gt; [1] 3</span></code></pre></div>
-<p>The main optimisation function in R is <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code>, which has the following call syntax:</p>
+<p>The main optimisation function in R is <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim()</a></code>, which has the following call syntax:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span><span class="va">par</span>, <span class="va">fn</span>, gr <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>,
-      method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Nelder-Mead"</span>, <span class="st">"BFGS"</span>, <span class="st">"CG"</span>, <span class="st">"L-BFGS-B"</span>, <span class="st">"SANN"</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></span><span class="op">(</span><span class="va">par</span>, <span class="va">fn</span>, gr <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>,
+      method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Nelder-Mead"</span>, <span class="st">"BFGS"</span>, <span class="st">"CG"</span>, <span class="st">"L-BFGS-B"</span>, <span class="st">"SANN"</span>,
                  <span class="st">"Brent"</span><span class="op">)</span>,
       lower <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, upper <span class="op">=</span> <span class="cn">Inf</span>,
-      control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>, hessian <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+      control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, hessian <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Here, the <code>method</code> parameter appears to have a whole vector as its default value. However, this is merely a way to show the user all the permitted values. If the user does not supply anything specific, the first value, <code>"Nelder-Mead"</code> will be used.</p>
-<p>You may have briefly encountered the special <code>...</code> parameter syntax in an earlier lab. It means that <em>there may be additional parameters specified here by the caller, that should be passed on to another function that is called internally</em>. For <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code>, those extra parameters are passed on to the target function that the user supplies. A call to <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> to minimise the function defined by <code>myTargetFunction()</code> might take this form:</p>
+<p>You may have briefly encountered the special <code>...</code> parameter syntax in an earlier lab. It means that <em>there may be additional parameters specified here by the caller, that should be passed on to another function that is called internally</em>. For <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim()</a></code>, those extra parameters are passed on to the target function that the user supplies. A call to <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim()</a></code> to minimise the function defined by <code>myTargetFunction()</code> might take this form:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="va">start_par</span>,
+<code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="va">start_par</span>,
              fn <span class="op">=</span> <span class="va">myTargetFunction</span>,
              extra1 <span class="op">=</span> <span class="va">value1</span>,
              extra2 <span class="op">=</span> <span class="va">value2</span><span class="op">)</span></code></pre></div>
-<p>When <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> uses the function <code>myTargetFunction()</code>, it will be called like this:</p>
+<p>When <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim()</a></code> uses the function <code>myTargetFunction()</code>, it will be called like this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">myTargetFunction</span><span class="op">(</span><span class="va">current_par</span>, extra1 <span class="op">=</span> <span class="va">value1</span>, extra2 <span class="op">=</span> <span class="va">value2</span><span class="op">)</span></code></pre></div>
-<div id="estimating-a-complicated-model" class="section level3">
-<h3 class="hasAnchor">
-<a href="#estimating-a-complicated-model" class="anchor"></a>Estimating a complicated model</h3>
+<div class="section level4">
+<h4 id="estimating-a-complicated-model">Estimating a complicated model<a class="anchor" aria-label="anchor" href="#estimating-a-complicated-model"></a>
+</h4>
 <p>As an example, we’ll look at a model for the connection between some  values <span class="math inline">\((x_1,\dots,x_n)\)</span> and observations <span class="math inline">\(y_i\)</span> (see Lecture~2) that can be written</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -313,94 +306,94 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
 \]</span> Use the following code to simulate synthetic random data from this model, where both the mean and standard deviation of each observation depends on two model parameters via a common set of covariates.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span>
-<span class="va">theta_true</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
-<span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>,
-           mean <span class="op">=</span> <span class="va">X</span> <span class="op">%*%</span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
-           sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op">%*%</span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">theta_true</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>,
+           mean <span class="op">=</span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
+           sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Plot the data.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab02_files/figure-html/unnamed-chunk-8-1.png" width="720" style="display: block; margin: auto;"></p>
-<p>Write a function <code>neg_log_lik &lt;- function(theta, y, X) {</code>(Code goes here)<code>}</code> that evalues the negative log-likelihood for the model. See <code><a href="https://rdrr.io/r/stats/Normal.html">?dnorm</a></code>.</p>
+<p>Write a function <code>neg_log_lik &lt;- function(theta, y, X) {</code>(Code goes here)<code>}</code> that evalues the negative log-likelihood for the model. See <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">?dnorm</a></code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">neg_log_lik</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">theta</span>, <span class="va">y</span>, <span class="va">X</span><span class="op">)</span> <span class="op">{</span>
-  <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">y</span>,
-             mean <span class="op">=</span> <span class="va">X</span> <span class="op">%*%</span> <span class="va">theta</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
-             sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op">%*%</span> <span class="va">theta</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>,
+  <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">dnorm</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">y</span>,
+             mean <span class="op">=</span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">theta</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
+             sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">theta</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>,
              log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<p>With the aid of the help text for <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code>, find the maximum likelihood parameter estimates for our statistical model using the BFGS method with numerical derivatives. Use <span class="math inline">\((0,0,0,0)\)</span> as the starting point for the optimisation.</p>
+<p>With the aid of the help text for <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim()</a></code>, find the maximum likelihood parameter estimates for our statistical model using the BFGS method with numerical derivatives. Use <span class="math inline">\((0,0,0,0)\)</span> as the starting point for the optimisation.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
              fn <span class="op">=</span> <span class="va">neg_log_lik</span>, y <span class="op">=</span> <span class="va">y</span>, X <span class="op">=</span> <span class="va">X</span>,
              method <span class="op">=</span> <span class="st">"BFGS"</span><span class="op">)</span></code></pre></div>
-<p>Check the <code><a href="https://rdrr.io/r/stats/optim.html">?optim</a></code> help text for information about what the result object contains. Did the optimisation converge?</p>
-<p>Answer: The optimisation converged if <code>opt$convergence</code> is <code>0</code>. Or at least <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> <em>thinks</em> it coverged, since it triggered it’s convergence tolerances.</p>
+<p>Check the <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">?optim</a></code> help text for information about what the result object contains. Did the optimisation converge?</p>
+<p>Answer: The optimisation converged if <code>opt$convergence</code> is <code>0</code>. Or at least <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim()</a></code> <em>thinks</em> it coverged, since it triggered it’s convergence tolerances.</p>
 <p>Compute and store the estimated expectations and <span class="math inline">\(\sigma\)</span> values like this:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,
+<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,
                    y <span class="op">=</span> <span class="va">y</span>,
-                   expectation_true <span class="op">=</span> <span class="va">X</span> <span class="op">%*%</span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
-                   sigma_true <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op">%*%</span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>,
-                   expectation_est <span class="op">=</span> <span class="va">X</span> <span class="op">%*%</span> <span class="va">opt</span><span class="op">$</span><span class="va">par</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
-                   sigma_est <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op">%*%</span> <span class="va">opt</span><span class="op">$</span><span class="va">par</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+                   expectation_true <span class="op">=</span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
+                   sigma_true <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">theta_true</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>,
+                   expectation_est <span class="op">=</span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">opt</span><span class="op">$</span><span class="va">par</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
+                   sigma_est <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">opt</span><span class="op">$</span><span class="va">par</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The estimates of <span class="math inline">\(\sigma_i\)</span> as a function of <span class="math inline">\(x_i\)</span> should look similar to this:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sigma_true</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sigma_est</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"x"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sigma_true</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sigma_est</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"x"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab02_files/figure-html/unnamed-chunk-10-1.png" width="720" style="display: block; margin: auto;"></p>
-<p>The <code><a href="https://rdrr.io/r/base/expression.html">expression(sigma)</a></code> y-axis label is a way of making R try to interpret an R expression and format it more like a mathematical expression, with greek letters, etc. For example, <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab(expression(theta[3] + x[i] * theta[4]))</a></code> would be formatted as <span class="math inline">\(\theta_3+x_i\theta_4\)</span>.</p>
+<p>The <code>expression(sigma)</code> y-axis label is a way of making R try to interpret an R expression and format it more like a mathematical expression, with greek letters, etc. For example, <code>ylab(expression(theta[3] + x[i] * theta[4]))</code> would be formatted as <span class="math inline">\(\theta_3+x_i\theta_4\)</span>.</p>
 </div>
-<div id="data-wrangling" class="section level3">
-<h3 class="hasAnchor">
-<a href="#data-wrangling" class="anchor"></a>Data wrangling</h3>
+<div class="section level4">
+<h4 id="data-wrangling">Data wrangling<a class="anchor" aria-label="anchor" href="#data-wrangling"></a>
+</h4>
 <p>To help  produce proper figure labels, we can use data wrangling methods from a set of R packages commonly referred to as the <code>tidyverse</code>. The idea is to convert our data frame that has each type of output as separate data columns into a format where the values of the true and estimated expectations and standard deviations are stored in a single column, and other, new columns encode what each row contains.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span><span class="op">)</span>
 <span class="va">data_long</span> <span class="op">&lt;-</span>
-  <span class="va">data</span> <span class="op">%&gt;%</span>
-  <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>,
+  <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>,
                values_to <span class="op">=</span> <span class="st">"value"</span>,
-               names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"property"</span>, <span class="st">"type"</span><span class="op">)</span>,
+               names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"property"</span>, <span class="st">"type"</span><span class="op">)</span>,
                names_pattern <span class="op">=</span> <span class="st">"(.*)_(.*)"</span><span class="op">)</span>
 <span class="va">data_long</span>
-<span class="co">#&gt; # A tibble: 400 × 5</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 400 × 5</span></span>
 <span class="co">#&gt;         x     y property    type  value</span>
-<span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 0       2.08 expectation true  2    </span>
-<span class="co">#&gt;  2 0       2.08 sigma       true  0.135</span>
-<span class="co">#&gt;  3 0       2.08 expectation est   1.98 </span>
-<span class="co">#&gt;  4 0       2.08 sigma       est   0.135</span>
-<span class="co">#&gt;  5 0.0101  2.08 expectation true  1.98 </span>
-<span class="co">#&gt;  6 0.0101  2.08 sigma       true  0.139</span>
-<span class="co">#&gt;  7 0.0101  2.08 expectation est   1.97 </span>
-<span class="co">#&gt;  8 0.0101  2.08 sigma       est   0.140</span>
-<span class="co">#&gt;  9 0.0202  1.94 expectation true  1.96 </span>
-<span class="co">#&gt; 10 0.0202  1.94 sigma       true  0.144</span>
-<span class="co">#&gt; # … with 390 more rows</span></code></pre></div>
+<span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 0       2.08 expectation true  2    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 0       2.08 sigma       true  0.135</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 0       2.08 expectation est   1.98 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 0       2.08 sigma       est   0.135</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 0.010<span style="text-decoration: underline;">1</span>  2.08 expectation true  1.98 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 0.010<span style="text-decoration: underline;">1</span>  2.08 sigma       true  0.139</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 0.010<span style="text-decoration: underline;">1</span>  2.08 expectation est   1.97 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 0.010<span style="text-decoration: underline;">1</span>  2.08 sigma       est   0.140</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 0.020<span style="text-decoration: underline;">2</span>  1.94 expectation true  1.96 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 0.020<span style="text-decoration: underline;">2</span>  1.94 sigma       true  0.144</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 390 more rows</span></span></code></pre></div>
 <p>Here, we collected all the true and estimated expectations and standard deviations into a single column <code>value</code>, and introduced new columns <code>property</code> and <code>type</code>, containing strings (characters) indicating “expectation”/“sigma” and “est”/“true”. Take a look at the original and new <code>data</code> and <code>data_long</code> objects to see how they differ.</p>
 <p>We can now plot all the results with a single <code>ggplot</code> call:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">property</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">property</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab02_files/figure-html/unnamed-chunk-12-1.png" width="720" style="display: block; margin: auto;"> The function <code>facet_wrap</code> splits the plot in two parts; one based on the data for all <code>data_long</code> rows where <code>property</code> is “expectation”, and one based on the data for all <code>data_long</code> rows where <code>property</code> is “sigma”. The colour is chosed based on <code>type</code>, as shown in a common legend for the whole plot.</p>
 <ul>
-<li>Rerun the optimisation with the extra parameter <code>hessian = TRUE</code>, to obtain a numeric approximation to the Hessian of the target function at the optimum, and compute its inverse (see <code><a href="https://rdrr.io/r/base/solve.html">?solve</a></code>), which is an estimate of the covariance matrix for the error of the parameter estimates. In a future Computer Lab we will use this to evaluate approximate confidence and prediction intervals.</li>
+<li>Rerun the optimisation with the extra parameter <code>hessian = TRUE</code>, to obtain a numeric approximation to the Hessian of the target function at the optimum, and compute its inverse (see <code><a href="https://rdrr.io/r/base/solve.html" class="external-link">?solve</a></code>), which is an estimate of the covariance matrix for the error of the parameter estimates. In a future Computer Lab we will use this to evaluate approximate confidence and prediction intervals.</li>
 </ul>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
              fn <span class="op">=</span> <span class="va">neg_log_lik</span>, y <span class="op">=</span> <span class="va">y</span>, X <span class="op">=</span> <span class="va">X</span>,
              method <span class="op">=</span> <span class="st">"BFGS"</span>,
              hessian <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">covar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">opt</span><span class="op">$</span><span class="va">hessian</span><span class="op">)</span>
+<span class="va">covar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">opt</span><span class="op">$</span><span class="va">hessian</span><span class="op">)</span>
 <span class="va">covar</span>
 <span class="co">#&gt;               [,1]         [,2]          [,3]          [,4]</span>
 <span class="co">#&gt; [1,]  0.0022827772 -0.007597505 -0.0004132743  0.0008264823</span>
@@ -423,11 +416,13 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
 
 
       <footer><div class="copyright">
-  <p>Developed by Finn Lindgren.</p>
+  <p></p>
+<p>Developed by Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -435,6 +430,8 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
 
   
 
+
+  
 
   </body>
 </html>

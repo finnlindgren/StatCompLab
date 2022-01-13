@@ -1,34 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/index.html</loc>
+    <loc>https://finnlindgren.github.io/StatCompLab/404.html</loc>
   </url>
   <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/StatEwcdf.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/arch_loglike.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/filament1_estimate.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/filament1_predict.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/optimisation.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/proper_score.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/stat_ewcdf.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/wquantile.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Lab01.html</loc>
+    <loc>https://finnlindgren.github.io/StatCompLab/LICENSE.html</loc>
   </url>
   <url>
     <loc>https://finnlindgren.github.io/StatCompLab/articles/Lab02.html</loc>
@@ -83,5 +59,41 @@
   </url>
   <url>
     <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial08Solutions.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/index.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/StatEwcdf.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/arch_loglike.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/filament1_estimate.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/filament1_predict.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/optimisation.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/proper_score.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/stat_ewcdf.html</loc>
+  </url>
+  <url>
+    <loc>https://finnlindgren.github.io/StatCompLab/reference/wquantile.html</loc>
   </url>
 </urlset>

@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -54,9 +50,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Lab01.html">Lab01</a>
-    </li>
-    <li>
       <a href="../articles/Lab02.html">Lab02</a>
     </li>
     <li>
@@ -115,7 +108,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/finnlindgren/StatCompLab/">
+  <a href="https://github.com/finnlindgren/StatCompLab/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -134,25 +127,25 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Tutorial 06: Prediction assessment with proper scores</h1>
-                        <h4 class="author">Finn Lindgren</h4>
+                        <h4 data-toc-skip class="author">Finn Lindgren</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/master/vignettes/Tutorial06.Rmd"><code>vignettes/Tutorial06.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/Tutorial06.Rmd" class="external-link"><code>vignettes/Tutorial06.Rmd</code></a></small>
       <div class="hidden name"><code>Tutorial06.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>In this lab session you will explore</p>
 <ul>
 <li>Probabilistic prediction and proper scores</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Open your github repository clone project from Lab 2 (either on <a href="https://rstudio.cloud">https://rstudio.cloud</a> or on your own computer and upgrade the <code>StatCompLab</code> package (see the <code>Lab03</code> vignette for more details)</li>
+<li>Open your github repository clone project from Lab 2 (either on <a href="https://rstudio.cloud" class="external-link">https://rstudio.cloud</a> or on your own computer and upgrade the <code>StatCompLab</code> package (see the <code>Lab03</code> vignette for more details)</li>
 <li>During this lab, you can either work in a <code>.R</code> file or a new <code>.Rmd</code> file.</li>
 </ol>
 <hr>
@@ -160,11 +153,11 @@
 <p>The accompanying <code>Tutorial06Solutions</code> tutorial/vignette documents contain the solutions explicitly, to make it easier to review the material after the workshops.</p>
 <hr>
 </div>
-<div id="d-printer" class="section level2">
-<h2 class="hasAnchor">
-<a href="#d-printer" class="anchor"></a>3D printer</h2>
+<div class="section level2">
+<h2 id="d-printer">3D printer<a class="anchor" aria-label="anchor" href="#d-printer"></a>
+</h2>
 <p>The aim is to build and assess statistical models of material use in a 3D printer.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The printer uses rolls of <em>filament</em> that gets heated and squeezed through a moving nozzle, gradually building objects. The objects are first designed in a CAD program (Computer Aided Design), that also estimates how much material will be required to print the object.</p>
-<p>The data can be loaded with <code><a href="https://rdrr.io/r/utils/data.html">data("filament1", package = "StatCompLab")</a></code>, and contains information about one 3D-printed object per row. The columns are</p>
+<p>The data can be loaded with <code>data("filament1", package = "StatCompLab")</code>, and contains information about one 3D-printed object per row. The columns are</p>
 <ul>
 <li>
 <code>Index</code>: an observation index</li>
@@ -193,28 +186,28 @@
 <img src="Tutorial06_files/figure-html/load-data-show-1.png" width="576" />
 -->
 </div>
-<div id="estimate-and-predict" class="section level2">
-<h2 class="hasAnchor">
-<a href="#estimate-and-predict" class="anchor"></a>Estimate and predict</h2>
+<div class="section level2">
+<h2 id="estimate-and-predict">Estimate and predict<a class="anchor" aria-label="anchor" href="#estimate-and-predict"></a>
+</h2>
 <p>Next week, we will assess model predictions using cross validation, where data is split into separate parts for parameter estimation and prediction assessment, in order to avoid or reduce bias in the prediction assessments. For simplicity this week, we will start by using the entire data set for both parameter estimation and prediction assessment.</p>
-<div id="estimate" class="section level3">
-<h3 class="hasAnchor">
-<a href="#estimate" class="anchor"></a>Estimate</h3>
+<div class="section level3">
+<h3 id="estimate">Estimate<a class="anchor" aria-label="anchor" href="#estimate"></a>
+</h3>
 <p>First, use <code>filament1_estimate</code> from the <code>StatCompLab</code> package to estimate the two models A and B using the <code>filament1</code> data. See the help text for information.</p>
 <!--
 
 
 -->
 </div>
-<div id="prediction" class="section level3">
-<h3 class="hasAnchor">
-<a href="#prediction" class="anchor"></a>Prediction</h3>
+<div class="section level3">
+<h3 id="prediction">Prediction<a class="anchor" aria-label="anchor" href="#prediction"></a>
+</h3>
 <p>Next, use <code><a href="../reference/filament1_predict.html">filament1_predict()</a></code> to compute probabilistic predictions of <code>Actual_Weight</code> using the two estimated models.</p>
 <!--
 
 
 -->
-<p>Inspect the predictions by drawing figures, e.g. with <code><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon(aes(CAD_Weight, ymin = lwr, ymax = upr), alpha = 0.25)</a></code> (the <code>alpha</code> here is for transparency), together with the observed data. It can be useful to join the predictions and data into new data.frame objects to get access to both the prediction information and data when plotting.</p>
+<p>Inspect the predictions by drawing figures, e.g. with <code>geom_ribbon(aes(CAD_Weight, ymin = lwr, ymax = upr), alpha = 0.25)</code> (the <code>alpha</code> here is for transparency), together with the observed data. It can be useful to join the predictions and data into new data.frame objects to get access to both the prediction information and data when plotting.</p>
 <!--
 
 
@@ -227,16 +220,16 @@ only plotted once.
 -->
 </div>
 </div>
-<div id="prediction-scores" class="section level2">
-<h2 class="hasAnchor">
-<a href="#prediction-scores" class="anchor"></a>Prediction Scores</h2>
-<p>Now, use the score calculator function <code>proper_score</code> from the StatCompLab package to compute the squared error, Dawid-Sebastiani, and Interval scores (with target coverage probability 90%). It’s useful to joint the prediction information and data set with <code>cbind</code>, so that e.g. <code>mutate()</code> can have access to all the needed information.</p>
+<div class="section level2">
+<h2 id="prediction-scores">Prediction Scores<a class="anchor" aria-label="anchor" href="#prediction-scores"></a>
+</h2>
+<p>Now, use the score calculator function <code>proper_score</code> from the StatCompLab package to compute the squared error, Dawid-Sebastiani, and Interval scores (with target coverage probability 90%). It’s useful to joint the prediction information and data set with <code>cbind</code>, so that e.g. <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate()</a></code> can have access to all the needed information.</p>
 <!--
 
 
 See the next section for a more compact alternative.
 -->
-<p>As a basic summary of the results, compute the average score <span class="math inline">\(\overline{S}(\{F_i,y_i\})\)</span> for each model and type of score, and present the result with <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code>.</p>
+<p>As a basic summary of the results, compute the average score <span class="math inline">\(\overline{S}(\{F_i,y_i\})\)</span> for each model and type of score, and present the result with <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code>.</p>
 <!--
 
 
@@ -248,10 +241,10 @@ The squared error score doesn't really care about the difference between the two
 since it doesn't directly involve the variance model (the paramter estimates for the mean are different, but not by much). The other two scores indicate that model B is better than model A.
 -->
 </div>
-<div id="data-splitting" class="section level2">
-<h2 class="hasAnchor">
-<a href="#data-splitting" class="anchor"></a>Data splitting</h2>
-<p>Now, use the <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> function to generate a random selection of the rows of the data set, and split it into two parts, with ca 50% to be used for parameter estimation, and 50% to be used for prediction assessment.</p>
+<div class="section level2">
+<h2 id="data-splitting">Data splitting<a class="anchor" aria-label="anchor" href="#data-splitting"></a>
+</h2>
+<p>Now, use the <code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code> function to generate a random selection of the rows of the data set, and split it into two parts, with ca 50% to be used for parameter estimation, and 50% to be used for prediction assessment.</p>
 <!--
 
 
@@ -286,11 +279,13 @@ The results will have some more random variability due to the smaller size of th
 
 
       <footer><div class="copyright">
-  <p>Developed by Finn Lindgren.</p>
+  <p></p>
+<p>Developed by Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -298,6 +293,8 @@ The results will have some more random variability due to the smaller size of th
 
   
 
+
+  
 
   </body>
 </html>

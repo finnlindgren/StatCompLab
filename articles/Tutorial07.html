@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -54,9 +50,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Lab01.html">Lab01</a>
-    </li>
-    <li>
       <a href="../articles/Lab02.html">Lab02</a>
     </li>
     <li>
@@ -115,7 +108,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/finnlindgren/StatCompLab/">
+  <a href="https://github.com/finnlindgren/StatCompLab/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -134,19 +127,19 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Tutorial 07: Data wrangling and cross validation</h1>
-                        <h4 class="author">Finn Lindgren</h4>
+                        <h4 data-toc-skip class="author">Finn Lindgren</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/master/vignettes/Tutorial07.Rmd"><code>vignettes/Tutorial07.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/Tutorial07.Rmd" class="external-link"><code>vignettes/Tutorial07.Rmd</code></a></small>
       <div class="hidden name"><code>Tutorial07.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>In this lab session you will explore</p>
 <ul>
 <li>Data wrangling; restructuring data frames</li>
@@ -154,7 +147,7 @@
 <li>Cross validation</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Open your github repository clone project from Lab 2 (either on <a href="https://rstudio.cloud">https://rstudio.cloud</a> or on your own computer and upgrade the <code>StatCompLab</code> package (see the <code>Lab03</code> vignette for more details)</li>
+<li>Open your github repository clone project from Lab 2 (either on <a href="https://rstudio.cloud" class="external-link">https://rstudio.cloud</a> or on your own computer and upgrade the <code>StatCompLab</code> package (see the <code>Lab03</code> vignette for more details)</li>
 <li>During this lab, you can work in a <code>.R</code> file, but working with code chunks in a <code>.Rmd</code> is recommended.</li>
 <li>Make sure you update the <code>StatCompLab</code> package to version 0.7.0 or higher.</li>
 </ol>
@@ -162,7 +155,7 @@
 <p><strong>Solution:</strong></p>
 <p>The accompanying <code>Tutorial07Solutions</code> tutorial/vignette documents contain the solutions explicitly, to make it easier to review the material after the workshops.</p>
 <hr>
-<p>Throughout this tutorial, you’ll make use of the data wrangling and plotting tools in the <code>dplyr</code>, <code>magrittr</code>, <code>ggplot2</code> and other tidyverse packages, so start your code with <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> and <code><a href="https://finnlindgren.github.io/StatCompLab">library(StatCompLab)</a></code>.</p>
+<p>Throughout this tutorial, you’ll make use of the data wrangling and plotting tools in the <code>dplyr</code>, <code>magrittr</code>, <code>ggplot2</code> and other tidyverse packages, so start your code with <code><a href="https://tidyverse.tidyverse.org" class="external-link">library(tidyverse)</a></code> and <code><a href="https://finnlindgren.github.io/StatCompLab">library(StatCompLab)</a></code>.</p>
 <p>Note that the exercises in this tutorial build on each other, often with one solution being similar to previous solutions, with just a few additions and/or modifications.</p>
 <p>Some of the data wrangling functions used in the tutorial are</p>
 <ul>
@@ -199,13 +192,13 @@
 <code>facet_wrap</code> for splitting a plot into “facet” plots, based on one or more category variables</li>
 </ul>
 </div>
-<div id="scottish-weather-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#scottish-weather-data" class="anchor"></a>Scottish weather data</h2>
-<p>The Global Historical Climatology Network at <a href="https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/global-historical-climatology-network-ghcn" class="uri">https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/global-historical-climatology-network-ghcn</a> provides historical weather data collected from all over the globe. A subset of the daily resolution data set (see <a href="https://www.ncdc.noaa.gov/ghcn-daily-description" class="uri">https://www.ncdc.noaa.gov/ghcn-daily-description</a>) is available in the <code>StatCompLab package</code> (from version 0.7.0) containing data from eight weather stations in Scotland, covering the time period from 1 January 1960 to 31 December 2018. Some of the measurements are missing, either due to instrument problems or data collection issues. Load the data with</p>
+<div class="section level2">
+<h2 id="scottish-weather-data">Scottish weather data<a class="anchor" aria-label="anchor" href="#scottish-weather-data"></a>
+</h2>
+<p>The Global Historical Climatology Network at <a href="https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/global-historical-climatology-network-ghcn" class="external-link uri">https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/global-historical-climatology-network-ghcn</a> provides historical weather data collected from all over the globe. A subset of the daily resolution data set (see <a href="https://www.ncdc.noaa.gov/ghcn-daily-description" class="external-link uri">https://www.ncdc.noaa.gov/ghcn-daily-description</a>) is available in the <code>StatCompLab package</code> (from version 0.7.0) containing data from eight weather stations in Scotland, covering the time period from 1 January 1960 to 31 December 2018. Some of the measurements are missing, either due to instrument problems or data collection issues. Load the data with</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ghcnd_stations</span>, package <span class="op">=</span> <span class="st">"StatCompLab"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ghcnd_values</span>, package <span class="op">=</span> <span class="st">"StatCompLab"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ghcnd_stations</span>, package <span class="op">=</span> <span class="st">"StatCompLab"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ghcnd_values</span>, package <span class="op">=</span> <span class="st">"StatCompLab"</span><span class="op">)</span></code></pre></div>
 <p>The <code>ghcnd_stations</code> data frame has 5 variables:</p>
 <ul>
 <li>
@@ -219,7 +212,7 @@
 <li>
 <code>Elevation</code>: The station elevation, in metres above sea level</li>
 </ul>
-<p>The station data set is small enough that you can view the whole thing, e.g. with <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable(ghcnd_stations)</a></code>. You can try to find some of the locations on a map (google maps an other online map systems can usually interpret latitude and longitude searches).</p>
+<p>The station data set is small enough that you can view the whole thing, e.g. with <code>knitr::kable(ghcnd_stations)</code>. You can try to find some of the locations on a map (google maps an other online map systems can usually interpret latitude and longitude searches).</p>
 <!--
 
 
@@ -242,28 +235,28 @@
 <code>Value</code>: Daily measured temperature (in degrees Celsius) or precipitation (in mm)</li>
 </ul>
 <p>The values data object has 502901 rows, so we don’t want to try to view the whole object directly. Instead, we can start by summarising it.</p>
-<p>Start by counting how many observations each station has, for each type of measurement. The shortest approach is to use the <code>count()</code> function. A more generalisable approach is to use the <code>group_by()</code>, <code>summarise()</code>, and n() functions. See the description on <code>?count</code> for how <code>count()</code> is connected to the others. To avoid having to create temporary named variables, end the pipe operations with a call to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code>, especially if you’re working in an RMarkdown document.</p>
+<p>Start by counting how many observations each station has, for each type of measurement. The shortest approach is to use the <code><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count()</a></code> function. A more generalisable approach is to use the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise()</a></code>, and n() functions. See the description on <code><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">?count</a></code> for how <code><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count()</a></code> is connected to the others. To avoid having to create temporary named variables, end the pipe operations with a call to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code>, especially if you’re working in an RMarkdown document.</p>
 <!--
 
 
 -->
 </div>
-<div id="exploratory-plotting" class="section level2">
-<h2 class="hasAnchor">
-<a href="#exploratory-plotting" class="anchor"></a>Exploratory plotting</h2>
+<div class="section level2">
+<h2 id="exploratory-plotting">Exploratory plotting<a class="anchor" aria-label="anchor" href="#exploratory-plotting"></a>
+</h2>
 <p>Before, we only looked at the station data and weather measurements separately. When plotting, we would at least like to have access to the station <em>names</em> instead of the <em>identifying codes</em>, to give a more humanly readable presentation.</p>
-<p>This can be accomplished with the <code>left_join()</code> function, that can add copies of the rows from one data frame to another, where one or more columns match. Create a new variable, <code>ghcnd</code> that for each observation contains both the measurements and the station data:</p>
+<p>This can be accomplished with the <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> function, that can add copies of the rows from one data frame to another, where one or more columns match. Create a new variable, <code>ghcnd</code> that for each observation contains both the measurements and the station data:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ghcnd</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">ghcnd_values</span>, <span class="va">ghcnd_stations</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">ghcnd</span><span class="op">)</span></code></pre></div>
-<p>Now plot daily minimum and maximum temperature measurements connected by lines as a function of time (<code>DecYear</code>), with a different colour for each element, and a separate subplot for each station (<code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap(~variablename)</a></code>), labeled by the station names.</p>
-<p>Again, avoid creating a temporary named variable. Instead, feed the initial data wrangling result into <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> directly.</p>
+<code class="sourceCode R"><span class="va">ghcnd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">ghcnd_values</span>, <span class="va">ghcnd_stations</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ghcnd</span><span class="op">)</span></code></pre></div>
+<p>Now plot daily minimum and maximum temperature measurements connected by lines as a function of time (<code>DecYear</code>), with a different colour for each element, and a separate subplot for each station (<code>facet_wrap(~variablename)</code>), labeled by the station names.</p>
+<p>Again, avoid creating a temporary named variable. Instead, feed the initial data wrangling result into <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code> directly.</p>
 <!--
 
 
 -->
 <p>Due to the amount of data, it’s difficult to see clear patterns here. Produce two figures, one showing the yearly averages of TMIN and TMAX as points, and one showing the monthly seasonal averages (for months 1 through 12) of TMIN and TMAX, separately for each station.</p>
-<p>Again, avoid creating a temporary named variable. In the previous code, insert calls to <code>group_by()</code> and <code>summarise()</code>, and modify the x-values in the aesthetics.</p>
+<p>Again, avoid creating a temporary named variable. In the previous code, insert calls to <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise()</a></code>, and modify the x-values in the aesthetics.</p>
 <p>What are the common patterns in the yearly values, and in the monthly seasonal values?</p>
 <!--
 
@@ -273,10 +266,10 @@ The yearly averages all seem to have a slight increasing trend:
 The monthly seasonal averages clearly show the seasonal pattern. The shapes are similar for all stations, but the average and amplitude varies a bit:
 
 -->
-<div id="scatter-plots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scatter-plots" class="anchor"></a>Scatter plots</h3>
-<p>If we want to do a scatter plot of TMIN and TMAX, we need to rearrange the data a bit. For this we can use the <code>pivot_wider</code> function, that can turn a <em>name</em> variable and a <em>values</em> variable into several named variable. Note that if only some measurement elements are present on a given day, NA’s will be produced by default. Optionally, filter these rows out before calling <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>.</p>
+<div class="section level3">
+<h3 id="scatter-plots">Scatter plots<a class="anchor" aria-label="anchor" href="#scatter-plots"></a>
+</h3>
+<p>If we want to do a scatter plot of TMIN and TMAX, we need to rearrange the data a bit. For this we can use the <code>pivot_wider</code> function, that can turn a <em>name</em> variable and a <em>values</em> variable into several named variable. Note that if only some measurement elements are present on a given day, NA’s will be produced by default. Optionally, filter these rows out before calling <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code>.</p>
 <p>Draw a scatterplot for daily TMIN vs TMAX for each station, with colour determined by the month.</p>
 <!--
 
@@ -284,28 +277,28 @@ The monthly seasonal averages clearly show the seasonal pattern. The shapes are 
 -->
 </div>
 </div>
-<div id="cross-validation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cross-validation" class="anchor"></a>Cross validation</h2>
-<p>Choose one of the stations, and create a new data variable <code>data</code> from <code>ghcnd</code> with the yearly averages of TMIN as a column (as in the previous <code>pivot_wider</code> output), with missing values removed with <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>.</p>
+<div class="section level2">
+<h2 id="cross-validation">Cross validation<a class="anchor" aria-label="anchor" href="#cross-validation"></a>
+</h2>
+<p>Choose one of the stations, and create a new data variable <code>data</code> from <code>ghcnd</code> with the yearly averages of TMIN as a column (as in the previous <code>pivot_wider</code> output), with missing values removed with <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter()</a></code>.</p>
 <!--
 
 
 -->
-<div id="within-sample-assessment" class="section level3">
-<h3 class="hasAnchor">
-<a href="#within-sample-assessment" class="anchor"></a>Within-sample assessment</h3>
-<p>Now, using the whole <code>data</code> estimate a linear model for TMIN, with <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> formula <code>TMIN ~ 1 + Year</code>, and compute the average 80% Interval score (use <code><a href="../reference/proper_score.html">proper_score()</a></code> that you used in lab 6) for prediction intervals for each of the TMIN observations in <code>data</code>. See <code><a href="https://rdrr.io/r/stats/predict.lm.html">?predict.lm</a></code> for documentation for the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> method for models estimated with <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>.</p>
+<div class="section level3">
+<h3 id="within-sample-assessment">Within-sample assessment<a class="anchor" aria-label="anchor" href="#within-sample-assessment"></a>
+</h3>
+<p>Now, using the whole <code>data</code> estimate a linear model for TMIN, with <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> formula <code>TMIN ~ 1 + Year</code>, and compute the average 80% Interval score (use <code><a href="../reference/proper_score.html">proper_score()</a></code> that you used in lab 6) for prediction intervals for each of the TMIN observations in <code>data</code>. See <code><a href="https://rdrr.io/r/stats/predict.lm.html" class="external-link">?predict.lm</a></code> for documentation for the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method for models estimated with <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>.</p>
 <!--
 
 
 -->
 </div>
-<div id="cross-validation-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cross-validation-1" class="anchor"></a>Cross validation</h3>
+<div class="section level3">
+<h3 id="cross-validation-1">Cross validation<a class="anchor" aria-label="anchor" href="#cross-validation-1"></a>
+</h3>
 <p>We now want to compute the 5 average 80% Interval scores from 5-fold cross validation based on a random partition of the data into 5 approximately equal parts.</p>
-<p>First add a new column Group to data defining the partitioning, using <code>mutate()</code>. One approach is to compute a random permutation index vector, and then use the modulus operator <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code> to reduce it to 5 values.</p>
+<p>First add a new column Group to data defining the partitioning, using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate()</a></code>. One approach is to compute a random permutation index vector, and then use the modulus operator <code>%%</code> to reduce it to 5 values.</p>
 <!--
 
 
@@ -337,11 +330,13 @@ to see how much it influences the cross validation score average.
 
 
       <footer><div class="copyright">
-  <p>Developed by Finn Lindgren.</p>
+  <p></p>
+<p>Developed by Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -349,6 +344,8 @@ to see how much it influences the cross validation score average.
 
   
 
+
+  
 
   </body>
 </html>
