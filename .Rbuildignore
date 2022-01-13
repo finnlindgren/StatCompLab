@@ -11,3 +11,5 @@
 ^vignettes/figure/
 ^inst/tutorials/[^/]*/[^_]*_files/
 ^inst/tutorials/[^/]*/.*.html
+^inst/tutorials_2020
+^vignettes_2020
