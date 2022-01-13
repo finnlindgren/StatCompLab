@@ -1,7 +1,7 @@
 Package: StatCompLab
 Type: Package
 Title: Workshop Material For UoE Statistical Computing
-Version: 0.9.7
+Version: 21.1.0
 Authors@R: 
     person(given = "Finn",
            family = "Lindgren",
@@ -15,7 +15,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Remotes:
-  rstudio-education/gradethis@f1a0aa4964c7b02bdb5329591adce2ac7d26160c
+  rstudio/gradethis@f1a0aa4964c7b02bdb5329591adce2ac7d26160c
 Depends:
     shiny,
     R (>= 2.10)
