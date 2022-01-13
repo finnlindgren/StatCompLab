@@ -235,7 +235,7 @@ grade_this({
 })
 ```
 `r begin_sol()`
-```{r ref.label="predidction-int-solution", eval=TRUE,echo=.solutions,results=.solutions}
+```{r ref.label="prediction-int-solution", eval=TRUE,echo=.solutions,results=.solutions}
 ```
 `r end_sol()`
 
