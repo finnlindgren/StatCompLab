@@ -9,6 +9,9 @@
 This package collects workshop materials for Statistical Computing
 (MATH10093) at the University of Edinburgh 2020/21.
 
+The tutorial documents are browsable online at
+<https://finnlindgren.github.io/StatCompLab/>
+
 Contact Finn Lindgren, <finn.lindgren@ed.ac.uk> for information.
 
 ## Installation
@@ -25,7 +28,7 @@ devtools::install_github("finnlindgren/StatCompLab", build_vignettes = TRUE)
 
 ``` r
 library(StatCompLab)
-vignette("Lab01", "StatCompLab")
+vignette("Tutorial01", "StatCompLab")
 library(learnr)
 run_tutorial("Tutorial01", "StatCompLab")
 ```
