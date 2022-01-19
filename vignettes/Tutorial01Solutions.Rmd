@@ -83,7 +83,7 @@ Next time you want to work on the course files, use
 
 * Configuring code syntax diagnostics:
   
-  `Tools`$\rightarrow$`Global Options`$\rightarrow$`Code`$\rightarrow$`Diagnostics`
+  `Tools` $\rightarrow$ `Global Options` $\rightarrow$ `Code` $\rightarrow$ `Diagnostics`
   
   This allows you to turn on margin notes that automatically alert you to potential code problems.
 * Run the current line of code (or a selected section of code) and step to the next line:
@@ -154,10 +154,13 @@ plot(data$z, data$y)
 
 or with `ggplot`,
 ```{r, echo=TRUE}
-# Put the first two lines at the beginning of your script file!
-library(ggplot2) # Load the ggplot2 package
-theme_set(theme_bw()) # Change the default theme (avoids grey background in the plots)
-# Now we can plot!
+# Put the first two lines (library and theme_set) at the beginning of your script file.
+# They only need to be run once in your R session!
+# Load the ggplot2 package
+library(ggplot2)
+# Change the default theme (avoids grey background in the plots):
+theme_set(theme_bw())
+# Now we can plot:
 ggplot(data) + geom_point(aes(z, y))
 ```
 
@@ -184,17 +187,33 @@ Use `predict()`, `plot()`, and `geom_line()` to plot the linear predictor and th
 ```{r pred-plot, exercise=TRUE,eval=FALSE}
 data_pred <- cbind(newdata,
                    data.frame(fit = predict(mod, newdata)))
-ggplot(...) +
-  ... +
-  geom_line(data = data_pred, aes(y = fit))
+ggplot(???) +
+  ??? +
+  geom_line(aes(???), data = data_pred)
 ```
 Structure the code by adding a linebreak _after_ each `+` operation.
+```{r pred-plot-hint-1, eval=FALSE}
+data_pred <- cbind(newdata,
+                   data.frame(fit = predict(mod, newdata)))
+ggplot(data) +
+  geom_point(???) +
+  geom_line(aes(???), data = data_pred) +
+  geom_abline(intercept = ???, slope = ???, col = ???)
+```
+```{r pred-plot-hint-2, eval=FALSE}
+data_pred <- cbind(newdata,
+                   data.frame(fit = predict(mod, newdata)))
+ggplot(data) +
+  geom_point(???) +
+  geom_line(aes(???), data = data_pred) +
+  geom_abline(intercept = 0, slope = 2, col = "red")
+```
 ```{r pred-plot-solution, eval=FALSE}
 data_pred <- cbind(newdata,
                    data.frame(fit = predict(mod, newdata)))
 ggplot(data) +
   geom_point(aes(z, y)) +
-  geom_line(data = data_pred, aes(z, fit)) +
+  geom_line(aes(z, fit), data = data_pred) +
   geom_abline(intercept = 0, slope = 2, col = "red")
 ```
 ```{r echo=FALSE,eval=TRUE}
@@ -212,12 +231,20 @@ Now modify the plotting code to also show _prediction intervals_. Hint: use the 
 ```{r prediction-int, exercise=TRUE, eval=FALSE}
 pred <- cbind(
   newdata,
-  predict(...)
+  predict(???)
+)
+```
+```{r prediction-int-hint-1,eval=FALSE}
+pred <- cbind(
+  newdata,
+  predict(mod, newdata, ???)
 )
 ```
 ```{r prediction-int-solution,eval=FALSE}
-pred <- cbind(newdata,
-              predict(mod, newdata, interval = "prediction"))
+pred <- cbind(
+  newdata,
+  predict(mod, newdata, interval = "prediction")
+)
 ```
 
 ```{r prediction-int-check-not, eval=FALSE}
@@ -243,13 +270,13 @@ grade_this({
 ```
 `r end_sol()`
 
-Use the `geom_ribbon(data = ..., aes(x = ..., ymin = ..., ymax = ...), alpha = 0.25)` function to add the prediction intervals to the figure. The `alpha` parameter sets the "transparency" of the ribbon. Experiment with different values between 0 and 1. The result should look similar to this:
+Use the `geom_ribbon(data = ???, aes(x = ???, ymin = ???, ymax = ???), alpha = 0.25)` function to add the prediction intervals to the figure. The `alpha` parameter sets the "transparency" of the ribbon. Experiment with different values between 0 and 1. The result should look similar to this:
 ```{r plot-pred-int, exercise=TRUE, eval=FALSE}
 ggplot(data) +
   geom_point(aes(z, y)) +
   geom_line(data = pred, aes(z, fit)) +
   geom_abline(intercept = 0, slope = 2, col = "red") +
-  geom_ribbon(data = pred, aes(...), alpha = 0.25)
+  geom_ribbon(data = pred, aes(???), alpha = 0.25)
 ```
 ```{r plot-pred-int-solution}
 ggplot(data) +
@@ -313,7 +340,7 @@ Remark: Why can we use the `+ geom_*` technique to add to the plot drawn by `plo
 
 ### Further plotting details
 
-You can change the plot lables and add a title by adding calls to `xlab()`, `ylab()`, and `ggtitle()` to the plot:
+You can change the plot labels and add a title by adding calls to `xlab()`, `ylab()`, and `ggtitle()` to the plot:
 ```{r plot-extra,exercise=TRUE,eval=FALSE}
 plot_predictions <- function(x, newdata, xname = "x", ???, ...) {
   ???
@@ -327,6 +354,58 @@ plot_predictions(mod, newdata, xname = "z", xlab = "z", ylab = "y")
 This passes any additional parameters through to the `plot()` function.
 
 The provided solution has a further generalised version of the plotting function, that also adds the confidence intervals for the predictor curve to the plot.
+```{r plot-extra-hint-1}
+plot_prediction <- function(x, newdata, xname = "x",
+                            xlab = NULL, ylab = NULL, ...) {
+  if (is.null(xlab)) {
+    xlab <- xname
+  }
+  if (is.null(ylab)) {
+    ylab <- "Response"
+  }
+
+  pred <- cbind(newdata,
+                predict(x, newdata, interval = "prediction"))
+  pl <- ggplot() +
+    geom_line(data = pred,
+              aes_string(xname, "fit")) +
+    geom_ribbon(data = pred,
+                aes_string(xname, ymin = "lwr", ymax = "upr"), alpha = 0.25)
+
+  # Also add the confidence intervals for the predictor curve
+  conf <- cbind(newdata,
+                predict(x, newdata, interval = "confidence"))
+  pl <- pl +
+    geom_ribbon(data = conf,
+                aes_string(xname, ymin = "lwr", ymax = "upr"), alpha = 0.25)
+
+  # Add lables:
+  pl + xlab(xlab) + ylab(ylab)
+}
+```
+```{r plot-extra-hint-2}
+# Basic solution
+plot_prediction <- function(x, newdata, xname = "x",
+                            xlab = NULL, ylab = NULL, ...) {
+  if (is.null(xlab)) {
+    xlab <- xname
+  }
+  if (is.null(ylab)) {
+    ylab <- "Response"
+  }
+
+  pred <- cbind(newdata,
+                predict(x, newdata, interval = "prediction"))
+  pl <- ggplot() +
+    geom_line(data = pred,
+              aes_string(xname, "fit")) +
+    geom_ribbon(data = pred,
+                aes_string(xname, ymin = "lwr", ymax = "upr"), alpha = 0.25)
+
+  # Add labels:
+  pl + xlab(xlab) + ylab(ylab)
+}
+```
 ```{r plot-extra-solution}
 # Extended version of the solution:
 plot_prediction <- function(x, newdata, xname = "x",
@@ -369,11 +448,16 @@ Use your new function to plot the predictions for the quadratic model
 mod2 <- lm(y ~ 1 + z + I(z ^ 2), data)
 ```
 The `I()` syntax means that you don't have to create a separate data variable equal to the square of the z-values; the `lm()` function will create it for you internally. The result should look similar to this:
-```{r}
+```{r plot-quadratic,exercise=TRUE,eval=FALSE}
+# Run the code in your script
+```
+```{r plot-quadratic-solution}
 plot_prediction(mod2, newdata, xname = "z", ylab = "y") +
   geom_point(data = data, aes(z, y)) +
   geom_abline(intercept = 0, slope = 2, col = "red") +
   ggtitle("Confidence and prediction intervals")
+```
+```{r ref.label="plot-quadratic-solution",echo=.solutions,eval=TRUE,results=TRUE}
 ```
 
 ### Multiple models
