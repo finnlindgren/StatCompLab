@@ -29,6 +29,16 @@ devtools::install_github("finnlindgren/StatCompLab", build_vignettes = TRUE)
 
 ## Example
 
+The most convenient way to access the tutorial documents is to run them
+in the `Tutorial` tab in the upper right part of RStudio. That allows
+you to see the tutorial text and code hints at the same as your code
+files, and while running code in the Console and viewing plots.
+
+These alternative methods also allows viewing of the documents, but are
+less convenient; vignettes show up in the same space as the plots, and
+the `run_tutorial` blocks the Console window from being used to run
+code.
+
 ``` r
 library(StatCompLab)
 vignette(package = "StatCompLab") # List available vignettes
