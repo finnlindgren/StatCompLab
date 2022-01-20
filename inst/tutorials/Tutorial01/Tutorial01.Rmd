@@ -30,9 +30,7 @@ if (.tutorial) {
 
 library(ggplot2)
 knitr::opts_chunk$set(
-  echo = FALSE,
-  dev = "png",
-  dev.args = list(type = "cairo-png")
+  echo = FALSE
 )
 
 ###
