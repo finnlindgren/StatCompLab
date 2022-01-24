@@ -218,6 +218,7 @@ thename <- function(arguments) {
   expressions
 }
 ```
+
 where `expressions` is one or more lines of code.  The result of the last evaluated expression in the function is the value returned to the caller.
 
 Each input parameter can have a _default value_, so that the caller doesn't have to specify it unless they want a different value. Sometimes, a `NULL` default value is used, and the parameter checked internally with `is.null(parameter)` to determine if the user supplied something.
@@ -239,6 +240,7 @@ my_function(1, param3 = 2)
 my_function(1, param2 = 8, param3 = 2)
 my_function(1, param2 = 8)
 ```
+
 The main optimisation function in R is `optim()`, which has the following call syntax:
 ```{r eval=FALSE,echo=TRUE}
 optim(par, fn, gr = NULL, ...,
@@ -247,6 +249,7 @@ optim(par, fn, gr = NULL, ...,
       lower = -Inf, upper = Inf,
       control = list(), hessian = FALSE)
 ```
+
 Here, the `method` parameter appears to have a whole vector as its default value. However, this is merely a way to show the user all the permitted values. If the user does not supply anything specific, the first value, `"Nelder-Mead"` will be used. Read the documentation
 with `?optim` to see what the different arguments mean and how they can be used.
 
@@ -258,6 +261,7 @@ opt <- optim(par = start_par,
              extra1 = value1,
              extra2 = value2)
 ```
+
 When `optim()` uses the function `myTargetFunction()`, it will be called like this:
 ```{r eval=FALSE,echo=TRUE}
 myTargetFunction(current_par, extra1 = value1, extra2 = value2)
@@ -376,6 +380,7 @@ data <- data.frame(x = X[, 2],
                    expectation_est = X %*% opt$par[1:2],
                    sigma_est = exp(X %*% opt$par[3:4]))
 ```
+
 The estimates of $\sigma_i$ as a function of $x_i$ should look similar to this:
 ```{r eval=TRUE,echo=TRUE}
 ggplot(data) +
@@ -411,6 +416,7 @@ ggplot(data_long, aes(x, value)) +
   geom_line(aes(col = type)) +
   facet_wrap(vars(property), ncol=1)
 ```
+
 The function `facet_wrap` splits the plot in two parts; one based on the data for all `data_long` rows where `property` is "expectation", and one based on the data for all `data_long` rows where `property` is "sigma". The colour is chosed based on `type`, as shown in a common legend for the whole plot.
 
 * Rerun the optimisation with the extra parameter `hessian = TRUE`, to obtain a numeric approximation to the Hessian of the target function at the optimum, and compute its inverse (see `?solve`), which is an estimate of the covariance matrix for the error of the parameter estimates.
