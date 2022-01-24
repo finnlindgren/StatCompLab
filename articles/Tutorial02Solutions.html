@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.2.2</span>
       </span>
     </div>
 
@@ -362,7 +362,8 @@ y_i &amp;= \mathsf{N}(\mu_i, \sigma_i^2), \quad\text{(independent)} .
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">property</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
-<p><img src="Tutorial02Solutions_files/figure-html/unnamed-chunk-14-1.png" width="700"> The function <code>facet_wrap</code> splits the plot in two parts; one based on the data for all <code>data_long</code> rows where <code>property</code> is “expectation”, and one based on the data for all <code>data_long</code> rows where <code>property</code> is “sigma”. The colour is chosed based on <code>type</code>, as shown in a common legend for the whole plot.</p>
+<p><img src="Tutorial02Solutions_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p>The function <code>facet_wrap</code> splits the plot in two parts; one based on the data for all <code>data_long</code> rows where <code>property</code> is “expectation”, and one based on the data for all <code>data_long</code> rows where <code>property</code> is “sigma”. The colour is chosed based on <code>type</code>, as shown in a common legend for the whole plot.</p>
 <ul>
 <li>Rerun the optimisation with the extra parameter <code>hessian = TRUE</code>, to obtain a numeric approximation to the Hessian of the target function at the optimum, and compute its inverse (see <code><a href="https://rdrr.io/r/base/solve.html" class="external-link">?solve</a></code>), which is an estimate of the covariance matrix for the error of the parameter estimates. In a future Computer Lab we will use this to evaluate approximate confidence and prediction intervals.</li>
 </ul>
