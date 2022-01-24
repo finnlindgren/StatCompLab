@@ -85,7 +85,7 @@ steps will be needed.
 After setting up the initial github authentication, follow these steps:
 
 1. Go to [github.com/StatComp21](https://github.com/StatComp21)
-2. You should see a Repository called `lab02-`username where "username" is your github username.
+2. You should see a Repository called `lab02-`username where "username" is your github username. (If not, you may not have been connected to the course github in time for your repostitory to be created; contact the course organizer.)
 3. Click on the repository to see what it contains. Use the "Code" button to
 copy the HTTPS version of the URL that can be used to create a "Clone".
 4. 
