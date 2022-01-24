@@ -4,7 +4,9 @@ pkgdown_sha: ~
 articles:
   Tutorial01: Tutorial01.html
   Tutorial01Solutions: Tutorial01Solutions.html
-last_built: 2022-01-24T15:28Z
+  Tutorial02: Tutorial02.html
+  Tutorial02Solutions: Tutorial02Solutions.html
+last_built: 2022-01-24T16:37Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles
