@@ -100,7 +100,7 @@ During the lab, remember to save the script file regularly, to avoid losing any 
 You will also use git to synchronise the file contents with the github repository.
 
 Note: If you're on `rstudio.cloud`, some version of `StatCompLab` package will already be installed, but running
-`remotes::install_github("finnlindgren/StatCompLab/")` will ensure that you have the latest version.  On your local computer, you will also need to run `remotes::install_github("finnlindgren/StatCompLab/")` to install and upgrade the package.
+`remotes::install_github("finnlindgren/StatCompLab")` will ensure that you have the latest version.  On your local computer, you will also need to run `remotes::install_github("finnlindgren/StatCompLab")` to install and upgrade the package.
 
 The `remotes::install_github` syntax means that R will use the function `install_github`
 from the package `remotes`, without having to load all the functions into the global
