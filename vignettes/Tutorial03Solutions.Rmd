@@ -103,18 +103,20 @@ $$
 
 Consider the following simulation code:
 ```{r echo=TRUE,eval=TRUE}
-Y <- rpois(30, lambda = 2 * exp(-1/2 + rnorm(30, sd = 2)))
+Y <- rpois(30, lambda = 3 * exp(-2 + rnorm(30, sd = 2)))
 ```
 ```{r quiz1,eval=.tutorial}
 question(
   "What parameter value combination is used in the simulation?",
-  answer("$\\mu=-1/2$, $\\sigma=2$"),
-  answer("$\\mu=-1/2$, $\\sigma=4$"),
-  answer("$\\mu=-1/2+\\log(2)$, $\\sigma=2$", correct = TRUE),
-  answer("$\\mu=-1/2+\\log(2)$, $\\sigma=4$"),
+  answer("$\\mu=-2$, $\\sigma=2$"),
+  answer("$\\mu=-2$, $\\sigma=4$"),
+  answer("$\\mu=-2+\\log(3)$, $\\sigma=2$", correct = TRUE),
+  answer("$\\mu=-2+\\log(3)$, $\\sigma=4$"),
   allow_retry = TRUE
 )
 ```
+
+What is the expectation of $Y$? 
 
 1. **Theory exercise**:
 Using the tower property (law of total variance), theoretically derive an expression for $\pVar(Y)$. You can get the needed log-Normal variance expression from [https://en.wikipedia.org/wiki/Log-normal_distribution](https://en.wikipedia.org/wiki/Log-normal_distribution)
@@ -152,6 +154,7 @@ p_Y(m|\mu,\sigma)=\pP(Y=m|\mu,\sigma) &= \int_{-\infty}^\infty \pP(Y=m|\mu,\sigm
 \end{aligned}
 $$
 for $m=0,1,2,3,\dots,15$, with $\mu=\log(2)-1/2$ and $\sigma=1$.
+Check with the formulas above what the resulting theoretical expectation is for $Y$ for this parameter combination.
 
 For this to be efficient, you should vectorise the calculations by evaluating the conditional
 probability function for $Y$ over all the $m$ values at once, for each simulated value
