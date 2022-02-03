@@ -8,7 +8,8 @@ articles:
   Tutorial02Solutions: Tutorial02Solutions.html
   Tutorial03: Tutorial03.html
   Tutorial03Solutions: Tutorial03Solutions.html
-last_built: 2022-02-01T23:23Z
+  Quiz1Solution: Quiz1Solution.html
+last_built: 2022-02-03T16:08Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles
