@@ -13,3 +13,4 @@
 ^inst/tutorials/[^/]*/.*.html
 ^inst/tutorials_2020
 ^vignettes_2020
+^vignettes/articles$

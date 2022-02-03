@@ -1,0 +1,107 @@
+---
+title: "Quiz 1 Solution (StatComp 2021/22)"
+author: "Finn Lindgren"
+data: "2022-02-03"
+in-header:
+  - \usepackage{amsmath}
+  - \newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+  - \newcommand{\mv}[1]{\boldsymbol{#1}}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo=FALSE,include=FALSE}
+library(StatCompLab)
+```
+
+## Deriving the Hessian
+
+Define the individual terms as $f_k=y_k\log(1+e^{-\eta_k}) + (N-y_k)\log(1+e^{\eta_k})$, so that
+$f=\sum_{k=1}^n f_k$. We know that $\partial\eta_k/\partial\theta_1\equiv 1$ and
+$\partial\eta_k/\partial\theta_2=k$.
+Then the derivatives with respect to $\theta_1$ and $\theta_2$ can
+be obtain with the chain rule:
+\begin{align*}
+\frac{df_k}{d\theta_i} &=
+  \frac{\partial\eta_k}{\partial\theta_i} \frac{\partial f_k}{\partial\eta_k} \\
+  &= \frac{\partial \eta_k}{\partial \theta_i} \left[
+  y_k \frac{-e^{-\eta_k}}{1+e^{-\eta_k}} +
+  (N-y_k) \frac{e^{\eta_k}}{1+e^{\eta_k}}
+  \right] \\
+  &= \frac{\partial\eta_k}{\partial\theta_i} \left[
+  y_k \frac{-e^{-\eta_k/2}}{e^{\eta_k/2}+e^{-\eta_k/2}} +
+  (N-y_k) \frac{e^{\eta_k/2}}{e^{-\eta_k/2}+e^{\eta_k/2}}
+  \right] \\
+  &= \frac{\partial\eta_k}{\partial\theta_i} \left[
+  - y_k \frac{e^{-\eta_k/2}+e^{\eta_k/2}}{e^{\eta_k/2}+e^{-\eta_k/2}} +
+  N \frac{1}{e^{-\eta_k}+1}
+  \right] \\
+  &= \frac{\partial\eta_k}{\partial\theta_i} \left[
+  \frac{N}{e^{-\eta_k}+1} - y_k
+  \right] \\
+\end{align*}
+Since the derivatives of $\eta_k$ with respect to $\theta_1$ and $\theta_2$ do not
+depend on the values of $\theta_1$ and $\theta_2$, the second order derivatives are
+\begin{align*}
+\frac{d^2f_k}{d\theta_i d\theta_j} &=
+  \frac{\partial\eta_k}{\partial\theta_i}
+  \frac{\partial\eta_k}{\partial\theta_j}
+  \frac{\partial}{\partial\eta_k}\left[
+  \frac{N}{e^{-\eta_k}+1} - y_k
+  \right] \\
+  &=
+  \frac{\partial\eta_k}{\partial\theta_i}
+  \frac{\partial\eta_k}{\partial\theta_j}
+  \frac{N e^{-\eta_k}}{(e^{-\eta_k}+1)^2}
+  \\
+  &=
+  \frac{\partial\eta_k}{\partial\theta_i}
+  \frac{\partial\eta_k}{\partial\theta_j}
+  \frac{N}{(e^{-\eta_k/2}+e^{\eta_k/2})^2}
+  \\
+  &=
+  \frac{\partial\eta_k}{\partial\theta_i}
+  \frac{\partial\eta_k}{\partial\theta_j}
+  \frac{N}{4\cosh(\eta_k/2)^2}
+  \\
+\end{align*}
+Plugging in the $\theta$-derivatives gives the Hessain contribution for term $f_k$ as
+$$
+  \frac{N}{4\cosh(\eta_k/2)^2} \mat{1 & k \\ k & k^2} .
+$$
+
+## Positive definite Hessian
+
+To show that the total Hessian for $f$ is positive definite for $n \geq 2$, we
+define vectors $\mv{u}_k=\mat{1 \\ k}$ and $d_k=\frac{N}{4\cosh(\eta_k/2)^2}$.
+Define the 2\by-$n$ matrix $\mv{U}=\mat{\mv{u}_1 & \mv{u}_2 & \cdots & \mv{u}_n}$
+and a diagonal matrix $\mv{D}$ with $D_{ii}=d_i$.  The product $\mv{U}\mv{D}\mv{U}^\top$
+is then another way of writing the Hessian for $f$. Since all the vectors $\mv{u}_k$
+are non-parallel, and the $d_i$ are strictly positive for all combinations of $\theta_1$ and $\theta_2$,
+this matrix has full rank (rank 2)
+for $n \geq 2$, and is positive definite.
+
+## Alternative reasoning
+
+The Hessian for each $f_k$ is positive semi-definite, since it can be written $d_k\mv{u}_k\mv{u}_k^\top$
+for some $d_k > 0$ and vector $\mv{u}_k$.
+The sum of a positive definite matrix and a positive semi-definite matrix is positive definite,
+so it's sufficient to prove that the sum of the first two terms is positive definite.
+For any positive scaling constant $w$, the determinant of
+$$
+\mat{1 & 1\\1 & 1}+w\mat{1 & 2\\2 & 4}
+$$
+is $(1+w)(1+4w)-(1+2w)^2=1+5w+4w^2-1-4w-4w^2=w > 0$. this means that any (positively) weighted sum of those two matrices is positive definite (since each is positive semi-definite, and a positive determinant rules ot the sum being only positive semi-definite). This proves that the total Hessian is positive definite for $n\geq 2$.
+
+## Remark
+
+Note that in the first proof of positive definiteness, we didn't actually
+need to know the specific values of the $\mv{u}_k$ vectors, that are proportional to the gradients fo $\eta_k$ with respect to $\mv{\theta}=(\theta_1,\theta_2)$; it was sufficient that they
+were non-parallel, ensuring that $\mv{U}$ had full rank.  This means that _any_ linear
+model for $\eta_k$ in a set of parameters $\mv{\theta}=(\theta_1,\dots,\theta_p)$ leads to a positive
+definite Hessian for this model, if the collection of gradient vectors of $(\eta_1,\dots,\eta_n)$ with respect to $\mv{\theta}$ have collective rank at least $p$.

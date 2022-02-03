@@ -158,7 +158,7 @@ Check with the formulas above what the resulting theoretical expectation is for 
 
 For this to be efficient, you should vectorise the calculations by evaluating the conditional
 probability function for $Y$ over all the $m$ values at once, for each simulated value
-$x^{[k]}\sim\pN(\mu,\sigma^2)$ value, for $k=1,2,\dots,K$. Use $K=10000$ samples.
+$x^{[k]}\sim\pN(0,\sigma^2)$ value, for $k=1,2,\dots,K$. Use $K=10000$ samples.
 
 Plot the resulting probability mass function $p_Y(m|\mu,\sigma)$ together with the
 ordinary Poisson probability mass function with the same expectation value, $\lambda = 2$.
