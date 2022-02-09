@@ -1,5 +1,5 @@
 ---
-title: "StatComp Project 1: Numerical Statistics"
+title: "StatComp Project Example: Numerical Statistics"
 author: "Finn Lindgren (s0000000, finnlindgren)"
 output:
   html_document:
