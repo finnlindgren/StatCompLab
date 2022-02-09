@@ -36,8 +36,9 @@ theme_set(theme_bw())
 set.seed(1234L)
 ```
 
-This document uses a `code_folding: hide` option to handle showing/hiding code.
-See the source file at [https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/T4sol.Rmd](https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/T4sol.Rmd)
+This document uses a `code_folding: hide` option to handle showing/hiding code
+when building locally.
+Download and build the source file from [https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/T4sol.Rmd](https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/T4sol.Rmd) to see how that feature works.
 
 ## Three alternatives for Poisson parameter confidence intervals
 
