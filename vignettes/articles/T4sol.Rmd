@@ -27,7 +27,7 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  fig.width = 6
+  fig.width = 8
 )
 
 library(StatCompLab)
@@ -159,7 +159,7 @@ The code for the above steps was the following:
 The figure below shows the empirical distributions of the unweighted and weighted samples $\{x_k\}$ (with weights $\{w_k\}$), together with the theoretical posterior empirical distribution function.
 The weighted, importance sampling, version is virtually indistinguishable from the true posterior distribution.
 The unweighted sample is very close to the true posterior distribution; for this model, the Gaussian approximation of the posterior distribution of $\log(\lambda)$ is an excellent approximation even before we add the importance sampling step.
-```{r ecdf-solution}
+```{r ecdf-solution, message=FALSE}
 # Plotting updated to include a plot of the importance weights
 p1 <-
   ggplot(data.frame(lambda = exp(x), weights = weights)) +
@@ -168,7 +168,8 @@ p1 <-
                 mapping = aes(col = "Theory")) +
   stat_ewcdf(aes(lambda, weights = weights, col = "Importance")) +
   stat_ecdf(aes(lambda, col = "Unweighted")) +
-  scale_x_log10() + xlim(1, 20)
+  scale_x_log10(limits = c(3, 20)) +
+  labs(colour = "Type")
 
 p2 <- ggplot(data.frame(lambda = exp(x), weights = weights),
              mapping = aes(lambda, weights / mean(weights))) +
@@ -177,7 +178,7 @@ p2 <- ggplot(data.frame(lambda = exp(x), weights = weights),
   geom_line() +
   geom_hline(yintercept = 1) +
   scale_y_log10() +
-  scale_x_log10() + xlim(1, 20)
+  scale_x_log10(limits = c(3, 20))
 
 # The patchwork library provides a versatile framework
 # for combining multiple ggplot figures into one.
