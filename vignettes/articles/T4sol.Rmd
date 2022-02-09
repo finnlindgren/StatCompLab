@@ -27,7 +27,9 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  fig.width = 8
+  fig.width = 8,
+  echo = TRUE # The code_folding: hide option above will still hide the
+              # code by default when knit:ing locally
 )
 
 library(StatCompLab)
