@@ -67,7 +67,7 @@ In this lab session you will explore
 * maximum likelihood estimator sampling distributions and approximate confidence interval construction
 * Laplace approximation and importance sampling for approximate Bayesian credible interval construction
 
-1. Clone your `lab04-*` repository from [https://github.com/StatComp21/](https://github.com/StatComp21/) wither on your own computer (new Project from version control) or to [https://rstudio.cloud](https://rstudio.cloud)
+1. Clone your `lab04-*` repository from [https://github.com/StatComp21/](https://github.com/StatComp21/) either on your own computer (new Project from version control) or to [https://rstudio.cloud](https://rstudio.cloud)
 2. If on rstudio.cloud, setup `GITHUB_PAT` credentials, like before.
 3. Upgrade/install the `StatCompLab` package, see [https://finnlindgren.github.io/StatCompLab/](https://finnlindgren.github.io/StatCompLab/)
 4. The repository has two files, `RMDemo.Rmd` and `my_code.R`. Make a copy of `RMDemo.Rmd`, and call it `Lab4.Rmd`
