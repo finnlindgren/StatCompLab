@@ -23,11 +23,11 @@ You can install (and later upgrade) the package from
 [GitHub](https://github.com/) with:
 
 ``` r
-# If devtools isn't installed, first run install.packages("devtools")
-devtools::install_github("finnlindgren/StatCompLab", build_vignettes = TRUE)
+# If devtools isn't installed, first run install.packages("remotes")
+remotes::install_github("finnlindgren/StatCompLab")
 ```
 
-## Example
+## Usage
 
 The most convenient way to access the tutorial documents is to run them
 in the `Tutorial` tab in the upper right part of RStudio. That allows
