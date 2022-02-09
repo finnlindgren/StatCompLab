@@ -21,7 +21,7 @@ Use type=1 to only generate quantile values from the raw input samples."><!-- ma
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.4.0</span>
       </span>
     </div>
 
@@ -54,7 +54,16 @@ Use type=1 to only generate quantile values from the raw input samples."><!-- ma
       <a href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a>
     </li>
     <li>
+      <a href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a>
+    </li>
+    <li>
+      <a href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a>
+    </li>
+    <li>
       <a href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
+    </li>
+    <li>
+      <a href="../articles/T4sol.html">Tutorial 04: Uncertainty and integration (full solution)</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -129,12 +138,12 @@ equal weight for each sample value.</p></dd>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Plain quantiles:</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         0%        25%        50%        75%       100% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.1390052 -0.4517323  0.1476403  0.8428763  2.2563367 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          0%         25%         50%         75%        100% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -3.11606771 -0.75127272 -0.03893172  0.51677835  2.57051705 </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Larger values given larger weight, on average shifting the quantiles upward:</span></span>
 <span class="r-in"><span class="fu">wquantile</span><span class="op">(</span><span class="va">x</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.13900516 -0.58083839  0.06781314  0.80219877  2.25633670</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3.11606771 -0.69818431 -0.03765331  0.45407857  2.57051705</span>
 </code></pre></div>
     </div>
   </div>
