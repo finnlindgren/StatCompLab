@@ -21,7 +21,7 @@ Use type=1 to only generate quantile values from the raw input samples."><!-- ma
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.4.3</span>
       </span>
     </div>
 
@@ -139,11 +139,11 @@ equal weight for each sample value.</p></dd>
 <span class="r-in"><span class="co"># Plain quantiles:</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         0%        25%        50%        75%       100% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.8756753 -0.6278073 -0.2295159  0.4762449  3.5509940 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -2.7569014 -0.7034199 -0.1196605  0.5211775  2.2482501 </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Larger values given larger weight, on average shifting the quantiles upward:</span></span>
 <span class="r-in"><span class="fu">wquantile</span><span class="op">(</span><span class="va">x</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.8756753 -0.5864742 -0.2496672  0.3488918  3.5509940</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.7569014 -0.7321903 -0.1103801  0.5223345  2.2482501</span>
 </code></pre></div>
     </div>
   </div>
