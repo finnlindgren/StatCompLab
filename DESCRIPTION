@@ -1,7 +1,7 @@
 Package: StatCompLab
 Type: Package
 Title: Workshop Material For UoE Statistical Computing
-Version: 21.3.1
+Version: 21.4.0
 Authors@R: 
     person(given = "Finn",
            family = "Lindgren",
@@ -27,6 +27,7 @@ Imports:
     rmarkdown,
     spatstat.geom,
     ggplot2,
+    patchwork,
     tidyverse,
     bench
 Suggests:
