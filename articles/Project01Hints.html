@@ -198,10 +198,10 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          6.34s    6.34s     0.158    2.28GB     8.20</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better        1.08s    1.08s     0.924    1.49GB    30.5 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.33ms   2.49ms   393.     229.67KB     2.00</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           6.07ms   6.91ms   139.     457.98KB    11.9</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          3.91s    3.91s     0.256    2.28GB    14.1 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better      623.1ms  623.1ms     1.60     1.49GB    53.0 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         1.87ms   1.92ms   517.     229.67KB     2.00</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.88ms   5.99ms   159.     457.98KB    17.9</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -216,12 +216,12 @@
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span>
-<span class="co">#&gt;        Name1     Name2     Name3</span>
-<span class="co">#&gt; 1 0.33421358 0.5907204 0.4701393</span>
-<span class="co">#&gt; 2 0.01004814 0.6314455 0.4678208</span>
-<span class="co">#&gt; 3 0.48324040 0.3361958 0.7342484</span>
-<span class="co">#&gt; 4 0.81614276 0.2213452 0.2591737</span>
-<span class="co">#&gt; 5 0.88519553 0.3456548 0.3394724</span></code></pre></div>
+<span class="co">#&gt;       Name1     Name2      Name3</span>
+<span class="co">#&gt; 1 0.6475910 0.5546071 0.54284338</span>
+<span class="co">#&gt; 2 0.1723062 0.2423609 0.09405724</span>
+<span class="co">#&gt; 3 0.1313866 0.4035319 0.82548206</span>
+<span class="co">#&gt; 4 0.6263283 0.9492619 0.30012338</span>
+<span class="co">#&gt; 5 0.4887722 0.3902872 0.44380139</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>
