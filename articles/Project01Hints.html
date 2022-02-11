@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.1</span>
       </span>
     </div>
 
@@ -198,10 +198,10 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          3.91s    3.91s     0.256    2.28GB    14.1 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better      623.1ms  623.1ms     1.60     1.49GB    53.0 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         1.87ms   1.92ms   517.     229.67KB     2.00</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.88ms   5.99ms   159.     457.98KB    17.9</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow           4.9s     4.9s     0.204    2.28GB     10.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     750.52ms 750.52ms     1.33     1.49GB     44.0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.08ms   2.12ms   473.     229.67KB      0  </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok              6ms   6.33ms   146.     457.98KB     13.9</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -216,28 +216,57 @@
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span>
-<span class="co">#&gt;       Name1     Name2      Name3</span>
-<span class="co">#&gt; 1 0.6475910 0.5546071 0.54284338</span>
-<span class="co">#&gt; 2 0.1723062 0.2423609 0.09405724</span>
-<span class="co">#&gt; 3 0.1313866 0.4035319 0.82548206</span>
-<span class="co">#&gt; 4 0.6263283 0.9492619 0.30012338</span>
-<span class="co">#&gt; 5 0.4887722 0.3902872 0.44380139</span></code></pre></div>
+<span class="co">#&gt;       Name1     Name2     Name3</span>
+<span class="co">#&gt; 1 0.3397020 0.9109286 0.4454377</span>
+<span class="co">#&gt; 2 0.9467189 0.2296150 0.4398127</span>
+<span class="co">#&gt; 3 0.6781172 0.1603686 0.2823338</span>
+<span class="co">#&gt; 4 0.3512376 0.1183081 0.6216228</span>
+<span class="co">#&gt; 5 0.4831680 0.5926368 0.3032642</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
+</h2>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise()</a></code> method from the <code>dplyr</code> package is usually used to construct simple summaries such as</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>
+<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
+    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
+    sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="op">)</span>
+<span class="co">#&gt;           mu    sigma</span>
+<span class="co">#&gt; 1 0.02488531 1.039604</span></code></pre></div>
+<p>But what if we have a function that computes <em>both</em> <code>mu</code> and <code>sigma</code>? If we make it return a data.frame, that can be used with <code>summarise</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
+    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
+    sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">}</span>
+<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
+    <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="op">)</span>
+<span class="co">#&gt;           mu    sigma</span>
+<span class="co">#&gt; 1 0.02488531 1.039604</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>
 </h2>
 <p>Since most operations and functions in R are vectorised, the code can often be written in a clear way by avoiding unnecessary for-loops. As a simple example, say that we want to compute <span class="math inline">\(\sum_{k=1}^{100} \cos(k)\)</span>.</p>
 <p>A for-loop solution of the style that would be a good solution in a high performance low-level language like C might look like this:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fl">0</span>
 <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">result</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>By taking advantage of vectorised calling of <code><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos()</a></code>, and the function <code><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum()</a></code>, we can reformulate into a shorter and more clear vectorised solution:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Other commonly used functions involving vectors of <code>TRUE</code> and <code>FALSE</code> are <code><a href="https://rdrr.io/r/base/all.html" class="external-link">all()</a></code> and <code><a href="https://rdrr.io/r/base/any.html" class="external-link">any()</a></code>. For example,</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span>
 <span class="co">#&gt; [1] FALSE</span>

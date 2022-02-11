@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.1</span>
       </span>
     </div>
 
@@ -216,8 +216,8 @@ y_i \sim \mathsf{Normal}[\beta_1 + \beta_2 x_i, \beta_3 + \beta_4 x_i^2)] .
 <div class="section level3">
 <h3 id="importance-sampling-function">Importance sampling function<a class="anchor" aria-label="anchor" href="#importance-sampling-function"></a>
 </h3>
-<p>The aim is to construct a 90% Bayesian credible interval for each <span class="math inline">\(\beta_j\)</span> using importance sampling, similarly to the method used in lab 4. There, a one dimensional Gaussian approximation of the posterior of a parameter was used. Here, we will instead use a multivariate Normal approximation as the importance sampling distribution. The functions <code>rmvnorm</code> and <code>dmvnorm</code> in the <code>matrixStats</code> package can be used to sample and evaluate densities.</p>
-<p>Define and document function <code>do_importance</code> taking arguments <code>N</code> (the number of samples to generate), <code>mu</code> (the mean vector for the importance distribution), and <code>S</code> (the covariance matrix).</p>
+<p>The aim is to construct a 90% Bayesian credible interval for each <span class="math inline">\(\beta_j\)</span> using importance sampling, similarly to the method used in lab 4. There, a one dimensional Gaussian approximation of the posterior of a parameter was used. Here, we will instead use a multivariate Normal approximation as the importance sampling distribution. The functions <code>rmvnorm</code> and <code>dmvnorm</code> in the <code>mvtnorm</code> package can be used to sample and evaluate densities.</p>
+<p>Define and document a function <code>do_importance</code> taking arguments <code>N</code> (the number of samples to generate), <code>mu</code> (the mean vector for the importance distribution), and <code>S</code> (the covariance matrix).</p>
 <p>The function should output a <code>data.frame</code> with five columns, <code>beta1</code>, <code>beta2</code>, <code>beta3</code>, <code>beta4</code>, <code>log_weights</code>, containing the <span class="math inline">\(\beta_i\)</span> samples and normalised <span class="math inline">\(\log\)</span>-importance-weights, so that <code>sum(exp(log_weights))</code> is <span class="math inline">\(1\)</span>. Use the <code>log_sum_exp</code> function to compute the needed normalisation information.</p>
 </div>
 <div class="section level3">
