@@ -258,7 +258,8 @@ Define and document function `do_importance` taking arguments `N` (the number of
 to generate), `mu` (the mean vector for the importance distribution), and `S` (the covariance matrix).
 
 The function should output a `data.frame` with five columns, `beta1`, `beta2`, `beta3`, `beta4`, `log_weights`, containing the $\beta_i$ samples and normalised $\log$-importance-weights,
-so that `sum(exp(log_weights))` is $1$. Use the `log_sum_exp` to compute the needed normalisation information.
+so that `sum(exp(log_weights))` is $1$. Use the `log_sum_exp` function to compute
+the needed normalisation information.
 
 ## Importance sampling
 
