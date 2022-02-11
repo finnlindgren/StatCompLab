@@ -115,6 +115,34 @@ The resulting object looks like this:
 df
 ```
 
+# Multi-column summarise constructions
+
+The `summarise()` method from the `dplyr` package is usually used to construct simple summaries such as
+```{r, eval=TRUE, echo=TRUE}
+suppressPackageStartupMessages(library(tidyverse))
+df <- data.frame(x = rnorm(100))
+df %>%
+  summarise(
+    mu = mean(x),
+    sigma = sd(x)
+  )
+```
+But what if we have a function that computes _both_ `mu` and `sigma`?
+If we make it return a data.frame, that can be used with `summarise`:
+```{r, eval=TRUE, echo=TRUE}
+my_fun <- function(x) {
+  data.frame(
+    mu = mean(x),
+    sigma = sd(x)
+  )
+}
+df %>%
+  summarise(
+    my_fun(x)
+  )
+```
+
+
 # Avoiding unnecessary for-loops
 
 Since most operations and functions in R are vectorised, the code can often be
