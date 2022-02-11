@@ -80,11 +80,11 @@ set.seed(1234L)
 suppressPackageStartupMessages(library(tidyverse))
 ```
 
-This document can either be accessed in html form on (https://finnlindgren.github.io/StatCompLab/), as
+This document can either be accessed in html form on [https://finnlindgren.github.io/StatCompLab/](https://finnlindgren.github.io/StatCompLab/), as
 a vignette in `StatCompLab` version 21.5.0 or later, with `vignette("Project01", "StatCompLab")`, or in pdf format on Learn.
 
 1. You have been assigned a `project01-username` repository on 
-(https://github.com/StatComp21/(https://github.com/StatComp21/). Use `git` to
+[https://github.com/StatComp21/](https://github.com/StatComp21/). Use `git` to
 _clone_ the repository (either to [https://rstudio.cloud](https://rstudio.cloud)
 or your own computer) in the same way as the `lab*-username` repositories for tutorials 2 and 4.
 2. The repository contains a template RMarkdown document, `report.Rmd`,
