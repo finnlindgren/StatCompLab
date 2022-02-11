@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.0</span>
       </span>
     </div>
 
@@ -32,6 +32,12 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/Project01.html">StatComp Project 1 (2021/22): Simulation and sampling</a>
+    </li>
+    <li>
+      <a href="../articles/Project01Hints.html">Project 01 Hints</a>
+    </li>
+    <li>
       <a href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
     </li>
     <li>
@@ -158,12 +164,12 @@ with <code>obs[i]</code> equal to \(y_i\) and each prediction distribution
 <span class="r-in">  interval <span class="op">=</span> <span class="fu">proper_score</span><span class="op">(</span><span class="st">"interval"</span>, <span class="va">obs</span>,</span>
 <span class="r-in">                          lwr <span class="op">=</span> <span class="va">F_lwr</span>, upr <span class="op">=</span> <span class="va">F_upr</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          se        ae       ds  interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.8262458 1.3513866 1.826246  3.261454</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.3222859 0.5677023 1.466866  5.126206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.3520729 0.5933573 2.236344  7.689309</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2.0953267 1.4475243 2.903547 10.252413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.3085978 0.5555158 3.231220 12.815516</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          se       ae        ds  interval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 53.554335 7.318083 53.554335 62.928415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  1.484715 1.218489  1.757473  5.126206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  8.598446 2.932311  3.152607  7.689309</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  5.393360 2.322361  3.109674 10.252413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 21.652123 4.653184  4.084961 12.815516</span>
 </code></pre></div>
     </div>
   </div>
