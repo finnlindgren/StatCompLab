@@ -5,10 +5,12 @@ date: "2022-02-11"
 output:
   rmarkdown::html_vignette:
     toc: true
+  pdf_document:
+    toc: true
 vignette: |
   %\VignetteIndexEntry{Project 01 Hints}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r setup, include = FALSE}
