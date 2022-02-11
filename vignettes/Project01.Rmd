@@ -251,10 +251,10 @@ The aim is to construct a 90% Bayesian credible interval for each $\beta_j$ usin
 importance sampling, similarly to the method used in lab 4. There, a one dimensional
 Gaussian approximation of the posterior of a parameter was used.
 Here, we will instead use a multivariate Normal approximation as the importance sampling distribution.  The functions
-`rmvnorm` and `dmvnorm` in the `matrixStats` package can be used to sample and
+`rmvnorm` and `dmvnorm` in the `mvtnorm` package can be used to sample and
 evaluate densities.
 
-Define and document function `do_importance` taking arguments `N` (the number of samples
+Define and document a function `do_importance` taking arguments `N` (the number of samples
 to generate), `mu` (the mean vector for the importance distribution), and `S` (the covariance matrix).
 
 The function should output a `data.frame` with five columns, `beta1`, `beta2`, `beta3`, `beta4`, `log_weights`, containing the $\beta_i$ samples and normalised $\log$-importance-weights,
