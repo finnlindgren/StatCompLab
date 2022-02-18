@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.2</span>
       </span>
     </div>
 
@@ -156,7 +156,7 @@ p(\boldsymbol{y}|\lambda) = \exp(-n\lambda) \prod_{i=1}^n \frac{\lambda^{y_i}}{y
 </ol>
 <p>The confidence interval construction was motivated by the ratio <span class="math inline">\(\frac{\widehat{\lambda}-\lambda}{\sqrt{\lambda/n}}\)</span>, which was approximated by <span class="math inline">\(\frac{\widehat{\lambda}-\lambda}{\sqrt{\widehat{\lambda}/n}}\)</span>. We now wish to see if we would achieve a better construction by using the non-approximated version.</p>
 <p>Solve the inequalities in <span class="math display">\[
-a &lt; \frac{\widehat{\lambda}-\lambda}{\sqrt{\lambda/n}} &lt; b
+a = z_{\alpha/2} &lt; \frac{\widehat{\lambda}-\lambda}{\sqrt{\lambda/n}} &lt; z_{1-\alpha/2} = b
 \]</span> with respect to <span class="math inline">\(\lambda\)</span>, and implement the resulting confidence interval construction in a function (in <code>code.R</code>; also document the function) taking arguments <code>y</code> and <code>alpha</code>. Also include another function for the method used in the lab, with the same call syntax.</p>
 <p>The function <code>estimate_coverage</code>, defined in <code>code.R</code>, can be used to estimate the coverage of the construction of confidence intervals from samples <span class="math inline">\(\mathsf{Poisson}(\lambda)\)</span>, given an interval construction R function. Use this to discuss the following questions:</p>
 <p>Which of the two alternatives has coverage closest to the nominal coverage of 90% for the case <span class="math inline">\(n=2\)</span>, <span class="math inline">\(\lambda=3\)</span>? What happens for larger values of <span class="math inline">\(n\)</span>?</p>

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.2</span>
       </span>
     </div>
 
@@ -198,10 +198,10 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow           4.9s     4.9s     0.204    2.28GB     10.4</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     750.52ms 750.52ms     1.33     1.49GB     44.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.08ms   2.12ms   473.     229.67KB      0  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok              6ms   6.33ms   146.     457.98KB     13.9</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          6.41s    6.41s     0.156    2.28GB     8.90</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better        1.06s    1.06s     0.941    1.49GB    31.0 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.36ms   2.53ms   384.     229.67KB     1.99</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok            6.5ms   7.28ms   127.     457.98KB    11.9</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -217,11 +217,11 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span>
 <span class="co">#&gt;       Name1     Name2     Name3</span>
-<span class="co">#&gt; 1 0.3397020 0.9109286 0.4454377</span>
-<span class="co">#&gt; 2 0.9467189 0.2296150 0.4398127</span>
-<span class="co">#&gt; 3 0.6781172 0.1603686 0.2823338</span>
-<span class="co">#&gt; 4 0.3512376 0.1183081 0.6216228</span>
-<span class="co">#&gt; 5 0.4831680 0.5926368 0.3032642</span></code></pre></div>
+<span class="co">#&gt; 1 0.9273561 0.8676315 0.4144520</span>
+<span class="co">#&gt; 2 0.4601564 0.5766729 0.8777834</span>
+<span class="co">#&gt; 3 0.1721372 0.3244731 0.4135593</span>
+<span class="co">#&gt; 4 0.2258637 0.1216268 0.2181534</span>
+<span class="co">#&gt; 5 0.6680350 0.9973609 0.1189587</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
@@ -235,8 +235,8 @@
     mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
     sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
-<span class="co">#&gt;           mu    sigma</span>
-<span class="co">#&gt; 1 0.02488531 1.039604</span></code></pre></div>
+<span class="co">#&gt;           mu     sigma</span>
+<span class="co">#&gt; 1 -0.1897618 0.9399536</span></code></pre></div>
 <p>But what if we have a function that computes <em>both</em> <code>mu</code> and <code>sigma</code>? If we make it return a data.frame, that can be used with <code>summarise</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
@@ -249,8 +249,8 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
     <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
-<span class="co">#&gt;           mu    sigma</span>
-<span class="co">#&gt; 1 0.02488531 1.039604</span></code></pre></div>
+<span class="co">#&gt;           mu     sigma</span>
+<span class="co">#&gt; 1 -0.1897618 0.9399536</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>
