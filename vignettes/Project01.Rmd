@@ -149,7 +149,7 @@ would achieve a better construction by using the non-approximated version.
 
 Solve the inequalities in
 $$
-a < \frac{\wh{\lambda}-\lambda}{\sqrt{\lambda/n}} < b
+a = z_{\alpha/2} < \frac{\wh{\lambda}-\lambda}{\sqrt{\lambda/n}} < z_{1-\alpha/2} = b
 $$
 with respect to $\lambda$, and implement the resulting confidence interval construction
 in a function (in `code.R`; also document the function) taking arguments `y` and `alpha`.
