@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.3</span>
       </span>
     </div>
 
@@ -273,10 +273,14 @@ This can happen when $n$ or $\lambda$ are close to zero.
 </h3>
 <!--
 
+*Alternative 1*:
 From probability theory, we know that $p(\theta)=p(\lambda) \frac{d\lambda(\theta)}{d\theta}$, so that
 $$
 p(\theta) = a \exp(-a\lambda) \exp(\theta) = a \exp\left( \theta-ae^\theta \right)
 $$
+
+*Alternative 2*:
+First, we derive the CDF: $\pP(\theta \leq x)=\pP(\log(\lambda) \leq x)=\pP(\lambda \leq e^x) = 1 - \exp(-a e^x)$, from the CDF for the Exponential distribution. Taking the derivative with respect to $x$ gives the density $p_\theta(x)=-\exp(-a e^x) \frac{d}{dx} (-a e^x) = \exp(-a e^x) (a e^x) = a \exp(x - a e^x)$, which is the needed result.
 -->
 <p>The posterior density function for <span class="math inline">\(\theta\)</span> is <span class="math display">\[
 p(\theta|\boldsymbol{y}) = \frac{p(\theta) p(\boldsymbol{y}|\theta)}{p(\boldsymbol{y})}

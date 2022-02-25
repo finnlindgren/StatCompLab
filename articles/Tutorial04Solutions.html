@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.3</span>
       </span>
     </div>
 
@@ -293,9 +293,10 @@ p(\boldsymbol{y}|\lambda) = \exp(-n\lambda) \prod_{i=1}^n \frac{\lambda^{y_i}}{y
 </h3>
 <hr>
 <p><strong>Solution:</strong></p>
-<p>From probability theory, we know that <span class="math inline">\(p(\theta)=p(\lambda) \frac{d\lambda(\theta)}{d\theta}\)</span>, so that <span class="math display">\[
+<p><em>Alternative 1</em>: From probability theory, we know that <span class="math inline">\(p(\theta)=p(\lambda) \frac{d\lambda(\theta)}{d\theta}\)</span>, so that <span class="math display">\[
 p(\theta) = a \exp(-a\lambda) \exp(\theta) = a \exp\left( \theta-ae^\theta \right)
 \]</span></p>
+<p><em>Alternative 2</em>: First, we derive the CDF: <span class="math inline">\(\mathsf{P}(\theta \leq x)=\mathsf{P}(\log(\lambda) \leq x)=\mathsf{P}(\lambda \leq e^x) = 1 - \exp(-a e^x)\)</span>, from the CDF for the Exponential distribution. Taking the derivative with respect to <span class="math inline">\(x\)</span> gives the density <span class="math inline">\(p_\theta(x)=-\exp(-a e^x) \frac{d}{dx} (-a e^x) = \exp(-a e^x) (a e^x) = a \exp(x - a e^x)\)</span>, which is the needed result.</p>
 <hr>
 <p>The posterior density function for <span class="math inline">\(\theta\)</span> is <span class="math display">\[
 p(\theta|\boldsymbol{y}) = \frac{p(\theta) p(\boldsymbol{y}|\theta)}{p(\boldsymbol{y})}
