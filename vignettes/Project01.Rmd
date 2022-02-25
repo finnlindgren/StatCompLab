@@ -236,9 +236,7 @@ Define and document a function `log_posterior_density` with arguments
 `theta`, `x`, `y`, and `params`, that evaluates the logarithm of the
 posterior density $p(\mv{\theta}|\mv{y})$,
 apart from some unevaluated normalisation constant.
-With the help of the `dnorm`, define and document a function `log_like`, taking arguments `theta`, `x`, and `y`, that evaluates the observation log-likelihood for the model
- defined above.
- 
+
 ## Posterior mode and Gaussian approximation
 
 Let all $\gamma_i=1$, $i=1,2,3,4$, and use `optim()` together with the `log_posterior_density` and filament data to find the posterior mode for $\mv{\theta}$.

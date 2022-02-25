@@ -298,10 +298,14 @@ is $p(\theta)=a \exp\left( \theta-ae^\theta \right)$.
 ### Gaussian approximation
 
 `r begin_sol()`
+*Alternative 1*:
 From probability theory, we know that $p(\theta)=p(\lambda) \frac{d\lambda(\theta)}{d\theta}$, so that
 $$
 p(\theta) = a \exp(-a\lambda) \exp(\theta) = a \exp\left( \theta-ae^\theta \right)
 $$
+
+*Alternative 2*:
+First, we derive the CDF: $\pP(\theta \leq x)=\pP(\log(\lambda) \leq x)=\pP(\lambda \leq e^x) = 1 - \exp(-a e^x)$, from the CDF for the Exponential distribution. Taking the derivative with respect to $x$ gives the density $p_\theta(x)=-\exp(-a e^x) \frac{d}{dx} (-a e^x) = \exp(-a e^x) (a e^x) = a \exp(x - a e^x)$, which is the needed result.
 `r end_sol()`
 
 The posterior density function for $\theta$ is
