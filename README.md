@@ -41,8 +41,10 @@ code.
 
 ``` r
 library(StatCompLab)
+# To install the vignette versions, add build_vignettes=TRUE to the install_github() call above.
 vignette(package = "StatCompLab") # List available vignettes
 vignette("Tutorial01", "StatCompLab") # View a specific vignette
+# The following method blocks the Console from running other code; better to use the Tutorials pane instead
 library(learnr)
 available_tutorials("StatCompLab") # List available tutorials
 run_tutorial("Tutorial01", "StatCompLab") # Run a specific tutorial
