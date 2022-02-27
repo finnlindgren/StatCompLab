@@ -151,11 +151,11 @@ equal weight for each sample value.</p></dd>
 <span class="r-in"><span class="co"># Plain quantiles:</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         0%        25%        50%        75%       100% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.0095144 -0.7595497 -0.2146606  0.4905712  2.9976334 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -1.9270260 -0.5943051  0.1281358  0.7115724  2.3079747 </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Larger values given larger weight, on average shifting the quantiles upward:</span></span>
 <span class="r-in"><span class="fu">wquantile</span><span class="op">(</span><span class="va">x</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.0095144 -0.7228054 -0.2763594  0.4727537  2.9976334</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.9270260 -0.5655652  0.1109884  0.7775981  2.3079747</span>
 </code></pre></div>
     </div>
   </div>
