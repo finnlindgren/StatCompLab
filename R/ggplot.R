@@ -153,7 +153,7 @@ StatEwcdf <- ggplot2::ggproto(
 #'   numeric vector whose sample quantiles are wanted.
 #'  `NA` and `NaN` values are not allowed in numeric vectors unless `na.rm` is TRUE.
 #' @param probs
-#'   numeric vector of probabilities with values in [0,1].
+#'   numeric vector of probabilities with values in \eqn{[0,1]}{[0,1]}.
 #' @param na.rm
 #'   logical; if true, any `NA` and `NaN`'s are removed from `x` before the
 #'   quantiles are computed.

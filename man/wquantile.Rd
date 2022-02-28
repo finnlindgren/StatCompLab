@@ -17,7 +17,7 @@ wquantile(
 \item{x}{numeric vector whose sample quantiles are wanted.
 \code{NA} and \code{NaN} values are not allowed in numeric vectors unless \code{na.rm} is TRUE.}
 
-\item{probs}{numeric vector of probabilities with values in \link{0,1}.}
+\item{probs}{numeric vector of probabilities with values in \eqn{[0,1]}{[0,1]}.}
 
 \item{na.rm}{logical; if true, any \code{NA} and \code{NaN}'s are removed from \code{x} before the
 quantiles are computed.}
