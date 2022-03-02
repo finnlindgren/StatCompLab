@@ -27,6 +27,13 @@ You can install (and later upgrade) the package from
 remotes::install_github("finnlindgren/StatCompLab")
 ```
 
+If you want to view the vignette versions of the tutorials within
+RStudio, you need to add the `build_vignettes` argument:
+
+``` r
+remotes::install_github("finnlindgren/StatCompLab", build_vignettes = TRUE)
+```
+
 ## Usage
 
 The most convenient way to access the tutorial documents is to run them
