@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">StatCompLab</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">21.6.1</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -78,6 +78,12 @@
     </li>
     <li>
       <a href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a>
+    </li>
+    <li>
+      <a href="../articles/Tutorial06.html">Tutorial 06: Prediction assessment with proper scores</a>
+    </li>
+    <li>
+      <a href="../articles/Tutorial06Solutions.html">Tutorial 06: Prediction assessment with proper scores (solutions)</a>
     </li>
     <li>
       <a href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
@@ -198,10 +204,10 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          5.42s    5.42s     0.185    2.28GB     9.41</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     815.09ms 815.09ms     1.23     1.49GB    41.7 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.07ms   2.54ms   395.     229.67KB     1.99</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           6.74ms   7.23ms   133.     457.98KB     9.91</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow           4.5s     4.5s     0.222    2.28GB     12.2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     788.78ms 788.78ms     1.27     1.49GB     43.1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.12ms   2.16ms   464.     229.67KB      0  </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok            5.7ms   6.11ms   158.     457.98KB     14.0</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -216,12 +222,12 @@
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span>
-<span class="co">#&gt;         Name1      Name2     Name3</span>
-<span class="co">#&gt; 1 0.604278689 0.04728777 0.4425965</span>
-<span class="co">#&gt; 2 0.002164303 0.82144864 0.7446878</span>
-<span class="co">#&gt; 3 0.690041511 0.43217040 0.3076475</span>
-<span class="co">#&gt; 4 0.661583967 0.23061688 0.7622508</span>
-<span class="co">#&gt; 5 0.024439668 0.85640110 0.3149746</span></code></pre></div>
+<span class="co">#&gt;        Name1      Name2      Name3</span>
+<span class="co">#&gt; 1 0.25513270 0.05537997 0.81697932</span>
+<span class="co">#&gt; 2 0.04609892 0.93443916 0.04421075</span>
+<span class="co">#&gt; 3 0.98610540 0.18836187 0.23598087</span>
+<span class="co">#&gt; 4 0.71709427 0.29447767 0.77906225</span>
+<span class="co">#&gt; 5 0.54300110 0.41782058 0.55766506</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
@@ -236,7 +242,7 @@
     sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="co">#&gt;           mu    sigma</span>
-<span class="co">#&gt; 1 -0.2447486 1.066491</span></code></pre></div>
+<span class="co">#&gt; 1 -0.0578907 1.020287</span></code></pre></div>
 <p>But what if we have a function that computes <em>both</em> <code>mu</code> and <code>sigma</code>? If we make it return a data.frame, that can be used with <code>summarise</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
@@ -250,7 +256,7 @@
     <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="co">#&gt;           mu    sigma</span>
-<span class="co">#&gt; 1 -0.2447486 1.066491</span></code></pre></div>
+<span class="co">#&gt; 1 -0.0578907 1.020287</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>
