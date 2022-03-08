@@ -1,11 +1,11 @@
 ---
-title: 'Tutorial 07: Data wrangling and cross validation'
+title: 'Tutorial 07: Data wrangling and cross validation (solutions)'
 author: Finn Lindgren
 output: rmarkdown::html_vignette
 description: 'Statistical Computing: Lab tutorial 7'
 tutorial:
   id: shinyapps.finnlindgren.StatCompTutorial07
-  version: 1.1
+  version: 1.2
 in-header:
 - \newcommand{\bm}[1]{\boldsymbol{#1}}
 - \newcommand{\wh}[1]{\widehat{#1}}
@@ -26,7 +26,7 @@ in-header:
 - \newcommand{\mmd}{\mathrm{d}}
 - \newcommand{\md}{\,\mmd}
 vignette: |
-  %\VignetteIndexEntry{Tutorial 07: Data wrangling and cross validation}
+  %\VignetteIndexEntry{Tutorial 07: Data wrangling and cross validation (solutions)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

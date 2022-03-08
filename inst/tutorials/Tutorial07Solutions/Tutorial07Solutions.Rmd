@@ -1,12 +1,12 @@
 ---
-title: 'Tutorial 07: Data wrangling and cross validation'
+title: 'Tutorial 07: Data wrangling and cross validation (solutions)'
 author: Finn Lindgren
 output: learnr::tutorial
 runtime: shiny_prerendered
 description: 'Statistical Computing: Lab tutorial 7'
 tutorial:
   id: shinyapps.finnlindgren.StatCompTutorial07
-  version: 1.1
+  version: 1.2
 in-header:
 - \newcommand{\bm}[1]{\boldsymbol{#1}}
 - \newcommand{\wh}[1]{\widehat{#1}}

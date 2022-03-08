@@ -6,7 +6,7 @@ runtime: shiny_prerendered
 description: "Statistical Computing: Lab tutorial 7"
 tutorial:
   id: "shinyapps.finnlindgren.StatCompTutorial07"
-  version: 1.1
+  version: 1.2
 in-header:
   - \newcommand{\bm}[1]{\boldsymbol{#1}}
   - \newcommand{\wh}[1]{\widehat{#1}}
@@ -30,7 +30,7 @@ in-header:
 
 ```{r setup, include=FALSE}
 .tutorial <- TRUE
-.solutions <- TRUE
+.solutions <- FALSE
 begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
 end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
 
