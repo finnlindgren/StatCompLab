@@ -156,7 +156,7 @@ in a function (in `code.R`; also document the function) taking arguments `y` and
 Also include another function for the method used in the lab, with the same call syntax.
 
 Hint: It may help to do the mathematical derivation in several steps; e.g.
-by introducing $x=\sqrt{\lambda}$, solve two separate quadratic equations (on with $a$ and one with $b$) and then work out for what intervals the two inequalities are fulfilled. For that, you likely will need the fact that for $\alpha<0.5$, we have $z_{\alpha/2}<0$ and $\z_{1-\alpha/2}>0$.
+by introducing $x=\sqrt{\lambda}$, solve two separate quadratic equations (on with $a$ and one with $b$) and then work out for what intervals the two inequalities are fulfilled. For that, you likely will need the fact that for $\alpha<0.5$, we have $z_{\alpha/2}<0$ and $z_{1-\alpha/2}>0$.
 
 The function `estimate_coverage`, defined in `code.R`, can be used to estimate
 the coverage of the construction of confidence intervals from samples $\pPo(\lambda)$,
