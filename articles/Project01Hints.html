@@ -216,10 +216,10 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          4.82s    4.82s     0.207    2.28GB    11.0 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     829.98ms 829.98ms     1.20     1.49GB    41.0 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.07ms    2.1ms   474.     229.67KB     2.00</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.84ms    6.2ms   154.     457.98KB    13.8</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          6.69s    6.69s     0.150    2.28GB     8.07</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better        1.11s    1.11s     0.900    1.49GB    29.7 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.09ms    2.5ms   391.     229.67KB     2.00</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.78ms   6.84ms   136.     457.98KB    12.0</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -234,12 +234,12 @@
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span>
-<span class="co">#&gt;        Name1      Name2      Name3</span>
-<span class="co">#&gt; 1 0.11008784 0.34478020 0.07967516</span>
-<span class="co">#&gt; 2 0.33344119 0.27071755 0.01010568</span>
-<span class="co">#&gt; 3 0.19967158 0.40803431 0.98701437</span>
-<span class="co">#&gt; 4 0.09513039 0.91906268 0.78751267</span>
-<span class="co">#&gt; 5 0.82948934 0.09509951 0.04074251</span></code></pre></div>
+<span class="co">#&gt;       Name1      Name2     Name3</span>
+<span class="co">#&gt; 1 0.9109519 0.91115897 0.3161853</span>
+<span class="co">#&gt; 2 0.3880588 0.89189075 0.5376485</span>
+<span class="co">#&gt; 3 0.5570168 0.02712086 0.1224677</span>
+<span class="co">#&gt; 4 0.3150594 0.78851829 0.3892428</span>
+<span class="co">#&gt; 5 0.7920953 0.40690933 0.5384508</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
@@ -254,7 +254,7 @@
     sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="co">#&gt;           mu    sigma</span>
-<span class="co">#&gt; 1 -0.1090563 1.064894</span></code></pre></div>
+<span class="co">#&gt; 1 0.01465488 1.163978</span></code></pre></div>
 <p>But what if we have a function that computes <em>both</em> <code>mu</code> and <code>sigma</code>? If we make it return a data.frame, that can be used with <code>summarise</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
@@ -268,7 +268,7 @@
     <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="co">#&gt;           mu    sigma</span>
-<span class="co">#&gt; 1 -0.1090563 1.064894</span></code></pre></div>
+<span class="co">#&gt; 1 0.01465488 1.163978</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>

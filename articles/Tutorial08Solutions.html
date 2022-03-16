@@ -205,18 +205,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">67.3ms</td>
-<td align="right">14.84680</td>
+<td align="right">75ms</td>
+<td align="right">13.41104</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
-<td align="right">21.9ms</td>
-<td align="right">44.96708</td>
+<td align="right">20.7ms</td>
+<td align="right">44.05861</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">21.3ms</td>
-<td align="right">46.55340</td>
+<td align="right">23.3ms</td>
+<td align="right">43.40687</td>
 </tr>
 </tbody>
 </table>
@@ -260,18 +260,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">698.72ms</td>
-<td align="right">1.431191</td>
+<td align="right">682.19ms</td>
+<td align="right">1.465872</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">698.11ms</td>
-<td align="right">1.432439</td>
+<td align="right">736.07ms</td>
+<td align="right">1.358564</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">2.58ms</td>
-<td align="right">384.889394</td>
+<td align="right">2.15ms</td>
+<td align="right">466.300918</td>
 </tr>
 </tbody>
 </table>
@@ -300,13 +300,13 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">907ms</td>
-<td align="right">1.102503</td>
+<td align="right">837ms</td>
+<td align="right">1.195256</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">254ms</td>
-<td align="right">3.929921</td>
+<td align="right">244ms</td>
+<td align="right">4.074768</td>
 </tr>
 </tbody>
 </table>
