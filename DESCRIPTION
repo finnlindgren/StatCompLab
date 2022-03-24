@@ -15,13 +15,13 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Remotes:
-  rstudio/gradethis@f1a0aa4964c7b02bdb5329591adce2ac7d26160c
+  rstudio/gradethis
 Depends:
     shiny,
     R (>= 2.10)
 Imports:
-    learnr (<= 0.10.1),
-    gradethis (<= 0.2.0.9000),
+    learnr,
+    gradethis,
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
@@ -35,7 +35,6 @@ Suggests:
     loo
 Config/testthat/edition: 3
 URL: https://finnlindgren.github.io/StatCompLab,
-    https://github.com/finnlindgren/StatCompLab,
-    https://finnlindgren.github.io/StatCompLab/
+    https://github.com/finnlindgren/StatCompLab
 BugReports: https://github.com/finnlindgren/StatCompLab/issues
 VignetteBuilder: knitr
