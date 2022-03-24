@@ -32,7 +32,7 @@ jobs:
         with:
           use-public-rspm: true
 
-    - name: Query dependencies
+      - name: Query dependencies
         run: |
           install.packages("remotes")
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
