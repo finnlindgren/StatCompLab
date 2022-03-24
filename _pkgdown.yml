@@ -1,1 +1,4 @@
-url: https://finnlindgren.github.io/StatCompLab
+url: https://finnlindgren.github.io/StatCompLab/
+template:
+  bootstrap: 5
+

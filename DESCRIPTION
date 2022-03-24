@@ -34,6 +34,8 @@ Suggests:
     rsconnect,
     loo
 Config/testthat/edition: 3
-URL: https://finnlindgren.github.io/StatCompLab, https://github.com/finnlindgren/StatCompLab
+URL: https://finnlindgren.github.io/StatCompLab,
+    https://github.com/finnlindgren/StatCompLab,
+    https://finnlindgren.github.io/StatCompLab/
 BugReports: https://github.com/finnlindgren/StatCompLab/issues
 VignetteBuilder: knitr
