@@ -30,7 +30,7 @@ jobs:
 #            pkgdown
       - name: R Dependencies
         run: |
-          Rscript -e 'install.packages("pkgdown")'
+          Rscript -e 'install.packages(c("pkgdown", "remotes"))'
           Rscript -e 'remotes::install_deps(dependencies = TRUE)'
 
       - name: Deploy package
