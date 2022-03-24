@@ -1,7 +1,7 @@
 Package: StatCompLab
 Type: Package
 Title: Workshop Material For UoE Statistical Computing
-Version: 21.9.0
+Version: 21.9.1
 Authors@R: 
     person(given = "Finn",
            family = "Lindgren",
@@ -31,7 +31,8 @@ Imports:
     tidyverse,
     bench
 Suggests:
-    rsconnect
+    rsconnect,
+    loo
 Config/testthat/edition: 3
 URL: https://finnlindgren.github.io/StatCompLab, https://github.com/finnlindgren/StatCompLab
 BugReports: https://github.com/finnlindgren/StatCompLab/issues
