@@ -23,11 +23,15 @@ jobs:
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          dependencies: '"all"'
-          extra-packages: |
-             pkgdown
+#      - uses: r-lib/actions/setup-r-dependencies@v2
+#        with:
+#          dependencies: '"all"'
+#          extra-packages: |
+#            pkgdown
+      - name: R Dependencies
+        run: |
+          Rscript -e 'install.packages("pkgdown")'
+          Rscript -e 'remotes::install_deps(dependencies = TRUE)
 
       - name: Deploy package
         run: |
