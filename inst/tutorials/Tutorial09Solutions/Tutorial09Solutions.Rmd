@@ -136,7 +136,7 @@ leave1out <- function(data, model) {
 }
 ```
 
-```{r leave1out-hint-1}
+```{r leave1out-hint-1,eval=FALSE}
 leave1out <- function(data, model) {
   data <- data %>% mutate(mean = NA_real_, sd = NA_real_)
   for (i in seq_len(nrow(data))) {
@@ -154,7 +154,7 @@ leave1out <- function(data, model) {
 }
 ```
 
-```{r leave1out-hint-2}
+```{r leave1out-hint-2,eval=FALSE}
 leave1out <- function(data, model) {
   data <- data %>% mutate(mean = NA_real_, sd = NA_real_)
   for (i in seq_len(nrow(data))) {
@@ -172,7 +172,7 @@ leave1out <- function(data, model) {
 }
 ```
 
-```{r leave1out-solution}
+```{r leave1out-solution,eval=FALSE}
 leave1out <- function(data, model) {
   data <- data %>% mutate(mean = NA_real_, sd = NA_real_)
   for (i in seq_len(nrow(data))) {
