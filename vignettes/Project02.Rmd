@@ -1,0 +1,257 @@
+---
+title: 'StatComp Project 2 (2021/22): Scottish weather'
+author: "Finn Lindgren"
+output:
+  rmarkdown::html_vignette:
+    number_sections: no
+  pdf_document:
+    number_sections: no
+pkgdown:
+  number_sections: no
+description: 'Statistical Computing (2021/22): Coursework project 2'
+vignette: |
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{StatComp Project 2 (2021/22): Scottish weather}
+  %\VignetteEngine{knitr::rmarkdown}
+in-header:
+  - \newcommand{\bm}[1]{\boldsymbol{#1}}
+  - \newcommand{\wh}[1]{\widehat{#1}}
+  - \newcommand{\ol}[1]{\overline{#1}}
+  - \newcommand{\wt}[1]{\widetilde{#1}}
+  - \newcommand{\mv}[1]{\boldsymbol{#1}}
+  - \newcommand{\proper}[1]{\mathsf{#1}}
+  - \newcommand{\pP}{\proper{P}}
+  - \newcommand{\pE}{\proper{E}}
+  - \newcommand{\pVar}{\proper{Var}}
+  - \newcommand{\pPo}{\proper{Poisson}}
+  - \newcommand{\pN}{\proper{Normal}}
+  - \newcommand{\pBin}{\proper{Bin}}
+  - \newcommand{\pBeta}{\proper{Beta}}
+  - \newcommand{\pGeom}{\proper{Geom}}
+  - \newcommand{\pExp}{\proper{Exp}}
+  - \newcommand{\pGamma}{\proper{Gamma}}
+  - \newcommand{\mmd}{\mathrm{d}}
+  - \newcommand{\md}{\,\mmd}
+---
+
+```{r setup, include=FALSE}
+.tutorial <- FALSE
+.solutions <- FALSE
+begin_sol <- function(sol = .solutions, quiet = FALSE) {
+  if (!sol) {
+    "<!--\n"
+  } else if (quiet) {
+    "\n<hr />\n"
+  } else {
+    "\n<hr />**Solution:**\n"
+  }
+}
+end_sol <- function(sol = .solutions) {
+  if (!sol) {
+    "-->\n"
+  } else {
+    "\n<hr />\n"
+  }
+}
+
+library(StatCompLab)
+if (.tutorial) {
+#  library(learnr)
+#  require(gradethis)
+#  learnr::tutorial_options(
+#    exercise.timelimit = 120,
+#    exercise.checker = grade_learnr,
+#    exercise.startover = TRUE,
+#    exercise.diagnostics = TRUE,
+#    exercise.completion = TRUE
+#    #    exercise.error.check.code = exercise.error.check.code.
+#  )
+}
+library(ggplot2)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  dev = "png",
+  dev.args = list(type = "cairo-png"),
+  fig.width = 6
+)
+
+library(ggplot2)
+theme_set(theme_bw())
+set.seed(1234L)
+```
+
+This document can either be accessed in html form on [https://finnlindgren.github.io/StatCompLab/](https://finnlindgren.github.io/StatCompLab/), as
+a vignette in `StatCompLab` version 21.9.3 or later, with `vignette("Project02", "StatCompLab")`, or in pdf format on Learn.
+
+1. You have been assigned a `project02-username` repository on 
+[https://github.com/StatComp21/](https://github.com/StatComp21/). Use `git` to
+_clone_ the repository (either to your own computer or [https://rstudio.cloud](https://rstudio.cloud).
+2. The repository contains three main template files; modify these, but keep their names:
+  * a template RMarkdown document, `report.Rmd`,
+    that you should expand with your answers and solutions for this project assignment,
+  * a template `analysis.R` for long-running analysis code.
+      The use of the `analysis.R`
+   file is optional, and you should _not_ `source()` it in the `report.Rmd` file;
+   instead, only use it for long running analysis code, following the examples
+   for saving the results, and then reading them back in the `report.Rmd` file.
+  * a template `functions.R` file where you should place function defintions
+    needed by `report.Rmd` and/or `analysis.R`, with associated documentation.
+3. Code that display results (e.g. as tables or figures) must be placed as code chunks in
+  `report.Rmd`.
+4. Code in the template files includes an example for how to save and load results
+   of long-running calculations
+5. Code chunks are included in `report.Rmd` that loads the function definitions
+   from `functions.R` (your own function definitions).
+6. Two appendix code chunks are included that displays the code from `functions.R`
+   and `analysis.R` without running it.
+7. Use the `styler` package Addin for restyling code for better and consistent readability
+works for both `.R` and `.Rmd` files.
+8. As in project 1, use `echo=TRUE` for analysis code chunks, and `echo=FALSE`
+  for table display and plot generating code chunks.
+
+The assignment is submitted by pushing your work to the github repository
+before your submission deadline. Make it a habit to commit&push to github regularly,
+e.g. at least at the end of every coding session.
+
+Make sure you include your name, student number, and github username in both `report.Rmd`,
+`functions.R`, and `analysis.R`.
+When submitting, also include a generated html version of the report,
+with filename `report.html`. Normally, generated images are automatically
+included in the html file itself; otherwise they need to be added to the repository as well.
+
+The submission deadline is Monday 18 April 2022, at 16:00 (Edinburgh time).
+See the Assessment page on Learn for extensions and late submission penalty details.
+
+The project will be marked as a whole, between $0$ and $40$, using the marking
+guide posted on Learn.
+
+\newpage
+
+# Scottish weather data
+
+The Global Historical Climatology Network at <https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily> provides historical weather data collected from all over the globe. A subset of the daily resolution data set is available in the `StatCompLab package` containing data from eight weather stations in Scotland, covering the time period from 1 January 1960 to 31 December 2018. Some of the measurements are missing, either due to instrument problems or data collection issues.
+See `Tutorial07` for an exploratory introduction to the data, and techniques
+for wrangling the data.
+
+Load the data with
+```{r, eval=TRUE,echo=TRUE}
+data(ghcnd_stations, package = "StatCompLab")
+data(ghcnd_values, package = "StatCompLab")
+```
+
+The `ghcnd_stations` data frame has 5 variables:
+
+* `ID`: The identifier code for each station
+* `Name`: The humanly readable station name
+* `Latitude`: The latitude of the station location, in degrees
+* `Longitude`: The longitude of the station location, in degrees
+* `Elevation`: The station elevation, in metres above sea level
+
+The station data set is small enough that you can view the whole thing,
+e.g. with `knitr::kable(ghcnd_stations)`.
+You can try to find some of the locations on a map (google maps an other online map
+systems can usually interpret latitude and longitude searches).
+
+`r begin_sol()`
+```{r, echo=.solutions,eval=.solutions}
+knitr::kable(ghcnd_stations)
+```
+`r end_sol()`
+
+
+The `ghcnd_values` data frame has 7 variables:
+
+* `ID`: The station identifier code for each observation
+* `Year`: The year the value was measured
+* `Month`: The month the value was measured
+* `Day`: The day of the month the value was measured
+* `DecYear`: "Decimal year", the measurement date converted to a fractional value,
+  where whole numbers correspond to 1 January, and fractional values correspond to
+  later dates within the year. This is useful for both plotting and modelling.
+* `Element`: One of "TMIN" (minimum temperature), "TMAX" (maximum temperature), or "PRCP" (precipitation), indicating what each value in the `Value` variable represents 
+* `Value`: Daily measured temperature (in degrees Celsius) or precipitation (in mm)
+
+
+# Climate trends and variability
+
+Note: For this first half of the assignment,
+you can essentially ignore that some of the data is missing; when defining averages,
+just take the average of whatever observations are available in the relevant data subset.
+If you construct averages with `group_by()` and `summarise()` & `mean()`,
+that will essentially happen by itself.
+
+## Is precipitation seasonally varying?
+
+The daily precipitation data is more challening to model than temperature, because
+of the mix of zeros and positive values.  Plot some of the data to show the behaviour,
+e.g. during one of the years, for all the stations.  For temperature, the seasonal
+effects are clear; it's generally colder in the winter than in the summer.
+For precipitation, the seasonal variability is less clear.
+
+Let winter be $\{\text{Jan, Feb, Mar, Oct, Nov Dec}\}$, and let
+ summer be $\{\text{Apr, May, Jun, Jul, Aug, Sep}\}$.  For easier code structure,
+ add this season information to the weather data object.
+
+Construct a Monte Carlo permutation test for the hypotheses
+$$
+\begin{aligned}
+H_0:&\text{The rainfall distribution is the same in winter as in summer} \\
+H_1:&\text{The winter and summer distributions have different expeced values}
+\end{aligned}
+$$
+Use $T=|\text{winter average} - \text{summer average}|$ as test statistic, and 
+compute separate p-values for each weather station, and their respective Monte Carlo standard deviations.
+
+Collect the results into a suitable data structure, present and discuss the results.
+
+
+## How often does it rain?
+
+Using the same technique as for the rainfall amounts, test the hypotheses
+$$
+\begin{aligned}
+H_0:&\text{The daily probability of rainfall is the same in winter as in summer} \\
+H_1:&\text{The daily probability of rainfall is different in winter and in summer}
+\end{aligned}
+$$
+Use $T=|\text{winter empirical nonzero proportion} - \text{summer empirical nonzero proportion}|$ as test statistic.
+
+Collect the results into a suitable data structure, present and discuss the results.
+
+For structured code and reduced computation time,
+consider adapting the previous code to handle both tests
+at the same time; you don't need to keep the code for the two tests separate, and you
+can discuss the results jointly.
+
+
+# Spatial weather prediction
+
+For this second half of the project, you should first construct a version of the data set
+with monthly averaged precipitation values.
+
+## Estimation and prediction
+
+Define and estimate a monthly precipitation model for Scotland.  Use covariates
+such as the spatial coordinates, elevation, and suitable $\cos$ and $\sin$ functions
+to capture seasonal variability. A long term climate trend covariate may also be useful.
+
+Organise your code so that you can easily change the input data
+without having to change the estimation code and predict for new locations and times.
+You'll need to be able to run the
+estimation for different subsets of the data, as well as for manually constructed
+covariate values, e.g. to illustrate prediction at a new location not present in
+the available weather data.
+
+Present and discuss your modelling choices, and the results of the model estimation.
+
+## Assessment
+
+We are interested in how well the model is able to predict precipitation at new locations.
+Construct a stratified cross-validation that groups the data by weather station,
+and computes the prediction scores for each station, as well as the
+overall cross-validated average scores, aggregated to the 12 months of the year.
+
+Present and discuss the results of the score assessments, for both Squared Error
+and Dawid-Sebastiani scores.
+Is the model equally good at predicting the different stations?
+Is the prediction accuracy the same across the whole year?
