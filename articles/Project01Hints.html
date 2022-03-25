@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,7 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2021/22): Simulation and sampling</a>
     <a class="dropdown-item" href="../articles/Project01Hints.html">Project 01 Hints</a>
+    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2 (2021/22): Scottish weather</a>
     <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
     <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
@@ -172,10 +173,10 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          3.96s    3.96s     0.252    2.28GB    13.9 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     539.81ms 539.81ms     1.85     1.49GB    63.0 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         1.86ms   1.93ms   516.     229.67KB     1.99</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.77ms   5.86ms   160.     457.98KB    13.8</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          6.29s    6.29s     0.159    2.28GB     8.42</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better         1.1s     1.1s     0.908    1.49GB    30.9 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.63ms   2.75ms   345.     229.67KB     0   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           7.11ms   7.44ms   125.     457.98KB     9.89</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -191,11 +192,11 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span>
 <span class="co">#&gt;       Name1     Name2      Name3</span>
-<span class="co">#&gt; 1 0.4309502 0.2713389 0.09491371</span>
-<span class="co">#&gt; 2 0.5863994 0.1207877 0.30507358</span>
-<span class="co">#&gt; 3 0.1956938 0.7294573 0.99687350</span>
-<span class="co">#&gt; 4 0.4175793 0.8319102 0.04209943</span>
-<span class="co">#&gt; 5 0.3532332 0.8120630 0.84445378</span></code></pre></div>
+<span class="co">#&gt; 1 0.3328871 0.5853901 0.10071785</span>
+<span class="co">#&gt; 2 0.9443464 0.7058520 0.73986280</span>
+<span class="co">#&gt; 3 0.7003459 0.9335467 0.19616125</span>
+<span class="co">#&gt; 4 0.4708388 0.3625679 0.85293347</span>
+<span class="co">#&gt; 5 0.2336036 0.9468792 0.09674774</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
@@ -209,8 +210,8 @@
     mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
     sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
-<span class="co">#&gt;            mu    sigma</span>
-<span class="co">#&gt; 1 -0.02302229 0.906874</span></code></pre></div>
+<span class="co">#&gt;          mu     sigma</span>
+<span class="co">#&gt; 1 0.2269616 0.9421004</span></code></pre></div>
 <p>But what if we have a function that computes <em>both</em> <code>mu</code> and <code>sigma</code>? If we make it return a data.frame, that can be used with <code>summarise</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
@@ -223,8 +224,8 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
     <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
-<span class="co">#&gt;            mu    sigma</span>
-<span class="co">#&gt; 1 -0.02302229 0.906874</span></code></pre></div>
+<span class="co">#&gt;          mu     sigma</span>
+<span class="co">#&gt; 1 0.2269616 0.9421004</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>
