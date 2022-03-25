@@ -94,7 +94,7 @@ _clone_ the repository (either to your own computer or [https://rstudio.cloud](h
    file is optional, and you should _not_ `source()` it in the `report.Rmd` file;
    instead, only use it for long running analysis code, following the examples
    for saving the results, and then reading them back in the `report.Rmd` file.
-  * a template `functions.R` file where you should place function defintions
+  * a template `functions.R` file where you should place function definitions
     needed by `report.Rmd` and/or `analysis.R`, with associated documentation.
 3. Code that display results (e.g. as tables or figures) must be placed as code chunks in
   `report.Rmd`.
@@ -116,7 +116,7 @@ e.g. at least at the end of every coding session.
 Make sure you include your name, student number, and github username in both `report.Rmd`,
 `functions.R`, and `analysis.R`.
 When submitting, also include a generated html version of the report,
-with filename `report.html`. Normally, generated images are automatically
+with file name `report.html`. Normally, generated images are automatically
 included in the html file itself; otherwise they need to be added to the repository as well.
 
 The submission deadline is Monday 18 April 2022, at 16:00 (Edinburgh time).
@@ -149,7 +149,7 @@ The `ghcnd_stations` data frame has 5 variables:
 
 The station data set is small enough that you can view the whole thing,
 e.g. with `knitr::kable(ghcnd_stations)`.
-You can try to find some of the locations on a map (google maps an other online map
+You can try to find some of the locations on a map (Google maps an other online map
 systems can usually interpret latitude and longitude searches).
 
 `r begin_sol()`
@@ -172,7 +172,7 @@ The `ghcnd_values` data frame has 7 variables:
 * `Value`: Daily measured temperature (in degrees Celsius) or precipitation (in mm)
 
 
-# Climate trends and variability
+# Seasonal variability
 
 Note: For this first half of the assignment,
 you can essentially ignore that some of the data is missing; when defining averages,
@@ -182,7 +182,7 @@ that will essentially happen by itself.
 
 ## Is precipitation seasonally varying?
 
-The daily precipitation data is more challening to model than temperature, because
+The daily precipitation data is more challenging to model than temperature, because
 of the mix of zeros and positive values.  Plot some of the data to show the behaviour,
 e.g. during one of the years, for all the stations.  For temperature, the seasonal
 effects are clear; it's generally colder in the winter than in the summer.
