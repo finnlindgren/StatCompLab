@@ -108,7 +108,7 @@
 <ul>
 <li>a template RMarkdown document, <code>report.Rmd</code>, that you should expand with your answers and solutions for this project assignment,</li>
 <li>a template <code>analysis.R</code> for long-running analysis code. The use of the <code>analysis.R</code> file is optional, and you should <em>not</em> <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> it in the <code>report.Rmd</code> file; instead, only use it for long running analysis code, following the examples for saving the results, and then reading them back in the <code>report.Rmd</code> file.</li>
-<li>a template <code>functions.R</code> file where you should place function defintions needed by <code>report.Rmd</code> and/or <code>analysis.R</code>, with associated documentation.</li>
+<li>a template <code>functions.R</code> file where you should place function definitions needed by <code>report.Rmd</code> and/or <code>analysis.R</code>, with associated documentation.</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li>Code that display results (e.g. as tables or figures) must be placed as code chunks in <code>report.Rmd</code>.</li>
@@ -119,7 +119,7 @@
 <li>As in project 1, use <code>echo=TRUE</code> for analysis code chunks, and <code>echo=FALSE</code> for table display and plot generating code chunks.</li>
 </ol>
 <p>The assignment is submitted by pushing your work to the github repository before your submission deadline. Make it a habit to commit&amp;push to github regularly, e.g. at least at the end of every coding session.</p>
-<p>Make sure you include your name, student number, and github username in both <code>report.Rmd</code>, <code>functions.R</code>, and <code>analysis.R</code>. When submitting, also include a generated html version of the report, with filename <code>report.html</code>. Normally, generated images are automatically included in the html file itself; otherwise they need to be added to the repository as well.</p>
+<p>Make sure you include your name, student number, and github username in both <code>report.Rmd</code>, <code>functions.R</code>, and <code>analysis.R</code>. When submitting, also include a generated html version of the report, with file name <code>report.html</code>. Normally, generated images are automatically included in the html file itself; otherwise they need to be added to the repository as well.</p>
 <p>The submission deadline is Monday 18 April 2022, at 16:00 (Edinburgh time). See the Assessment page on Learn for extensions and late submission penalty details.</p>
 <p>The project will be marked as a whole, between <span class="math inline">\(0\)</span> and <span class="math inline">\(40\)</span>, using the marking guide posted on Learn.</p>
 <div style="page-break-after: always;"></div>
@@ -144,7 +144,7 @@
 <li>
 <code>Elevation</code>: The station elevation, in metres above sea level</li>
 </ul>
-<p>The station data set is small enough that you can view the whole thing, e.g. with <code>knitr::kable(ghcnd_stations)</code>. You can try to find some of the locations on a map (google maps an other online map systems can usually interpret latitude and longitude searches).</p>
+<p>The station data set is small enough that you can view the whole thing, e.g. with <code>knitr::kable(ghcnd_stations)</code>. You can try to find some of the locations on a map (Google maps an other online map systems can usually interpret latitude and longitude searches).</p>
 <!--
 
 
@@ -168,13 +168,13 @@
 </ul>
 </div>
 <div class="section level2">
-<h2 id="climate-trends-and-variability">Climate trends and variability<a class="anchor" aria-label="anchor" href="#climate-trends-and-variability"></a>
+<h2 id="seasonal-variability">Seasonal variability<a class="anchor" aria-label="anchor" href="#seasonal-variability"></a>
 </h2>
 <p>Note: For this first half of the assignment, you can essentially ignore that some of the data is missing; when defining averages, just take the average of whatever observations are available in the relevant data subset. If you construct averages with <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise()</a></code> &amp; <code><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean()</a></code>, that will essentially happen by itself.</p>
 <div class="section level3">
 <h3 id="is-precipitation-seasonally-varying">Is precipitation seasonally varying?<a class="anchor" aria-label="anchor" href="#is-precipitation-seasonally-varying"></a>
 </h3>
-<p>The daily precipitation data is more challening to model than temperature, because of the mix of zeros and positive values. Plot some of the data to show the behaviour, e.g. during one of the years, for all the stations. For temperature, the seasonal effects are clear; it’s generally colder in the winter than in the summer. For precipitation, the seasonal variability is less clear.</p>
+<p>The daily precipitation data is more challenging to model than temperature, because of the mix of zeros and positive values. Plot some of the data to show the behaviour, e.g. during one of the years, for all the stations. For temperature, the seasonal effects are clear; it’s generally colder in the winter than in the summer. For precipitation, the seasonal variability is less clear.</p>
 <p>Let winter be <span class="math inline">\(\{\text{Jan, Feb, Mar, Oct, Nov Dec}\}\)</span>, and let summer be <span class="math inline">\(\{\text{Apr, May, Jun, Jul, Aug, Sep}\}\)</span>. For easier code structure, add this season information to the weather data object.</p>
 <p>Construct a Monte Carlo permutation test for the hypotheses <span class="math display">\[
 \begin{aligned}
