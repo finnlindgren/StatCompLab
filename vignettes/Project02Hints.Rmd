@@ -8,8 +8,8 @@ output:
   pdf_document:
     toc: true
 vignette: |
-  %\VignetteIndexEntry{StatComp Project 2 (2021/22): Hints}
   %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{StatComp Project 2 (2021/22): Hints}
   %\VignetteEngine{knitr::rmarkdown}
 in-header:
   - \newcommand{\bm}[1]{\boldsymbol{#1}}
@@ -24,6 +24,7 @@ in-header:
   - \newcommand{\pPo}{\proper{Poisson}}
   - \newcommand{\pN}{\proper{Normal}}
   - \newcommand{\pBin}{\proper{Bin}}
+  - \newcommand{\pUnif}{\proper{Unif}}
   - \newcommand{\pBeta}{\proper{Beta}}
   - \newcommand{\pGeom}{\proper{Geom}}
   - \newcommand{\pExp}{\proper{Exp}}
@@ -117,6 +118,19 @@ so we can safely use the
 $N$ that's required to bound the Normal approximation interval width and still
 fulfill the interval width criterion for the $x=0$ interval construction.
 
+
+## Bayesian credible interval construction
+
+An alternative approach is to construct a Bayesian credible interval for $p$.
+Let $p\sim\pUnif(0,1)$ a priori. The posterior density for $p$ given $x$ is
+then proportional to
+$$
+\pP(X=x|p) = {N \choose x} p^x(1-p)^{N-x},
+$$
+which shows that the posterior distribution for $p$ is $\pBeta(1+x, 1+N-x)$, and
+a credible interval is provided by the $0.025$ and $0.975$ quantiles. In R,
+`qbeta(c(0.025, 0.975), shape1 = 1 + x, shape2 = 1 + N - x)`.
+This construction works for all $N\geq 1$ and all $0\leq x \leq N$.
 
 
 # Prediction standard deviations
