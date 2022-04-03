@@ -1,0 +1,180 @@
+---
+title: "StatComp Project 2 (2021/22): Hints"
+author: "Finn Lindgren"
+date: "2022-04-03"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+  pdf_document:
+    toc: true
+vignette: |
+  %\VignetteIndexEntry{StatComp Project 2 (2021/22): Hints}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+in-header:
+  - \newcommand{\bm}[1]{\boldsymbol{#1}}
+  - \newcommand{\wh}[1]{\widehat{#1}}
+  - \newcommand{\ol}[1]{\overline{#1}}
+  - \newcommand{\wt}[1]{\widetilde{#1}}
+  - \newcommand{\mv}[1]{\boldsymbol{#1}}
+  - \newcommand{\proper}[1]{\mathsf{#1}}
+  - \newcommand{\pP}{\proper{P}}
+  - \newcommand{\pE}{\proper{E}}
+  - \newcommand{\pVar}{\proper{Var}}
+  - \newcommand{\pPo}{\proper{Poisson}}
+  - \newcommand{\pN}{\proper{Normal}}
+  - \newcommand{\pBin}{\proper{Bin}}
+  - \newcommand{\pBeta}{\proper{Beta}}
+  - \newcommand{\pGeom}{\proper{Geom}}
+  - \newcommand{\pExp}{\proper{Exp}}
+  - \newcommand{\pGamma}{\proper{Gamma}}
+  - \newcommand{\mmd}{\mathrm{d}}
+  - \newcommand{\md}{\,\mmd}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+# Monte Carlo standard errors and confidence intervals
+
+In plain Monte Carlo estimation of an expectation value, we can usually construct
+approximate confidence intervals by estimating the standard deviation of the estimator
+and construct an interval based on a Normal distribution for the estimator.
+However, this breaks down in some cases. For example, when using a randomisation
+test to estimate a p-value, the Normal approximation only works if the p-value
+$p$ or the number of samples $N$ are large enough, so that we actually observe
+non-zero counts.  Fortunately, if we observe zero counts, we can construct a
+confidence interval using an exact method instead of relying on the Normal approximation.
+
+## Monte Carlo randomisation test variability
+
+Let $p$ be the unknown p-value, and $X\sim\pBin(N,p)$ be the random variable for
+how many times we observe a randomised test statistic as extreme as or more
+extreme than the observed test statistic.  We observe $X=x$ and estimate the p-value with
+$\wh{p}=x/N$. Then
+$$
+\begin{aligned}
+\pE(X) &= N p, \\
+\pVar(X) &= N p (1 - p), \\
+\pE(\wh{p}) &= p, \\
+\pVar(\wh{p}) &= \frac{p(1-p)}{N} .
+\end{aligned}
+$$
+We see that the variance decreases towards $0$ when $p\rightarrow 0$.  We can control the
+expectation of the absolute error. Due to Jensen's inequality (you may or may not have heard of that!) $\pE(|\wh{p}-p|)\leq\sqrt{\pE[|\wh{p}-p|^2]}=\sqrt{\pVar(\wh{p})}\leq\frac{1}{2\sqrt{N}}$, where the last step
+uses that the variance is maximised for $p=1/2$. Thus, to guarantee $\pE(|\wh{p}-p|)\leq \epsilon$ for some $\epsilon>0$, we can choose $N \geq \frac{1}{4 \epsilon^2}$.
+
+The relative error has variance $\pVar\left[\frac{\wh{p}-p}{p}\right]=\frac{1-p}{Np}$ which
+goes to $\infty$ when $p\rightarrow 0$, so we cannot control the relative error
+uniformly for all $p$ by increasing $N$.  We therefore need to be careful when
+assessing results for small values of $p$.
+
+## Normal approximation
+
+When $x>0$, a basic approximate 95% confidence interval for $p$ is given by
+$$
+CI_p = \wh{p} \pm z_{0.975} \sqrt{\frac{\wh{p} (1-\wh{p})}{N}}
+= \frac{x}{N} \pm z_{0.975} \sqrt{\frac{x (N-x)}{N^3}} .
+$$
+With the approximation $z_{0.975}\approx 2$, we can limit the interval
+width with $4\sqrt{\frac{1}{4N}}\leq \epsilon$ by taking $N\geq \frac{4}{\epsilon^2}$.
+For $\epsilon=0.02$, we get $N\geq 10,000$.
+
+## Exact interval for $x=0$
+
+When the observed count is $x=0$, we can go back to the definition of a confidence interval
+and how we can construct confidence intervals by "inverting a test"; the interval
+is taken to be the set for which the corresponding null hypothesis is not rejected.
+
+Imagine that we reject the hypothesis $H_0:p=p_0$ for some $p_0$ if
+$\pP_X(X \leq x \mid p_0) < 0.025$ or $\pP_X(X \geq x \mid p_0) < 0.025$ (to
+nominally give equal tail error probability).
+When $x=0$, the second probability is equal to $1$, so
+that condition is never used.  The test is therefore only rejected when
+$\pP_X(X = 0 \mid p_0) < 0.025$.  We solve for $p_0$:
+$$
+\begin{aligned}
+\pP_X(X = 0 \mid p_0) = (1-p_0)^N &< 0.025 \\
+1-p_0 < 0.025^{1/N} \\
+p_0 > 1 - 0.025^{1/N} .
+\end{aligned}
+$$
+The set of $p_0$ values for which the test is _not_ rejected is
+$p_0 \leq 1-0.025^{1/N}$, so when $x=0$ we can define the confidence interval
+for $p$ as
+$$
+CI_p = (0, 1-0.025^{1/N}) .
+$$
+To limit the width of such confidence intervals to at most some $\epsilon$, we
+need $1-0.025^{1/N}\leq \epsilon$, and $N\geq \frac{\log(0.025)}{\log(1-\epsilon)}$.
+This grows much more slowly than $\frac{4}{\epsilon^2}$ when $\epsilon\rightarrow 0$,
+so we can safely use the
+$N$ that's required to bound the Normal approximation interval width and still
+fulfill the interval width criterion for the $x=0$ interval construction.
+
+
+
+# Prediction standard deviations
+
+The `predict()` function can provide prediction standard errors for the linear predictor,
+with `se.fit`, but those are only half the story when predicting new data.
+The standard errors only include the uncertainty information about the linear
+predictor curve. For full prediction uncertainty,
+we need to take the observation variation into account, which `lm()` estimated
+via the variance of the residuals. Since the residuals for new observations is assumed to be conditionally independent of the predictor curve, the prediction variance
+can be estimated as the
+sum of the square of the prediction standard error and the residual variance,
+if the degrees of freedom is large.
+For the help text for `lm()` we see that when `se.fit=TRUE`, the output list
+contains the elements
+
+* `fit`: vector or matrix (depending on the `interval` argument)
+* `se.fit`: standard error of predicted means
+* `residual.scale`: residual standard deviations
+* `df`: degrees of freedom for residual
+
+
+```{r}
+# When creating a tibble, the construct can use variables defined
+# first in the later variables; here we use x when constructing y:
+df <- tibble(x = rnorm(10),
+             y = 2 + x + rnorm(10, sd = 0.1))
+# Estimate a model:
+fit <- lm(y ~ x, data = df)
+# Compute prediction mean and standard deviations and add to df_pred:
+df_pred <- data.frame(x = seq(-2, 2, length.out = 100))
+pred <- predict(fit, newdata = df_pred, se.fit = TRUE)
+df_pred <- df_pred %>%
+  mutate(mean = pred$fit,
+         se.fit = pred$se.fit,
+         sd = sqrt(pred$se.fit^2 + pred$residual.scale^2))
+ggplot(df_pred) +
+  geom_line(aes(x, se.fit, colour = "se.fit")) +
+  geom_line(aes(x, sd, colour = "sd")) +
+  ylab("Std. deviations")
+```
+
+If we also ask for prediction intervals, we need to modify the code a bit.
+From comparing the interval width results from `predict()` with those from an interval
+assuming t-distributions, we see that they are identical up to floating point accuracy.
+
+```{r}
+# Compute prediction mean and standard deviations and add to df_pred:
+df_pred <- data.frame(x = seq(-2, 2, length.out = 100))
+pred <- predict(fit, newdata = df_pred, se.fit = TRUE, interval = "prediction")
+df_pred <- df_pred %>%
+  mutate(mean = pred$fit[, "fit"],
+         lwr = pred$fit[, "lwr"],
+         upr = pred$fit[, "upr"],
+         se.fit = pred$se.fit,
+         sd = sqrt(pred$se.fit^2 + pred$residual.scale^2))
+ggplot(df_pred) +
+  geom_line(aes(x, upr - lwr - (qt(0.975, pred$df) - qt(0.025, pred$df)) * sd)) +
+  ylab("Interval width difference") +
+  xlab("x")
+```

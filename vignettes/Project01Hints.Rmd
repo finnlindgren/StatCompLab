@@ -1,5 +1,5 @@
 ---
-title: "Project 01 Hints"
+title: "StatComp Project 1 (2021/22): Hints"
 author: "Finn Lindgren"
 date: "2022-02-11"
 output:
@@ -8,7 +8,7 @@ output:
   pdf_document:
     toc: true
 vignette: |
-  %\VignetteIndexEntry{Project 01 Hints}
+  %\VignetteIndexEntry{StatComp Project 1 (2021/22): Hints}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 ---
