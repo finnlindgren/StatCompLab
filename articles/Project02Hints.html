@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -140,6 +140,13 @@ p_0 &gt; 1 - 0.025^{1/N} .
 \]</span> The set of <span class="math inline">\(p_0\)</span> values for which the test is <em>not</em> rejected is <span class="math inline">\(p_0 \leq 1-0.025^{1/N}\)</span>, so when <span class="math inline">\(x=0\)</span> we can define the confidence interval for <span class="math inline">\(p\)</span> as <span class="math display">\[
 CI_p = (0, 1-0.025^{1/N}) .
 \]</span> To limit the width of such confidence intervals to at most some <span class="math inline">\(\epsilon\)</span>, we need <span class="math inline">\(1-0.025^{1/N}\leq \epsilon\)</span>, and <span class="math inline">\(N\geq \frac{\log(0.025)}{\log(1-\epsilon)}\)</span>. This grows much more slowly than <span class="math inline">\(\frac{4}{\epsilon^2}\)</span> when <span class="math inline">\(\epsilon\rightarrow 0\)</span>, so we can safely use the <span class="math inline">\(N\)</span> that’s required to bound the Normal approximation interval width and still fulfill the interval width criterion for the <span class="math inline">\(x=0\)</span> interval construction.</p>
+</div>
+<div class="section level3">
+<h3 id="bayesian-credible-interval-construction">Bayesian credible interval construction<a class="anchor" aria-label="anchor" href="#bayesian-credible-interval-construction"></a>
+</h3>
+<p>An alternative approach is to construct a Bayesian credible interval for <span class="math inline">\(p\)</span>. Let <span class="math inline">\(p\sim\mathsf{Unif}(0,1)\)</span> a priori. The posterior density for <span class="math inline">\(p\)</span> given <span class="math inline">\(x\)</span> is then proportional to <span class="math display">\[
+\mathsf{P}(X=x|p) = {N \choose x} p^x(1-p)^{N-x},
+\]</span> which shows that the posterior distribution for <span class="math inline">\(p\)</span> is <span class="math inline">\(\mathsf{Beta}(1+x, 1+N-x)\)</span>, and a credible interval is provided by the <span class="math inline">\(0.025\)</span> and <span class="math inline">\(0.975\)</span> quantiles. In R, <code>qbeta(c(0.025, 0.975), shape1 = 1 + x, shape2 = 1 + N - x)</code>. This construction works for all <span class="math inline">\(N\geq 1\)</span> and all <span class="math inline">\(0\leq x \leq N\)</span>.</p>
 </div>
 </div>
 <div class="section level2">
