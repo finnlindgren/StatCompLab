@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,8 +42,9 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2021/22): Simulation and sampling</a>
-    <a class="dropdown-item" href="../articles/Project01Hints.html">Project 01 Hints</a>
+    <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2021/22): Hints</a>
     <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2 (2021/22): Scottish weather</a>
+    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2021/22): Hints</a>
     <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
     <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
@@ -162,18 +163,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">75ms</td>
-<td align="right">13.24005</td>
+<td align="right">73.2ms</td>
+<td align="right">13.60511</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
-<td align="right">22.8ms</td>
-<td align="right">43.49213</td>
+<td align="right">22.7ms</td>
+<td align="right">44.23125</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">21.9ms</td>
-<td align="right">45.77642</td>
+<td align="right">22.7ms</td>
+<td align="right">45.13026</td>
 </tr>
 </tbody>
 </table>
@@ -217,18 +218,18 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">713.94ms</td>
-<td align="right">1.400681</td>
+<td align="right">635.86ms</td>
+<td align="right">1.572675</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">709.88ms</td>
-<td align="right">1.408678</td>
+<td align="right">657.43ms</td>
+<td align="right">1.521075</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">2.44ms</td>
-<td align="right">409.589104</td>
+<td align="right">2.03ms</td>
+<td align="right">480.968586</td>
 </tr>
 </tbody>
 </table>
@@ -257,13 +258,13 @@ solutions explicitly, to make it easier to review the material after the worksho
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">949ms</td>
-<td align="right">1.053407</td>
+<td align="right">836ms</td>
+<td align="right">1.195821</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">282ms</td>
-<td align="right">3.550760</td>
+<td align="right">231ms</td>
+<td align="right">4.322379</td>
 </tr>
 </tbody>
 </table>
