@@ -188,7 +188,7 @@ e.g. during one of the years, for all the stations.  For temperature, the season
 effects are clear; it's generally colder in the winter than in the summer.
 For precipitation, the seasonal variability is less clear.
 
-Let winter be $\{\text{Jan, Feb, Mar, Oct, Nov Dec}\}$, and let
+Let winter be $\{\text{Jan, Feb, Mar, Oct, Nov, Dec}\}$, and let
  summer be $\{\text{Apr, May, Jun, Jul, Aug, Sep}\}$.  For easier code structure,
  add this season information to the weather data object.
 
