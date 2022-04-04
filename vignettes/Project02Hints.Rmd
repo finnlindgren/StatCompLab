@@ -192,3 +192,13 @@ ggplot(df_pred) +
   ylab("Interval width difference") +
   xlab("x")
 ```
+
+# Handling non-Gaussian precipitation
+
+While the assessment methods requested in the project description are valid for non-Gaussian
+predictions, the non-Gaussianity of the precipitation data is still very noticeable
+on the monthly average scale.  An effect of this is that the constant variance
+assumption of a basic `lm()` model isn't a good fit to the data.  To improve
+this, you can take the square root of the monthly averages before applying
+the modelling in part 2.  You may also do all the model and prediction assessment
+on this square-root version of the data.

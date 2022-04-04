@@ -1,7 +1,7 @@
 Package: StatCompLab
 Type: Package
 Title: Workshop Material For UoE Statistical Computing
-Version: 21.9.5
+Version: 21.9.6
 Authors@R: 
     person(given = "Finn",
            family = "Lindgren",
