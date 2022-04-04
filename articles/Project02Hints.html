@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -198,6 +198,11 @@ CI_p = (0, 1-0.025^{1/N}) .
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Interval width difference"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"x"</span><span class="op">)</span></code></pre></div>
 <p><img src="Project02Hints_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="handling-non-gaussian-precipitation">Handling non-Gaussian precipitation<a class="anchor" aria-label="anchor" href="#handling-non-gaussian-precipitation"></a>
+</h2>
+<p>While the assessment methods requested in the project description are valid for non-Gaussian predictions, the non-Gaussianity of the precipitation data is still very noticeable on the monthly average scale. An effect of this is that the constant variance assumption of a basic <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> model isn’t a good fit to the data. To improve this, you can take the square root of the monthly averages before applying the modelling in part 2. You may also do all the model and prediction assessment on this square-root version of the data.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
