@@ -196,7 +196,7 @@ Construct a Monte Carlo permutation test for the hypotheses
 $$
 \begin{aligned}
 H_0:&\text{The rainfall distribution is the same in winter as in summer} \\
-H_1:&\text{The winter and summer distributions have different expeced values}
+H_1:&\text{The winter and summer distributions have different expected values}
 \end{aligned}
 $$
 Use $T=|\text{winter average} - \text{summer average}|$ as test statistic, and 
