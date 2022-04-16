@@ -397,7 +397,7 @@ would be formatted as $\theta_3+x_i\theta_4$.
 
 ### Data wrangling
 
-To help \code{ggplot} produce proper figure labels, we can use data wrangling methods from a set of R packages commonly referred to as the `tidyverse`. The idea is to convert our data frame that has each type of output as separate data columns into a format where the values of the true and estimated expectations and standard deviations are stored in a single column, and other, new columns encode what each row contains.
+To help `ggplot` produce proper figure labels, we can use data wrangling methods from a set of R packages commonly referred to as the `tidyverse`. The idea is to convert our data frame that has each type of output as separate data columns into a format where the values of the true and estimated expectations and standard deviations are stored in a single column, and other, new columns encode what each row contains.
 ```{r, eval=TRUE,echo=TRUE}
 suppressPackageStartupMessages(library(tidyverse))
 data_long <-

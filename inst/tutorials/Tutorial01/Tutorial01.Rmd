@@ -59,7 +59,7 @@ In this lab session you'll gradually develop R code for estimating multiple line
 2. In `rstudio.cloud`, go to the "Statistical Computing" Workspace (in the left side menu)
 3. Create a new project. Click on the project name at the top of the window to rename it to a descriptive name, for example `Lab01`.
 4. In the project `Console` window, run `devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)`
-5. Go to the Learn page and open the \code{Lecture01.pdf} lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.
+5. Go to the Learn page and open the `Lecture01.pdf` lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.
 
 ### Alternative local computer RStudio installation
 
@@ -71,7 +71,7 @@ Make sure you choose a location where no part of the path contains any blank spa
 Next time you want to work on the course files, use
 `File`$\rightarrow$`Open Project` instead (or, if your system has linked `.Rproj` files to RStudio, you can open RStudio by opening the `.Rproj` file in the project folder)
 4. In the RStudio `Console` window, run `devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)`
-4. Go to the Learn page and open the \code{Lecture01.pdf} lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.
+4. Go to the Learn page and open the `Lecture01.pdf` lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.
 
 ### Some useful menu options, buttons, and keyboard shortcuts:
 
@@ -163,7 +163,7 @@ See `?aes` for some more information about the parameters controlling the _aesth
 
 ### Estimate the model
 
-Use the `lm()` function to estimate the model and save the estimated model in a variable called \code{mod}.
+Use the `lm()` function to estimate the model and save the estimated model in a variable called `mod`.
 ```{r, echo=TRUE}
 mod <- lm(y ~ z, data)
 ```

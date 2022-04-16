@@ -154,3 +154,16 @@ convert_tutorial_rmd <- function(input_filename) {
   convert_rmd(input_filename, type = "vignette", solutions = FALSE)
   convert_rmd(input_filename, type = "vignette", solutions = TRUE)
 }
+
+
+make_pdfs <- function() {
+  path <- "vignette_pdfs"
+  if (!dir.exists(path)) {
+    dir.create(path)
+  }
+  for (file in list.files("vignettes", "*.Rmd", full.names = FALSE)) {
+    rmarkdown::render(input = file.path("vignettes", file),
+                      output_format = "pdf_document",
+                      output_dir = path)
+  }
+}
