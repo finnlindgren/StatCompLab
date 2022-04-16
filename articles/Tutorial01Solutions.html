@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,7 +114,7 @@
 <li>Create a new project. Click on the project name at the top of the window to rename it to a descriptive name, for example <code>Lab01</code>.</li>
 <li>In the project <code>Console</code> window, run <code>devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)</code>
 </li>
-<li>Go to the Learn page and open the  lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.</li>
+<li>Go to the Learn page and open the <code>Lecture01.pdf</code> lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.</li>
 </ol>
 </div>
 <div class="section level3">
@@ -126,7 +126,7 @@
 <li>Next time you want to work on the course files, use <code>File</code><span class="math inline">\(\rightarrow\)</span><code>Open Project</code> instead (or, if your system has linked <code>.Rproj</code> files to RStudio, you can open RStudio by opening the <code>.Rproj</code> file in the project folder)</li>
 <li>In the RStudio <code>Console</code> window, run <code>devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)</code>
 </li>
-<li>Go to the Learn page and open the  lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.</li>
+<li>Go to the Learn page and open the <code>Lecture01.pdf</code> lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.</li>
 </ol>
 </div>
 <div class="section level3">
@@ -194,7 +194,7 @@ y_i &amp;= \beta_0 + z_i \beta_z + e_i ,
 <div class="section level3">
 <h3 id="estimate-the-model">Estimate the model<a class="anchor" aria-label="anchor" href="#estimate-the-model"></a>
 </h3>
-<p>Use the <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> function to estimate the model and save the estimated model in a variable called .</p>
+<p>Use the <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> function to estimate the model and save the estimated model in a variable called <code>mod</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">z</span>, <span class="va">data</span><span class="op">)</span></code></pre></div>
 </div>
