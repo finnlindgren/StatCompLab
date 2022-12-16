@@ -518,3 +518,4 @@ Look at the help text for `seq_along()`! Storing the plot as an object, `pl`, an
 
 Does the information displayed in the plots match your intuition about the different models?
 
+
