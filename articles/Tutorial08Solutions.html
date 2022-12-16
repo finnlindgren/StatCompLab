@@ -190,18 +190,18 @@ table.</p>
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">52.44ms</td>
-<td align="right">18.91564</td>
+<td align="right">52.91ms</td>
+<td align="right">18.97762</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
-<td align="right">9.9ms</td>
-<td align="right">100.61006</td>
+<td align="right">9.33ms</td>
+<td align="right">106.67918</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">9.29ms</td>
-<td align="right">107.83725</td>
+<td align="right">8.84ms</td>
+<td align="right">112.77057</td>
 </tr>
 </tbody>
 </table>
@@ -251,18 +251,18 @@ important. Define these new variables:</p>
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">20.6ms</td>
-<td align="right">48.32608</td>
+<td align="right">19.77ms</td>
+<td align="right">50.17578</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">20.5ms</td>
-<td align="right">48.42032</td>
+<td align="right">20.11ms</td>
+<td align="right">49.96845</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">1.23ms</td>
-<td align="right">805.20160</td>
+<td align="right">1.19ms</td>
+<td align="right">834.60348</td>
 </tr>
 </tbody>
 </table>
@@ -299,13 +299,13 @@ and one can likely express bounds for them in terms of
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">42ms</td>
-<td align="right">23.28423</td>
+<td align="right">40.7ms</td>
+<td align="right">24.24601</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">16.3ms</td>
-<td align="right">61.30697</td>
+<td align="right">15.9ms</td>
+<td align="right">62.74410</td>
 </tr>
 </tbody>
 </table>

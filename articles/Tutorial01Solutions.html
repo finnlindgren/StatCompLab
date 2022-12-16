@@ -108,28 +108,21 @@ anything, but you should keep your code script file for later use.</p>
 <div class="section level2">
 <h2 id="startup">Startup<a class="anchor" aria-label="anchor" href="#startup"></a>
 </h2>
+<!--
+### Regular startup on rstudio.cloud
+
+1. If you haven't already done so, go to the Technical Setup page on Learn
+  and either follow the links to sign up to [rstudio.cloud](https://rstudio.cloud),
+  or install R version 4.1.2 and RStudio on your computer.
+2. In `rstudio.cloud`, go to the "Statistical Computing" Workspace (in the left side menu)
+3. Create a new project. Click on the project name at the top of the window to rename it to a descriptive name, for example `Lab01`.
+4. In the project `Console` window, run `devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)`
+5. Go to the Learn page and open the `Lecture01.pdf` lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.
+
+### Alternative local computer RStudio installation 
+-->
 <div class="section level3">
-<h3 id="regular-startup-on-rstudio-cloud">Regular startup on rstudio.cloud<a class="anchor" aria-label="anchor" href="#regular-startup-on-rstudio-cloud"></a>
-</h3>
-<ol style="list-style-type: decimal">
-<li>If you haven’t already done so, go to the Technical Setup page on
-Learn and either follow the links to sign up to <a href="https://rstudio.cloud" class="external-link">rstudio.cloud</a>, or install R version
-4.1.2 and RStudio on your computer.</li>
-<li>In <code>rstudio.cloud</code>, go to the “Statistical Computing”
-Workspace (in the left side menu)</li>
-<li>Create a new project. Click on the project name at the top of the
-window to rename it to a descriptive name, for example
-<code>Lab01</code>.</li>
-<li>In the project <code>Console</code> window, run
-<code>devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)</code>
-</li>
-<li>Go to the Learn page and open the <code>Lecture01.pdf</code> lecture
-slides so you can refer to them easily during the lab. Read through the
-pages on formulas and functions before you continue with the lab.</li>
-</ol>
-</div>
-<div class="section level3">
-<h3 id="alternative-local-computer-rstudio-installation">Alternative local computer RStudio installation<a class="anchor" aria-label="anchor" href="#alternative-local-computer-rstudio-installation"></a>
+<h3 id="local-computer-rstudio-installation">Local computer RStudio installation<a class="anchor" aria-label="anchor" href="#local-computer-rstudio-installation"></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>If you’ve followed the links on the Learn page about technical setup
@@ -200,16 +193,19 @@ choosing e.g. <code>Style active file</code>.</p></li>
 (e.g. <code>lab_1_code.R</code>)</li>
 </ol>
 <p>During the lab, remember to save the script file regularly, to avoid
-losing any work (on both rstudio.cloud and regular RStudio, unsaved
-changes may still be remembered by the system, but it is much safer to
-explicitly save the files, and this will also be essential when we start
-<code>git</code> for version control).</p>
+losing any work (<!--on both rstudio.cloud and regular RStudio,-->
+unsaved changes may still be remembered by the system, but it is much
+safer to explicitly save the
+files<!--, and this will also be essential when we start `git` for version control-->).</p>
 <p>There are several ways to view this tutorial document; either on the
 <a href="https://finnlindgren.github.io/StatCompLab/articles/">StatCompLab
 webpage</a>, by running
 <code>learnr::run_tutorial("Tutorial01", package = "StatCompLab")</code>
 in RStudio, or
-<code><a href="../articles/Tutorial01.html">vignette("Tutorial01", package = "StatCompLab")</a></code></p>
+<code><a href="../articles/Tutorial01.html">vignette("Tutorial01", package = "StatCompLab")</a></code>. (Note: the
+<code>run_tutorial</code> option contains some additional interactive
+questions and exercises that are not supported by the other two
+methods.)</p>
 </div>
 </div>
 <div class="section level2">
