@@ -8,10 +8,10 @@
 <meta name="description" content="Statistical Computing: Lab tutorial 1">
 <title>Tutorial 01: R and linear models • StatCompLab</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial 01: R and linear models">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial 01: R and linear models">
 <meta property="og:description" content="Statistical Computing: Lab tutorial 1">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">22.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,9 +90,10 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Tutorial 01: R and linear models</h1>
-                        <h4 data-toc-skip class="author">Finn Lindgren</h4>
+                        <h4 data-toc-skip class="author">Finn
+Lindgren</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/Tutorial01.Rmd" class="external-link"><code>vignettes/Tutorial01.Rmd</code></a></small>
@@ -101,32 +102,49 @@
 
     
     
-<p>In this lab session you’ll gradually develop R code for estimating multiple linear models, and plotting the results. You will not hand in anything, but you should keep your code script file for later use.</p>
+<p>In this lab session you’ll gradually develop R code for estimating
+multiple linear models, and plotting the results. You will not hand in
+anything, but you should keep your code script file for later use.</p>
 <div class="section level2">
 <h2 id="startup">Startup<a class="anchor" aria-label="anchor" href="#startup"></a>
 </h2>
+<!--
+### Regular startup on rstudio.cloud
+
+1. If you haven't already done so, go to the Technical Setup page on Learn
+  and either follow the links to sign up to [rstudio.cloud](https://rstudio.cloud),
+  or install R version 4.1.2 and RStudio on your computer.
+2. In `rstudio.cloud`, go to the "Statistical Computing" Workspace (in the left side menu)
+3. Create a new project. Click on the project name at the top of the window to rename it to a descriptive name, for example `Lab01`.
+4. In the project `Console` window, run `devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)`
+5. Go to the Learn page and open the `Lecture01.pdf` lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.
+
+### Alternative local computer RStudio installation 
+-->
 <div class="section level3">
-<h3 id="regular-startup-on-rstudio-cloud">Regular startup on rstudio.cloud<a class="anchor" aria-label="anchor" href="#regular-startup-on-rstudio-cloud"></a>
+<h3 id="local-computer-rstudio-installation">Local computer RStudio installation<a class="anchor" aria-label="anchor" href="#local-computer-rstudio-installation"></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li>If you haven’t already done so, go to the Technical Setup page on Learn and either follow the links to sign up to <a href="https://rstudio.cloud" class="external-link">rstudio.cloud</a>, or install R version 4.1.2 and RStudio on your computer.</li>
-<li>In <code>rstudio.cloud</code>, go to the “Statistical Computing” Workspace (in the left side menu)</li>
-<li>Create a new project. Click on the project name at the top of the window to rename it to a descriptive name, for example <code>Lab01</code>.</li>
-<li>In the project <code>Console</code> window, run <code>devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)</code>
+<li>If you’ve followed the links on the Learn page about technical setup
+and installed R and RStudio, you have the option of running RStudio on
+your own computer.</li>
+<li>Choose a folder/location on your file system in which to store your
+course files, and in RStudio, create a new Project
+(<code>File</code><span class="math inline">\(\rightarrow\)</span><code>New Project</code><span class="math inline">\(\rightarrow\)</span><code>New Directory</code><span class="math inline">\(\rightarrow\)</span><code>New Project</code>) Make
+sure you choose a location where no part of the path contains any blank
+spaces, since that can sometimes cause problems. Name the folder
+<code>Lab01</code>, for example.</li>
+<li>Next time you want to work on the course files, use
+<code>File</code><span class="math inline">\(\rightarrow\)</span><code>Open Project</code>
+instead (or, if your system has linked <code>.Rproj</code> files to
+RStudio, you can open RStudio by opening the <code>.Rproj</code> file in
+the project folder)</li>
+<li>In the RStudio <code>Console</code> window, run
+<code>devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)</code>
 </li>
-<li>Go to the Learn page and open the <code>Lecture01.pdf</code> lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.</li>
-</ol>
-</div>
-<div class="section level3">
-<h3 id="alternative-local-computer-rstudio-installation">Alternative local computer RStudio installation<a class="anchor" aria-label="anchor" href="#alternative-local-computer-rstudio-installation"></a>
-</h3>
-<ol style="list-style-type: decimal">
-<li>If you’ve followed the links on the Learn page about technical setup and installed R and RStudio, you have the option of running RStudio on your own computer.</li>
-<li>Choose a folder/location on your file system in which to store your course files, and in RStudio, create a new Project (<code>File</code><span class="math inline">\(\rightarrow\)</span><code>New Project</code><span class="math inline">\(\rightarrow\)</span><code>New Directory</code><span class="math inline">\(\rightarrow\)</span><code>New Project</code>) Make sure you choose a location where no part of the path contains any blank spaces, since that can sometimes cause problems. Name the folder <code>Lab01</code>, for example.</li>
-<li>Next time you want to work on the course files, use <code>File</code><span class="math inline">\(\rightarrow\)</span><code>Open Project</code> instead (or, if your system has linked <code>.Rproj</code> files to RStudio, you can open RStudio by opening the <code>.Rproj</code> file in the project folder)</li>
-<li>In the RStudio <code>Console</code> window, run <code>devtools::install_github("finnlindgren/StatCompLab", dependencies = TRUE)</code>
-</li>
-<li>Go to the Learn page and open the <code>Lecture01.pdf</code> lecture slides so you can refer to them easily during the lab. Read through the pages on formulas and functions before you continue with the lab.</li>
+<li>Go to the Learn page and open the <code>Lecture01.pdf</code> lecture
+slides so you can refer to them easily during the lab. Read through the
+pages on formulas and functions before you continue with the lab.</li>
 </ol>
 </div>
 <div class="section level3">
@@ -135,19 +153,33 @@
 <ul>
 <li>
 <p>Configuring code syntax diagnostics:</p>
-<p><code>Tools</code> <span class="math inline">\(\rightarrow\)</span> <code>Global Options</code> <span class="math inline">\(\rightarrow\)</span> <code>Code</code> <span class="math inline">\(\rightarrow\)</span> <code>Diagnostics</code></p>
-<p>This allows you to turn on margin notes that automatically alert you to potential code problems.</p>
+<p><code>Tools</code> <span class="math inline">\(\rightarrow\)</span>
+<code>Global Options</code> <span class="math inline">\(\rightarrow\)</span> <code>Code</code> <span class="math inline">\(\rightarrow\)</span> <code>Diagnostics</code></p>
+<p>This allows you to turn on margin notes that automatically alert you
+to potential code problems.</p>
 </li>
 <li>
-<p>Run the current line of code (or a selected section of code) and step to the next line:</p>
-<p>Press the <code>Run</code> button in the top right corner of the editor window, or Press <code>Ctrl+Enter</code></p>
+<p>Run the current line of code (or a selected section of code) and
+step to the next line:</p>
+<p>Press the <code>Run</code> button in the top right corner of the
+editor window, or Press <code>Ctrl+Enter</code></p>
 </li>
 <li>
 <p>Run all the code in the current script file:</p>
-<p>Press the <code>Source</code> button in the top right corner of the editor window, or Press <code>Ctrl+Shift+S</code>, or Press <code>Ctrl+Shift+Enter</code></p>
-<p>Note: the first two options disable the normal automatic value printing; you’ll only see the ouput that is explicitly fed into <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>. The third option displays both the code and the results in the Console window.</p>
+<p>Press the <code>Source</code> button in the top right corner of the
+editor window, or Press <code>Ctrl+Shift+S</code>, or Press
+<code>Ctrl+Shift+Enter</code></p>
+<p>Note: the first two options disable the normal automatic value
+printing; you’ll only see the ouput that is explicitly fed into
+<code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>. The third option displays both the code and the
+results in the Console window.</p>
 </li>
-<li><p>The <code>styler</code> package (should already be available on <code>rstudio.cloud</code>. Use <code>install.packages("styler")</code> in R if you’re running on a local installation). This will enable options to reformat your script code to (usually) more readable code, by pressing the <code>Addins</code> button below the main program menu and choosing e.g. <code>Style active file</code>.</p></li>
+<li><p>The <code>styler</code> package (should already be available on
+<code>rstudio.cloud</code>. Use <code>install.packages("styler")</code>
+in R if you’re running on a local installation). This will enable
+options to reformat your script code to (usually) more readable code, by
+pressing the <code>Addins</code> button below the main program menu and
+choosing e.g. <code>Style active file</code>.</p></li>
 </ul>
 </div>
 <div class="section level3">
@@ -156,10 +188,24 @@
 <ol style="list-style-type: decimal">
 <li>Create a new R script file: <code>File</code><span class="math inline">\(\rightarrow\)</span><code>New File</code><span class="math inline">\(\rightarrow\)</span><code>R Script</code>
 </li>
-<li>Save the new R script file: <code>File</code><span class="math inline">\(\rightarrow\)</span><code>Save</code>, or Press <code>Ctrl+S</code>, and choose a descriptive filename (e.g. <code>lab_1_code.R</code>)</li>
+<li>Save the new R script file: <code>File</code><span class="math inline">\(\rightarrow\)</span><code>Save</code>, or Press
+<code>Ctrl+S</code>, and choose a descriptive filename
+(e.g. <code>lab_1_code.R</code>)</li>
 </ol>
-<p>During the lab, remember to save the script file regularly, to avoid losing any work (on both rstudio.cloud and regular RStudio, unsaved changes may still be remembered by the system, but it is much safer to explicitly save the files, and this will also be essential when we start <code>git</code> for version control).</p>
-<p>There are several ways to view this tutorial document; either on the <a href="https://finnlindgren.github.io/StatCompLab/articles/">StatCompLab webpage</a>, by running <code>learnr::run_tutorial("Tutorial01", package = "StatCompLab")</code> in RStudio, or <code><a href="../articles/Tutorial01.html">vignette("Tutorial01", package = "StatCompLab")</a></code></p>
+<p>During the lab, remember to save the script file regularly, to avoid
+losing any work (<!--on both rstudio.cloud and regular RStudio,-->
+unsaved changes may still be remembered by the system, but it is much
+safer to explicitly save the
+files<!--, and this will also be essential when we start `git` for version control-->).</p>
+<p>There are several ways to view this tutorial document; either on the
+<a href="https://finnlindgren.github.io/StatCompLab/articles/">StatCompLab
+webpage</a>, by running
+<code>learnr::run_tutorial("Tutorial01", package = "StatCompLab")</code>
+in RStudio, or
+<code><a href="../articles/Tutorial01.html">vignette("Tutorial01", package = "StatCompLab")</a></code>. (Note: the
+<code>run_tutorial</code> option contains some additional interactive
+questions and exercises that are not supported by the other two
+methods.)</p>
 </div>
 </div>
 <div class="section level2">
@@ -169,44 +215,70 @@
 \begin{aligned}
 y_i &amp;= \beta_0 + z_i \beta_z + e_i ,
 \end{aligned}
-\]</span> where <span class="math inline">\(y_i\)</span> are observed values, <span class="math inline">\(z_i\)</span> are observed values (“covariates”) that we believe have a linear relationship with <span class="math inline">\(y_i\)</span>, <span class="math inline">\(e_i\)</span> are observation noise components with variance <span class="math inline">\(\sigma_e^2\)</span>, and <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_z\)</span>, and <span class="math inline">\(\sigma_e^2\)</span> are model parameters.</p>
-<p>First, generate synthetic data to use when developing the code for estimating models of this type. Enter the following code into your script file and run it with e.g. <code>Ctrl+Enter</code>:</p>
+\]</span> where <span class="math inline">\(y_i\)</span> are observed
+values, <span class="math inline">\(z_i\)</span> are observed values
+(“covariates”) that we believe have a linear relationship with <span class="math inline">\(y_i\)</span>, <span class="math inline">\(e_i\)</span> are observation noise components with
+variance <span class="math inline">\(\sigma_e^2\)</span>, and <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_z\)</span>, and <span class="math inline">\(\sigma_e^2\)</span> are model parameters.</p>
+<p>First, generate synthetic data to use when developing the code for
+estimating models of this type. Enter the following code into your
+script file and run it with e.g. <code>Ctrl+Enter</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, times <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">z</span>, y <span class="op">=</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">z</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>What does <code><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep()</a></code>, <code><a href="https://rdrr.io/r/base/length.html" class="external-link">length()</a></code>, and <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm()</a></code> do? Look at the help pages by running <code><a href="https://rdrr.io/r/base/rep.html" class="external-link">?rep</a></code>, <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">?rnorm</a></code>, and <code><a href="https://rdrr.io/r/base/length.html" class="external-link">?length</a></code> in the interactive <code>Console</code> window, or searching for them in the <code>Help</code> pane.</p>
+<code class="sourceCode R"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, times <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">z</span>, y <span class="op">=</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">z</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>What does <code><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep()</a></code>, <code><a href="https://rdrr.io/r/base/length.html" class="external-link">length()</a></code>, and
+<code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm()</a></code> do? Look at the help pages by running
+<code><a href="https://rdrr.io/r/base/rep.html" class="external-link">?rep</a></code>, <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">?rnorm</a></code>, and <code><a href="https://rdrr.io/r/base/length.html" class="external-link">?length</a></code> in the
+interactive <code>Console</code> window, or searching for them in the
+<code>Help</code> pane.</p>
 <p>You can plot the data with “base graphics”,</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">z</span>, <span class="va">data</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">z</span>, <span class="va">data</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Tutorial01_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <p>or with <code>ggplot</code>,</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Put the first two lines (library and theme_set) at the beginning of your script file.</span>
-<span class="co"># They only need to be run once in your R session!</span>
-<span class="co"># Load the ggplot2 package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="co"># Change the default theme (avoids grey background in the plots):</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># Now we can plot:</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Put the first two lines (library and theme_set) at the beginning of your script file.</span></span>
+<span><span class="co"># They only need to be run once in your R session!</span></span>
+<span><span class="co"># Load the ggplot2 package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="co"># Change the default theme (avoids grey background in the plots):</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Now we can plot:</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Tutorial01_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<p>For this simple plot, the <code>ggplot</code> approach may seem more complicated than necessary, but for more complex plots <code>ggplot</code> will make plotting much easier. In the code above, we first supply the data set, and then add information about how to plot it, using a <em>grammar of graphics</em>. See <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">?aes</a></code> for some more information about the parameters controlling the <em>aesthetics</em> of the <em>geom</em> that adds <em>points</em> to the plot.</p>
+<p>For this simple plot, the <code>ggplot</code> approach may seem more
+complicated than necessary, but for more complex plots
+<code>ggplot</code> will make plotting much easier. In the code above,
+we first supply the data set, and then add information about how to plot
+it, using a <em>grammar of graphics</em>. See <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">?aes</a></code> for some
+more information about the parameters controlling the
+<em>aesthetics</em> of the <em>geom</em> that adds <em>points</em> to
+the plot.</p>
 <div class="section level3">
 <h3 id="estimate-the-model">Estimate the model<a class="anchor" aria-label="anchor" href="#estimate-the-model"></a>
 </h3>
-<p>Use the <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> function to estimate the model and save the estimated model in a variable called <code>mod</code>.</p>
+<p>Use the <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> function to estimate the model and save the
+estimated model in a variable called <code>mod</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">z</span>, <span class="va">data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">z</span>, <span class="va">data</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="plot-the-result">Plot the result<a class="anchor" aria-label="anchor" href="#plot-the-result"></a>
 </h3>
-<p>Now we want to plot the linear predictor for the model as a function of <span class="math inline">\(z\)</span>, between <span class="math inline">\(z=-10\)</span> and <span class="math inline">\(z=20\)</span>. First, create a new <code>data.frame</code>:</p>
+<p>Now we want to plot the linear predictor for the model as a function
+of <span class="math inline">\(z\)</span>, between <span class="math inline">\(z=-10\)</span> and <span class="math inline">\(z=20\)</span>. First, create a new
+<code>data.frame</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">newdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>z <span class="op">=</span> <span class="op">-</span><span class="fl">10</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">newdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>z <span class="op">=</span> <span class="op">-</span><span class="fl">10</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <p>Note that we don’t have any corresponding <span class="math inline">\(y\)</span>-values yet!</p>
-<p>Use <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line()</a></code> to plot the linear predictor and the original data points in a single figure. Also add the true predictor with the help of <code>geom_abline(intercept = ..., slope = ...)</code> (use the <code>col</code> parameter to set a different color!). Create a new data frame and supply it directly to <code>geom_line</code> to override the original data:</p>
-<p>Structure the code by adding a linebreak <em>after</em> each <code>+</code> operation.</p>
+<p>Use <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>, and
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line()</a></code> to plot the linear predictor and the original
+data points in a single figure. Also add the true predictor with the
+help of <code>geom_abline(intercept = ..., slope = ...)</code> (use the
+<code>col</code> parameter to set a different color!). Create a new data
+frame and supply it directly to <code>geom_line</code> to override the
+original data:</p>
+<p>Structure the code by adding a linebreak <em>after</em> each
+<code>+</code> operation.</p>
 <!--
 
 
@@ -216,44 +288,80 @@ y_i &amp;= \beta_0 + z_i \beta_z + e_i ,
 <div class="section level2">
 <h2 id="prediction-intervals">Prediction intervals<a class="anchor" aria-label="anchor" href="#prediction-intervals"></a>
 </h2>
-<p>Now modify the plotting code to also show <em>prediction intervals</em>. Hint: use the <code>interval="prediction"</code> parameter for <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code>, and combine the output (which is now a matrix, and there is no need to convert it to a <code>data.frame</code> first) with <code>newdata</code> with the help of <code>cbind</code>. The resulting <code>data.frame</code> should have variables named <code>z</code>, <code>fit</code>, <code>lwr</code>, and <code>upr</code>, and the whole object should be called <code>pred</code>.</p>
+<p>Now modify the plotting code to also show <em>prediction
+intervals</em>. Hint: use the <code>interval="prediction"</code>
+parameter for <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code>, and combine the output (which is
+now a matrix, and there is no need to convert it to a
+<code>data.frame</code> first) with <code>newdata</code> with the help
+of <code>cbind</code>. The resulting <code>data.frame</code> should have
+variables named <code>z</code>, <code>fit</code>, <code>lwr</code>, and
+<code>upr</code>, and the whole object should be called
+<code>pred</code>.</p>
 <!--
 
 
 -->
-<p>Use the <code>geom_ribbon(data = ???, aes(x = ???, ymin = ???, ymax = ???), alpha = 0.25)</code> function to add the prediction intervals to the figure. The <code>alpha</code> parameter sets the “transparency” of the ribbon. Experiment with different values between 0 and 1. The result should look similar to this:</p>
+<p>Use the
+<code>geom_ribbon(data = ???, aes(x = ???, ymin = ???, ymax = ???), alpha = 0.25)</code>
+function to add the prediction intervals to the figure. The
+<code>alpha</code> parameter sets the “transparency” of the ribbon.
+Experiment with different values between 0 and 1. The result should look
+similar to this:</p>
 <p><img src="Tutorial01_files/figure-html/plot-pred-int-solution-1.png" width="700"></p>
-<p>In “base graphics”, the following would produce a similar result, but without the shaded bands:</p>
+<p>In “base graphics”, the following would produce a similar result, but
+without the shaded bands:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">z</span>, <span class="va">pred</span><span class="op">[</span>, <span class="st">"fit"</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">z</span>, <span class="va">pred</span><span class="op">[</span>, <span class="st">"lwr"</span><span class="op">]</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">z</span>, <span class="va">pred</span><span class="op">[</span>, <span class="st">"upr"</span><span class="op">]</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">z</span>, <span class="va">data</span><span class="op">$</span><span class="va">y</span>, pch <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">z</span>, <span class="va">pred</span><span class="op">[</span>, <span class="st">"fit"</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">z</span>, <span class="va">pred</span><span class="op">[</span>, <span class="st">"lwr"</span><span class="op">]</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">z</span>, <span class="va">pred</span><span class="op">[</span>, <span class="st">"upr"</span><span class="op">]</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">z</span>, <span class="va">data</span><span class="op">$</span><span class="va">y</span>, pch <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multiple-models">Multiple models<a class="anchor" aria-label="anchor" href="#multiple-models"></a>
 </h2>
-<p>Note: This section introduces <em>functions</em> that will be discussed in more detail in week 2.</p>
-<p>Let’s say we want to redo the data analysis using different models (after all, we only know the true model because we generated synthetic data!). Instead of copying the plotting code for each new model, let’s create a function instead! Start with the following skeleton code, and fill in the missing bits:</p>
+<p>Note: This section introduces <em>functions</em> that will be
+discussed in more detail in week 2.</p>
+<p>Let’s say we want to redo the data analysis using different models
+(after all, we only know the true model because we generated synthetic
+data!). Instead of copying the plotting code for each new model, let’s
+create a function instead! Start with the following skeleton code, and
+fill in the missing bits:</p>
 <!--
 
 
 -->
-<p>What should <code>xname</code> be set to when we call this function for our specific data? You should be able to run the following code to regenerate your previous figure:</p>
+<p>What should <code>xname</code> be set to when we call this function
+for our specific data? You should be able to run the following code to
+regenerate your previous figure:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plot_predictions</span><span class="op">(</span><span class="va">mod</span>, <span class="va">newdata</span>, xname <span class="op">=</span> <span class="st">"z"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">0</span>, slope <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plot_predictions</span><span class="op">(</span><span class="va">mod</span>, <span class="va">newdata</span>, xname <span class="op">=</span> <span class="st">"z"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">0</span>, slope <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use tidy evaluation ideoms with `aes()`</span></span></code></pre>
 <p><img src="Tutorial01_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
-<p>Remark: Why can we use the <code>+ geom_*</code> technique to add to the plot drawn by <code>plot_predictions</code> even though we don’t directly call <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code> here? Every function returns its last computed object as output. In this case, that’s a <code>ggplot</code> object, and we can use it just as if we had spelled out the call to <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code>. This also means that we could in principle write a function that adds features to a plot, taking an existing <code>ggplot</code> object as <em>input</em>, making complex plotting more structured and modular.</p>
+<p>Remark: Why can we use the <code>+ geom_*</code> technique to add to
+the plot drawn by <code>plot_predictions</code> even though we don’t
+directly call <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code> here? Every function returns its
+last computed object as output. In this case, that’s a
+<code>ggplot</code> object, and we can use it just as if we had spelled
+out the call to <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code>. This also means that we could in
+principle write a function that adds features to a plot, taking an
+existing <code>ggplot</code> object as <em>input</em>, making complex
+plotting more structured and modular.</p>
 <div class="section level3">
 <h3 id="further-plotting-details">Further plotting details<a class="anchor" aria-label="anchor" href="#further-plotting-details"></a>
 </h3>
-<p>You can change the plot labels and add a title by adding calls to <code><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle()</a></code> to the plot:</p>
-<p>This passes any additional parameters through to the <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> function.</p>
-<p>The provided solution has a further generalised version of the plotting function, that also adds the confidence intervals for the predictor curve to the plot.</p>
+<p>You can change the plot labels and add a title by adding calls to
+<code><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle()</a></code> to
+the plot:</p>
+<p>This passes any additional parameters through to the
+<code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> function.</p>
+<p>The provided solution has a further generalised version of the
+plotting function, that also adds the confidence intervals for the
+predictor curve to the plot.</p>
 <!--
 
 
@@ -262,17 +370,24 @@ y_i &amp;= \beta_0 + z_i \beta_z + e_i ,
 <div class="section level3">
 <h3 id="quadratic-model">Quadratic model<a class="anchor" aria-label="anchor" href="#quadratic-model"></a>
 </h3>
-<p>Use your new function to plot the predictions for the quadratic model</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">z</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">z</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span>, <span class="va">data</span><span class="op">)</span></code></pre></div>
-<p>The <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> syntax means that you don’t have to create a separate data variable equal to the square of the z-values; the <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> function will create it for you internally. The result should look similar to this:</p>
+<p>Use your new function to plot the predictions for the quadratic
+model</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">z</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">z</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span>, <span class="va">data</span><span class="op">)</span></span></code></pre></div>
+<p>The <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> syntax means that you don’t have to create a
+separate data variable equal to the square of the z-values; the
+<code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> function will create it for you internally. The result
+should look similar to this:</p>
 <p><img src="Tutorial01_files/figure-html/plot-quadratic-solution-1.png" width="700"><img src="Tutorial01_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="multiple-models-1">Multiple models<a class="anchor" aria-label="anchor" href="#multiple-models-1"></a>
 </h3>
-<p>Finally, let’s estimate and plot predictions for four polynomial models, by first creating a list of formulas:</p>
-<p>Look at the lecture slides and use the <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> technique to estimate all four models and store the result in a variable called <code>mods</code>.</p>
+<p>Finally, let’s estimate and plot predictions for four polynomial
+models, by first creating a list of formulas:</p>
+<p>Look at the lecture slides and use the <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>
+technique to estimate all four models and store the result in a variable
+called <code>mods</code>.</p>
 <!--
 
 
@@ -281,18 +396,24 @@ y_i &amp;= \beta_0 + z_i \beta_z + e_i ,
 <div class="section level3">
 <h3 id="plotting-multiple-results">Plotting multiple results<a class="anchor" aria-label="anchor" href="#plotting-multiple-results"></a>
 </h3>
-<p>You can now use something like the following code to plot all the results:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">formulas</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">pl</span> <span class="op">&lt;-</span>
-    <span class="fu">plot_prediction</span><span class="op">(</span><span class="va">mods</span><span class="op">[[</span><span class="va">k</span><span class="op">]</span><span class="op">]</span>, <span class="va">newdata</span>, xname <span class="op">=</span> <span class="st">"z"</span>, ylab <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span> <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">0</span>, slope <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">formulas</span><span class="op">[</span><span class="va">k</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pl</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<p>Look at the help text for <code><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along()</a></code>! Storing the plot as an object, <code>pl</code>, and then explicitly “printing” it is sometimes needed to ensure that all the plots are generated into a report document. <strong>Note:</strong> We will look at ways of combining multiple plots later.</p>
-<p>Does the information displayed in the plots match your intuition about the different models?</p>
+<p>You can now use something like the following code to plot all the
+results:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">formulas</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">pl</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu">plot_prediction</span><span class="op">(</span><span class="va">mods</span><span class="op">[[</span><span class="va">k</span><span class="op">]</span><span class="op">]</span>, <span class="va">newdata</span>, xname <span class="op">=</span> <span class="st">"z"</span>, ylab <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">0</span>, slope <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">formulas</span><span class="op">[</span><span class="va">k</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pl</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Look at the help text for <code><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along()</a></code>! Storing the plot
+as an object, <code>pl</code>, and then explicitly “printing” it is
+sometimes needed to ensure that all the plots are generated into a
+report document. <strong>Note:</strong> We will look at ways of
+combining multiple plots later.</p>
+<p>Does the information displayed in the plots match your intuition
+about the different models?</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -308,7 +429,7 @@ y_i &amp;= \beta_0 + z_i \beta_z + e_i ,
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer>

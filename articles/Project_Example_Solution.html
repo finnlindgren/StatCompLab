@@ -8,10 +8,10 @@
 <meta name="description" content="StatCompLab">
 <title>StatComp Project Example Solution: Numerical Statistics • StatCompLab</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="StatComp Project Example Solution: Numerical Statistics">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="StatComp Project Example Solution: Numerical Statistics">
 <meta property="og:description" content="StatCompLab">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">21.9.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">22.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,9 +90,10 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>StatComp Project Example Solution: Numerical Statistics</h1>
-                        <h4 data-toc-skip class="author">Finn Lindgren (s0000000, finnlindgren)</h4>
+                        <h4 data-toc-skip class="author">Finn Lindgren
+(s0000000, finnlindgren)</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/articles/Project_Example_Solution.Rmd" class="external-link"><code>vignettes/articles/Project_Example_Solution.Rmd</code></a></small>
@@ -104,29 +105,75 @@
 <div class="section level2">
 <h2 id="confidence-interval-approximation-assessment">Confidence interval approximation assessment<a class="anchor" aria-label="anchor" href="#confidence-interval-approximation-assessment"></a>
 </h2>
-<p>We will investigate the behaviour of three approximate methods for confidence interval construction for the expectation parameter <span class="math inline">\(\lambda\)</span> in a model for observations <span class="math inline">\(y_i\sim\textrm{Pois}(\lambda)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. We denote the three methods given in the assignment by <span class="math inline">\(\textrm{CI}_1\)</span>, <span class="math inline">\(\textrm{CI}_2\)</span>, and <span class="math inline">\(\textrm{CI}_3\)</span>.</p>
+<p>We will investigate the behaviour of three approximate methods for
+confidence interval construction for the expectation parameter <span class="math inline">\(\lambda\)</span> in a model for observations <span class="math inline">\(y_i\sim\textrm{Pois}(\lambda)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. We denote the three methods
+given in the assignment by <span class="math inline">\(\textrm{CI}_1\)</span>, <span class="math inline">\(\textrm{CI}_2\)</span>, and <span class="math inline">\(\textrm{CI}_3\)</span>.</p>
 <div class="section level3">
 <h3 id="theoretical-interval-width-equivalence">Theoretical interval width equivalence<a class="anchor" aria-label="anchor" href="#theoretical-interval-width-equivalence"></a>
 </h3>
-<p>Let <span class="math inline">\(z=z_{1-\alpha/2}=-z_{\alpha/2}\)</span>, where <span class="math inline">\(z_p\)</span> is the (lower) <span class="math inline">\(p\)</span>-quantile of a standard <span class="math inline">\(\textrm{N}(0,1)\)</span> distribution. Then, when <span class="math inline">\(\overline{y} &gt; z^2/n\)</span>, Methods 1 and 2 in <code>pois_CI</code> for constructing a confidence interval for <span class="math inline">\(\lambda\)</span> from observations <span class="math inline">\(y_i\sim \textrm{Pois}(\lambda)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, are given by <span class="math display">\[\begin{align*}
-\textrm{CI}_1 &amp;= (\overline{y} - z\sqrt{\overline{y}/n}, \overline{y} + z\sqrt{\overline{y}/n}), \\
-\textrm{CI}_2 &amp;= ([\sqrt{\overline{y}} - z/\sqrt{4n}]^2, [\sqrt{\overline{y}} + z/\sqrt{4n}]^2).
+<p>Let <span class="math inline">\(z=z_{1-\alpha/2}=-z_{\alpha/2}\)</span>, where
+<span class="math inline">\(z_p\)</span> is the (lower) <span class="math inline">\(p\)</span>-quantile of a standard <span class="math inline">\(\textrm{N}(0,1)\)</span> distribution. Then, when
+<span class="math inline">\(\overline{y} &gt; z^2/n\)</span>, Methods 1
+and 2 in <code>pois_CI</code> for constructing a confidence interval for
+<span class="math inline">\(\lambda\)</span> from observations <span class="math inline">\(y_i\sim \textrm{Pois}(\lambda)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, are given by <span class="math display">\[\begin{align*}
+\textrm{CI}_1 &amp;= (\overline{y} - z\sqrt{\overline{y}/n},
+\overline{y} + z\sqrt{\overline{y}/n}), \\
+\textrm{CI}_2 &amp;= ([\sqrt{\overline{y}} - z/\sqrt{4n}]^2,
+[\sqrt{\overline{y}} + z/\sqrt{4n}]^2).
 \end{align*}\]</span> The interval width for <span class="math inline">\(\textrm{CI}_1\)</span> is <span class="math inline">\(2z\sqrt{\overline{y}/n}\)</span>. For <span class="math inline">\(\textrm{CI}_2\)</span>, the width is <span class="math display">\[\begin{align*}
-[\sqrt{\overline{y}} + z/\sqrt{4n}]^2 - [\sqrt{\overline{y}} - z/\sqrt{4n}]^2
-&amp;= 
-[\overline{y} + 2z\sqrt{\overline{y}}/\sqrt{4n} + z^2/(4n)] - [\overline{y} - 2z\sqrt{\overline{y}}/\sqrt{4n} + z^2/(4n)]
+[\sqrt{\overline{y}} + z/\sqrt{4n}]^2 - [\sqrt{\overline{y}} -
+z/\sqrt{4n}]^2
+&amp;=
+[\overline{y} + 2z\sqrt{\overline{y}}/\sqrt{4n} + z^2/(4n)] -
+[\overline{y} - 2z\sqrt{\overline{y}}/\sqrt{4n} + z^2/(4n)]
 \\
 &amp;=
 4z\sqrt{\overline{y}}/\sqrt{4n}
-\end{align*}\]</span> since the remaining terms cancel out. Finally <span class="math inline">\(4/\sqrt{4}=2\)</span>, and we see that the width of a <span class="math inline">\(\textrm{CI}_2\)</span> interval is the same as for <span class="math inline">\(\textrm{CI}_1\)</span>, for any observed value <span class="math inline">\(\overline{y}&gt;z^2/n\)</span>.</p>
+\end{align*}\]</span> since the remaining terms cancel out. Finally
+<span class="math inline">\(4/\sqrt{4}=2\)</span>, and we see that the
+width of a <span class="math inline">\(\textrm{CI}_2\)</span> interval
+is the same as for <span class="math inline">\(\textrm{CI}_1\)</span>,
+for any observed value <span class="math inline">\(\overline{y}&gt;z^2/n\)</span>.</p>
 </div>
 <div class="section level3">
 <h3 id="confidence-interval-coverage-and-width-assessment">Confidence interval coverage and width assessment<a class="anchor" aria-label="anchor" href="#confidence-interval-coverage-and-width-assessment"></a>
 </h3>
-<p>We are interested in the behaviour of the three confidence interval methods when we are far away from the asymptotic limit. Instead of assuming <span class="math inline">\(n\rightarrow\infty\)</span> or <span class="math inline">\(\lambda\rightarrow\infty\)</span> we will instead look at the case <span class="math inline">\(n=2\)</span>, <span class="math inline">\(\lambda=3\)</span>, where the discrete nature of the sampling distribution of the maximum likelihood estimator <span class="math inline">\(\widehat{\lambda}=\overline{y}\)</span> is still apparent.</p>
-<p>In the <code>my_code.R</code> file, we’ve defined two helper functions, <code>multi_pos_CI</code> and <code>tidy_multi_pois_CI</code>, in order to simulate <span class="math inline">\(m\)</span> realisations from the model, and compute the three types of approximate confidence intervals for a desired confidence level (also called the <em>target</em> or <em>nominal</em> confidence level) of 90%, corresponding to nominal error probability <span class="math inline">\(\alpha=0.1\)</span>. To get reasonable precision in the results, we use <span class="math inline">\(m=100000\)</span>. See the code appendix for the short analysis code.</p>
-<p>To assess the quality of the methods, we compute an estimate of the coverage probability as the proportion of the <span class="math inline">\(m\)</span> simulations that the intervals cover the true <span class="math inline">\(\lambda\)</span> value, <code>Coverage</code> in the table below. We also compute the median width of the intervals, denoted <code>MedWidth</code>. For extra details, we further estimate the probability of the lower endpoint being too large, <code>OutsideLower</code>, or the upper endpoint being too low, <code>OutsideUpper</code>. Finally, we compute the median of the lower and upper endpoints, denoted <code>MedLower</code> and <code>MedUpper</code> in the table.</p>
+<p>We are interested in the behaviour of the three confidence interval
+methods when we are far away from the asymptotic limit. Instead of
+assuming <span class="math inline">\(n\rightarrow\infty\)</span> or
+<span class="math inline">\(\lambda\rightarrow\infty\)</span> we will
+instead look at the case <span class="math inline">\(n=2\)</span>, <span class="math inline">\(\lambda=3\)</span>, where the discrete nature of
+the sampling distribution of the maximum likelihood estimator <span class="math inline">\(\widehat{\lambda}=\overline{y}\)</span> is still
+apparent.</p>
+<p>In the <code>my_code.R</code> file, we’ve defined two helper
+functions, <code>multi_pos_CI</code> and
+<code>tidy_multi_pois_CI</code>, in order to simulate <span class="math inline">\(m\)</span> realisations from the model, and
+compute the three types of approximate confidence intervals for a
+desired confidence level (also called the <em>target</em> or
+<em>nominal</em> confidence level) of 90%, corresponding to nominal
+error probability <span class="math inline">\(\alpha=0.1\)</span>. To
+get reasonable precision in the results, we use <span class="math inline">\(m=100000\)</span>. See the code appendix for the
+short analysis code.</p>
+<p>To assess the quality of the methods, we compute an estimate of the
+coverage probability as the proportion of the <span class="math inline">\(m\)</span> simulations that the intervals cover
+the true <span class="math inline">\(\lambda\)</span> value,
+<code>Coverage</code> in the table below. We also compute the median
+width of the intervals, denoted <code>MedWidth</code>. For extra
+details, we further estimate the probability of the lower endpoint being
+too large, <code>OutsideLower</code>, or the upper endpoint being too
+low, <code>OutsideUpper</code>. Finally, we compute the median of the
+lower and upper endpoints, denoted <code>MedLower</code> and
+<code>MedUpper</code> in the table.</p>
 <table class="table">
+<colgroup>
+<col width="7%">
+<col width="13%">
+<col width="13%">
+<col width="19%">
+<col width="19%">
+<col width="13%">
+<col width="13%">
+</colgroup>
 <thead><tr class="header">
 <th align="right">Type</th>
 <th align="right">Coverage</th>
@@ -175,35 +222,85 @@
 </tr>
 </tbody>
 </table>
-<p>As expected from the theoretical calculations for intervals that don’t reach <span class="math inline">\(0\)</span> to the left, the median width for methods 1 and 2 are identical, whereas the method 3 widths are slightly larger. We see that methods 1 and 3 have too low and too high coverage, respectively, compared with the nominal overage of <span class="math inline">\(90\%\)</span>, but method 2 has a coverage very close to nominal, at <span class="math inline">\(89.58\%\)</span>. It’s clear that method 1 make most of it’s mistakes at the upper end, with as much as <span class="math inline">\(15\%\)</span> probability of having a too low upper endpoint. In contrast, method 3 is overly cautious on the upper end, with just <span class="math inline">\(1.5\%\)</span> error probability for the upper tail, but at the expense of wider intervals, sometimes stretching all the way to <span class="math inline">\(+\infty\)</span>.</p>
-<p>Method 2 appears to strike a good balance between coverage probability and interval widths, with the lower tail error probability being almost the same as for method 3 (ca <span class="math inline">\(4\%\)</span>), by moving the upper endpoint to the left, thereby reducing the interval widths and increasing the upper tail error probability to around <span class="math inline">\(6\%\)</span>. As a result, method 2 has nearly equal tail error probabilities (perfect equality would be 5%) for the test case <span class="math inline">\(n=2\)</span>, <span class="math inline">\(\lambda=3\)</span>, and appears to be the best of the three methods at capturing the behaviour of the sampling distribution of the <span class="math inline">\(\lambda\)</span>-estimator.</p>
-<p>In the figure below, we’ve plotted the empirical cumulative distribution functions of the interval widths for the three methods, which clearly shows the discrete nature of the interval contructions, since they are all based on <span class="math inline">\(\overline{y}\)</span>, which has a clear discrete set of possible outcomes. The equal width property for methods 1 and 2 breaks down for small values of <span class="math inline">\(\overline{y}\)</span>, due to how they handle intervals that would have gone below zero in a simplistic implementation.</p>
-<p>In summary, method 2 appears to be preferable, despite all three methods being based on the same asympototic maximum likelihood theory. For small sample sizes, the asymptotic theory doesn’t tell the whole story, and instead one has to look more carefully at the problem structure in order to get reliable estimates.</p>
+<p>As expected from the theoretical calculations for intervals that
+don’t reach <span class="math inline">\(0\)</span> to the left, the
+median width for methods 1 and 2 are identical, whereas the method 3
+widths are slightly larger. We see that methods 1 and 3 have too low and
+too high coverage, respectively, compared with the nominal overage of
+<span class="math inline">\(90\%\)</span>, but method 2 has a coverage
+very close to nominal, at <span class="math inline">\(89.58\%\)</span>.
+It’s clear that method 1 make most of it’s mistakes at the upper end,
+with as much as <span class="math inline">\(15\%\)</span> probability of
+having a too low upper endpoint. In contrast, method 3 is overly
+cautious on the upper end, with just <span class="math inline">\(1.5\%\)</span> error probability for the upper
+tail, but at the expense of wider intervals, sometimes stretching all
+the way to <span class="math inline">\(+\infty\)</span>.</p>
+<p>Method 2 appears to strike a good balance between coverage
+probability and interval widths, with the lower tail error probability
+being almost the same as for method 3 (ca <span class="math inline">\(4\%\)</span>), by moving the upper endpoint to the
+left, thereby reducing the interval widths and increasing the upper tail
+error probability to around <span class="math inline">\(6\%\)</span>. As
+a result, method 2 has nearly equal tail error probabilities (perfect
+equality would be 5%) for the test case <span class="math inline">\(n=2\)</span>, <span class="math inline">\(\lambda=3\)</span>, and appears to be the best of
+the three methods at capturing the behaviour of the sampling
+distribution of the <span class="math inline">\(\lambda\)</span>-estimator.</p>
+<p>In the figure below, we’ve plotted the empirical cumulative
+distribution functions of the interval widths for the three methods,
+which clearly shows the discrete nature of the interval contructions,
+since they are all based on <span class="math inline">\(\overline{y}\)</span>, which has a clear discrete
+set of possible outcomes. The equal width property for methods 1 and 2
+breaks down for small values of <span class="math inline">\(\overline{y}\)</span>, due to how they handle
+intervals that would have gone below zero in a simplistic
+implementation.</p>
+<p>In summary, method 2 appears to be preferable, despite all three
+methods being based on the same asympototic maximum likelihood theory.
+For small sample sizes, the asymptotic theory doesn’t tell the whole
+story, and instead one has to look more carefully at the problem
+structure in order to get reliable estimates.</p>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="archaeology-in-the-baltic-sea">Archaeology in the Baltic sea<a class="anchor" aria-label="anchor" href="#archaeology-in-the-baltic-sea"></a>
 </h2>
-<p>Pairs of counts <span class="math inline">\((Y_{j,1},Y_{j,2})\)</span> of left and right femurs from archaeological excavations are modelled as being conditionally independent realisations from <span class="math inline">\(\textrm{Binom}(N_j,\phi)\)</span>, where <span class="math inline">\(N_j\)</span> is the original number of people buried at each excavtion site, and <span class="math inline">\(\phi\)</span> is the probability of finding a buried femur. The prior distribution for each <span class="math inline">\(N_j\)</span>, <span class="math inline">\(j=1,\dots,J\)</span>, is <span class="math inline">\(\textrm{Geom}(\xi)\)</span>, where <span class="math inline">\(\xi=1/(1+1000)\)</span> (so that <span class="math inline">\(\textrm{E}(N_j)=1000\)</span> <em>a priori</em>), and for the detection probability, <span class="math inline">\(\phi\sim\textrm{Beta}(\frac{1}{2},\frac{1}{2})\)</span>. We denote <span class="math inline">\(\boldsymbol{N}=\{N_1,\dots,N_J\}\)</span> and <span class="math inline">\(\boldsymbol{Y}=\{(Y_{1,1},Y_{1,2}),\dots,(Y_{J,1},Y_{J,2})\}\)</span>.</p>
+<p>Pairs of counts <span class="math inline">\((Y_{j,1},Y_{j,2})\)</span> of left and right
+femurs from archaeological excavations are modelled as being
+conditionally independent realisations from <span class="math inline">\(\textrm{Binom}(N_j,\phi)\)</span>, where <span class="math inline">\(N_j\)</span> is the original number of people
+buried at each excavtion site, and <span class="math inline">\(\phi\)</span> is the probability of finding a
+buried femur. The prior distribution for each <span class="math inline">\(N_j\)</span>, <span class="math inline">\(j=1,\dots,J\)</span>, is <span class="math inline">\(\textrm{Geom}(\xi)\)</span>, where <span class="math inline">\(\xi=1/(1+1000)\)</span> (so that <span class="math inline">\(\textrm{E}(N_j)=1000\)</span> <em>a priori</em>),
+and for the detection probability, <span class="math inline">\(\phi\sim\textrm{Beta}(\frac{1}{2},\frac{1}{2})\)</span>.
+We denote <span class="math inline">\(\boldsymbol{N}=\{N_1,\dots,N_J\}\)</span> and
+<span class="math inline">\(\boldsymbol{Y}=\{(Y_{1,1},Y_{1,2}),\dots,(Y_{J,1},Y_{J,2})\}\)</span>.</p>
 <div class="section level3">
 <h3 id="joint-probability-function">Joint probability function<a class="anchor" aria-label="anchor" href="#joint-probability-function"></a>
 </h3>
-<p>Taking the product of the prior density for <span class="math inline">\(\phi\)</span>, the prior probabilities for <span class="math inline">\(N_j\)</span>, and the conditional observation probabilities for <span class="math inline">\(N_{j,i}\)</span> and integrating over <span class="math inline">\(\phi\)</span>, we get the joint probability function for <span class="math inline">\((\boldsymbol{N},\boldsymbol{Y})\)</span> <span class="math display">\[
+<p>Taking the product of the prior density for <span class="math inline">\(\phi\)</span>, the prior probabilities for <span class="math inline">\(N_j\)</span>, and the conditional observation
+probabilities for <span class="math inline">\(N_{j,i}\)</span> and
+integrating over <span class="math inline">\(\phi\)</span>, we get the
+joint probability function for <span class="math inline">\((\boldsymbol{N},\boldsymbol{Y})\)</span> <span class="math display">\[
 \begin{aligned}
 \textrm{P}(\boldsymbol{N},\boldsymbol{Y})
-&amp;= \int_0^1 p_\phi(\phi) \prod_{j=1}^J p(N_j) \prod_{i=1}^2 p(Y_{j,i}|N_j,\phi)\,\mathrm{d}\phi \\
+&amp;= \int_0^1 p_\phi(\phi) \prod_{j=1}^J p(N_j) \prod_{i=1}^2
+p(Y_{j,i}|N_j,\phi)\,\mathrm{d}\phi \\
 &amp;= \int_0^1 \frac{\phi^{a-1}(1-\phi)^{b-1}}{B(a,b)}
-  \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} \phi^{Y_{j,i}}(1-\phi)^{N_j-Y_{j,i}}
+  \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}}
+\phi^{Y_{j,i}}(1-\phi)^{N_j-Y_{j,i}}
   \,\mathrm{d}\phi \\
-&amp;= \int_0^1 \frac{\phi^{\widetilde{a}-1}(1-\phi)^{\widetilde{b}-1}}{B(a,b)} \,\mathrm{d}\phi\,
+&amp;= \int_0^1
+\frac{\phi^{\widetilde{a}-1}(1-\phi)^{\widetilde{b}-1}}{B(a,b)}
+\,\mathrm{d}\phi\,
   \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} ,
 \end{aligned}
-\]</span> where <span class="math inline">\(\widetilde{a} = a+\sum_{j=1}^J\sum_{i=1}^2 Y_{j,i}\)</span> and <span class="math inline">\(\widetilde{b} = b+\sum_{j=1}^J\sum_{i=1}^2 (N_j - Y_{j,i})\)</span>. Then the integral can be renormalised to an integral of the distribution probability density function for a <span class="math inline">\(\textrm{Beta}(\widetilde{a},\widetilde{b})\)</span> distribution: <span class="math display">\[
+\]</span> where <span class="math inline">\(\widetilde{a} =
+a+\sum_{j=1}^J\sum_{i=1}^2 Y_{j,i}\)</span> and <span class="math inline">\(\widetilde{b} = b+\sum_{j=1}^J\sum_{i=1}^2 (N_j -
+Y_{j,i})\)</span>. Then the integral can be renormalised to an integral
+of the distribution probability density function for a <span class="math inline">\(\textrm{Beta}(\widetilde{a},\widetilde{b})\)</span>
+distribution: <span class="math display">\[
 \begin{aligned}
 \textrm{P}(\boldsymbol{N},\boldsymbol{Y})
 &amp;= \frac{B(\widetilde{a},\widetilde{b})}{B(a,b)}
-  \int_0^1 \frac{\phi^{\widetilde{a}-1}(1-\phi)^{\widetilde{b}-1}}{B(\widetilde{a},\widetilde{b})}
+  \int_0^1
+\frac{\phi^{\widetilde{a}-1}(1-\phi)^{\widetilde{b}-1}}{B(\widetilde{a},\widetilde{b})}
   \,\mathrm{d}\phi\,
   \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} \\
 &amp;= \frac{B(\widetilde{a},\widetilde{b})}{B(a,b)}
@@ -212,14 +309,93 @@
 \]</span></p>
 </div>
 <div class="section level3">
-<h3 id="credible-intervals-for-n_j-and-phi">Credible intervals for <span class="math inline">\(N_j\)</span> and <span class="math inline">\(\phi\)</span><a class="anchor" aria-label="anchor" href="#credible-intervals-for-n_j-and-phi"></a>
+<h3 id="credible-intervals-for-n_j-and-phi">Credible intervals for <span class="math inline">\(N_j\)</span> and
+<span class="math inline">\(\phi\)</span><a class="anchor" aria-label="anchor" href="#credible-intervals-for-n_j-and-phi"></a>
 </h3>
-<p>In order to obtain posterior credible intervals for the unknown quantities <span class="math inline">\(\boldsymbol{N}=\{N_1,\dots,N_J\}\)</span>, and <span class="math inline">\(\phi\)</span>, we implement an importance sampling method that sample each <span class="math inline">\(N_j\)</span> from a shifted Geometric distribution with smallest value equal to the smallest valid <span class="math inline">\(N_j\)</span>, given the observed counts, and expectation corresponding to <span class="math inline">\(\phi=1/4\)</span>. After sampling the <span class="math inline">\(\boldsymbol{N}\)</span> values, the corresponding importance weights <span class="math inline">\(w_k\)</span>, stored as <code>Log_Weights</code> equal to <span class="math inline">\(\log(w_k)\)</span> normalised by subtracting the larges <span class="math inline">\(\log(w_k)\)</span> value. Finally, <span class="math inline">\(\phi\)</span> values are sampled directly from the conditional posterior distribution <span class="math inline">\((\phi|\boldsymbol{N},\boldsymbol{Y})\sim\textrm{Beta}\left(\frac{1}{2}+\sum_{j,i} Y_{i,j},\frac{1}{2}+\sum_{j,i} (N_j-Y_{i,j})\right)\)</span>. The implementation is in the <code>arch_importance()</code> function in <code>my_code.R</code> shown in the code appendix, and produces an importance sample of size <span class="math inline">\(K\)</span>. To achieve relatively reliable results, we use <span class="math inline">\(K=100000\)</span>, for each of <span class="math inline">\(J=1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(3\)</span>, and <span class="math inline">\(4\)</span>, which takes ca 4 seconds on my computer.</p>
-<p>First, we use <code>stat_ewcdf</code> to plot the emprirical cumulative distribution functions for the importance weighted posterior samples of <span class="math inline">\(N_1\)</span>, for <span class="math inline">\(J=1,\dots,4\)</span>. We can see that the random variability increases for larger <span class="math inline">\(J\)</span>, indicating a lower efficiency of the importance sampler. Also included is the CDF for the prior distribution for <span class="math inline">\(N_1\)</span>. Except for the lower end of the distribution, it’s not immediately clear what effect the observations have on the distribution.</p>
+<p>In order to obtain posterior credible intervals for the unknown
+quantities <span class="math inline">\(\boldsymbol{N}=\{N_1,\dots,N_J\}\)</span>, and
+<span class="math inline">\(\phi\)</span>, we implement an importance
+sampling method that sample each <span class="math inline">\(N_j\)</span> from a shifted Geometric distribution
+with smallest value equal to the smallest valid <span class="math inline">\(N_j\)</span>, given the observed counts, and
+expectation corresponding to <span class="math inline">\(\phi=1/4\)</span>. After sampling the <span class="math inline">\(\boldsymbol{N}\)</span> values, the corresponding
+importance weights <span class="math inline">\(w_k\)</span>, stored as
+<code>Log_Weights</code> equal to <span class="math inline">\(\log(w_k)\)</span> normalised by subtracting the
+larges <span class="math inline">\(\log(w_k)\)</span> value. Finally,
+<span class="math inline">\(\phi\)</span> values are sampled directly
+from the conditional posterior distribution <span class="math inline">\((\phi|\boldsymbol{N},\boldsymbol{Y})\sim\textrm{Beta}\left(\frac{1}{2}+\sum_{j,i}
+Y_{i,j},\frac{1}{2}+\sum_{j,i} (N_j-Y_{i,j})\right)\)</span>. The
+implementation is in the <code>arch_importance()</code> function in
+<code>my_code.R</code> shown in the code appendix, and produces an
+importance sample of size <span class="math inline">\(K\)</span>. To
+achieve relatively reliable results, we use <span class="math inline">\(K=100000\)</span>, for each of <span class="math inline">\(J=1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(3\)</span>, and <span class="math inline">\(4\)</span>, which takes ca 4 seconds on my
+computer.</p>
+<p>First, we use <code>stat_ewcdf</code> to plot the emprirical
+cumulative distribution functions for the importance weighted posterior
+samples of <span class="math inline">\(N_1\)</span>, for <span class="math inline">\(J=1,\dots,4\)</span>. We can see that the random
+variability increases for larger <span class="math inline">\(J\)</span>,
+indicating a lower efficiency of the importance sampler. Also included
+is the CDF for the prior distribution for <span class="math inline">\(N_1\)</span>. Except for the lower end of the
+distribution, it’s not immediately clear what effect the observations
+have on the distribution.</p>
+<pre><code><span><span class="co">## Warning: The following aesthetics were dropped during statistical transformation:</span></span>
+<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span><span class="co">##   the data.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span><span class="co">##   variable into a factor?</span></span>
+<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
+<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span><span class="co">##   the data.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span><span class="co">##   variable into a factor?</span></span>
+<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
+<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span><span class="co">##   the data.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span><span class="co">##   variable into a factor?</span></span>
+<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
+<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span><span class="co">##   the data.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span><span class="co">##   variable into a factor?</span></span></code></pre>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<p>Next we do a corresponding plot for <span class="math inline">\(\phi\)</span>. In contrast to <span class="math inline">\(N_1\)</span>, here it’s more clear that the more observation pairs we get, the more concentrated the distribution for <span class="math inline">\(\phi\)</span> gets. Each new observation pair also influences in particular the lower end of the distribution, with the lower quantiles clearly increasing for <span class="math inline">\(J=4\)</span> even though the upper quantiles remain relatively stable for <span class="math inline">\(J\geq 2\)</span>.</p>
+<p>Next we do a corresponding plot for <span class="math inline">\(\phi\)</span>. In contrast to <span class="math inline">\(N_1\)</span>, here it’s more clear that the more
+observation pairs we get, the more concentrated the distribution for
+<span class="math inline">\(\phi\)</span> gets. Each new observation
+pair also influences in particular the lower end of the distribution,
+with the lower quantiles clearly increasing for <span class="math inline">\(J=4\)</span> even though the upper quantiles
+remain relatively stable for <span class="math inline">\(J\geq
+2\)</span>.</p>
+<pre><code><span><span class="co">## Warning: The following aesthetics were dropped during statistical transformation:</span></span>
+<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span><span class="co">##   the data.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span><span class="co">##   variable into a factor?</span></span>
+<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
+<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span><span class="co">##   the data.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span><span class="co">##   variable into a factor?</span></span>
+<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
+<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span><span class="co">##   the data.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span><span class="co">##   variable into a factor?</span></span>
+<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
+<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span><span class="co">##   the data.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span><span class="co">##   variable into a factor?</span></span></code></pre>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<p>Using <code>wquantile</code> to extract lower and upper <span class="math inline">\(5\%\)</span> quantiles we obtain approximate <span class="math inline">\(90\%\)</span> posterior credible intervals for <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> as shown in the following table.</p>
+<p>Using <code>wquantile</code> to extract lower and upper <span class="math inline">\(5\%\)</span> quantiles we obtain approximate <span class="math inline">\(90\%\)</span> posterior credible intervals for
+<span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> as shown in the following table.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="right">J</th>
@@ -287,8 +463,31 @@
 </tr>
 </tbody>
 </table>
-<p>We can see that the credible intervals for <span class="math inline">\(N_1\)</span> are strongly linked to the information in the posterior distribution for <span class="math inline">\(\phi\)</span>. Interestingly, due to the lowering of the lower endpoint for <span class="math inline">\(\phi\)</span> for <span class="math inline">\(J=2\)</span> and <span class="math inline">\(3\)</span>, the width of the <span class="math inline">\(N_1\)</span> interval actually <em>increases</em> when we add the information from the second and third. This is stark contrast to our common intuition that would expect our uncertainty to decrease when we collect more data. The behaviour here is partly due to the random variability inherent in a small sample, but also due to the strong non-linearity of the estimation problem, where the products <span class="math inline">\(\phi N_j\)</span> are much easier to estimate than the individual <span class="math inline">\(\phi\)</span> and <span class="math inline">\(N_j\)</span> parameters. For <span class="math inline">\(J=4\)</span>, the interval width for <span class="math inline">\(N_1\)</span> finally decreases, as well as the width for the <span class="math inline">\(\phi\)</span> interval. Looking at the values of the observations, we can see that the <span class="math inline">\(J=4\)</span> case has much larger values than the other cases, which leads to it providing relatively more information about the <span class="math inline">\(\phi\)</span> parameter.</p>
-<p>From a practical point of view, it’s clear that this estimation problem does not have an easy solution. Even with multiple excavations, and assuming that the model is appropriate and has the same value <span class="math inline">\(\phi\)</span> for <span class="math inline">\(\phi\)</span> for every excavation, we only gain a modest amount of additional information. On the positive side, if the model does a good job of approximating reality, then borrowing strength across multiple excavations does improve the estimates and uncertainty information for each excavation. For further improvements, one would likely need to more closely study the excavation precedures, to gain a better understanding of this data generating process, which might then lead to improved statistical methods and archaeologically relevant outcomes.</p>
+<p>We can see that the credible intervals for <span class="math inline">\(N_1\)</span> are strongly linked to the
+information in the posterior distribution for <span class="math inline">\(\phi\)</span>. Interestingly, due to the lowering
+of the lower endpoint for <span class="math inline">\(\phi\)</span> for
+<span class="math inline">\(J=2\)</span> and <span class="math inline">\(3\)</span>, the width of the <span class="math inline">\(N_1\)</span> interval actually <em>increases</em>
+when we add the information from the second and third. This is stark
+contrast to our common intuition that would expect our uncertainty to
+decrease when we collect more data. The behaviour here is partly due to
+the random variability inherent in a small sample, but also due to the
+strong non-linearity of the estimation problem, where the products <span class="math inline">\(\phi N_j\)</span> are much easier to estimate than
+the individual <span class="math inline">\(\phi\)</span> and <span class="math inline">\(N_j\)</span> parameters. For <span class="math inline">\(J=4\)</span>, the interval width for <span class="math inline">\(N_1\)</span> finally decreases, as well as the
+width for the <span class="math inline">\(\phi\)</span> interval.
+Looking at the values of the observations, we can see that the <span class="math inline">\(J=4\)</span> case has much larger values than the
+other cases, which leads to it providing relatively more information
+about the <span class="math inline">\(\phi\)</span> parameter.</p>
+<p>From a practical point of view, it’s clear that this estimation
+problem does not have an easy solution. Even with multiple excavations,
+and assuming that the model is appropriate and has the same value <span class="math inline">\(\phi\)</span> for <span class="math inline">\(\phi\)</span> for every excavation, we only gain a
+modest amount of additional information. On the positive side, if the
+model does a good job of approximating reality, then borrowing strength
+across multiple excavations does improve the estimates and uncertainty
+information for each excavation. For further improvements, one would
+likely need to more closely study the excavation precedures, to gain a
+better understanding of this data generating process, which might then
+lead to improved statistical methods and archaeologically relevant
+outcomes.</p>
 </div>
 <div class="section level3">
 <h3 id="extra">Extra<a class="anchor" aria-label="anchor" href="#extra"></a>
@@ -296,7 +495,11 @@
 <div class="section level4">
 <h4 id="effective-sample-size">Effective sample size<a class="anchor" aria-label="anchor" href="#effective-sample-size"></a>
 </h4>
-<p>Using the method for computing effective importance sample size from later in the course we can see that even with the more efficient method, the sampling is very inefficient for <span class="math inline">\(J=4\)</span>, indicating that an improved choice of importance distribution for <span class="math inline">\(N_j\)</span> could improve the precision and accuracy of the results:</p>
+<p>Using the method for computing effective importance sample size from
+later in the course we can see that even with the more efficient method,
+the sampling is very inefficient for <span class="math inline">\(J=4\)</span>, indicating that an improved choice
+of importance distribution for <span class="math inline">\(N_j\)</span>
+could improve the precision and accuracy of the results:</p>
 <table class="table">
 <thead><tr class="header">
 <th align="right">J</th>
@@ -326,14 +529,19 @@
 </tr>
 </tbody>
 </table>
-<p>Here, <code>EffSampleSize</code> is the approximate effective sample size <span class="math inline">\((\sum_k w_k)^2/\sum w_k^2\)</span>, and <code>RelEff</code> is the relative efficiency, defined as the ratio between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</span>.</p>
+<p>Here, <code>EffSampleSize</code> is the approximate effective sample
+size <span class="math inline">\((\sum_k w_k)^2/\sum w_k^2\)</span>, and
+<code>RelEff</code> is the relative efficiency, defined as the ratio
+between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</span>.</p>
 </div>
 <div class="section level4">
-<h4 id="profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp">Profile likelihood method for frequentist confidence interval for <span class="math inline">\(\textrm{Binom}(n,p)\)</span><a class="anchor" aria-label="anchor" href="#profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp"></a>
+<h4 id="profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp">Profile likelihood method for frequentist confidence interval for
+<span class="math inline">\(\textrm{Binom}(n,p)\)</span><a class="anchor" aria-label="anchor" href="#profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp"></a>
 </h4>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<pre><code><span class="co">## [1] 274</span></code></pre>
-<p>(actually <code>range(y)</code> depends on <code>n</code> may mean <code>l0</code> not justified for this example)</p>
+<pre><code><span><span class="co">## [1] 274</span></span></code></pre>
+<p>(actually <code>range(y)</code> depends on <code>n</code> may mean
+<code>l0</code> not justified for this example)</p>
 </div>
 </div>
 </div>
@@ -343,184 +551,184 @@
 <div class="section level3">
 <h3 id="function-definitions">Function definitions<a class="anchor" aria-label="anchor" href="#function-definitions"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Finn Lindgren (s0000000, finnlindgren)</span>
-
-<span class="co"># Part 1 ####</span>
-
-<span class="co"># Simulate samples of size n from Pois(lambda), m times, and construct</span>
-<span class="co"># confidence intervals using one of the three methods implemented in pois_CI</span>
-<span class="co">#</span>
-<span class="co"># Input:</span>
-<span class="co">#   m: The number of samples</span>
-<span class="co">#   n: The size of each sample</span>
-<span class="co">#   lambda: The True value of the lambda-parameter</span>
-<span class="co">#   alpha: The target/nominal error probability for the confidence intervals</span>
-<span class="co">#   type: 1, 2, 3, or 4, indicating which CI method to use</span>
-<span class="co">#</span>
-<span class="co"># Output:</span>
-<span class="co">#   A data frame with `m` rows and columns `Lower` and `Upper`, with one</span>
-<span class="co">#   confidence interval per row</span>
-
-<span class="va">multi_pois_CI</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, <span class="va">lambda</span>, <span class="va">alpha</span>, <span class="va">type</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">Lower</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>
-  <span class="va">Upper</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>
-  <span class="kw">for</span> <span class="op">(</span><span class="va">m_idx</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span><span class="op">)</span>
-    <span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu">pois_CI</span><span class="op">(</span>y <span class="op">=</span> <span class="va">y</span>, alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="va">type</span><span class="op">)</span>
-    <span class="va">Lower</span><span class="op">[</span><span class="va">m_idx</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">CI</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
-    <span class="va">Upper</span><span class="op">[</span><span class="va">m_idx</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">CI</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
-  <span class="op">}</span>
-  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Lower <span class="op">=</span> <span class="va">Lower</span>, Upper <span class="op">=</span> <span class="va">Upper</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="va">tidy_multi_pois_CI_alt</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, <span class="va">lambda</span>, <span class="va">alpha</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">Lower</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">m</span>, <span class="fl">4</span><span class="op">)</span>
-  <span class="va">Upper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">m</span>, <span class="fl">4</span><span class="op">)</span>
-  <span class="kw">for</span> <span class="op">(</span><span class="va">m_idx</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span><span class="op">)</span>
-    <span class="kw">for</span> <span class="op">(</span><span class="va">type</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">{</span>
-      <span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu">pois_CI</span><span class="op">(</span>y <span class="op">=</span> <span class="va">y</span>, alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="va">type</span><span class="op">)</span>
-      <span class="va">Lower</span><span class="op">[</span><span class="va">m_idx</span>, <span class="va">type</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">CI</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
-      <span class="va">Upper</span><span class="op">[</span><span class="va">m_idx</span>, <span class="va">type</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">CI</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
-    <span class="op">}</span>
-  <span class="op">}</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-    Index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">m</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
-    Type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, each <span class="op">=</span> <span class="va">m</span><span class="op">)</span>,
-    Lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span>,
-    Upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Upper</span><span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">}</span>
-
-<span class="co"># Simulate samples of size n from Pois(lambda), m times, and construct</span>
-<span class="co"># confidence intervals using all three methods implemented in pois_CI.</span>
-<span class="co"># This implementation uses independent simulations for the three method, by</span>
-<span class="co"># calling multi_pois_CI for each interval type. An alternative implementation</span>
-<span class="co"># would be to use the same samples for all three methods.</span>
-<span class="co">#</span>
-<span class="co"># Input:</span>
-<span class="co">#   m: The number of samples</span>
-<span class="co">#   n: The size of each sample</span>
-<span class="co">#   lambda: The True value of the lambda-parameter</span>
-<span class="co">#   alpha: The target/nominal error probability for the confidence intervals</span>
-<span class="co">#</span>
-<span class="co"># Output:</span>
-<span class="co">#   A data frame with `3m` rows and columns `Lower`, `Upper`, and `Type`,</span>
-<span class="co">#   with one confidence interval per row, calculated with the method indicated</span>
-<span class="co">#   in the `Type` column</span>
-
-<span class="va">tidy_multi_pois_CI</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, <span class="va">lambda</span>, <span class="va">alpha</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">result</span> <span class="op">&lt;-</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>
-        <span class="fu">multi_pois_CI</span><span class="op">(</span>
-          m <span class="op">=</span> <span class="va">m</span>, n <span class="op">=</span> <span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span>,
-          alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="fl">1</span>
-        <span class="op">)</span>,
-        Type <span class="op">=</span> <span class="fl">1</span>
-      <span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>
-        <span class="fu">multi_pois_CI</span><span class="op">(</span>
-          m <span class="op">=</span> <span class="va">m</span>, n <span class="op">=</span> <span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span>,
-          alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="fl">2</span>
-        <span class="op">)</span>,
-        Type <span class="op">=</span> <span class="fl">2</span>
-      <span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>
-        <span class="fu">multi_pois_CI</span><span class="op">(</span>
-          m <span class="op">=</span> <span class="va">m</span>, n <span class="op">=</span> <span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span>,
-          alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="fl">3</span>
-        <span class="op">)</span>,
-        Type <span class="op">=</span> <span class="fl">3</span>
-      <span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>
-        <span class="fu">multi_pois_CI</span><span class="op">(</span>
-          m <span class="op">=</span> <span class="va">m</span>, n <span class="op">=</span> <span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span>,
-          alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="fl">4</span>
-        <span class="op">)</span>,
-        Type <span class="op">=</span> <span class="fl">4</span>
-      <span class="op">)</span>
-    <span class="op">)</span>
-  <span class="va">result</span>
-<span class="op">}</span>
-
-
-<span class="co"># Part 2 ####</span>
-
-<span class="co"># Joint log-probability</span>
-<span class="co">#</span>
-<span class="co"># Usage:</span>
-<span class="co">#   log_prob_NY(N, Y, xi, a, b)</span>
-<span class="co">#</span>
-<span class="co"># Calculates the joint probability for N and Y, when</span>
-<span class="co">#   N_j ~ Geom(xi)</span>
-<span class="co">#   phi ~ Beta(a, b)</span>
-<span class="co">#   Y_{ji} ~ Binom(N_j, phi)</span>
-<span class="co">#   For j = 1,...,J</span>
-<span class="co">#</span>
-<span class="co"># Inputs:</span>
-<span class="co">#   N: vector of length J</span>
-<span class="co">#   Y: data.frame or matrix of dimension Jx2</span>
-<span class="co">#   xi: The probability parameter for the N_j priors</span>
-<span class="co">#   a, b: the parameters for the phi-prior</span>
-<span class="co">#</span>
-<span class="co"># Output:</span>
-<span class="co">#   The log of the joint probability for N and Y</span>
-<span class="co">#   For impossible N,Y combinations, returns -Inf</span>
-
-<span class="va">log_prob_NY</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">N</span>, <span class="va">Y</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span>
-  <span class="co"># Convert Y to a matrix to allow more vectorised calculations:</span>
-  <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">N</span> <span class="op">&lt;</span> <span class="va">Y</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span><span class="op">)</span>
-  <span class="op">}</span>
-  <span class="va">atilde</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-  <span class="va">btilde</span> <span class="op">&lt;-</span> <span class="va">b</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span> <span class="co"># Note: b + sum(N - Y) would be more general</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/Special.html" class="external-link">lbeta</a></span><span class="op">(</span><span class="va">atilde</span>, <span class="va">btilde</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html" class="external-link">lbeta</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Geometric.html" class="external-link">dgeom</a></span><span class="op">(</span><span class="va">N</span>, <span class="va">xi</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html" class="external-link">lchoose</a></span><span class="op">(</span><span class="va">N</span>, <span class="va">Y</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="co"># Importance sampling for N,phi conditionally on Y</span>
-<span class="co">#</span>
-<span class="co"># Usage:</span>
-<span class="co">#   arch_importance(K,Y,xi,a,b)</span>
-<span class="co">#</span>
-<span class="co"># Inputs:</span>
-<span class="co">#   Y,xi,a,b have the same meaning and syntax as for log_prob_NY(N,Y,xi,a,b)</span>
-<span class="co">#   The argument K defines the number of samples to generate.</span>
-<span class="co">#</span>
-<span class="co"># Output:</span>
-<span class="co">#  A data frame with K rows and J+1 columns, named N1, N2, etc,</span>
-<span class="co">#  for each j=1,…,J, containing samples from an importance sampling</span>
-<span class="co">#  distribution for Nj,</span>
-<span class="co">#  a column Phi with sampled phi-values,</span>
-<span class="co">#  and a final column called Log_Weights, containing re-normalised</span>
-<span class="co">#  log-importance-weights, constructed by shifting log(w[k]) by subtracting the</span>
-<span class="co">#  largest log(w[k]) value, as in lab 4.</span>
-
-<span class="va">arch_importance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">K</span>, <span class="va">Y</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-  <span class="va">J</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-  <span class="va">N_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="va">Y</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">Y</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, each <span class="op">=</span> <span class="va">K</span><span class="op">)</span>, <span class="va">K</span>, <span class="va">J</span><span class="op">)</span>
-  <span class="va">xi_sample</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">N_sample</span><span class="op">)</span>
-
-  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Geometric.html" class="external-link">rgeom</a></span><span class="op">(</span><span class="va">K</span> <span class="op">*</span> <span class="va">J</span>, prob <span class="op">=</span> <span class="va">xi_sample</span><span class="op">)</span>, <span class="va">K</span>, <span class="va">J</span><span class="op">)</span> <span class="op">+</span> <span class="va">N_sample</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">J</span><span class="op">)</span><span class="op">)</span>
-
-  <span class="va">Log_Weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">K</span><span class="op">)</span>,
-    <span class="kw">function</span><span class="op">(</span><span class="va">k</span><span class="op">)</span> <span class="fu">log_prob_NY</span><span class="op">(</span><span class="va">N</span><span class="op">[</span><span class="va">k</span>, , drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span>, <span class="va">Y</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span>,
-    <span class="fl">0.0</span><span class="op">)</span> <span class="op">-</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Geometric.html" class="external-link">dgeom</a></span><span class="op">(</span><span class="va">N</span> <span class="op">-</span> <span class="va">N_sample</span>, prob <span class="op">=</span> <span class="va">xi_sample</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-
-  <span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html" class="external-link">rbeta</a></span><span class="op">(</span><span class="va">K</span>, <span class="va">a</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>, <span class="va">b</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span>
-
-  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,
-        Phi <span class="op">=</span> <span class="va">phi</span>,
-        Log_Weights <span class="op">=</span> <span class="va">Log_Weights</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Finn Lindgren (s0000000, finnlindgren)</span></span>
+<span></span>
+<span><span class="co"># Part 1 ####</span></span>
+<span></span>
+<span><span class="co"># Simulate samples of size n from Pois(lambda), m times, and construct</span></span>
+<span><span class="co"># confidence intervals using one of the three methods implemented in pois_CI</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Input:</span></span>
+<span><span class="co">#   m: The number of samples</span></span>
+<span><span class="co">#   n: The size of each sample</span></span>
+<span><span class="co">#   lambda: The True value of the lambda-parameter</span></span>
+<span><span class="co">#   alpha: The target/nominal error probability for the confidence intervals</span></span>
+<span><span class="co">#   type: 1, 2, 3, or 4, indicating which CI method to use</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Output:</span></span>
+<span><span class="co">#   A data frame with `m` rows and columns `Lower` and `Upper`, with one</span></span>
+<span><span class="co">#   confidence interval per row</span></span>
+<span></span>
+<span><span class="va">multi_pois_CI</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, <span class="va">lambda</span>, <span class="va">alpha</span>, <span class="va">type</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">Lower</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
+<span>  <span class="va">Upper</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">m_idx</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span><span class="op">)</span></span>
+<span>    <span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu">pois_CI</span><span class="op">(</span>y <span class="op">=</span> <span class="va">y</span>, alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="va">type</span><span class="op">)</span></span>
+<span>    <span class="va">Lower</span><span class="op">[</span><span class="va">m_idx</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">CI</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span>    <span class="va">Upper</span><span class="op">[</span><span class="va">m_idx</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">CI</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Lower <span class="op">=</span> <span class="va">Lower</span>, Upper <span class="op">=</span> <span class="va">Upper</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">tidy_multi_pois_CI_alt</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, <span class="va">lambda</span>, <span class="va">alpha</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">Lower</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">m</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span>  <span class="va">Upper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">m</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">m_idx</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span><span class="op">)</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">type</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu">pois_CI</span><span class="op">(</span>y <span class="op">=</span> <span class="va">y</span>, alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="va">type</span><span class="op">)</span></span>
+<span>      <span class="va">Lower</span><span class="op">[</span><span class="va">m_idx</span>, <span class="va">type</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">CI</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span>      <span class="va">Upper</span><span class="op">[</span><span class="va">m_idx</span>, <span class="va">type</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">CI</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>    Index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">m</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
+<span>    Type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, each <span class="op">=</span> <span class="va">m</span><span class="op">)</span>,</span>
+<span>    Lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span>,</span>
+<span>    Upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Upper</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Simulate samples of size n from Pois(lambda), m times, and construct</span></span>
+<span><span class="co"># confidence intervals using all three methods implemented in pois_CI.</span></span>
+<span><span class="co"># This implementation uses independent simulations for the three method, by</span></span>
+<span><span class="co"># calling multi_pois_CI for each interval type. An alternative implementation</span></span>
+<span><span class="co"># would be to use the same samples for all three methods.</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Input:</span></span>
+<span><span class="co">#   m: The number of samples</span></span>
+<span><span class="co">#   n: The size of each sample</span></span>
+<span><span class="co">#   lambda: The True value of the lambda-parameter</span></span>
+<span><span class="co">#   alpha: The target/nominal error probability for the confidence intervals</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Output:</span></span>
+<span><span class="co">#   A data frame with `3m` rows and columns `Lower`, `Upper`, and `Type`,</span></span>
+<span><span class="co">#   with one confidence interval per row, calculated with the method indicated</span></span>
+<span><span class="co">#   in the `Type` column</span></span>
+<span></span>
+<span><span class="va">tidy_multi_pois_CI</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">n</span>, <span class="va">lambda</span>, <span class="va">alpha</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">result</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
+<span>        <span class="fu">multi_pois_CI</span><span class="op">(</span></span>
+<span>          m <span class="op">=</span> <span class="va">m</span>, n <span class="op">=</span> <span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span>,</span>
+<span>          alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="fl">1</span></span>
+<span>        <span class="op">)</span>,</span>
+<span>        Type <span class="op">=</span> <span class="fl">1</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
+<span>        <span class="fu">multi_pois_CI</span><span class="op">(</span></span>
+<span>          m <span class="op">=</span> <span class="va">m</span>, n <span class="op">=</span> <span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span>,</span>
+<span>          alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="fl">2</span></span>
+<span>        <span class="op">)</span>,</span>
+<span>        Type <span class="op">=</span> <span class="fl">2</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
+<span>        <span class="fu">multi_pois_CI</span><span class="op">(</span></span>
+<span>          m <span class="op">=</span> <span class="va">m</span>, n <span class="op">=</span> <span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span>,</span>
+<span>          alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="fl">3</span></span>
+<span>        <span class="op">)</span>,</span>
+<span>        Type <span class="op">=</span> <span class="fl">3</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
+<span>        <span class="fu">multi_pois_CI</span><span class="op">(</span></span>
+<span>          m <span class="op">=</span> <span class="va">m</span>, n <span class="op">=</span> <span class="va">n</span>, lambda <span class="op">=</span> <span class="va">lambda</span>,</span>
+<span>          alpha <span class="op">=</span> <span class="va">alpha</span>, type <span class="op">=</span> <span class="fl">4</span></span>
+<span>        <span class="op">)</span>,</span>
+<span>        Type <span class="op">=</span> <span class="fl">4</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="va">result</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Part 2 ####</span></span>
+<span></span>
+<span><span class="co"># Joint log-probability</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Usage:</span></span>
+<span><span class="co">#   log_prob_NY(N, Y, xi, a, b)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Calculates the joint probability for N and Y, when</span></span>
+<span><span class="co">#   N_j ~ Geom(xi)</span></span>
+<span><span class="co">#   phi ~ Beta(a, b)</span></span>
+<span><span class="co">#   Y_{ji} ~ Binom(N_j, phi)</span></span>
+<span><span class="co">#   For j = 1,...,J</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Inputs:</span></span>
+<span><span class="co">#   N: vector of length J</span></span>
+<span><span class="co">#   Y: data.frame or matrix of dimension Jx2</span></span>
+<span><span class="co">#   xi: The probability parameter for the N_j priors</span></span>
+<span><span class="co">#   a, b: the parameters for the phi-prior</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Output:</span></span>
+<span><span class="co">#   The log of the joint probability for N and Y</span></span>
+<span><span class="co">#   For impossible N,Y combinations, returns -Inf</span></span>
+<span></span>
+<span><span class="va">log_prob_NY</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">N</span>, <span class="va">Y</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># Convert Y to a matrix to allow more vectorised calculations:</span></span>
+<span>  <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">N</span> <span class="op">&lt;</span> <span class="va">Y</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="va">atilde</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span>  <span class="va">btilde</span> <span class="op">&lt;-</span> <span class="va">b</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span> <span class="co"># Note: b + sum(N - Y) would be more general</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Special.html" class="external-link">lbeta</a></span><span class="op">(</span><span class="va">atilde</span>, <span class="va">btilde</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html" class="external-link">lbeta</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Geometric.html" class="external-link">dgeom</a></span><span class="op">(</span><span class="va">N</span>, <span class="va">xi</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html" class="external-link">lchoose</a></span><span class="op">(</span><span class="va">N</span>, <span class="va">Y</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Importance sampling for N,phi conditionally on Y</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Usage:</span></span>
+<span><span class="co">#   arch_importance(K,Y,xi,a,b)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Inputs:</span></span>
+<span><span class="co">#   Y,xi,a,b have the same meaning and syntax as for log_prob_NY(N,Y,xi,a,b)</span></span>
+<span><span class="co">#   The argument K defines the number of samples to generate.</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Output:</span></span>
+<span><span class="co">#  A data frame with K rows and J+1 columns, named N1, N2, etc,</span></span>
+<span><span class="co">#  for each j=1,…,J, containing samples from an importance sampling</span></span>
+<span><span class="co">#  distribution for Nj,</span></span>
+<span><span class="co">#  a column Phi with sampled phi-values,</span></span>
+<span><span class="co">#  and a final column called Log_Weights, containing re-normalised</span></span>
+<span><span class="co">#  log-importance-weights, constructed by shifting log(w[k]) by subtracting the</span></span>
+<span><span class="co">#  largest log(w[k]) value, as in lab 4.</span></span>
+<span></span>
+<span><span class="va">arch_importance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">K</span>, <span class="va">Y</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span>  <span class="va">J</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span>  <span class="va">N_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="va">Y</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">Y</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, each <span class="op">=</span> <span class="va">K</span><span class="op">)</span>, <span class="va">K</span>, <span class="va">J</span><span class="op">)</span></span>
+<span>  <span class="va">xi_sample</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">N_sample</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Geometric.html" class="external-link">rgeom</a></span><span class="op">(</span><span class="va">K</span> <span class="op">*</span> <span class="va">J</span>, prob <span class="op">=</span> <span class="va">xi_sample</span><span class="op">)</span>, <span class="va">K</span>, <span class="va">J</span><span class="op">)</span> <span class="op">+</span> <span class="va">N_sample</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">J</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">Log_Weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">K</span><span class="op">)</span>,</span>
+<span>    <span class="kw">function</span><span class="op">(</span><span class="va">k</span><span class="op">)</span> <span class="fu">log_prob_NY</span><span class="op">(</span><span class="va">N</span><span class="op">[</span><span class="va">k</span>, , drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span>, <span class="va">Y</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span>,</span>
+<span>    <span class="fl">0.0</span><span class="op">)</span> <span class="op">-</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Geometric.html" class="external-link">dgeom</a></span><span class="op">(</span><span class="va">N</span> <span class="op">-</span> <span class="va">N_sample</span>, prob <span class="op">=</span> <span class="va">xi_sample</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html" class="external-link">rbeta</a></span><span class="op">(</span><span class="va">K</span>, <span class="va">a</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>, <span class="va">b</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,</span>
+<span>        Phi <span class="op">=</span> <span class="va">phi</span>,</span>
+<span>        Log_Weights <span class="op">=</span> <span class="va">Log_Weights</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="analysis-code">Analysis code<a class="anchor" aria-label="anchor" href="#analysis-code"></a>
@@ -529,141 +737,144 @@
 <h4 id="confidence-intervals">Confidence intervals<a class="anchor" aria-label="anchor" href="#confidence-intervals"></a>
 </h4>
 <p>Poisson parameter interval simulations:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-<span class="va">lambda_true</span> <span class="op">&lt;-</span> <span class="fl">3</span>
-<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">tidy_multi_pois_CI_alt</span><span class="op">(</span><span class="fl">100000</span>, <span class="va">n</span>, <span class="va">lambda_true</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="va">lambda_true</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">tidy_multi_pois_CI_alt</span><span class="op">(</span><span class="fl">100000</span>, <span class="va">n</span>, <span class="va">lambda_true</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
 <p>Summarise the coverage probabilities and interval widths:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">result</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
-    Coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">(</span><span class="va">Lower</span> <span class="op">&lt;=</span> <span class="va">lambda_true</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">lambda_true</span> <span class="op">&lt;=</span> <span class="va">Upper</span><span class="op">)</span><span class="op">)</span>,
-    MedWidth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span>,
-    OutsideLower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lambda_true</span> <span class="op">&lt;</span> <span class="va">Lower</span><span class="op">)</span>,
-    OutsideUpper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lambda_true</span> <span class="op">&gt;</span> <span class="va">Upper</span><span class="op">)</span>,
-    MedLower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span>,
-    MedUpper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Upper</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">result</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>    Coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">(</span><span class="va">Lower</span> <span class="op">&lt;=</span> <span class="va">lambda_true</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">lambda_true</span> <span class="op">&lt;=</span> <span class="va">Upper</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    MedWidth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span>,</span>
+<span>    OutsideLower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lambda_true</span> <span class="op">&lt;</span> <span class="va">Lower</span><span class="op">)</span>,</span>
+<span>    OutsideUpper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lambda_true</span> <span class="op">&gt;</span> <span class="va">Upper</span><span class="op">)</span>,</span>
+<span>    MedLower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span>,</span>
+<span>    MedUpper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Upper</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Plot the CDFs for the CI width distributions:</p>
 </div>
 <div class="section level4">
 <h4 id="archaeology">Archaeology<a class="anchor" aria-label="anchor" href="#archaeology"></a>
 </h4>
 <p>Compute credible intervals for <span class="math inline">\(N_j\)</span> for different amounts of data, <span class="math inline">\(J\)</span>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">xi</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">1001</span>
-<span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">0.5</span>
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0.5</span>
-
-<span class="va">K</span> <span class="op">&lt;-</span> <span class="fl">1000000</span>
-<span class="va">NW1</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span>
-<span class="va">NW2</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span>
-<span class="va">NW3</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span>
-<span class="va">NW4</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></code></pre></div>
-<p>For completeness, we compute all the credible intervals for <span class="math inline">\(N_j\)</span>, <span class="math inline">\(1\leq J\)</span>, for each <span class="math inline">\(J=1,\dots,4\)</span>, but the analysis focuses on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span>
-  <span class="va">NW1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
-      J <span class="op">=</span> <span class="fl">1</span>,
-      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,
-      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N2 <span class="op">=</span> <span class="cn">NA</span>,
-      N3 <span class="op">=</span> <span class="cn">NA</span>,
-      N4 <span class="op">=</span> <span class="cn">NA</span>,
-      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>
-    <span class="op">)</span>,
-  <span class="va">NW2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
-      J <span class="op">=</span> <span class="fl">2</span>,
-      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,
-      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N2 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N2</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N3 <span class="op">=</span> <span class="cn">NA</span>,
-      N4 <span class="op">=</span> <span class="cn">NA</span>,
-      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>
-    <span class="op">)</span>,
-  <span class="va">NW3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
-      J <span class="op">=</span> <span class="fl">3</span>,
-      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,
-      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N2 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N2</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N3 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N3</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N4 <span class="op">=</span> <span class="cn">NA</span>,
-      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>
-    <span class="op">)</span>,
-  <span class="va">NW4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>
-      J <span class="op">=</span> <span class="fl">4</span>,
-      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,
-      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N2 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N2</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N3 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N3</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      N4 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N4</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>,
-      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,
-        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
-        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span>
-      <span class="op">)</span>
-    <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<p>Restructure the interval <code>data.frame</code> to focus on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> only:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>
-    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">N1</span>, <span class="va">N2</span>, <span class="va">N3</span>, <span class="va">N4</span>, <span class="va">Phi</span><span class="op">)</span>,
-    names_to <span class="op">=</span> <span class="st">"Variable"</span>,
-    values_to <span class="op">=</span> <span class="st">"value"</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>
-    names_from <span class="op">=</span> <span class="va">End</span>,
-    values_from <span class="op">=</span> <span class="va">value</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Width <span class="op">=</span> <span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">CI_</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Variable</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N1"</span>, <span class="st">"Phi"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">Variable</span>, <span class="va">J</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">xi</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">1001</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
+<span></span>
+<span><span class="va">K</span> <span class="op">&lt;-</span> <span class="fl">1000000</span></span>
+<span><span class="va">NW1</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span>
+<span><span class="va">NW2</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span>
+<span><span class="va">NW3</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span>
+<span><span class="va">NW4</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span></code></pre></div>
+<p>For completeness, we compute all the credible intervals for <span class="math inline">\(N_j\)</span>, <span class="math inline">\(1\leq
+J\)</span>, for each <span class="math inline">\(J=1,\dots,4\)</span>,
+but the analysis focuses on <span class="math inline">\(N_1\)</span> and
+<span class="math inline">\(\phi\)</span>:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>      J <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
+<span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N2 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>      N3 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>      N4 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  <span class="va">NW2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>      J <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
+<span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N2 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N2</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N3 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>      N4 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  <span class="va">NW3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>      J <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
+<span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N2 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N2</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N3 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N3</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N4 <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  <span class="va">NW4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>      J <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
+<span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N2 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N2</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N3 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N3</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      N4 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N4</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">1</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
+<span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Restructure the interval <code>data.frame</code> to focus on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> only:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">N1</span>, <span class="va">N2</span>, <span class="va">N3</span>, <span class="va">N4</span>, <span class="va">Phi</span><span class="op">)</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="st">"Variable"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"value"</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span></span>
+<span>    names_from <span class="op">=</span> <span class="va">End</span>,</span>
+<span>    values_from <span class="op">=</span> <span class="va">value</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Width <span class="op">=</span> <span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">CI_</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Variable</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N1"</span>, <span class="st">"Phi"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">Variable</span>, <span class="va">J</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -680,7 +891,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer>
