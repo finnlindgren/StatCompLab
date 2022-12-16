@@ -32,7 +32,8 @@ Imports:
     bench
 Suggests:
     rsconnect,
-    loo
+    loo,
+    stringi
 Config/testthat/edition: 3
 URL: https://finnlindgren.github.io/StatCompLab,
     https://github.com/finnlindgren/StatCompLab
