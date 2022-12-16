@@ -79,7 +79,7 @@ theme_set(theme_bw())
 set.seed(1234L)
 suppressPackageStartupMessages(library(tidyverse))
 ```
-<!--
+
 This document can either be accessed in html form on [https://finnlindgren.github.io/StatCompLab/](https://finnlindgren.github.io/StatCompLab/), as
 a vignette in `StatCompLab` version 21.5.0 or later, with `vignette("Project01", "StatCompLab")`, or in pdf format on Learn.
 
@@ -280,4 +280,4 @@ point estimates of the parameters, and plotting the importance log-weights
 to see how they depend on the sampled $\beta$-values, like in the `T4sol` document).
 
 
--->
+
