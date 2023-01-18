@@ -8,8 +8,8 @@
 <meta name="description" content="StatCompLab">
 <title>StatComp Project Example Solution: Numerical Statistics • StatCompLab</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="StatComp Project Example Solution: Numerical Statistics">
 <meta property="og:description" content="StatCompLab">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">22.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,26 +41,8 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2021/22): Simulation and sampling</a>
-    <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2021/22): Hints</a>
-    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2 (2021/22): Scottish weather</a>
-    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2021/22): Hints</a>
     <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
     <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
-    <a class="dropdown-item" href="../articles/Tutorial02Solutions.html">Tutorial 02: Optimization (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a>
-    <a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a>
-    <a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial06.html">Tutorial 06: Prediction assessment with proper scores</a>
-    <a class="dropdown-item" href="../articles/Tutorial06Solutions.html">Tutorial 06: Prediction assessment with proper scores (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a>
-    <a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a>
-    <a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a>
-    <a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a>
     <a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
     <a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a>
     <a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
@@ -743,16 +725,16 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">tidy_multi_pois_CI_alt</span><span class="op">(</span><span class="fl">100000</span>, <span class="va">n</span>, <span class="va">lambda_true</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
 <p>Summarise the coverage probabilities and interval widths:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">result</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">result</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">Type</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span></span>
 <span>    Coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">(</span><span class="va">Lower</span> <span class="op">&lt;=</span> <span class="va">lambda_true</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">lambda_true</span> <span class="op">&lt;=</span> <span class="va">Upper</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    MedWidth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span>,</span>
 <span>    OutsideLower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lambda_true</span> <span class="op">&lt;</span> <span class="va">Lower</span><span class="op">)</span>,</span>
 <span>    OutsideUpper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lambda_true</span> <span class="op">&gt;</span> <span class="va">Upper</span><span class="op">)</span>,</span>
 <span>    MedLower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span>,</span>
 <span>    MedUpper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Upper</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Plot the CDFs for the CI width distributions:</p>
 </div>
@@ -776,8 +758,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span class="math inline">\(\phi\)</span>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
-<span>  <span class="va">NW1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW1</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">summarise</span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -792,8 +774,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>  <span class="va">NW2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW2</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">summarise</span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -811,8 +793,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>  <span class="va">NW3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW3</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">summarise</span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -833,8 +815,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>  <span class="va">NW4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW4</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">summarise</span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -861,20 +843,20 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span><span class="op">)</span></span></code></pre></div>
 <p>Restructure the interval <code>data.frame</code> to focus on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> only:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_longer</span><span class="op">(</span></span>
 <span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">N1</span>, <span class="va">N2</span>, <span class="va">N3</span>, <span class="va">N4</span>, <span class="va">Phi</span><span class="op">)</span>,</span>
 <span>    names_to <span class="op">=</span> <span class="st">"Variable"</span>,</span>
 <span>    values_to <span class="op">=</span> <span class="st">"value"</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span></span>
 <span>    names_from <span class="op">=</span> <span class="va">End</span>,</span>
 <span>    values_from <span class="op">=</span> <span class="va">value</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Width <span class="op">=</span> <span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">CI_</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Variable</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N1"</span>, <span class="st">"Phi"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">Variable</span>, <span class="va">J</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>Width <span class="op">=</span> <span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">CI_</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Variable</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N1"</span>, <span class="st">"Phi"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">Variable</span>, <span class="va">J</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>

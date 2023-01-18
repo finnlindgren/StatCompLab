@@ -2,31 +2,13 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  Project01: Project01.html
-  Project01Hints: Project01Hints.html
-  Project02: Project02.html
-  Project02Hints: Project02Hints.html
   Tutorial01: Tutorial01.html
   Tutorial01Solutions: Tutorial01Solutions.html
-  Tutorial02: Tutorial02.html
-  Tutorial02Solutions: Tutorial02Solutions.html
-  Tutorial03: Tutorial03.html
-  Tutorial03Solutions: Tutorial03Solutions.html
-  Tutorial04: Tutorial04.html
-  Tutorial04Solutions: Tutorial04Solutions.html
-  Tutorial06: Tutorial06.html
-  Tutorial06Solutions: Tutorial06Solutions.html
-  Tutorial07: Tutorial07.html
-  Tutorial07Solutions: Tutorial07Solutions.html
-  Tutorial08: Tutorial08.html
-  Tutorial08Solutions: Tutorial08Solutions.html
-  Tutorial09: Tutorial09.html
-  Tutorial09Solutions: Tutorial09Solutions.html
   Project_Example: Project_Example.html
   Project_Example_Solution: Project_Example_Solution.html
   Quiz1Solution: Quiz1Solution.html
   T4sol: T4sol.html
-last_built: 2022-12-16T18:17Z
+last_built: 2023-01-18T09:17Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles
