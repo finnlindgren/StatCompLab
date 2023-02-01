@@ -1,0 +1,448 @@
+---
+title: "Tutorial 04: Uncertainty and integration"
+author: "Finn Lindgren"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: "Statistical Computing: Lab tutorial 4"
+tutorial:
+  id: "shinyapps.finnlindgren.StatCompTutorial04"
+  version: 1.0
+in-header:
+  - \newcommand{\bm}[1]{\boldsymbol{#1}}
+  - \newcommand{\wh}[1]{\widehat{#1}}
+  - \newcommand{\ol}[1]{\overline{#1}}
+  - \newcommand{\wt}[1]{\widetilde{#1}}
+  - \newcommand{\mv}[1]{\boldsymbol{#1}}
+  - \newcommand{\proper}[1]{\mathsf{#1}}
+  - \newcommand{\pP}{\proper{P}}
+  - \newcommand{\pE}{\proper{E}}
+  - \newcommand{\pVar}{\proper{Var}}
+  - \newcommand{\pPo}{\proper{Poisson}}
+  - \newcommand{\pN}{\proper{Normal}}
+  - \newcommand{\pBin}{\proper{Bin}}
+  - \newcommand{\pBeta}{\proper{Beta}}
+  - \newcommand{\pGeom}{\proper{Geom}}
+  - \newcommand{\pExp}{\proper{Exp}}
+  - \newcommand{\pGamma}{\proper{Gamma}}
+  - \newcommand{\mmd}{\mathrm{d}}
+  - \newcommand{\md}{\,\mmd}
+---
+
+```{r setup, include=FALSE}
+.tutorial <- TRUE
+.solutions <- FALSE
+begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
+end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
+
+library(StatCompLab)
+if (.tutorial) {
+  library(learnr)
+  require(gradethis)
+  learnr::tutorial_options(
+    exercise.timelimit = 120,
+    exercise.checker = grade_learnr,
+    exercise.startover = TRUE,
+    exercise.diagnostics = TRUE,
+    exercise.completion = TRUE
+    #    exercise.error.check.code = exercise.error.check.code.
+  )
+}
+library(ggplot2)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.width = 6
+)
+
+library(ggplot2)
+theme_set(theme_bw())
+set.seed(1234L)
+```
+
+## Introduction
+
+In this lab session you will explore
+
+* using RMarkdown to organise text and code
+* maximum likelihood estimator sampling distributions and approximate confidence interval construction
+* Laplace approximation and importance sampling for approximate Bayesian credible interval construction
+
+1. Clone your `lab04-*` repository from [https://github.com/StatComp21/](https://github.com/StatComp21/) either on your own computer (new Project from version control) or to [https://rstudio.cloud](https://rstudio.cloud)
+2. If on rstudio.cloud, setup `GITHUB_PAT` credentials, like before.
+3. Upgrade/install the `StatCompLab` package, see [https://finnlindgren.github.io/StatCompLab/](https://finnlindgren.github.io/StatCompLab/)
+4. The repository has two files, `RMDemo.Rmd` and `my_code.R`. Make a copy of `RMDemo.Rmd`, and call it `Lab4.Rmd`
+3. During this lab, modify the `Lab4.Rmd` document and add new code and text commentary for the lab to the document. (You can remove the demonstration parts of the file when you don't need them anymore, and/or keep a separate copy of it.) When pressing the "knit" button, the RMarkdown file will be run in
+its own R environment, so you need to include any needed `library()` calls in a code chnk in the file,
+normally an initial "setup" chunk.
+
+`r begin_sol(!.solutions)`
+The accompanying `Tutorial04Solutions` tutorial/vignette documents contain the
+solutions explicitly, to make it easier to review the material after the workshops.
+The separate `T4sol.Rmd` document at [https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/T4sol.Rmd](https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/T4sol.Rmd) is the source document for the standalone solution shown in `T4sol` on the `StatCompLab` website.  
+`r end_sol(!.solutions)`
+
+## Three alternatives for Poisson parameter confidence intervals
+
+Consider the Poisson model for observations $\bm{y}=\{y_1,\dots,y_n\}$:
+$$
+\begin{aligned}
+y_i & \sim \pPo(\lambda), \quad\text{independent for $i=1,\dots,n$.}
+\end{aligned}
+$$
+that has joint probability mass function
+$$
+p(\bm{y}|\lambda) = \exp(-n\lambda) \prod_{i=1}^n \frac{\lambda^{y_i}}{y_i!}
+$$
+In the week 4 lecture, two parameterisations were considered. We now add a third option:
+
+1. $\theta = \lambda$, and $\wh{\theta}_\text{ML}=\frac{1}{n}\sum_{i=1}^n y_i = \ol{y}$
+2. $\theta = \sqrt{\lambda}$, and $\wh{\theta}_\text{ML}=\sqrt{\ol{y}}$
+3. $\theta = \log(\lambda)$, and $\wh{\theta}_\text{ML}=\log\left(\ol{y}\right)$
+
+From the week 4 lecture, we know that the inverse expected Fisher information
+is $\lambda/n$ for case 1 and $1/(4n)$ for case 2. For case 3, show that
+the inverse expected Fisher information is $1/(n\lambda)$.
+
+`r begin_sol()`
+For case 3, the negated log-likelihood is
+$$
+\wt{l}(\theta) = n e^\theta - \theta \sum_{i=1}^n y_i + \text{constant}
+$$
+with 1st order derivative
+$$
+\frac{\partial}{\partial\theta}\wt{l}(\theta) = n e^\theta - \sum_{i=1}^n y_i
+$$
+which shows that $\wh{\theta}_\text{ML}=\log(\ol{y})$, and 2nd order derivative
+$$
+\frac{\partial^2}{\partial\theta^2}\wt{l}(\theta) = n e^\theta
+$$
+which is equal to $n\lambda$ for all $y_i$ values, so the inverse of the expected Hessian is $1/(n\lambda)$.
+`r end_sol()`
+
+### Interval construction
+
+Use the approximation method for large $n$ from the lecture to construct approximate
+confidence intervals for $\lambda$ using each of the three parameterisations.
+Define three functions, CI1, CI2, and CI3, each taking paramters
+
+* `y`: a vector of observed values
+* `alpha`: the nominal error probability of the confidence intervals
+
+To avoid having to specify `alpha` in a common case, you can use `alpha = 0.05`
+in the function argument definition to set a default value.
+
+The function `pmax` may be useful (see its help text).
+
+```{r intervals, exercise=TRUE}
+
+```
+```{r intervals-hint-1,eval=FALSE}
+# Get n
+# Compute theta_hat
+# Compute the estimated standard deviation of theta_hat
+# Compute the needed normal quantiles
+# Compute the confidence interval for theta
+# When needed, transform to a confidence interval for lambda
+```
+```{r intervals-hint-2,eval=FALSE}
+# Get n
+# Compute theta_hat
+# Compute the estimated standard deviation of theta_hat
+# Compute the needed normal quantiles
+# Compute the confidence interval for theta
+# When needed, transform to a confidence interval for lambda
+CI1 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  ???
+}
+CI2 <- ???
+CI3 <- ???
+```
+```{r intervals-hint-3,eval=FALSE}
+# Get n
+# Compute theta_hat
+# Compute the estimated standard deviation of theta_hat
+# Compute the needed normal quantiles
+# Compute the confidence interval for theta
+# When needed, transform to a confidence interval for lambda
+CI1 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  theta_hat <- mean(y)
+  theta_interval <- theta_hat - ???
+}
+CI2 <- ???
+CI3 <- ???
+```
+```{r intervals-hint-4,eval=FALSE}
+# Get n
+# Compute theta_hat
+# Compute the estimated standard deviation of theta_hat
+# Compute the needed normal quantiles
+# Compute the confidence interval for theta
+# When needed, transform to a confidence interval for lambda
+CI1 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  lambda_hat <- mean(y)
+  theta_interval <-
+    lambda_hat - sqrt(lambda_hat / n) * qnorm(c(1 - alpha / 2, alpha / 2))
+  pmax(theta_interval, 0)
+}
+CI2 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  theta__hat <- sqrt(mean(y))
+}
+CI3 <- ???
+
+# Note: The next hint reveals the complete solution
+```
+```{r intervals-solution,eval=FALSE}
+CI1 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  lambda_hat <- mean(y)
+  theta_interval <-
+    lambda_hat - sqrt(lambda_hat / n) * qnorm(c(1 - alpha / 2, alpha / 2))
+  pmax(theta_interval, 0)
+}
+CI2 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  theta_hat <- sqrt(mean(y))
+  theta_interval <-
+    theta_hat - 1 / sqrt(4 * n) * qnorm(c(1 - alpha / 2, alpha / 2))
+  pmax(theta_interval, 0)^2
+}
+CI3 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  theta_hat <- log(mean(y))
+  theta_interval <-
+    theta_hat - 1 / sqrt(exp(theta_hat) * n) * qnorm(c(1 - alpha / 2, alpha / 2))
+  exp(theta_interval)
+}
+```
+`r begin_sol()`
+```{r intervals-show,echo=.solutions,eval=TRUE,ref.label="intervals-solution",results="hide"}
+```
+`r end_sol()`
+
+You can use the following code to test your functions, storing each interval
+as a row of a matrix with `rbind` ("bind" as "rows", see also `cbind` for
+combining columns):
+```{r intervals-example,echo=TRUE,eval=TRUE}
+y <- rpois(n = 5, lambda = 2)
+print(y)
+CI <- rbind(
+  "Method 1" = CI1(y),
+  "Method 2" = CI2(y),
+  "Method 3" = CI3(y)
+)
+colnames(CI) <- c("Lower", "Upper")
+```
+
+We can print the result as a table in our RMarkdown by using a separate codechunk, calling the `knitr::kable` function:
+```{r intervals-example2,echo=TRUE,eval=TRUE}
+knitr::kable(CI)
+```
+
+Will all three methods always produce a valid interval? Consider the possible values of $\ol{y}$.
+Experiment with different values of `n` and `lambda` in the simulation of `y`.
+
+`r begin_sol()`
+When $\ol{y}=0$, the first method produces a single point as "interval".
+
+The third method fails if $\ol{y}=0$, due to log of zero.
+
+This can happen when $n$ or $\lambda$ are close to zero.
+`r end_sol()`
+
+For each approximate confidence interval construction method, we might ask
+the question of whether it fulfils the definition of an actual
+confidence interval construction method; that
+$\pP_{\bm{y}|\theta}(\theta\in \text{CI}(\bm{y})|\theta)\geq 1-\alpha$ for all $\theta$ (or at least for a relevant subset of the parameter space).
+In coursework project 1, you will investigate the accuracy of some approximate
+confidence interval construction methods.
+
+## Bayesian credible intervals
+
+Assume a true value of $\lambda=10$, and simulate a sample of $\bm{y}$ of size $n=5$.
+
+```{r data-sampling,exercise=TRUE}
+
+```
+```{r data-sampling-solution,eval=FALSE}
+n <- 5
+lambda <- 10
+y <- rpois(n, lambda)
+y # Actual values will depend on if set.seed() was used at the beginning of the document
+```
+`r begin_sol()`
+```{r data-sampling-show,echo=.solutions,eval=TRUE,ref.label="data-sampling-solution",results=.solutions}
+```
+`r end_sol()`
+
+Now consider a Bayesian version of the Poisson model, with prior model
+$$
+\lambda \sim \pExp(a)
+$$
+that has probability density function $p(\lambda) = a \exp(-a \lambda)$.
+
+One can show that the exact posterior distribution for $\lambda$ given $\bm{y}$ is a
+$\pGamma(1 + \sum_{i=1}^n y_i, a + n)$ distribution (using the shape&rate parameterisation),
+and credible intervals can be constructed from quantiles of this distribution.
+
+In cases where the theoretical construction is impractical, an alternative is to
+instead construct samples from the posterior distribution, and extract empirical
+quantiles from this sample. Here, we will use importance sampling to achieve this.
+
+Let $\theta=\log(\lambda)$, so that $\lambda=\exp(\theta)$.
+Show that the prior probability density for $\theta$
+is $p(\theta)=a \exp\left( \theta-ae^\theta \right)$.
+
+### Gaussian approximation
+
+`r begin_sol()`
+*Alternative 1*:
+From probability theory, we know that $p(\theta)=p(\lambda) \frac{d\lambda(\theta)}{d\theta}$, so that
+$$
+p(\theta) = a \exp(-a\lambda) \exp(\theta) = a \exp\left( \theta-ae^\theta \right)
+$$
+
+*Alternative 2*:
+First, we derive the CDF: $\pP(\theta \leq x)=\pP(\log(\lambda) \leq x)=\pP(\lambda \leq e^x) = 1 - \exp(-a e^x)$, from the CDF for the Exponential distribution. Taking the derivative with respect to $x$ gives the density $p_\theta(x)=-\exp(-a e^x) \frac{d}{dx} (-a e^x) = \exp(-a e^x) (a e^x) = a \exp(x - a e^x)$, which is the needed result.
+`r end_sol()`
+
+The posterior density function for $\theta$ is
+$$
+p(\theta|\bm{y}) = \frac{p(\theta) p(\bm{y}|\theta)}{p(\bm{y})}
+$$
+with log-density
+$$
+\log p(\theta|\bm{y}) = \text{const} + \theta (1 + n\ol{y}) - (a+n)\exp(\theta) ,
+$$
+and by taking derivatives we find the mode at $\wt{\theta}=\log\left(\frac{1+n\ol{y}}{a+n}\right)$, and negated Hessian $1+n\ol{y}$ at the mode.
+
+With this information we can construct a Gaussian approximation to the posterior distribution,
+$\wt{p}(\theta|\bm{y})\sim\pN(\wt{\theta},\frac{1}{1+n\ol{y}})$.
+
+### Importance sampling
+
+Simulate a sample $\bm{x}=\{x_1,\dots,x_m\}$ from this Gaussian approximation of the posterior distribution, for some large $m > 10000$, with hyperparameter $a=1/5$.
+```{r sampling,exercise=TRUE}
+
+```
+```{r sampling-hint-1,eval=FALSE}
+a <- ???
+m <- ???
+x <- rnorm(m, mean = ???, sd = ???)
+```
+```{r sampling-hint-2,eval=FALSE}
+a <- ???
+m <- ???
+x <- rnorm(m, mean = log(1+sum(y)) - log(a + n), sd = ???)
+```
+```{r sampling-solution,eval=FALSE}
+a <- 1/5
+m <- 20000
+x <- rnorm(m, mean = log(1+sum(y)) - log(a + n), sd = 1 / sqrt(1 + sum(y)))
+```
+`r begin_sol()`
+```{r sampling-show,echo=.solutions,eval=TRUE,ref.label="sampling-solution",results="hide"}
+```
+`r end_sol()`
+
+We need to calculate unnormalised _importance weights_ $w_k$, $k=1,\dots,m$,
+$$
+w_k = \left.\frac{p(\theta)p(\bm{y}|\theta)}{\wt{p}(\theta|\bm{y})}\right|_{\theta=x_k} .
+$$
+Due to lack of normalisation, these "raw" weights cannot be represented accurately in the computer. To get around that issue, first compute the logarithm of the weights, $\log(w_k)$, and then new, equivalent unnormalised weights $\wt{w}_k=\exp[\log(w_k) - \max_j \log(w_j)]$.
+
+```{r weights,exercise=TRUE}
+
+```
+```{r weights-hint-1,eval=FALSE}
+log_weights <- (???) -
+ dnorm(x, mean = ???, sd = ???, log = TRUE)
+weights <- exp(??? - ???)
+```
+```{r weights-hint-2,eval=FALSE}
+log_weights <- (???) -
+ dnorm(x, mean = log(1+sum(y)) - log(a + n), sd = ???, log = TRUE)
+weights <- exp(log_weights - max(log_weights))
+```
+```{r weights-solution,eval=FALSE}
+log_weights <- (x * (1 + sum(y)) - (a + n) * exp(x)) -
+ dnorm(x, mean = log(1 + sum(y)) - log(a + n), sd = 1 / sqrt(1 + sum(y)), log = TRUE)
+weights <- exp(log_weights - max(log_weights))
+```
+`r begin_sol()`
+```{r weights-show,echo=.solutions,eval=TRUE,ref.label="weights-solution",results="hide"}
+```
+`r end_sol()`
+
+
+Look at the help text for the function `wquantile` (in the StatCompLab package, from version 0.4.0) that computes quantiles from a weighted sample, and
+construct a 95% credible interval for $\theta$ using the $\bm{x}$ sample and associate weights, and then transform it into a credible interval for $\lambda$
+
+```{r importance-interval,exercise=TRUE}
+
+```
+```{r importance-interval-hint-1,eval=FALSE}
+# Call wquantile with the weighted sample, and suitable probabilities
+# Transform to a lambda-interval
+```
+```{r importance-interval-hint-2,eval=FALSE}
+theta_interval <- wquantile(x, probs = ???, weights = ???)
+lambda_interval <- ???
+```
+```{r importance-interval-solution,eval=FALSE}
+theta_interval <- wquantile(x, probs = c(0.025, 0.975), weights = weights)
+theta_interval
+lambda_interval <- exp(theta_interval)
+lambda_interval
+```
+`r begin_sol()`
+```{r importance-interval-show,echo=.solutions,eval=TRUE,ref.label="importance-interval-solution",results=.solutions}
+```
+`r end_sol()`
+
+
+### Cumulative distribution function comparison
+
+With `ggplot`, use `geom_function` to plot the theoretical posterior cumulative distribution function for $\lambda$ (the CDF from the Gamma distribution given above, see `pgamma()`) and compare it to the approximation given by the importance sampling. The `stat_ewcdf()` function from the StatCompLab should be used to plot the cdf for the weighted sample $\lambda_k=\exp(x_k)$, with (unnormalised) weights $w_k$. Also include the unweighted sample, with `stat_ecwf()`.  How close does the approximations come to the true posterior distribution?
+
+```{r ecdf,exercise=TRUE}
+
+```
+```{r ecdf-hint-1,eval=FALSE}
+ggplot(data.frame(???)) +
+  xlim(0, 20) + ylab("CDF") +
+  geom_function(???, mapping = aes(col = "Theory")) +
+  stat_ewcdf(aes(???,, col = "Importance")) +
+  stat_ecdf(aes(???, col = "Unweighted"))
+```
+```{r ecdf-hint-2,eval=FALSE}
+ggplot(data.frame(lambda = exp(x), weights = weights)) +
+  xlim(0, 20) + ylab("CDF") +
+  geom_function(???, mapping = aes(col = "Theory")) +
+  stat_ewcdf(aes(???,, col = "Importance")) +
+  stat_ecdf(aes(???, col = "Unweighted"))
+```
+```{r ecdf-hint-3,eval=FALSE}
+ggplot(data.frame(lambda = exp(x), weights = weights)) +
+  xlim(0, 20) + ylab("CDF") +
+  geom_function(fun = pgamma, args = list(???),
+                mapping = aes(col = "Theory")) +
+  stat_ewcdf(aes(???, weights = ???, col = "Importance")) +
+  stat_ecdf(aes(???, col = "Unweighted"))
+```
+```{r ecdf-solution,eval=FALSE}
+ggplot(data.frame(lambda = exp(x), weights = weights)) +
+  xlim(0, 20) + ylab("CDF") +
+  geom_function(fun = pgamma, args = list(shape = 1 + sum(y), rate = a + n),
+                mapping = aes(col = "Theory")) +
+  stat_ewcdf(aes(lambda, weights = weights, col = "Importance")) +
+  stat_ecdf(aes(lambda, col = "Unweighted"))
+```
+`r begin_sol()`
+The importance sampling version is virtually indistinguishable from the true posterior distribution.
+The unweighted sample is very close to the true posterior distribution; for this model, the Gaussian approximation of the posterior distribution of $\log(\lambda)$ is an excellent approximation even before we add the importance sampling step.
+```{r ecdf-show,echo=.solutions,eval=TRUE,ref.label="ecdf-solution",results=.solutions}
+```
+`r end_sol()`
