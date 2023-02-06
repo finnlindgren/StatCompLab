@@ -1,16 +1,31 @@
 ---
-title: "StatComp Project 1 (2021/22): Hints"
+title: "StatComp Project 1 (2022/23): Hints"
 author: "Finn Lindgren"
-date: "2022-02-11"
-output:
-  rmarkdown::html_vignette:
-    toc: true
-  pdf_document:
-    toc: true
-vignette: |
-  %\VignetteIndexEntry{StatComp Project 1 (2021/22): Hints}
-  %\VignetteEncoding{UTF-8}
-  %\VignetteEngine{knitr::rmarkdown}
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: "Statistical Computing (2022/23): Hints"
+tutorial:
+  id: "shinyapps.finnlindgren.StatCompProject01Hints"
+  version: 1.0
+in-header:
+  - \newcommand{\bm}[1]{\boldsymbol{#1}}
+  - \newcommand{\wh}[1]{\widehat{#1}}
+  - \newcommand{\ol}[1]{\overline{#1}}
+  - \newcommand{\wt}[1]{\widetilde{#1}}
+  - \newcommand{\mv}[1]{\boldsymbol{#1}}
+  - \newcommand{\proper}[1]{\mathsf{#1}}
+  - \newcommand{\pP}{\proper{P}}
+  - \newcommand{\pE}{\proper{E}}
+  - \newcommand{\pVar}{\proper{Var}}
+  - \newcommand{\pPo}{\proper{Poisson}}
+  - \newcommand{\pN}{\proper{Normal}}
+  - \newcommand{\pBin}{\proper{Bin}}
+  - \newcommand{\pBeta}{\proper{Beta}}
+  - \newcommand{\pGeom}{\proper{Geom}}
+  - \newcommand{\pExp}{\proper{Exp}}
+  - \newcommand{\pGamma}{\proper{Gamma}}
+  - \newcommand{\mmd}{\mathrm{d}}
+  - \newcommand{\md}{\,\mmd}
 ---
 
 ```{r setup, include = FALSE}

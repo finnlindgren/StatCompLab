@@ -1,18 +1,12 @@
 ---
-title: 'StatComp Project 1 (2021/22): Simulation and sampling'
+title: "StatComp Project 1 (2022/23): Simulation and sampling"
 author: "Finn Lindgren"
-output:
-  rmarkdown::html_vignette:
-    number_sections: yes
-  pdf_document:
-    number_sections: yes
-pkgdown:
-  number_sections: yes
-description: 'Statistical Computing (2021/22): Coursework project 1'
-vignette: |
-  %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{StatComp Project 1 (2021/22): Simulation and sampling}
-  %\VignetteEngine{knitr::rmarkdown}
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: "Statistical Computing (2022/23): Coursework project 1"
+tutorial:
+  id: "shinyapps.finnlindgren.StatCompProject01"
+  version: 1.0
 in-header:
   - \newcommand{\bm}[1]{\boldsymbol{#1}}
   - \newcommand{\wh}[1]{\widehat{#1}}
@@ -29,7 +23,6 @@ in-header:
   - \newcommand{\pBeta}{\proper{Beta}}
   - \newcommand{\pGeom}{\proper{Geom}}
   - \newcommand{\pExp}{\proper{Exp}}
-  - \newcommand{\pLogExp}{\proper{LogExp}}
   - \newcommand{\pGamma}{\proper{Gamma}}
   - \newcommand{\mmd}{\mathrm{d}}
   - \newcommand{\md}{\,\mmd}
