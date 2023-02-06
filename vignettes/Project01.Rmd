@@ -1,5 +1,5 @@
 ---
-title: 'StatComp Project 1 (2021/22): Simulation and sampling'
+title: 'StatComp Project 1 (2022/23): Simulation and sampling'
 author: "Finn Lindgren"
 output:
   rmarkdown::html_vignette:
@@ -8,7 +8,7 @@ output:
     number_sections: yes
 pkgdown:
   number_sections: yes
-description: 'Statistical Computing (2021/22): Coursework project 1'
+description: 'Statistical Computing (2022/23): Coursework project 1'
 vignette: |
   %\VignetteEncoding{UTF-8}
   %\VignetteIndexEntry{StatComp Project 1 (2021/22): Simulation and sampling}
@@ -81,11 +81,9 @@ suppressPackageStartupMessages(library(tidyverse))
 ```
 
 
-**WARNING**: This webpage is currently under development for academic year 2022-2023!!!
-
 
 This document can either be accessed in html form on [https://finnlindgren.github.io/StatCompLab/](https://finnlindgren.github.io/StatCompLab/), as
-a vignette in `StatCompLab` version 21.5.0 or later, with `vignette("Project01", "StatCompLab")`, or in pdf format on Learn.
+a vignette in `StatCompLab` version 21.4.1 or later, with `vignette("Project01", "StatCompLab")`, or in pdf format on Learn.
 
 
 Use the template material in the zip file `project01.zip` in Learn to write your report. Add all your function definitions on the `code.R` file and write your report using `report.Rmd`. You must upload the following three files as part of this assignment: `code.R`, `report.html`, `report.Rmd`. Specific instructions for these files are in the `README.md` file.
