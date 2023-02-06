@@ -97,51 +97,26 @@ for academic year 2022-2023!!!</p>
 as a vignette in <code>StatCompLab</code> version 21.5.0 or later, with
 <code><a href="../articles/Project01.html">vignette("Project01", "StatCompLab")</a></code>, or in pdf format on
 Learn.</p>
-<ol style="list-style-type: decimal">
-<li>You have been assigned a <code>project01-username</code> repository
-on <a href="https://github.com/StatComp21/" class="external-link">https://github.com/StatComp21/</a>.
-Use <code>git</code> to <em>clone</em> the repository (either to <a href="https://rstudio.cloud" class="external-link">https://rstudio.cloud</a> or your own
-computer) in the same way as the <code>lab*-username</code> repositories
-for tutorials 2 and 4.</li>
-<li>The repository contains a template RMarkdown document,
-<code>report.Rmd</code>, that you should expand with your answers and
-solutions for this project assignment, and a code files for function
-definitions, <code>code.R</code>, that contains some predefined
-functions, and you should add your own function definitions and function
-documentation to that file. Do not change these filenames.</li>
-<li>The function definitions should be included in the
-<code>report.Rmd</code> file in exactly the way already shown in the
-document. This will make the function defintions available throughout
-the document, but only shown in the code appendix.</li>
-<li>The main text should be a coherent presentation of theory and
-discussion of methods and results, showing code for code chunks that
-perform computations and analysis, but not code for code chunks that
-generate figures or tables. Use the <code>echo=TRUE</code> and
-<code>echo=FALSE</code> to control what code is visible.</li>
-<li>The <code>styler</code> package Addin for restyling code for better
-and consistent readability works for both <code>.R</code> and
-<code>.Rmd</code> files.</li>
-<li>The <code>Project01Hints</code> vignette contains some useful
-tips.</li>
-</ol>
-<p>The assignment is submitted by pushing your work to the github
-repository before your submission deadline. Make sure you include your
-name, student number, and github username in both
-<code>report.Rmd</code> and <code>code.R</code>. When submitting, also
-include a generated html version of the report, with filename
-<code>report.html</code>. Normally, generated images are automatically
-included in the html file itself; otherwise they need to be added to the
-repository as well.</p>
-<p>It is strongly recommended to commit and push to github frequently.
-If you’re uncertain about whether you’re pushing all the needed
-submission files to github, ask Finn to check the repository contents
-<em>at least</em> a week before the submission deadline.</p>
-<p>The submission deadline is Monday 7 March 2022, at 16:00 (Edinburgh
-time). See the Assessment page on Learn for extensions and late
-submission penalty details.</p>
-<p>The project will be marked as a whole, with marks between <span class="math inline">\(0\)</span> and <span class="math inline">\(40\)</span>. A marking guide will be posted on
-Learn.</p>
-<div style="page-break-after: always;"></div>
+<p>Use the template material in the zip file <code>project01.zip</code>
+in Learn to write your report. Add all your function definitions on the
+<code>code.R</code> file and write your report using
+<code>report.Rmd</code>. You must upload the following three files as
+part of this assignment: <code>code.R</code>, <code>report.html</code>,
+<code>report.Rmd</code>. Specific instructions for these files are in
+the <code>README.md</code> file.</p>
+<p>The main text in your report should be a coherent presentation of
+theory and discussion of methods and results, showing code for code
+chunks that perform computations and analysis but not code for code
+chunks that generate figures or tables.</p>
+<p>Use the <code>echo=TRUE</code> and <code>echo=FALSE</code> to control
+what code is visible.</p>
+<p>The <code>styler</code> package addin is useful for restyling code
+for better and consistent readability. It works for both <code>.R</code>
+and <code>.Rmd</code> files.</p>
+<p>The <code>Project01Hints</code> file contains some useful tip and
+<code>CWmarking</code> contain guidelines. Both are attached in Learn as
+pdf files.</p>
+<p>Submission should be done through Gradescope.</p>
 <div class="section level2">
 <h2 id="confidence-interval-approximation-assessment">Confidence interval approximation assessment<a class="anchor" aria-label="anchor" href="#confidence-interval-approximation-assessment"></a>
 </h2>
@@ -153,53 +128,49 @@ $i=1,\dots,n$.}
 \]</span> that has joint probability mass function <span class="math display">\[
 p(\boldsymbol{y}|\lambda) = \exp(-n\lambda) \prod_{i=1}^n
 \frac{\lambda^{y_i}}{y_i!}
-\]</span> In the lab, one of the considered parameterisation
-alternatives was</p>
+\]</span> In Lab 4, one of the considered parameterisation alternatives
+was</p>
 <ol style="list-style-type: decimal">
 <li>
 <span class="math inline">\(\theta = \lambda\)</span>, and <span class="math inline">\(\widehat{\theta}_\text{ML}=\frac{1}{n}\sum_{i=1}^n
 y_i = \overline{y}\)</span>
 </li>
 </ol>
-<p>The confidence interval construction was motivated by the ratio <span class="math inline">\(\frac{\widehat{\lambda}-\lambda}{\sqrt{\lambda/n}}\)</span>,
-which was approximated by <span class="math inline">\(\frac{\widehat{\lambda}-\lambda}{\sqrt{\widehat{\lambda}/n}}\)</span>.
-We now wish to see if we would achieve a better construction by using
-the non-approximated version.</p>
-<p>Solve the inequalities in <span class="math display">\[
-a = z_{\alpha/2} &lt; \frac{\widehat{\lambda}-\lambda}{\sqrt{\lambda/n}}
-&lt; z_{1-\alpha/2} = b
-\]</span> with respect to <span class="math inline">\(\lambda\)</span>,
-and implement the resulting confidence interval construction in a
-function (in <code>code.R</code>; also document the function) taking
-arguments <code>y</code> and <code>alpha</code>. Also include another
-function for the method used in the lab, with the same call syntax.</p>
-<p>Hint: It may help to do the mathematical derivation in several steps;
-e.g. by introducing <span class="math inline">\(x=\sqrt{\lambda}\)</span>, solve two separate
-quadratic equations (on with <span class="math inline">\(a\)</span> and
-one with <span class="math inline">\(b\)</span>) and then work out for
-what intervals the two inequalities are fulfilled. For that, you likely
-will need the fact that for <span class="math inline">\(\alpha&lt;0.5\)</span>, we have <span class="math inline">\(z_{\alpha/2}&lt;0\)</span> and <span class="math inline">\(z_{1-\alpha/2}&gt;0\)</span>.</p>
-<p>The function <code>estimate_coverage</code>, defined in
-<code>code.R</code>, can be used to estimate the coverage of the
-construction of confidence intervals from samples <span class="math inline">\(\mathsf{Poisson}(\lambda)\)</span>, given an
-interval construction R function. Use this to discuss the following
-questions:</p>
-<p>Which of the two alternatives has coverage closest to the nominal
-coverage of 90% for the case <span class="math inline">\(n=2\)</span>,
-<span class="math inline">\(\lambda=3\)</span>? What happens for larger
-values of <span class="math inline">\(n\)</span>?</p>
+<p>Create a function called <code>estimate_coverage</code> (in
+<code>code.R</code>; also document the function) to perform interval
+coverage estimation taking arguments <code>CI</code> (a function object
+for confidence interval construction taking arguments <code>y</code> and
+<code>alpha</code> and returning a 2-element vector [see Lab 4]),
+<code>N</code> (the number of simulation replications to use for the
+coverage estimate), <code>alpha</code> (1-<code>alpha</code> is the
+intended coverage probability), <code>n</code> (the sample size) and
+<code>lambda</code> (the true <code>lambda</code> values for the Poisson
+model).</p>
+<p>Use your function <code>estimate_coverage</code> to estimate the
+coverage of the construction of confidence intervals from samples <span class="math inline">\(\mathsf{Poisson}(\lambda)\)</span> and discuss the
+following:</p>
+<ul>
+<li>Since the model involves the discrete Poisson distribution, one
+might ask how sensitive these results are to the precise values of <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(n\)</span>. To investigate this, run the coverage
+estimation for different combinations of model parameters <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(n\)</span> (fix <span class="math inline">\(N =
+10000\)</span> and <span class="math inline">\(\alpha=0.1\)</span>)</li>
+<li>Present your results of estimated coverage in two plots, (1) as a
+function of <span class="math inline">\(\lambda\)</span> for fixed <span class="math inline">\(n=2\)</span>, and (2) as a function of <span class="math inline">\(n\)</span>, for fixed <span class="math inline">\(\lambda=3\)</span>.</li>
+<li>Discuss the plots in regards to whether the coverage of the
+intervals achieve the desired 90% confidence level, and if not identify
+under which cases and provide a suggestion as to why.</li>
+</ul>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level2">
 <h2 id="d-printer-materials-prediction">3D printer materials prediction<a class="anchor" aria-label="anchor" href="#d-printer-materials-prediction"></a>
 </h2>
-<p>The aim is estimate the parameters of a Bayesian statistical model of
-material use in a 3D printer.<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;Special thanks to Sten Lindgren for providing the
-printer data.&lt;/p&gt;"><sup>1</sup></a> The printer uses rolls of <em>filament</em>
-that gets heated and squeezed through a moving nozzle, gradually
-building objects. The objects are first designed in a CAD program
-(Computer Aided Design), that also estimates how much material will be
-required to print the object.</p>
+<p>The aim is to estimate the parameters of a Bayesian statistical model
+of material use in a 3D printer. The printer uses rolls of
+<em>filament</em> that get heated and squeezed through a moving nozzle,
+gradually building objects. The objects are first designed in a CAD
+program (Computer Aided Design) that also estimates how much material
+will be required to print the object.</p>
 <p>The data can be loaded with
 <code>data("filament1", package = "StatCompLab")</code>, and contains
 information about one 3D-printed object per row. The columns are</p>
@@ -212,16 +183,16 @@ information about one 3D-printed object per row. The columns are</p>
 <code>Material</code>: the printing material, identified by its
 colour</li>
 <li>
-<code>CAD_Weight</code>: the object weight (in gram) that the CAD
+<code>CAD_Weight</code>: the object weight (in grams) that the CAD
 software calculated</li>
 <li>
 <code>Actual_Weight</code>: the actual weight of the object (in
-gram) after printing</li>
+grams) after printing</li>
 </ul>
 <p>If the CAD system and printer were both perfect, the
 <code>CAD_Weight</code> and <code>Actual_Weight</code> values would be
-equal for each object. In reality, there is both random variation, for
-example due to varying humidity and temperature, and systematic
+equal for each object. In reality, there are random variations, for
+example, due to varying humidity and temperature, and systematic
 deviations due to the CAD system not having perfect information about
 the properties of the printing materials.</p>
 <p>When looking at the data (see below) it’s clear that the variability
@@ -252,11 +223,11 @@ Tutorial 4. The <span class="math inline">\(\boldsymbol{\gamma}=(\gamma_1,\gamma
 values are positive parameters.</p>
 <p>The printer operator reasons that due to random fluctuations in the
 material properties (such as the density) and room temperature should
-lead to a <em>relative</em> error instead of an additive error, and this
-is what lead them to the model, as an approximation of that. The basic
-physics assumption is that the error in the CAD software calculation of
-the weight is proportional to the weight itself.</p>
-<p>Start by loading the data and plot it.</p>
+lead to a <em>relative</em> error instead of an additive error, which
+leads them to the model as an approximation of that. The basic physics
+assumption is that the error in the CAD software calculation of the
+weight is proportional to the weight itself.</p>
+<p>Start by loading the data and plotting it.</p>
 <div class="section level3">
 <h3 id="prior-density">Prior density<a class="anchor" aria-label="anchor" href="#prior-density"></a>
 </h3>
@@ -282,21 +253,36 @@ the model defined above.</p>
 </h3>
 <p>Define and document a function <code>log_posterior_density</code>
 with arguments <code>theta</code>, <code>x</code>, <code>y</code>, and
-<code>params</code>, that evaluates the logarithm of the posterior
+<code>params</code>, which evaluates the logarithm of the posterior
 density <span class="math inline">\(p(\boldsymbol{\theta}|\boldsymbol{y})\)</span>,
 apart from some unevaluated normalisation constant.</p>
 </div>
 <div class="section level3">
-<h3 id="posterior-mode-and-gaussian-approximation">Posterior mode and Gaussian approximation<a class="anchor" aria-label="anchor" href="#posterior-mode-and-gaussian-approximation"></a>
+<h3 id="posterior-mode">Posterior mode<a class="anchor" aria-label="anchor" href="#posterior-mode"></a>
 </h3>
-<p>Let all <span class="math inline">\(\gamma_i=1\)</span>, <span class="math inline">\(i=1,2,3,4\)</span>, and use <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim()</a></code>
-together with the <code>log_posterior_density</code> and filament data
-to find the posterior mode for <span class="math inline">\(\boldsymbol{\theta}\)</span>. Also evaluate the
-inverse of the negated Hessian at the mode, in order to obtain a
-multivariate Normal approximation <span class="math inline">\(\mathsf{Normal}(\boldsymbol{\mu},\boldsymbol{S})\)</span>
-to the posterior distribution for <span class="math inline">\(\boldsymbol{\theta}\)</span>. See the
-documentation for <code>optim</code> for how to do maximisation instead
-of minimisation.</p>
+<p>Define a function <code>posterior_mode</code> with arguments
+<code>theta_start</code>, <code>x</code>, <code>y</code>, and
+<code>params</code>, that uses <code>optim</code> together with the
+<code>log_posterior_density</code> and filament data to find the mode
+<span class="math inline">\(\boldsymbol{\mu}\)</span> of the
+log-posterior-density and evaluates the Hessian at the mode as well as
+the inverse of the negated Hessian, <span class="math inline">\(\boldsymbol{S}\)</span>. This function should
+return a list with elements <code>mode</code> (the posterior mode
+location), <code>hessian</code> (the Hessian of the log-density at the
+mode), and <code>S</code> (the inverse of the negated Hessian at the
+mode). See the documentation for <code>optim</code> for how to do
+maximisation instead of minimisation.</p>
+</div>
+<div class="section level3">
+<h3 id="gaussian-approximation">Gaussian approximation<a class="anchor" aria-label="anchor" href="#gaussian-approximation"></a>
+</h3>
+<p>Let all <span class="math inline">\(\gamma_i=1\)</span>, <span class="math inline">\(i=1,2,3,4\)</span>, and use
+<code>posterior_mode</code> to evaluate the inverse of the negated
+Hessian at the mode, in order to obtain a multivariate Normal
+approximation <span class="math inline">\(\mathsf{Normal}(\boldsymbol{\mu},\boldsymbol{S})\)</span>
+to the posterior distribution for <span class="math inline">\(\boldsymbol{\theta}\)</span>. Use start values
+<span class="math inline">\(\boldsymbol{\theta} =
+\boldsymbol{0}\)</span>.</p>
 </div>
 <div class="section level3">
 <h3 id="importance-sampling-function">Importance sampling function<a class="anchor" aria-label="anchor" href="#importance-sampling-function"></a>
@@ -318,7 +304,8 @@ that are needed by the function code.</p>
 columns, <code>beta1</code>, <code>beta2</code>, <code>beta3</code>,
 <code>beta4</code>, <code>log_weights</code>, containing the <span class="math inline">\(\beta_i\)</span> samples and normalised <span class="math inline">\(\log\)</span>-importance-weights, so that
 <code>sum(exp(log_weights))</code> is <span class="math inline">\(1\)</span>. Use the <code>log_sum_exp</code>
-function to compute the needed normalisation information.</p>
+function (see the <code>code.R</code> file for documentation) to compute
+the needed normalisation information.</p>
 </div>
 <div class="section level3">
 <h3 id="importance-sampling">Importance sampling<a class="anchor" aria-label="anchor" href="#importance-sampling"></a>
@@ -336,17 +323,9 @@ parameters, based on the importance sample. In addition to
 <code>group_by</code> and <code>summarise</code> are helpful. You may
 wish to define a function <code>make_CI</code> taking arguments
 <code>x</code>, <code>weights</code>, and <code>prob</code> (to control
-the intended coverage probability), generating a 1-row, 2-column
-<code>data.frame</code> to help structure the code.</p>
-<p>Discuss the results both from the sampling method point of view and
-the 3D printer application point of view (this may also involve
-e.g. plotting prediction intervals based on point estimates of the
-parameters, and plotting the importance log-weights to see how they
-depend on the sampled <span class="math inline">\(\beta\)</span>-values,
-like in the <code>T4sol</code> document).</p>
+the intended</p>
 </div>
 </div>
-
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
