@@ -1,0 +1,220 @@
+---
+title: "StatComp Project 1 (2021/22): Hints"
+author: "Finn Lindgren"
+date: "2022-02-11"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+  pdf_document:
+    toc: true
+vignette: |
+  %\VignetteIndexEntry{StatComp Project 1 (2021/22): Hints}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Avoiding long running times
+
+## The problem
+
+Collecting values into a data.frame inside a loop can be slow.
+
+A common issue when combining results computed in loops is that using `rbind` in each step of the loop to add one or a few rows to a large vector or data.frame can be very slow; instead of linear computational cost in the size of the output, the cost can become quadratic; it needs to reallocate memory and copy the previous results, for each new version of the result object.
+
+## The solution
+
+The key is to avoid reallocating memory by instead pre-allocating the whole result object before the loop. However there are some subtleties to this, and the examples blow show the differences between approaches.
+
+A common solution is to work with simpler intermediate data structures within the loop, and then collect the results at the end.
+Indexing into simple vectors is much cheaper than reallocating and copying memory.
+
+Slow:
+```{r}
+slow_fun <- function(N) {
+  result <- data.frame()
+  for (loop in seq_len(N)) {
+    result <- rbind(
+      result,
+      data.frame(A = cos(loop), B = sin(loop))
+    )
+  }
+  result
+}
+```
+
+Better, but even data.frame indexing assignments causes some memory reallocation:
+```{r}
+better_fun <- function(N) {
+  result <- data.frame(A = numeric(N), B = numeric(N))
+  for (loop in seq_len(N)) {
+    result[loop, ] <- c(cos(loop), sin(loop))
+  }
+  result
+}
+```
+
+Fast; several orders of magnitude faster (see timings below) by avoiding memory reallocation inside the loop:
+```{r}
+fast_fun <- function(N) {
+  result_A <- numeric(N)
+  result_B <- numeric(N)
+  for (loop in seq_len(N)) {
+    result_A[loop] <- cos(loop)
+    result_B[loop] <- sin(loop)
+  }
+  data.frame(
+    A = result_A,
+    B = result_B
+  )
+}
+```
+
+Not as fast, but a bit more compact; using matrix indexing doesn't need memory reallocation, but is a bit slower than vector indexing. A potential drawback is that his method only works when all the columns in the output data.frame should be of the same type (numeric), but
+for cases where it works the code is both simple, readable, and generally quick to run:
+```{r}
+ok_fun <- function(N) {
+  result <- matrix(0, N, 2)
+  for (loop in seq_len(N)) {
+    result[loop, ] <- c(cos(loop), sin(loop))
+  }
+  colnames(result) <- c("A", "B")
+  as.data.frame(result)
+}
+```
+
+Benchmark timing comparisons:
+```{r}
+N <- 10000
+bench::mark(
+  slow = slow_fun(N),
+  better = better_fun(N),
+  fast = fast_fun(N),
+  ok = ok_fun(N)
+)
+```
+
+# Dynamically generated column names
+
+When the size of a matrix or data.frame depends on a parameter, or there are multiple columns with similar names, it can be convenient to dynamically generate column names. The `paste()` function can be used for this.
+
+For example, if we want a data.frame of size $n\times m$, with column names `Name1`, `Name2`, etc, we can use
+```{r, eval=TRUE, echo=TRUE}
+df <- matrix(runif(15), 5, 3) # Create a matrix with some values in it
+colnames(df) <- paste("Name", seq_len(ncol(df)), sep = "")
+df <- as.data.frame(df)
+```
+The resulting object looks like this:
+```{r, eval=TRUE, echo=TRUE}
+df
+```
+
+# Multi-column summarise constructions
+
+The `summarise()` method from the `dplyr` package is usually used to construct simple summaries such as
+```{r, eval=TRUE, echo=TRUE}
+suppressPackageStartupMessages(library(tidyverse))
+df <- data.frame(x = rnorm(100))
+df %>%
+  summarise(
+    mu = mean(x),
+    sigma = sd(x)
+  )
+```
+But what if we have a function that computes _both_ `mu` and `sigma`?
+If we make it return a data.frame, that can be used with `summarise`:
+```{r, eval=TRUE, echo=TRUE}
+my_fun <- function(x) {
+  data.frame(
+    mu = mean(x),
+    sigma = sd(x)
+  )
+}
+df %>%
+  summarise(
+    my_fun(x)
+  )
+```
+
+
+# Avoiding unnecessary for-loops
+
+Since most operations and functions in R are vectorised, the code can often be
+written in a clear way by avoiding unnecessary for-loops. As a simple example,
+say that we want to compute $\sum_{k=1}^{100} \cos(k)$.
+
+A for-loop solution of the style
+that would be a good solution in a high performance low-level language like C
+might look like this:
+```{r, eval=FALSE}
+result <- 0
+for (k in seq_len(100)) {
+  result <- result + cos(k)
+}
+```
+By taking advantage of vectorised calling of `cos()`, and the function `sum()`,
+we can reformulate into a shorter and more clear vectorised solution:
+```{r, eval=FALSE}
+result <- sum(cos(seq_len(100)))
+```
+
+Other commonly used functions involving vectors of `TRUE` and `FALSE` are `all()`
+and `any()`. For example,
+```{r}
+vec <- c(TRUE, TRUE, FALSE, TRUE)
+all(vec)
+any(vec)
+sum(vec) # FALSE == 0, TRUE == 1
+```
+
+Both `sum`, `any`, and `all` also operate across all elements of a matrix.
+For row-wise and column-wise sums, see `rowSums()`and `colSums()`.
+
+# LaTeX equations
+
+## Aligning equations in multi-step derivations
+
+When typesetting multi-step derivations, one should align the equations. In
+LaTeX, this can be done with the `align` or `align*` environments.
+In some case, that might not work in RMarkdown, but one can then use the
+`aligned` environment instead.
+
+### Example 1
+
+```
+\begin{align*}
+\frac{\partial}{\partial x}f(x, y) &= \frac{\partial}{\partial x}\exp(2x+3y) \\
+&= 2\exp(2x+3y)
+\end{align*}
+```
+Result:
+
+\begin{align*}
+\frac{\partial}{\partial x}f(x, y) &= \frac{\partial}{\partial x}\exp(2x+3y) \\
+&= 2\exp(2x+3y)
+\end{align*}
+
+### Example 2
+
+```
+$$
+\begin{aligned}
+\frac{\partial}{\partial x}f(x, y) &= \frac{\partial}{\partial x}\exp(2x+3y) \\
+&= 2\exp(2x+3y)
+\end{aligned}
+$$
+```
+Result:
+
+$$
+\begin{aligned}
+\frac{\partial}{\partial x}f(x, y) &= \frac{\partial}{\partial x}\exp(2x+3y) \\
+&= 2\exp(2x+3y)
+\end{aligned}
+$$
