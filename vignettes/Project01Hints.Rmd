@@ -3,9 +3,6 @@ title: "StatComp Project 1 (2022/23): Hints"
 author: Finn Lindgren
 output: rmarkdown::html_vignette
 description: 'Statistical Computing: Lab tutorial 4'
-tutorial:
-  id: shinyapps.finnlindgren.StatCompProject01Hints
-  version: 1.0
 in-header:
 - \newcommand{\bm}[1]{\boldsymbol{#1}}
 - \newcommand{\wh}[1]{\widehat{#1}}
