@@ -1,0 +1,504 @@
+---
+title: "StatComp Project Example Solution: Numerical Statistics"
+author: "Finn Lindgren (s0000000, finnlindgren)"
+output:
+  html_document:
+    number_sections: yes
+  pdf_document:
+    number_sections: yes
+header-includes:
+  - \newcommand{\bm}[1]{\boldsymbol{#1}}
+  - \newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+  - \newcommand{\ol}[1]{\overline{#1}}
+  - \newcommand{\wh}[1]{\widehat{#1}}
+  - \newcommand{\wt}[1]{\widetilde{#1}}
+  - \newcommand{\pP}{\textrm{P}}
+  - \newcommand{\pE}{\textrm{E}}
+  - \newcommand{\pVar}{\textrm{Var}}
+  - \newcommand{\pCI}{\textrm{CI}}
+  - \newcommand{\pN}{\textrm{N}}
+  - \newcommand{\pPo}{\textrm{Pois}}
+  - \newcommand{\pBeta}{\textrm{Beta}}
+  - \newcommand{\pGeom}{\textrm{Geom}}
+  - \newcommand{\pBin}{\textrm{Binom}}
+---
+
+```{r setup, include = FALSE}
+# Modify this setup code chunk to set options
+# or add extra packages etc if needed,
+# but keep the echo=FALSE,eval=TRUE default settings here.
+
+# Set default code chunk options
+knitr::opts_chunk$set(
+  echo = FALSE,
+  eval = TRUE
+  # Special settings for my computer:
+#  dev = "png",
+#  dev.args = list(type = "cairo-png")
+)
+
+suppressPackageStartupMessages(library(tidyverse))
+theme_set(theme_bw())
+
+library(StatCompLab)
+library(patchwork)
+library(spatstat.geom) # To avoid loading messages later
+
+set.seed(1234L)
+```
+
+```{r code=readLines("Project_Example_Solution_code.R")}
+source("Project_Example_Solution_code.R")
+```
+
+```{r code=readLines("Project_Example_Solution_my_code.R")}
+source("Project_Example_Solution_my_code.R")
+```
+
+# Confidence interval approximation assessment
+
+We will investigate the behaviour of three approximate methods for confidence
+interval construction for the expectation parameter $\lambda$ in a model for
+observations $y_i\sim\pPo(\lambda)$, $i=1,\dots,n$.
+We denote the three methods given in the assignment by
+$\pCI_1$, $\pCI_2$, and $\pCI_3$.
+
+## Theoretical interval width equivalence
+
+Let $z=z_{1-\alpha/2}=-z_{\alpha/2}$,
+where $z_p$ is the (lower) $p$-quantile of a standard $\pN(0,1)$ distribution.
+Then, when $\ol{y} > z^2/n$, Methods 1 and 2 in `pois_CI` for constructing a
+confidence interval for $\lambda$ from observations $y_i\sim \pPo(\lambda)$,
+$i=1,\dots,n$, are given by
+\begin{align*}
+\pCI_1 &= (\ol{y} - z\sqrt{\ol{y}/n}, \ol{y} + z\sqrt{\ol{y}/n}), \\
+\pCI_2 &= ([\sqrt{\ol{y}} - z/\sqrt{4n}]^2, [\sqrt{\ol{y}} + z/\sqrt{4n}]^2).
+\end{align*}
+The interval width for $\pCI_1$ is $2z\sqrt{\ol{y}/n}$. For $\pCI_2$, the width
+is
+\begin{align*}
+[\sqrt{\ol{y}} + z/\sqrt{4n}]^2 - [\sqrt{\ol{y}} - z/\sqrt{4n}]^2
+&= 
+[\ol{y} + 2z\sqrt{\ol{y}}/\sqrt{4n} + z^2/(4n)] - [\ol{y} - 2z\sqrt{\ol{y}}/\sqrt{4n} + z^2/(4n)]
+\\
+&=
+4z\sqrt{\ol{y}}/\sqrt{4n}
+\end{align*}
+since the remaining terms cancel out. Finally $4/\sqrt{4}=2$, and we see that
+the width of a $\pCI_2$ interval is the same as for $\pCI_1$, for any observed value
+$\ol{y}>z^2/n$.
+
+## Confidence interval coverage and width assessment
+
+We are interested in the behaviour of the three confidence interval methods when
+we are far away from the asymptotic limit. Instead of assuming
+$n\rightarrow\infty$ or $\lambda\rightarrow\infty$ we will instead look at the
+case $n=2$, $\lambda=3$, where the discrete nature of the sampling distribution
+of the maximum likelihood estimator $\wh{\lambda}=\ol{y}$ is still apparent.
+
+In the `my_code.R` file, we've defined two helper functions, `multi_pos_CI` and
+`tidy_multi_pois_CI`, in order to simulate $m$ realisations from the model, and
+compute the three types of approximate confidence intervals for a desired confidence level
+(also called the _target_ or _nominal_ confidence level) of 90%, corresponding to
+nominal error probability $\alpha=0.1$. To get reasonable precision in the results, we use
+$m=100000$. See the code appendix for the short analysis code.
+
+```{r coverage-estimate}
+n <- 2
+lambda_true <- 3
+result <- tidy_multi_pois_CI_alt(100000, n, lambda_true, alpha = 0.1)
+```
+
+To assess the quality of the methods, we compute an estimate of the coverage
+probability as the proportion of the $m$ simulations that the intervals cover
+the true $\lambda$ value, `Coverage` in the table below. We also compute the
+median width of the intervals, denoted `MedWidth`.  For extra details, we further
+estimate the probability of the lower endpoint being too large, `OutsideLower`,
+or the upper endpoint being too low, `OutsideUpper`. Finally, we compute the
+median of the lower and upper endpoints, denoted `MedLower` and `MedUpper` in the table.
+
+```{r coverage-summarise}
+result %>%
+  group_by(Type) %>%
+  summarise(
+    Coverage = mean((Lower <= lambda_true) & (lambda_true <= Upper)),
+    MedWidth = median(Upper - Lower),
+    OutsideLower = mean(lambda_true < Lower),
+    OutsideUpper = mean(lambda_true > Upper),
+    MedLower = median(Lower),
+    MedUpper = median(Upper)
+  ) %>%
+  knitr::kable()
+```
+
+As expected from the theoretical calculations for intervals that don't reach $0$
+to the left, the median width for methods 1 and 2 are identical, whereas the
+method 3 widths are slightly larger.
+We see that methods 1 and 3 have too low and too high coverage, respectively,
+compared with the nominal overage of $90\%$, but method 2 has a coverage very
+close to nominal, at $89.58\%$. It's clear that method 1 make most of it's
+mistakes at the upper end, with as much as $15\%$ probability of having a too low
+upper endpoint. In contrast, method 3 is overly cautious on the upper end,
+with just $1.5\%$ error probability for the upper tail, but at the expense of wider
+intervals, sometimes stretching all the way to $+\infty$.
+
+Method 2 appears to strike a good balance between coverage
+probability and interval widths, with the lower tail error probability being
+almost the same as for method 3 (ca $4\%$), by moving the upper endpoint to the
+left, thereby reducing the interval widths and increasing the upper tail error
+probability to around $6\%$. As a result, method 2 has nearly equal tail error
+probabilities (perfect equality would be 5%) for the test case $n=2$, $\lambda=3$,
+and appears to be the best of the three methods at capturing the behaviour of
+the sampling distribution of the $\lambda$-estimator.
+
+In the figure below, we've plotted the empirical cumulative distribution
+functions of the interval widths for the three methods, which clearly shows the
+discrete nature of the interval contructions, since they are all based on
+$\ol{y}$, which has a clear discrete set of possible outcomes. The equal width
+property for methods 1 and 2 breaks down for small values of $\ol{y}$, due to
+how they handle intervals that would have gone below zero in a simplistic
+implementation.
+
+In summary, method 2 appears to be preferable, despite all three methods being
+based on the same asympototic maximum likelihood theory. For small sample sizes,
+the asymptotic theory doesn't tell the whole story, and instead one has to look
+more carefully at the problem structure in order to get reliable estimates.
+
+```{r coverage=plot, warning=FALSE}
+result %>%
+  mutate(Type = factor(Type)) %>%
+  ggplot() +
+  stat_ecdf(aes(Upper - Lower, col = Type)) +
+  xlab("CI width") +
+  ylab("CDF")
+```
+
+# Archaeology in the Baltic sea
+
+Pairs of counts $(Y_{j,1},Y_{j,2})$ of left and right femurs from archaeological
+excavations are modelled as being conditionally independent realisations from
+$\pBin(N_j,\phi)$, where $N_j$ is the original number of people buried at each
+excavtion site, and $\phi$ is the probability of finding a buried femur. The
+prior distribution for each $N_j$, $j=1,\dots,J$, is $\pGeom(\xi)$, where
+$\xi=1/(1+1000)$ (so that $\pE(N_j)=1000$ _a priori_), and for the detection
+probability, $\phi\sim\pBeta(\frac{1}{2},\frac{1}{2})$.
+We denote $\bm{N}=\{N_1,\dots,N_J\}$ and $\bm{Y}=\{(Y_{1,1},Y_{1,2}),\dots,(Y_{J,1},Y_{J,2})\}$.
+
+## Joint probability function
+
+Taking the product of the prior density for $\phi$, the prior probabilities for $N_j$,
+and the conditional observation probabilities for $N_{j,i}$ and integrating over $\phi$, we get
+the joint probability function for $(\bm{N},\bm{Y})$
+$$
+\begin{aligned}
+\pP(\bm{N},\bm{Y})
+&= \int_0^1 p_\phi(\phi) \prod_{j=1}^J p(N_j) \prod_{i=1}^2 p(Y_{j,i}|N_j,\phi)\,\mathrm{d}\phi \\
+&= \int_0^1 \frac{\phi^{a-1}(1-\phi)^{b-1}}{B(a,b)}
+  \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} \phi^{Y_{j,i}}(1-\phi)^{N_j-Y_{j,i}}
+  \,\mathrm{d}\phi \\
+&= \int_0^1 \frac{\phi^{\wt{a}-1}(1-\phi)^{\wt{b}-1}}{B(a,b)} \,\mathrm{d}\phi\,
+  \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} ,
+\end{aligned}
+$$
+where
+$\wt{a} = a+\sum_{j=1}^J\sum_{i=1}^2 Y_{j,i}$ and
+$\wt{b} = b+\sum_{j=1}^J\sum_{i=1}^2 (N_j - Y_{j,i})$. Then the integral can be
+renormalised to an integral of the distribution probability density function
+for a $\pBeta(\wt{a},\wt{b})$ distribution:
+$$
+\begin{aligned}
+\pP(\bm{N},\bm{Y})
+&= \frac{B(\wt{a},\wt{b})}{B(a,b)}
+  \int_0^1 \frac{\phi^{\wt{a}-1}(1-\phi)^{\wt{b}-1}}{B(\wt{a},\wt{b})}
+  \,\mathrm{d}\phi\,
+  \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} \\
+&= \frac{B(\wt{a},\wt{b})}{B(a,b)}
+  \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} .
+\end{aligned}
+$$
+
+## Credible intervals for $N_j$ and $\phi$
+
+In order to obtain posterior credible intervals for the unknown quantities
+$\bm{N}=\{N_1,\dots,N_J\}$, and $\phi$, we implement an importance sampling method that
+sample each $N_j$ from a shifted Geometric distribution with smallest
+value equal to the smallest valid $N_j$, given the observed counts,
+and expectation corresponding to $\phi=1/4$. After sampling the $\bm{N}$ values,
+the corresponding importance weights $w_k$, stored as `Log_Weights` equal to
+$\log(w_k)$ normalised by subtracting the larges $\log(w_k)$ value. Finally,
+$\phi$ values are sampled directly from the conditional posterior distribution
+$(\phi|\bm{N},\bm{Y})\sim\pBeta\left(\frac{1}{2}+\sum_{j,i} Y_{i,j},\frac{1}{2}+\sum_{j,i} (N_j-Y_{i,j})\right)$.
+The implementation is in the
+`arch_importance()` function in `my_code.R` shown in the code appendix, and
+produces an importance sample of size $K$.
+To achieve relatively reliable results, we use $K=100000$, for each of $J=1$,
+$2$, $3$, and $4$, which takes ca 4 seconds on my computer.
+
+```{r arch-importance}
+xi <- 1 / 1001
+a <- 0.5
+b <- 0.5
+
+K <- 1000000
+NW1 <- arch_importance(K, arch_data(1), xi, a, b)
+NW2 <- arch_importance(K, arch_data(2), xi, a, b)
+NW3 <- arch_importance(K, arch_data(3), xi, a, b)
+NW4 <- arch_importance(K, arch_data(4), xi, a, b)
+```
+
+First, we use `stat_ewcdf` to plot the emprirical cumulative distribution functions
+for the importance weighted posterior samples of $N_1$, for $J=1,\dots,4$.
+We can see that the random variability increases for larger $J$, indicating a lower efficiency
+of the importance sampler. Also included is the CDF for the prior distribution for $N_1$.
+Except for the lower end of the distribution, it's not immediately clear what
+effect the observations have on the distribution.
+
+```{r}
+ggplot() +
+  stat_ewcdf(aes(N1, weights = exp(Log_Weights), col = "J=1"), data = NW1) +
+  stat_ewcdf(aes(N1, weights = exp(Log_Weights), col = "J=2"), data = NW2) +
+  stat_ewcdf(aes(N1, weights = exp(Log_Weights), col = "J=3"), data = NW3) +
+  stat_ewcdf(aes(N1, weights = exp(Log_Weights), col = "J=4"), data = NW4) +
+  stat_ecdf(aes(rgeom(K, prob = xi), col = "Prior")) +
+  coord_cartesian(xlim = c(0, 6500)) +
+  xlab("N1") + ylab("CDF")
+```
+
+Next we do a corresponding plot for $\phi$. In contrast to $N_1$, here
+it's more clear that the more observation pairs we get, the more concentrated the
+distribution for $\phi$ gets. Each new observation pair also influences in particular
+the lower end of the distribution, with the lower quantiles clearly increasing
+for $J=4$ even though the upper quantiles remain relatively stable for $J\geq 2$.
+
+```{r}
+ggplot() +
+  stat_ewcdf(aes(Phi, weights = exp(Log_Weights), col = "J=1"), data = NW1) +
+  stat_ewcdf(aes(Phi, weights = exp(Log_Weights), col = "J=2"), data = NW2) +
+  stat_ewcdf(aes(Phi, weights = exp(Log_Weights), col = "J=3"), data = NW3) +
+  stat_ewcdf(aes(Phi, weights = exp(Log_Weights), col = "J=4"), data = NW4) +
+  stat_ecdf(aes(rbeta(K, a, b), col = "Prior")) +
+  xlab("phi") + ylab("CDF")
+```
+
+```{r construct-CI}
+CI <- rbind(
+  NW1 %>%
+    summarise(
+      J = 1,
+      End = c("Lower", "Upper"),
+      N1 = wquantile(N1,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N2 = NA,
+      N3 = NA,
+      N4 = NA,
+      Phi = wquantile(Phi,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 7, weights = exp(Log_Weights)
+      )
+    ),
+  NW2 %>%
+    summarise(
+      J = 2,
+      End = c("Lower", "Upper"),
+      N1 = wquantile(N1,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N2 = wquantile(N2,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N3 = NA,
+      N4 = NA,
+      Phi = wquantile(Phi,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 7, weights = exp(Log_Weights)
+      )
+    ),
+  NW3 %>%
+    summarise(
+      J = 3,
+      End = c("Lower", "Upper"),
+      N1 = wquantile(N1,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N2 = wquantile(N2,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N3 = wquantile(N3,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N4 = NA,
+      Phi = wquantile(Phi,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 7, weights = exp(Log_Weights)
+      )
+    ),
+  NW4 %>%
+    summarise(
+      J = 4,
+      End = c("Lower", "Upper"),
+      N1 = wquantile(N1,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N2 = wquantile(N2,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N3 = wquantile(N3,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      N4 = wquantile(N4,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 1, weights = exp(Log_Weights)
+      ),
+      Phi = wquantile(Phi,
+        probs = c(0.05, 0.95), na.rm = TRUE,
+        type = 7, weights = exp(Log_Weights)
+      )
+    )
+)
+```
+
+Using `wquantile` to extract lower and upper $5\%$ quantiles we obtain
+approximate $90\%$ posterior credible intervals for $N_1$ and $\phi$ as shown
+in the following table.
+```{r interval-table}
+CI_ <- CI %>%
+  pivot_longer(
+    cols = c(N1, N2, N3, N4, Phi),
+    names_to = "Variable",
+    values_to = "value"
+  ) %>%
+  pivot_wider(
+    names_from = End,
+    values_from = value
+  ) %>%
+  filter(!is.na(Lower)) %>%
+  mutate(Width = Upper - Lower)
+knitr::kable(CI_ %>% filter(Variable %in% c("N1", "Phi")) %>%
+  arrange(Variable, J))
+```
+
+We can see that the credible intervals for $N_1$ are strongly linked to the
+information in the posterior distribution for $\phi$. Interestingly, due to the
+lowering of the lower endpoint for $\phi$ for $J=2$ and $3$, the width of the
+$N_1$ interval actually _increases_ when we add the information from the second
+and third. This is stark contrast to our common intuition that would expect our
+uncertainty to decrease when we collect more data. The behaviour here is partly
+due to the random variability inherent in a small sample, but also due to the
+strong non-linearity of the estimation problem, where the products $\phi N_j$
+are much easier to estimate than the individual $\phi$ and $N_j$ parameters.
+For $J=4$, the interval width for $N_1$ finally decreases, as well as the width
+for the $\phi$ interval. Looking at the values of the observations, we can see that
+the $J=4$ case has much larger values than the other cases, which leads to it
+providing relatively more information about the $\phi$ parameter.
+
+From a practical point of view, it's clear that this estimation problem does not
+have an easy solution. Even with multiple excavations, and assuming that the model
+is appropriate and has the same value $\phi$ for $\phi$ for every excavation, we
+only gain a modest amount of additional information. On the positive side, if
+the model does a good job of approximating reality, then borrowing strength across
+multiple excavations does improve the estimates and uncertainty information for
+each excavation. For further improvements, one would likely need to more closely
+study the excavation precedures, to gain a better understanding of this data
+generating process, which might then lead to improved statistical methods and
+archaeologically relevant outcomes.
+
+## Extra
+
+### Effective sample size
+
+Using the method for computing effective importance sample size from
+later in the course we can see that even with the more efficient method, the
+sampling is very inefficient for $J=4$, indicating that an improved choice of
+importance distribution for $N_j$ could improve the precision and accuracy of the
+results:
+```{r echo=FALSE}
+tibble(
+  J = 1:4,
+  EffSampleSize = c(
+    sum(exp(NW1$Log_Weights))^2 / sum(exp(NW1$Log_Weights)^2),
+    sum(exp(NW2$Log_Weights))^2 / sum(exp(NW2$Log_Weights)^2),
+    sum(exp(NW3$Log_Weights))^2 / sum(exp(NW3$Log_Weights)^2),
+    sum(exp(NW4$Log_Weights))^2 / sum(exp(NW4$Log_Weights)^2)
+  ),
+  RelEff = EffSampleSize / K
+) %>%
+  knitr::kable()
+```
+Here, `EffSampleSize` is the approximate effective sample size
+$(\sum_k w_k)^2/\sum w_k^2$, and `RelEff` is the relative efficiency,
+defined as the ratio between `EffSampleSize` and $K=100000$.
+
+### Profile likelihood method for frequentist confidence interval for $\pBin(n,p)$
+
+```{r}
+y <- c(256,237)
+ll <- n <- 260:2000 ## binomial n values (can also start at 256)
+
+for (i in 1:length(n)) {
+   p <- sum(y)/(2*n[i]) ## mle of p given n[i]
+   ll[i] <- sum(dbinom(y,n[i],p,log=TRUE)) ## 'profile' log lik
+}
+
+plot(n,ll,type="l") ## 'profile' log lik plot
+l0 <- max(ll)-qchisq(.90,1)/2 ## any n for which ll>l0 is inside limit
+abline(l0,0,lty=2)
+max(n[ll<l0]) ## lower confidence limit - upper infinite
+```
+
+(actually `range(y)` depends on `n` may mean `l0` not justified for this example)
+
+
+# Code appendix
+
+```{r code-appendix, include=FALSE}
+# Change the code chunk options to display
+# but not evaluate the code chunks in the appendix
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = FALSE
+)
+```
+
+## Function definitions
+
+```{r code=readLines("Project_Example_Solution_my_code.R")}
+```
+
+## Analysis code
+
+### Confidence intervals
+
+Poisson parameter interval simulations:
+```{r ref.label="coverage-estimate"}
+```
+Summarise the coverage probabilities and interval widths: 
+```{r ref.label="coverage-summarise"}
+```
+Plot the CDFs for the CI width distributions: 
+```{r ref.label="coverage-plot"}
+```
+
+### Archaeology
+
+Compute credible intervals for $N_j$ for different amounts of data, $J$:
+```{r ref.label="arch-importance"}
+```
+
+For completeness, we compute all the credible intervals for $N_j$, $1\leq J$,
+for each $J=1,\dots,4$, but the analysis focuses on $N_1$ and $\phi$:
+```{r ref.label="construct-CI"}
+```
+
+Restructure the interval `data.frame` to focus on $N_1$ and $\phi$ only:
+```{r ref.label="interval-table"}
+```

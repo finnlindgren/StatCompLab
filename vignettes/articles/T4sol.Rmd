@@ -1,0 +1,192 @@
+---
+title: 'Tutorial 04: Uncertainty and integration (full solution)'
+author: "Finn Lindgren"
+output:
+  rmarkdown::html_document:
+    code_folding: hide
+header-includes:
+- \newcommand{\bm}[1]{\boldsymbol{#1}}
+- \newcommand{\wh}[1]{\widehat{#1}}
+- \newcommand{\ol}[1]{\overline{#1}}
+- \newcommand{\wt}[1]{\widetilde{#1}}
+- \newcommand{\mv}[1]{\boldsymbol{#1}}
+- \newcommand{\proper}[1]{\mathsf{#1}}
+- \newcommand{\pP}{\proper{P}}
+- \newcommand{\pE}{\proper{E}}
+- \newcommand{\pVar}{\proper{Var}}
+- \newcommand{\pPo}{\proper{Poisson}}
+- \newcommand{\pN}{\proper{Normal}}
+- \newcommand{\pBin}{\proper{Bin}}
+- \newcommand{\pBeta}{\proper{Beta}}
+- \newcommand{\pGeom}{\proper{Geom}}
+- \newcommand{\pExp}{\proper{Exp}}
+- \newcommand{\pGamma}{\proper{Gamma}}
+- \newcommand{\mmd}{\mathrm{d}}
+- \newcommand{\md}{\,\mmd}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.width = 8,
+  echo = TRUE # The code_folding: hide option above will still hide the
+              # code by default when knit:ing locally
+)
+
+library(StatCompLab)
+library(ggplot2)
+theme_set(theme_bw())
+set.seed(1234L)
+```
+
+This document uses a `code_folding: hide` option to handle showing/hiding code
+when building locally.
+Download and build the source file from [https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/T4sol.Rmd](https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/T4sol.Rmd) to see how that feature works.
+
+## Three alternatives for Poisson parameter confidence intervals
+
+For case 3, the negated log-likelihood is
+$$
+\wt{l}(\theta) = n e^\theta - \theta \sum_{i=1}^n y_i + \text{constant}
+$$
+with 1st order derivative
+$$
+\frac{\partial}{\partial\theta}\wt{l}(\theta) = n e^\theta - \sum_{i=1}^n y_i
+$$
+which shows that $\wh{\theta}_\text{ML}=\log(\ol{y})$, and 2nd order derivative
+$$
+\frac{\partial^2}{\partial\theta^2}\wt{l}(\theta) = n e^\theta
+$$
+which is equal to $n\lambda$ for all $y_i$ values, so the inverse of the expected Hessian is $1/(n\lambda)$.
+
+### Interval construction
+
+```{r intervals-solution}
+CI1 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  lambda_hat <- mean(y)
+  theta_interval <-
+    lambda_hat - sqrt(lambda_hat / n) * qnorm(c(1 - alpha / 2, alpha / 2))
+  pmax(theta_interval, 0)
+}
+CI2 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  theta_hat <- sqrt(mean(y))
+  theta_interval <-
+    theta_hat - 1 / sqrt(4 * n) * qnorm(c(1 - alpha / 2, alpha / 2))
+  pmax(theta_interval, 0)^2
+}
+CI3 <- function(y, alpha = 0.05) {
+  n <- length(y)
+  theta_hat <- log(mean(y))
+  theta_interval <-
+    theta_hat - 1 / sqrt(exp(theta_hat) * n) * qnorm(c(1 - alpha / 2, alpha / 2))
+  exp(theta_interval)
+}
+```
+
+We can test the interval construction methods with the following code.
+```{r intervals-example, results="hide"}
+y <- rpois(n = 5, lambda = 2)
+print(y)
+CI <- rbind(
+  "Method 1" = CI1(y),
+  "Method 2" = CI2(y),
+  "Method 3" = CI3(y)
+)
+colnames(CI) <- c("Lower", "Upper")
+```
+
+```{r intervals-example2, echo=FALSE}
+knitr::kable(CI)
+```
+
+The methods will not always produce valid intervals.
+
+* When $\ol{y}=0$, the first method produces a single point as "interval".
+* The third method fails if $\ol{y}=0$, due to log of zero.
+
+This can happen when $n$ or $\lambda$ are close to zero.
+
+## Bayesian credible intervals
+
+```{r data-sampling-solution}
+n <- 5
+lambda <- 10
+y <- rpois(n, lambda)
+y # Actual values will depend on if set.seed() was used at the beginning of the document
+```
+
+From probability theory, we know that $p(\theta)=p(\lambda) \frac{d\lambda(\theta)}{d\theta}$, so that
+$$
+p(\theta) = a \exp(-a\lambda) \exp(\theta) = a \exp\left( \theta-ae^\theta \right)
+$$
+
+### Importance sampling
+
+First, we sample from the Gaussian approximation to the posterior distribution.
+```{r sampling-solution}
+a <- 1/5
+m <- 20000
+x <- rnorm(m, mean = log(1+sum(y)) - log(a + n), sd = 1 / sqrt(1 + sum(y)))
+```
+
+To avoid numerical problems, we calculate the log of the unnormalised weights,
+and then shift the results to get a numerically sensible scale when we exponentiate.
+```{r weights-solution}
+log_weights <- (x * (1 + sum(y)) - (a + n) * exp(x)) -
+ dnorm(x, mean = log(1 + sum(y)) - log(a + n), sd = 1 / sqrt(1 + sum(y)), log = TRUE)
+weights <- exp(log_weights - max(log_weights))
+```
+
+The credible interval for $\theta$
+can now be extracted from quantiles of the weighted sample, and the $\lambda$-interval is obtained by the transformation $\lambda=\exp(\theta)$:
+```{r importance-interval-solution}
+theta_interval <- wquantile(x, probs = c(0.025, 0.975), weights = weights)
+theta_interval
+lambda_interval <- exp(theta_interval)
+lambda_interval
+```
+
+The code for the above steps was the following:
+```{r ref.label="sampling-solution",eval=FALSE,echo=TRUE}
+```
+```{r ref.label="weights-solution",eval=FALSE, echo=TRUE}
+```
+```{r ref.label="importance-interval-solution",eval=FALSE,echo=TRUE}
+```
+
+
+### Cumulative distribution function comparison
+
+The figure below shows the empirical distributions of the unweighted and weighted samples $\{x_k\}$ (with weights $\{w_k\}$), together with the theoretical posterior empirical distribution function.
+The weighted, importance sampling, version is virtually indistinguishable from the true posterior distribution.
+The unweighted sample is very close to the true posterior distribution; for this model, the Gaussian approximation of the posterior distribution of $\log(\lambda)$ is an excellent approximation even before we add the importance sampling step.
+```{r ecdf-solution, message=FALSE}
+# Plotting updated to include a plot of the importance weights
+p1 <-
+  ggplot(data.frame(lambda = exp(x), weights = weights)) +
+  ylab("CDF") +
+  geom_function(fun = pgamma, args = list(shape = 1 + sum(y), rate = a + n),
+                mapping = aes(col = "Theory")) +
+  stat_ewcdf(aes(lambda, weights = weights, col = "Importance")) +
+  stat_ecdf(aes(lambda, col = "Unweighted")) +
+  scale_x_log10(limits = c(3, 20)) +
+  labs(colour = "Type")
+
+p2 <- ggplot(data.frame(lambda = exp(x), weights = weights),
+             mapping = aes(lambda, weights / mean(weights))) +
+  ylab("Importance weights") +
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = 1) +
+  scale_y_log10() +
+  scale_x_log10(limits = c(3, 20))
+
+# The patchwork library provides a versatile framework
+# for combining multiple ggplot figures into one.
+library(patchwork)
+(p1 / p2)
+```
+
+In the lower figure, the importance weights have be normalised by their average, so that values above 1 mean that the corresponding sample values should occur more often in the true, target, distribution than they do in the raw samples, and values below 1
+mean that those sample values should occur less frequently in the target distribution. The scaled weights are shown on a logarithmic scale.
