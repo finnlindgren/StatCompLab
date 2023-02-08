@@ -11,11 +11,12 @@ articles:
   Tutorial03: Tutorial03.html
   Tutorial03Solutions: Tutorial03Solutions.html
   Tutorial04: Tutorial04.html
+  Tutorial04Solutions: Tutorial04Solutions.html
   Project_Example: Project_Example.html
   Project_Example_Solution: Project_Example_Solution.html
   Quiz1Solution: Quiz1Solution.html
   T4sol: T4sol.html
-last_built: 2023-02-06T18:38Z
+last_built: 2023-02-08T11:30Z
 urls:
   reference: https://finnlindgren.github.io/StatCompLab/reference
   article: https://finnlindgren.github.io/StatCompLab/articles

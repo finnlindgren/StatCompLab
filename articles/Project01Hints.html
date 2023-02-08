@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,6 +50,7 @@
     <a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a>
     <a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a>
+    <a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a>
     <a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
     <a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a>
     <a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
@@ -183,10 +184,10 @@ quick to run:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          5.36s    5.36s     0.187    2.28GB     9.70</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better      902.6ms  902.6ms     1.11     1.49GB    37.7 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.08ms   2.23ms   446.     229.67KB     2.00</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           6.78ms   7.04ms   136.     458.21KB     9.89</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          6.54s    6.54s     0.153    2.28GB     8.41</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better        1.22s    1.22s     0.818    1.49GB    27.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         2.26ms   2.39ms   397.     229.67KB     1.99</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           7.11ms    7.6ms   117.     458.21KB     9.93</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -206,11 +207,11 @@ be used for this.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span></span>
 <span><span class="co">#&gt;       Name1       Name2     Name3</span></span>
-<span><span class="co">#&gt; 1 0.2122931 0.256503104 0.1145327</span></span>
-<span><span class="co">#&gt; 2 0.3078206 0.627833603 0.9412197</span></span>
-<span><span class="co">#&gt; 3 0.2248185 0.009381284 0.1946429</span></span>
-<span><span class="co">#&gt; 4 0.3573277 0.068801171 0.9657090</span></span>
-<span><span class="co">#&gt; 5 0.7384119 0.904588594 0.6968277</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.7681015 0.736336972 0.8223641</span></span>
+<span><span class="co">#&gt; 2 0.3168170 0.078508579 0.3916381</span></span>
+<span><span class="co">#&gt; 3 0.9045740 0.001035016 0.8160421</span></span>
+<span><span class="co">#&gt; 4 0.1937061 0.217543571 0.4925102</span></span>
+<span><span class="co">#&gt; 5 0.3852563 0.390647255 0.4300284</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
@@ -226,7 +227,7 @@ package is usually used to construct simple summaries such as</p>
 <span>    sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt;           mu     sigma</span></span>
-<span><span class="co">#&gt; 1 0.03463564 0.8542296</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.09532535 0.9796549</span></span></code></pre></div>
 <p>But what if we have a function that computes <em>both</em>
 <code>mu</code> and <code>sigma</code>? If we make it return a
 data.frame, that can be used with <code>summarise</code>:</p>
@@ -242,7 +243,7 @@ data.frame, that can be used with <code>summarise</code>:</p>
 <span>    <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt;           mu     sigma</span></span>
-<span><span class="co">#&gt; 1 0.03463564 0.8542296</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.09532535 0.9796549</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>

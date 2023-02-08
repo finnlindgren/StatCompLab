@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,6 +33,7 @@
     <a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a>
     <a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a>
+    <a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a>
     <a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
     <a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a>
     <a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
@@ -138,12 +139,12 @@ with <code>obs[i]</code> equal to \(y_i\) and each prediction distribution
 <span class="r-in"><span>  interval <span class="op">=</span> <span class="fu">proper_score</span><span class="op">(</span><span class="st">"interval"</span>, <span class="va">obs</span>,</span></span>
 <span class="r-in"><span>                          lwr <span class="op">=</span> <span class="va">F_lwr</span>, upr <span class="op">=</span> <span class="va">F_upr</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          se       ae        ds  interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 12.230488 3.497212 12.230488 24.719703</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  6.743604 2.596845  3.072195  5.463626</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  5.747041 2.397299  2.835785  7.689309</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  3.003571 1.733081  2.960312 10.252413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 22.044930 4.695203  4.100673 12.815516</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            se        ae       ds  interval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1.19605508 1.0936430 1.196055  2.563103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.01494759 0.1222603 1.390031  5.126206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.09820156 0.3133713 2.208136  7.689309</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 14.93792472 3.8649612 3.706209 10.252413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 36.22600368 6.0188042 4.667916 12.815516</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
