@@ -180,7 +180,7 @@ CI <- rbind(
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
       ),
-      .group = "drop"   #suppress group warning
+      .groups = "drop"   #suppress groups warning
     ),
   NW2 %>%
     summarise(
@@ -200,7 +200,7 @@ CI <- rbind(
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
       ),
-      .group = "drop"
+      .groups = "drop"
     ),
   NW3 %>%
     summarise(
@@ -223,7 +223,7 @@ CI <- rbind(
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
       ),
-      .group = "drop"
+      .groups = "drop"
     ),
   NW4 %>%
     summarise(
@@ -249,7 +249,7 @@ CI <- rbind(
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
       ),
-      .group = "drop"
+      .groups = "drop"
     )
 )
 ```
