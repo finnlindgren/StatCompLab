@@ -56,10 +56,6 @@ source("Project_Example_Solution_my_code.R")
 ```
 
 
-```{r dplr-version}
-packageVersion("dplyr")
-```
-
 # Archaeology in the Baltic sea
 
 Pairs of counts $(Y_{j,1},Y_{j,2})$ of left and right femurs from archaeological
@@ -170,7 +166,7 @@ ggplot() +
 ```{r construct-CI}
 CI <- rbind(
   NW1 %>%
-    summarise(
+    reframe(
       J = 1,
       End = c("Lower", "Upper"),
       N1 = wquantile(N1,
@@ -183,11 +179,10 @@ CI <- rbind(
       Phi = wquantile(Phi,
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
-      ),
-      .groups = "drop"   #suppress groups warning
+      )
     ),
   NW2 %>%
-    summarise(
+    reframe(
       J = 2,
       End = c("Lower", "Upper"),
       N1 = wquantile(N1,
@@ -203,11 +198,10 @@ CI <- rbind(
       Phi = wquantile(Phi,
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
-      ),
-      .groups = "drop"
+      )
     ),
   NW3 %>%
-    summarise(
+    reframe(
       J = 3,
       End = c("Lower", "Upper"),
       N1 = wquantile(N1,
@@ -226,11 +220,10 @@ CI <- rbind(
       Phi = wquantile(Phi,
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
-      ),
-      .groups = "drop"
+      )
     ),
   NW4 %>%
-    summarise(
+    reframe(
       J = 4,
       End = c("Lower", "Upper"),
       N1 = wquantile(N1,
@@ -252,8 +245,7 @@ CI <- rbind(
       Phi = wquantile(Phi,
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
-      ),
-      .groups = "drop"
+      )
     )
 )
 ```
