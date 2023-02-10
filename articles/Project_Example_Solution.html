@@ -92,7 +92,6 @@
 
     
     
-<pre><code><span><span class="co">## [1] '1.1.0'</span></span></code></pre>
 <div class="section level2">
 <h2 id="archaeology-in-the-baltic-sea">Archaeology in the Baltic sea<a class="anchor" aria-label="anchor" href="#archaeology-in-the-baltic-sea"></a>
 </h2>
@@ -179,26 +178,6 @@ with the lower quantiles clearly increasing for <span class="math inline">\(J=4\
 remain relatively stable for <span class="math inline">\(J\geq
 2\)</span>.</p>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<pre><code><span><span class="co">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in</span></span>
-<span><span class="co">## dplyr 1.1.0.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `reframe()` instead.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> When switching from `summarise()` to `reframe()`, remember that `reframe()`</span></span>
-<span><span class="co">##   always returns an ungrouped data frame and adjust accordingly.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in</span></span>
-<span><span class="co">## dplyr 1.1.0.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `reframe()` instead.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> When switching from `summarise()` to `reframe()`, remember that `reframe()`</span></span>
-<span><span class="co">##   always returns an ungrouped data frame and adjust accordingly.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in</span></span>
-<span><span class="co">## dplyr 1.1.0.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `reframe()` instead.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> When switching from `summarise()` to `reframe()`, remember that `reframe()`</span></span>
-<span><span class="co">##   always returns an ungrouped data frame and adjust accordingly.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in</span></span>
-<span><span class="co">## dplyr 1.1.0.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `reframe()` instead.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> When switching from `summarise()` to `reframe()`, remember that `reframe()`</span></span>
-<span><span class="co">##   always returns an ungrouped data frame and adjust accordingly.</span></span></code></pre>
 <p>Using <code>wquantile</code> to extract lower and upper <span class="math inline">\(5\%\)</span> quantiles we obtain approximate <span class="math inline">\(90\%\)</span> posterior credible intervals for
 <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> as shown in the following table.</p>
 <table class="table">
@@ -356,7 +335,7 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <div class="section level3">
 <h3 id="function-definitions">Function definitions<a class="anchor" aria-label="anchor" href="#function-definitions"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Finn Lindgren (s0000000, finnlindgren)</span></span>
 <span></span>
 <span></span>
@@ -449,7 +428,7 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <h4 id="archaeology">Archaeology<a class="anchor" aria-label="anchor" href="#archaeology"></a>
 </h4>
 <p>Compute credible intervals for <span class="math inline">\(N_j\)</span> for different amounts of data, <span class="math inline">\(J\)</span>:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xi</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">1001</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
@@ -463,10 +442,10 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 J\)</span>, for each <span class="math inline">\(J=1,\dots,4\)</span>,
 but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span class="math inline">\(\phi\)</span>:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
 <span>  <span class="va">NW1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -479,11 +458,10 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
 <span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      .groups <span class="op">=</span> <span class="st">"drop"</span>   <span class="co">#suppress groups warning</span></span>
+<span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>  <span class="va">NW2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -499,11 +477,10 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
 <span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      .groups <span class="op">=</span> <span class="st">"drop"</span></span>
+<span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>  <span class="va">NW3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -522,11 +499,10 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
 <span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      .groups <span class="op">=</span> <span class="st">"drop"</span></span>
+<span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>  <span class="va">NW4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -548,12 +524,11 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
 <span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      .groups <span class="op">=</span> <span class="st">"drop"</span></span>
+<span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Restructure the interval <code>data.frame</code> to focus on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> only:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
 <span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">N1</span>, <span class="va">N2</span>, <span class="va">N3</span>, <span class="va">N4</span>, <span class="va">Phi</span><span class="op">)</span>,</span>
