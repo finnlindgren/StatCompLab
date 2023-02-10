@@ -273,12 +273,6 @@ approximation even before we add the importance sampling step.</p>
 <span><span class="co"># for combining multiple ggplot figures into one.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="op">(</span><span class="va">p1</span> <span class="op">/</span> <span class="va">p2</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning: The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span></code></pre>
 <p><img src="T4sol_files/figure-html/ecdf-solution-1.png" width="768"></p>
 <p>In the lower figure, the importance weights have be normalised by
 their average, so that values above 1 mean that the corresponding sample

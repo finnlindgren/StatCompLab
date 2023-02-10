@@ -169,30 +169,6 @@ indicating a lower efficiency of the importance sampler. Also included
 is the CDF for the prior distribution for <span class="math inline">\(N_1\)</span>. Except for the lower end of the
 distribution, it’s not immediately clear what effect the observations
 have on the distribution.</p>
-<pre><code><span><span class="co">## Warning: The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span>
-<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span>
-<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span>
-<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span></code></pre>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>Next we do a corresponding plot for <span class="math inline">\(\phi\)</span>. In contrast to <span class="math inline">\(N_1\)</span>, here it’s more clear that the more
 observation pairs we get, the more concentrated the distribution for
@@ -201,30 +177,6 @@ pair also influences in particular the lower end of the distribution,
 with the lower quantiles clearly increasing for <span class="math inline">\(J=4\)</span> even though the upper quantiles
 remain relatively stable for <span class="math inline">\(J\geq
 2\)</span>.</p>
-<pre><code><span><span class="co">## Warning: The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span>
-<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span>
-<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span>
-<span><span class="co">## The following aesthetics were dropped during statistical transformation:</span></span>
-<span><span class="co">## <span style="color: #00BB00;">weights</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span><span class="co">##   the data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span><span class="co">##   variable into a factor?</span></span></code></pre>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <pre><code><span><span class="co">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in</span></span>
 <span><span class="co">## dplyr 1.1.0.</span></span>
@@ -403,7 +355,7 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <div class="section level3">
 <h3 id="function-definitions">Function definitions<a class="anchor" aria-label="anchor" href="#function-definitions"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Finn Lindgren (s0000000, finnlindgren)</span></span>
 <span></span>
 <span></span>
@@ -496,7 +448,7 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <h4 id="archaeology">Archaeology<a class="anchor" aria-label="anchor" href="#archaeology"></a>
 </h4>
 <p>Compute credible intervals for <span class="math inline">\(N_j\)</span> for different amounts of data, <span class="math inline">\(J\)</span>:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xi</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">1001</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
@@ -510,7 +462,7 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 J\)</span>, for each <span class="math inline">\(J=1,\dots,4\)</span>,
 but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span class="math inline">\(\phi\)</span>:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
 <span>  <span class="va">NW1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
@@ -596,7 +548,7 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>    <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Restructure the interval <code>data.frame</code> to focus on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> only:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
 <span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">N1</span>, <span class="va">N2</span>, <span class="va">N3</span>, <span class="va">N4</span>, <span class="va">Phi</span><span class="op">)</span>,</span>
