@@ -56,6 +56,10 @@ source("Project_Example_Solution_my_code.R")
 ```
 
 
+```{r dplr-version}
+packageVersion("dplyr")
+```
+
 # Archaeology in the Baltic sea
 
 Pairs of counts $(Y_{j,1},Y_{j,2})$ of left and right femurs from archaeological
