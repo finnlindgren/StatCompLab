@@ -184,10 +184,10 @@ quick to run:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          5.35s    5.35s     0.187    2.28GB    10.3 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     902.96ms 902.96ms     1.11     1.49GB    37.7 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast          2.2ms   2.26ms   440.     229.67KB     2.00</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           6.82ms   7.41ms   130.     458.21KB    11.8</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          3.88s    3.88s     0.257    2.28GB    13.4 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better      612.3ms  612.3ms     1.63     1.49GB    55.5 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast          1.9ms   1.92ms   515.     229.67KB     2.00</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.73ms   5.83ms   165.     458.21KB    12.0</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -206,12 +206,12 @@ be used for this.</p>
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span></span>
-<span><span class="co">#&gt;       Name1     Name2     Name3</span></span>
-<span><span class="co">#&gt; 1 0.4110754 0.3605143 0.5959309</span></span>
-<span><span class="co">#&gt; 2 0.5517877 0.2304575 0.9602856</span></span>
-<span><span class="co">#&gt; 3 0.1992927 0.9076019 0.9253869</span></span>
-<span><span class="co">#&gt; 4 0.8213915 0.1379334 0.9035794</span></span>
-<span><span class="co">#&gt; 5 0.8022768 0.3225598 0.5002333</span></span></code></pre></div>
+<span><span class="co">#&gt;       Name1      Name2     Name3</span></span>
+<span><span class="co">#&gt; 1 0.3490113 0.94745102 0.8859387</span></span>
+<span><span class="co">#&gt; 2 0.3920678 0.82183324 0.7173493</span></span>
+<span><span class="co">#&gt; 3 0.3260357 0.63036943 0.8394101</span></span>
+<span><span class="co">#&gt; 4 0.8424450 0.06948737 0.2541090</span></span>
+<span><span class="co">#&gt; 5 0.9493473 0.24963833 0.7573594</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
@@ -226,8 +226,8 @@ package is usually used to construct simple summaries such as</p>
 <span>    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>    sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt;            mu     sigma</span></span>
-<span><span class="co">#&gt; 1 -0.06282889 0.9331712</span></span></code></pre></div>
+<span><span class="co">#&gt;           mu     sigma</span></span>
+<span><span class="co">#&gt; 1 0.01282993 0.9343971</span></span></code></pre></div>
 <p>But what if we have a function that computes <em>both</em>
 <code>mu</code> and <code>sigma</code>? If we make it return a
 data.frame, that can be used with <code>summarise</code>:</p>
@@ -242,8 +242,8 @@ data.frame, that can be used with <code>summarise</code>:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
 <span>    <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt;            mu     sigma</span></span>
-<span><span class="co">#&gt; 1 -0.06282889 0.9331712</span></span></code></pre></div>
+<span><span class="co">#&gt;           mu     sigma</span></span>
+<span><span class="co">#&gt; 1 0.01282993 0.9343971</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>
