@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.4.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,164 +92,109 @@
 
     
     
-<div class="section level2">
-<h2 id="confidence-interval-approximation-assessment">Confidence interval approximation assessment<a class="anchor" aria-label="anchor" href="#confidence-interval-approximation-assessment"></a>
-</h2>
-<p>We will investigate the behaviour of three approximate methods for
-confidence interval construction for the expectation parameter <span class="math inline">\(\lambda\)</span> in a model for observations <span class="math inline">\(y_i\sim\textrm{Pois}(\lambda)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. We denote the three methods
-given in the assignment by <span class="math inline">\(\textrm{CI}_1\)</span>, <span class="math inline">\(\textrm{CI}_2\)</span>, and <span class="math inline">\(\textrm{CI}_3\)</span>.</p>
-<div class="section level3">
-<h3 id="theoretical-interval-width-equivalence">Theoretical interval width equivalence<a class="anchor" aria-label="anchor" href="#theoretical-interval-width-equivalence"></a>
-</h3>
-<p>Let <span class="math inline">\(z=z_{1-\alpha/2}=-z_{\alpha/2}\)</span>, where
-<span class="math inline">\(z_p\)</span> is the (lower) <span class="math inline">\(p\)</span>-quantile of a standard <span class="math inline">\(\textrm{N}(0,1)\)</span> distribution. Then, when
-<span class="math inline">\(\overline{y} &gt; z^2/n\)</span>, Methods 1
-and 2 in <code>pois_CI</code> for constructing a confidence interval for
-<span class="math inline">\(\lambda\)</span> from observations <span class="math inline">\(y_i\sim \textrm{Pois}(\lambda)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, are given by <span class="math display">\[\begin{align*}
-\textrm{CI}_1 &amp;= (\overline{y} - z\sqrt{\overline{y}/n},
-\overline{y} + z\sqrt{\overline{y}/n}), \\
-\textrm{CI}_2 &amp;= ([\sqrt{\overline{y}} - z/\sqrt{4n}]^2,
-[\sqrt{\overline{y}} + z/\sqrt{4n}]^2).
-\end{align*}\]</span> The interval width for <span class="math inline">\(\textrm{CI}_1\)</span> is <span class="math inline">\(2z\sqrt{\overline{y}/n}\)</span>. For <span class="math inline">\(\textrm{CI}_2\)</span>, the width is <span class="math display">\[\begin{align*}
-[\sqrt{\overline{y}} + z/\sqrt{4n}]^2 - [\sqrt{\overline{y}} -
-z/\sqrt{4n}]^2
-&amp;=
-[\overline{y} + 2z\sqrt{\overline{y}}/\sqrt{4n} + z^2/(4n)] -
-[\overline{y} - 2z\sqrt{\overline{y}}/\sqrt{4n} + z^2/(4n)]
-\\
-&amp;=
-4z\sqrt{\overline{y}}/\sqrt{4n}
-\end{align*}\]</span> since the remaining terms cancel out. Finally
-<span class="math inline">\(4/\sqrt{4}=2\)</span>, and we see that the
-width of a <span class="math inline">\(\textrm{CI}_2\)</span> interval
-is the same as for <span class="math inline">\(\textrm{CI}_1\)</span>,
-for any observed value <span class="math inline">\(\overline{y}&gt;z^2/n\)</span>.</p>
-</div>
-<div class="section level3">
-<h3 id="confidence-interval-coverage-and-width-assessment">Confidence interval coverage and width assessment<a class="anchor" aria-label="anchor" href="#confidence-interval-coverage-and-width-assessment"></a>
-</h3>
-<p>We are interested in the behaviour of the three confidence interval
-methods when we are far away from the asymptotic limit. Instead of
-assuming <span class="math inline">\(n\rightarrow\infty\)</span> or
-<span class="math inline">\(\lambda\rightarrow\infty\)</span> we will
-instead look at the case <span class="math inline">\(n=2\)</span>, <span class="math inline">\(\lambda=3\)</span>, where the discrete nature of
-the sampling distribution of the maximum likelihood estimator <span class="math inline">\(\widehat{\lambda}=\overline{y}\)</span> is still
-apparent.</p>
-<p>In the <code>my_code.R</code> file, we’ve defined two helper
-functions, <code>multi_pos_CI</code> and
-<code>tidy_multi_pois_CI</code>, in order to simulate <span class="math inline">\(m\)</span> realisations from the model, and
-compute the three types of approximate confidence intervals for a
-desired confidence level (also called the <em>target</em> or
-<em>nominal</em> confidence level) of 90%, corresponding to nominal
-error probability <span class="math inline">\(\alpha=0.1\)</span>. To
-get reasonable precision in the results, we use <span class="math inline">\(m=100000\)</span>. See the code appendix for the
-short analysis code.</p>
-<p>To assess the quality of the methods, we compute an estimate of the
-coverage probability as the proportion of the <span class="math inline">\(m\)</span> simulations that the intervals cover
-the true <span class="math inline">\(\lambda\)</span> value,
-<code>Coverage</code> in the table below. We also compute the median
-width of the intervals, denoted <code>MedWidth</code>. For extra
-details, we further estimate the probability of the lower endpoint being
-too large, <code>OutsideLower</code>, or the upper endpoint being too
-low, <code>OutsideUpper</code>. Finally, we compute the median of the
-lower and upper endpoints, denoted <code>MedLower</code> and
-<code>MedUpper</code> in the table.</p>
-<table class="table">
-<colgroup>
-<col width="7%">
-<col width="13%">
-<col width="13%">
-<col width="19%">
-<col width="19%">
-<col width="13%">
-<col width="13%">
-</colgroup>
-<thead><tr class="header">
-<th align="right">Type</th>
-<th align="right">Coverage</th>
-<th align="right">MedWidth</th>
-<th align="right">OutsideLower</th>
-<th align="right">OutsideUpper</th>
-<th align="right">MedLower</th>
-<th align="right">MedUpper</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">0.82868</td>
-<td align="right">4.029052</td>
-<td align="right">0.02033</td>
-<td align="right">0.15099</td>
-<td align="right">0.985474</td>
-<td align="right">5.014526</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">0.89534</td>
-<td align="right">4.029052</td>
-<td align="right">0.04286</td>
-<td align="right">0.06180</td>
-<td align="right">1.323667</td>
-<td align="right">5.352719</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="right">0.94211</td>
-<td align="right">4.338752</td>
-<td align="right">0.04286</td>
-<td align="right">0.01503</td>
-<td align="right">1.532811</td>
-<td align="right">5.871564</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">0.89534</td>
-<td align="right">4.079704</td>
-<td align="right">0.04286</td>
-<td align="right">0.06180</td>
-<td align="right">1.408827</td>
-<td align="right">5.488531</td>
-</tr>
-</tbody>
-</table>
-<p>As expected from the theoretical calculations for intervals that
-don’t reach <span class="math inline">\(0\)</span> to the left, the
-median width for methods 1 and 2 are identical, whereas the method 3
-widths are slightly larger. We see that methods 1 and 3 have too low and
-too high coverage, respectively, compared with the nominal overage of
-<span class="math inline">\(90\%\)</span>, but method 2 has a coverage
-very close to nominal, at <span class="math inline">\(89.58\%\)</span>.
-It’s clear that method 1 make most of it’s mistakes at the upper end,
-with as much as <span class="math inline">\(15\%\)</span> probability of
-having a too low upper endpoint. In contrast, method 3 is overly
-cautious on the upper end, with just <span class="math inline">\(1.5\%\)</span> error probability for the upper
-tail, but at the expense of wider intervals, sometimes stretching all
-the way to <span class="math inline">\(+\infty\)</span>.</p>
-<p>Method 2 appears to strike a good balance between coverage
-probability and interval widths, with the lower tail error probability
-being almost the same as for method 3 (ca <span class="math inline">\(4\%\)</span>), by moving the upper endpoint to the
-left, thereby reducing the interval widths and increasing the upper tail
-error probability to around <span class="math inline">\(6\%\)</span>. As
-a result, method 2 has nearly equal tail error probabilities (perfect
-equality would be 5%) for the test case <span class="math inline">\(n=2\)</span>, <span class="math inline">\(\lambda=3\)</span>, and appears to be the best of
-the three methods at capturing the behaviour of the sampling
-distribution of the <span class="math inline">\(\lambda\)</span>-estimator.</p>
-<p>In the figure below, we’ve plotted the empirical cumulative
-distribution functions of the interval widths for the three methods,
-which clearly shows the discrete nature of the interval contructions,
-since they are all based on <span class="math inline">\(\overline{y}\)</span>, which has a clear discrete
-set of possible outcomes. The equal width property for methods 1 and 2
-breaks down for small values of <span class="math inline">\(\overline{y}\)</span>, due to how they handle
-intervals that would have gone below zero in a simplistic
-implementation.</p>
-<p>In summary, method 2 appears to be preferable, despite all three
-methods being based on the same asympototic maximum likelihood theory.
-For small sample sizes, the asymptotic theory doesn’t tell the whole
-story, and instead one has to look more carefully at the problem
-structure in order to get reliable estimates.</p>
-<p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-</div>
-</div>
+<!-- # Confidence interval approximation assessment -->
+<!-- We will investigate the behaviour of three approximate methods for confidence -->
+<!-- interval construction for the expectation parameter $\lambda$ in a model for -->
+<!-- observations $y_i\sim\pPo(\lambda)$, $i=1,\dots,n$. -->
+<!-- We denote the three methods given in the assignment by -->
+<!-- $\pCI_1$, $\pCI_2$, and $\pCI_3$. -->
+<!-- ## Theoretical interval width equivalence -->
+<!-- Let $z=z_{1-\alpha/2}=-z_{\alpha/2}$, -->
+<!-- where $z_p$ is the (lower) $p$-quantile of a standard $\pN(0,1)$ distribution. -->
+<!-- Then, when $\ol{y} > z^2/n$, Methods 1 and 2 in `pois_CI` for constructing a -->
+<!-- confidence interval for $\lambda$ from observations $y_i\sim \pPo(\lambda)$, -->
+<!-- $i=1,\dots,n$, are given by -->
+<!-- \begin{align*} -->
+<!-- \pCI_1 &= (\ol{y} - z\sqrt{\ol{y}/n}, \ol{y} + z\sqrt{\ol{y}/n}), \\ -->
+<!-- \pCI_2 &= ([\sqrt{\ol{y}} - z/\sqrt{4n}]^2, [\sqrt{\ol{y}} + z/\sqrt{4n}]^2). -->
+<!-- \end{align*} -->
+<!-- The interval width for $\pCI_1$ is $2z\sqrt{\ol{y}/n}$. For $\pCI_2$, the width -->
+<!-- is -->
+<!-- \begin{align*} -->
+<!-- [\sqrt{\ol{y}} + z/\sqrt{4n}]^2 - [\sqrt{\ol{y}} - z/\sqrt{4n}]^2 -->
+<!-- &=  -->
+<!-- [\ol{y} + 2z\sqrt{\ol{y}}/\sqrt{4n} + z^2/(4n)] - [\ol{y} - 2z\sqrt{\ol{y}}/\sqrt{4n} + z^2/(4n)] -->
+<!-- \\ -->
+<!-- &= -->
+<!-- 4z\sqrt{\ol{y}}/\sqrt{4n} -->
+<!-- \end{align*} -->
+<!-- since the remaining terms cancel out. Finally $4/\sqrt{4}=2$, and we see that -->
+<!-- the width of a $\pCI_2$ interval is the same as for $\pCI_1$, for any observed value -->
+<!-- $\ol{y}>z^2/n$. -->
+<!-- ## Confidence interval coverage and width assessment -->
+<!-- We are interested in the behaviour of the three confidence interval methods when -->
+<!-- we are far away from the asymptotic limit. Instead of assuming -->
+<!-- $n\rightarrow\infty$ or $\lambda\rightarrow\infty$ we will instead look at the -->
+<!-- case $n=2$, $\lambda=3$, where the discrete nature of the sampling distribution -->
+<!-- of the maximum likelihood estimator $\wh{\lambda}=\ol{y}$ is still apparent. -->
+<!-- In the `my_code.R` file, we've defined two helper functions, `multi_pos_CI` and -->
+<!-- `tidy_multi_pois_CI`, in order to simulate $m$ realisations from the model, and -->
+<!-- compute the three types of approximate confidence intervals for a desired confidence level -->
+<!-- (also called the _target_ or _nominal_ confidence level) of 90%, corresponding to -->
+<!-- nominal error probability $\alpha=0.1$. To get reasonable precision in the results, we use -->
+<!-- $m=100000$. See the code appendix for the short analysis code. -->
+<!-- ```{r coverage-estimate} -->
+<!-- n <- 2 -->
+<!-- lambda_true <- 3 -->
+<!-- result <- tidy_multi_pois_CI_alt(100000, n, lambda_true, alpha = 0.1) -->
+<!-- ``` -->
+<!-- To assess the quality of the methods, we compute an estimate of the coverage -->
+<!-- probability as the proportion of the $m$ simulations that the intervals cover -->
+<!-- the true $\lambda$ value, `Coverage` in the table below. We also compute the -->
+<!-- median width of the intervals, denoted `MedWidth`.  For extra details, we further -->
+<!-- estimate the probability of the lower endpoint being too large, `OutsideLower`, -->
+<!-- or the upper endpoint being too low, `OutsideUpper`. Finally, we compute the -->
+<!-- median of the lower and upper endpoints, denoted `MedLower` and `MedUpper` in the table. -->
+<!-- ```{r coverage-summarise} -->
+<!-- result %>% -->
+<!--   group_by(Type) %>% -->
+<!--   summarise( -->
+<!--     Coverage = mean((Lower <= lambda_true) & (lambda_true <= Upper)), -->
+<!--     MedWidth = median(Upper - Lower), -->
+<!--     OutsideLower = mean(lambda_true < Lower), -->
+<!--     OutsideUpper = mean(lambda_true > Upper), -->
+<!--     MedLower = median(Lower), -->
+<!--     MedUpper = median(Upper) -->
+<!--   ) %>% -->
+<!--   knitr::kable() -->
+<!-- ``` -->
+<!-- As expected from the theoretical calculations for intervals that don't reach $0$ -->
+<!-- to the left, the median width for methods 1 and 2 are identical, whereas the -->
+<!-- method 3 widths are slightly larger. -->
+<!-- We see that methods 1 and 3 have too low and too high coverage, respectively, -->
+<!-- compared with the nominal overage of $90\%$, but method 2 has a coverage very -->
+<!-- close to nominal, at $89.58\%$. It's clear that method 1 make most of it's -->
+<!-- mistakes at the upper end, with as much as $15\%$ probability of having a too low -->
+<!-- upper endpoint. In contrast, method 3 is overly cautious on the upper end, -->
+<!-- with just $1.5\%$ error probability for the upper tail, but at the expense of wider -->
+<!-- intervals, sometimes stretching all the way to $+\infty$. -->
+<!-- Method 2 appears to strike a good balance between coverage -->
+<!-- probability and interval widths, with the lower tail error probability being -->
+<!-- almost the same as for method 3 (ca $4\%$), by moving the upper endpoint to the -->
+<!-- left, thereby reducing the interval widths and increasing the upper tail error -->
+<!-- probability to around $6\%$. As a result, method 2 has nearly equal tail error -->
+<!-- probabilities (perfect equality would be 5%) for the test case $n=2$, $\lambda=3$, -->
+<!-- and appears to be the best of the three methods at capturing the behaviour of -->
+<!-- the sampling distribution of the $\lambda$-estimator. -->
+<!-- In the figure below, we've plotted the empirical cumulative distribution -->
+<!-- functions of the interval widths for the three methods, which clearly shows the -->
+<!-- discrete nature of the interval contructions, since they are all based on -->
+<!-- $\ol{y}$, which has a clear discrete set of possible outcomes. The equal width -->
+<!-- property for methods 1 and 2 breaks down for small values of $\ol{y}$, due to -->
+<!-- how they handle intervals that would have gone below zero in a simplistic -->
+<!-- implementation. -->
+<!-- In summary, method 2 appears to be preferable, despite all three methods being -->
+<!-- based on the same asympototic maximum likelihood theory. For small sample sizes, -->
+<!-- the asymptotic theory doesn't tell the whole story, and instead one has to look -->
+<!-- more carefully at the problem structure in order to get reliable estimates. -->
+<!-- ```{r coverage=plot, warning=FALSE} -->
+<!-- result %>% -->
+<!--   mutate(Type = factor(Type)) %>% -->
+<!--   ggplot() + -->
+<!--   stat_ecdf(aes(Upper - Lower, col = Type)) + -->
+<!--   xlab("CI width") + -->
+<!--   ylab("CDF") -->
+<!-- ``` -->
 <div class="section level2">
 <h2 id="archaeology-in-the-baltic-sea">Archaeology in the Baltic sea<a class="anchor" aria-label="anchor" href="#archaeology-in-the-baltic-sea"></a>
 </h2>
@@ -351,7 +296,7 @@ have on the distribution.</p>
 <span><span class="co">##   the data.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
 <span><span class="co">##   variable into a factor?</span></span></code></pre>
-<p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>Next we do a corresponding plot for <span class="math inline">\(\phi\)</span>. In contrast to <span class="math inline">\(N_1\)</span>, here it’s more clear that the more
 observation pairs we get, the more concentrated the distribution for
 <span class="math inline">\(\phi\)</span> gets. Each new observation
@@ -383,7 +328,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 <span><span class="co">##   the data.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
 <span><span class="co">##   variable into a factor?</span></span></code></pre>
-<p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <pre><code><span><span class="co">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in</span></span>
 <span><span class="co">## dplyr 1.1.0.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `reframe()` instead.</span></span>
@@ -419,57 +364,57 @@ remain relatively stable for <span class="math inline">\(J\geq
 <td align="right">1</td>
 <td align="left">N1</td>
 <td align="right">313.0000000</td>
-<td align="right">2459.0000000</td>
-<td align="right">2146.0000000</td>
+<td align="right">2458.0000000</td>
+<td align="right">2145.0000000</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">N1</td>
 <td align="right">370.0000000</td>
-<td align="right">3455.0000000</td>
-<td align="right">3085.0000000</td>
+<td align="right">3454.0000000</td>
+<td align="right">3084.0000000</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="left">N1</td>
-<td align="right">425.0000000</td>
-<td align="right">3578.0000000</td>
-<td align="right">3153.0000000</td>
+<td align="right">421.0000000</td>
+<td align="right">3622.0000000</td>
+<td align="right">3201.0000000</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
 <td align="left">N1</td>
-<td align="right">426.0000000</td>
-<td align="right">2122.0000000</td>
-<td align="right">1696.0000000</td>
+<td align="right">382.0000000</td>
+<td align="right">2023.0000000</td>
+<td align="right">1641.0000000</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">Phi</td>
-<td align="right">0.1000784</td>
-<td align="right">0.7881868</td>
-<td align="right">0.6881085</td>
+<td align="right">0.1000917</td>
+<td align="right">0.7881835</td>
+<td align="right">0.6880917</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">Phi</td>
-<td align="right">0.0710310</td>
-<td align="right">0.6642228</td>
-<td align="right">0.5931918</td>
+<td align="right">0.0710623</td>
+<td align="right">0.6668649</td>
+<td align="right">0.5958026</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="left">Phi</td>
-<td align="right">0.0690307</td>
-<td align="right">0.5799196</td>
-<td align="right">0.5108890</td>
+<td align="right">0.0680256</td>
+<td align="right">0.5849711</td>
+<td align="right">0.5169454</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
 <td align="left">Phi</td>
-<td align="right">0.1154595</td>
-<td align="right">0.5758585</td>
-<td align="right">0.4603989</td>
+<td align="right">0.1223360</td>
+<td align="right">0.6525176</td>
+<td align="right">0.5301816</td>
 </tr>
 </tbody>
 </table>
@@ -519,23 +464,23 @@ could improve the precision and accuracy of the results:</p>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">827041.9664</td>
-<td align="right">0.8270420</td>
+<td align="right">827101.3317</td>
+<td align="right">0.8271013</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">117379.4513</td>
-<td align="right">0.1173795</td>
+<td align="right">123325.1049</td>
+<td align="right">0.1233251</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">3918.2005</td>
-<td align="right">0.0039182</td>
+<td align="right">5652.0431</td>
+<td align="right">0.0056520</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">789.4356</td>
-<td align="right">0.0007894</td>
+<td align="right">645.0274</td>
+<td align="right">0.0006450</td>
 </tr>
 </tbody>
 </table>
@@ -548,7 +493,7 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <h4 id="profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp">Profile likelihood method for frequentist confidence interval for
 <span class="math inline">\(\textrm{Binom}(n,p)\)</span><a class="anchor" aria-label="anchor" href="#profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp"></a>
 </h4>
-<p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <pre><code><span><span class="co">## [1] 274</span></span></code></pre>
 <p>(actually <code>range(y)</code> depends on <code>n</code> may mean
 <code>l0</code> not justified for this example)</p>
@@ -747,30 +692,14 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <h4 id="confidence-intervals">Confidence intervals<a class="anchor" aria-label="anchor" href="#confidence-intervals"></a>
 </h4>
 <p>Poisson parameter interval simulations:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
-<span><span class="va">lambda_true</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">tidy_multi_pois_CI_alt</span><span class="op">(</span><span class="fl">100000</span>, <span class="va">n</span>, <span class="va">lambda_true</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
 <p>Summarise the coverage probabilities and interval widths:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">result</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
-<span>    Coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">(</span><span class="va">Lower</span> <span class="op">&lt;=</span> <span class="va">lambda_true</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">lambda_true</span> <span class="op">&lt;=</span> <span class="va">Upper</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    MedWidth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span>,</span>
-<span>    OutsideLower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lambda_true</span> <span class="op">&lt;</span> <span class="va">Lower</span><span class="op">)</span>,</span>
-<span>    OutsideUpper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lambda_true</span> <span class="op">&gt;</span> <span class="va">Upper</span><span class="op">)</span>,</span>
-<span>    MedLower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span>,</span>
-<span>    MedUpper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">Upper</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Plot the CDFs for the CI width distributions:</p>
 </div>
 <div class="section level4">
 <h4 id="archaeology">Archaeology<a class="anchor" aria-label="anchor" href="#archaeology"></a>
 </h4>
 <p>Compute credible intervals for <span class="math inline">\(N_j\)</span> for different amounts of data, <span class="math inline">\(J\)</span>:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xi</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">1001</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
@@ -784,7 +713,7 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 J\)</span>, for each <span class="math inline">\(J=1,\dots,4\)</span>,
 but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span class="math inline">\(\phi\)</span>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
 <span>  <span class="va">NW1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
@@ -870,7 +799,7 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>    <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Restructure the interval <code>data.frame</code> to focus on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> only:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
 <span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">N1</span>, <span class="va">N2</span>, <span class="va">N3</span>, <span class="va">N4</span>, <span class="va">Phi</span><span class="op">)</span>,</span>
