@@ -137,58 +137,6 @@ submission files to github, ask Finn to check the repository contents
 project will be marked as a whole, between <span class="math inline">\(0\)</span> and <span class="math inline">\(40\)</span>. A marking guide will be posted on
 Learn.</p>
 <div style="page-break-after: always;"></div>
-<!-- # Confidence interval approximation assessment -->
-<!-- As in Lab 4, consider the Poisson model for observations $\bm{y}=\{y_1,\dots,y_n\}$: -->
-<!-- $$ -->
-<!-- \begin{aligned} -->
-<!-- y_i & \sim \pPo(\lambda), \quad\text{independent for $i=1,\dots,n$.} -->
-<!-- \end{aligned} -->
-<!-- $$ -->
-<!-- that has joint probability mass function -->
-<!-- $$ -->
-<!-- p(\bm{y}|\lambda) = \exp(-n\lambda) \prod_{i=1}^n \frac{\lambda^{y_i}}{y_i!} -->
-<!-- $$ -->
-<!-- In the lab, we considered three parameterisation alternatives: -->
-<!-- 1. $\theta = \lambda$, and $\wh{\theta}_\text{ML}=\frac{1}{n}\sum_{i=1}^n y_i = \ol{y}$ -->
-<!-- 2. $\theta = \sqrt{\lambda}$, and $\wh{\theta}_\text{ML}=\sqrt{\ol{y}}$ -->
-<!-- 3. $\theta = \log(\lambda)$, and $\wh{\theta}_\text{ML}=\log\left(\ol{y}\right)$ -->
-<!-- We know that the inverse expected Fisher information -->
-<!-- is $\lambda/n$ for case 1, $1/(4n)$ for case 2, and $1/(n\lambda)$ for case 3. -->
-<!-- In the lab, three functions, CI1, CI2, and CI3, were defined for constructing -->
-<!-- confidence intervals based on asymptotic Normal approximation for the Maximum Likelihood estimators in each of the parameterisations.  For this project, you should use the function -->
-<!-- `pois_CI` that is defined in the `code.R` file in your project repository. -->
-<!-- The code file should be imported with the method shown in the `RMdemo.Rmd` file, -->
-<!-- but not displayed in the report. Look in the file for documentation of the functions. -->
-<!-- The task is to do a simulation study to assess the accuracy of the three interval -->
-<!-- construction methods. -->
-<!-- 1. In your `my_code.R` file, define a function -->
-<!-- `multi_pois_CI(m, n, lambda, alpha,type)` that takes inputs -->
-<!-- `m`, indicating the number of simulations to perform, `n`, the number of -->
-<!-- observations used for each sample, and `lambda`, the true parameter value, as -->
-<!-- well as `alpha` and `type` with the same interpretation as for `pois_CI`. -->
-<!-- The function must return a data frame with `m` rows and two columns, named -->
-<!-- `Lower` and `Upper` containing the confidence intervals, one for each row. -->
-<!-- 2. Show mathematically that the widths of the $\lambda$-intervals for -->
-<!-- parameterisation type 1 and 2 are always identical to each other, for any given -->
-<!-- observation vector $\bm{y}$ and confidence level $1-\alpha$. -->
-<!-- Note: You should ignore the cases where the $\theta$- or $\lambda$-intervals -->
-<!-- extend below $0$ (for case 1, when the normal quantile $z$ has $\ol{y} < z^2/n$, -->
-<!-- and for case 2, when $4\ol{y} < z^2/n$). -->
-<!-- 3. In your `my_code.R` file, define a function -->
-<!-- `tidy_multi_pois_CI(m, n, lambda, alpha)` that takes the same inputs as `multi_pois_CI` except for the `type` argument. The function must return a data frame with `3*m` rows and three -->
-<!-- columns, named -->
-<!-- `Lower`, `Upper`, and `Type` containing the confidence intervals from three -->
-<!-- calls to `multi_pois_CI`, with the `Type` column containing values 1, 2, or 3 to indicate -->
-<!-- which method calculated each interval. -->
-<!-- 4. With the help of `tidy_multi_pois_CI`, estimate the coverage probability for -->
-<!-- nominal confidence level $1-\alpha$=90%, -->
-<!-- for each of the three interval types, for $n=2$, $\lambda=3$, using $m$ at least $100000$. -->
-<!-- How well do the coverage probabilities match the nominal confidence level for each method? -->
-<!-- With the `tidyverse` package loaded, the `group_by` and `summarise` functions -->
-<!-- can be used to avoid direct indexing or loops. -->
-<!-- Summarise and discuss the results. -->
-<!-- 5. Plot the empirical CDFs for the interval widths for the three methods, in a common figure. Use `factor(Type)` to group the information by colour. Also compute the median interval width for each method. Summarise and discuss the results. -->
-<!-- \newpage -->
 <div class="section level2">
 <h2 id="archaeology-in-the-baltic-sea">Archaeology in the Baltic Sea<a class="anchor" aria-label="anchor" href="#archaeology-in-the-baltic-sea"></a>
 </h2>
