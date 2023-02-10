@@ -86,6 +86,7 @@ NULL
 StatEwcdf <- ggplot2::ggproto(
   "StatEwcdf", ggplot2::Stat,
   required_aes = c("x|y", "weights"),
+  dropped_aes = c("weights"),     ## SIMON TAYLOR: edit to suppress dropped aesthetic 'weights' warning
 
   default_aes = ggplot2::aes(y = ggplot2::after_stat(y)),
 
