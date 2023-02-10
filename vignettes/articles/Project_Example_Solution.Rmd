@@ -179,7 +179,8 @@ CI <- rbind(
       Phi = wquantile(Phi,
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
-      )
+      ),
+      .group = "drop"   #suppress group warning
     ),
   NW2 %>%
     summarise(
@@ -198,7 +199,8 @@ CI <- rbind(
       Phi = wquantile(Phi,
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
-      )
+      ),
+      .group = "drop"
     ),
   NW3 %>%
     summarise(
@@ -220,7 +222,8 @@ CI <- rbind(
       Phi = wquantile(Phi,
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
-      )
+      ),
+      .group = "drop"
     ),
   NW4 %>%
     summarise(
@@ -245,7 +248,8 @@ CI <- rbind(
       Phi = wquantile(Phi,
         probs = c(0.05, 0.95), na.rm = TRUE,
         type = 7, weights = exp(Log_Weights)
-      )
+      ),
+      .group = "drop"
     )
 )
 ```
