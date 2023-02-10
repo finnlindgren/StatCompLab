@@ -203,6 +203,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 <table class="table">
 <thead><tr class="header">
 <th align="right">J</th>
+<th align="left">.group</th>
 <th align="left">Variable</th>
 <th align="right">Lower</th>
 <th align="right">Upper</th>
@@ -211,6 +212,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
+<td align="left">drop</td>
 <td align="left">N1</td>
 <td align="right">313.0000000</td>
 <td align="right">2458.0000000</td>
@@ -218,6 +220,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 </tr>
 <tr class="even">
 <td align="right">2</td>
+<td align="left">drop</td>
 <td align="left">N1</td>
 <td align="right">370.0000000</td>
 <td align="right">3454.0000000</td>
@@ -225,6 +228,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 </tr>
 <tr class="odd">
 <td align="right">3</td>
+<td align="left">drop</td>
 <td align="left">N1</td>
 <td align="right">421.0000000</td>
 <td align="right">3622.0000000</td>
@@ -232,6 +236,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 </tr>
 <tr class="even">
 <td align="right">4</td>
+<td align="left">drop</td>
 <td align="left">N1</td>
 <td align="right">382.0000000</td>
 <td align="right">2023.0000000</td>
@@ -239,6 +244,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 </tr>
 <tr class="odd">
 <td align="right">1</td>
+<td align="left">drop</td>
 <td align="left">Phi</td>
 <td align="right">0.1000917</td>
 <td align="right">0.7881835</td>
@@ -246,6 +252,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 </tr>
 <tr class="even">
 <td align="right">2</td>
+<td align="left">drop</td>
 <td align="left">Phi</td>
 <td align="right">0.0710623</td>
 <td align="right">0.6668649</td>
@@ -253,6 +260,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 </tr>
 <tr class="odd">
 <td align="right">3</td>
+<td align="left">drop</td>
 <td align="left">Phi</td>
 <td align="right">0.0680256</td>
 <td align="right">0.5849711</td>
@@ -260,6 +268,7 @@ remain relatively stable for <span class="math inline">\(J\geq
 </tr>
 <tr class="even">
 <td align="right">4</td>
+<td align="left">drop</td>
 <td align="left">Phi</td>
 <td align="right">0.1223360</td>
 <td align="right">0.6525176</td>
@@ -478,7 +487,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
 <span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      .group <span class="op">=</span> <span class="st">"drop"</span>   <span class="co">#suppress group warning</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>  <span class="va">NW2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
@@ -497,7 +507,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
 <span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      .group <span class="op">=</span> <span class="st">"drop"</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>  <span class="va">NW3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
@@ -519,7 +530,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
 <span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      .group <span class="op">=</span> <span class="st">"drop"</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>  <span class="va">NW4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
@@ -544,7 +556,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      Phi <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">Phi</span>,</span>
 <span>        probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      .group <span class="op">=</span> <span class="st">"drop"</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Restructure the interval <code>data.frame</code> to focus on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> only:</p>

@@ -133,12 +133,12 @@ equal weight for each sample value.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Plain quantiles:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         0%        25%        50%        75%       100% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.2312886 -0.5954081  0.0477943  0.7996478  2.3196198 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          0%         25%         50%         75%        100% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -2.31323198 -0.72403048  0.03383395  0.68292396  3.72430903 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Larger values given larger weight, on average shifting the quantiles upward:</span></span></span>
 <span class="r-in"><span><span class="fu">wquantile</span><span class="op">(</span><span class="va">x</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.231288588 -0.516456645  0.001128122  0.803516475  2.319619805</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.31323198 -0.71362808  0.03833251  0.52209966  3.72430903</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
