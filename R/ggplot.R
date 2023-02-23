@@ -128,7 +128,7 @@ StatEwcdf <- ggplot2::ggproto(
       data_ecdf <-
         spatstat.geom::ewcdf(
           data$x,
-          weights = data$weights / sum(data$weights)
+          weights = data$weights / sum(abs(data$weights))  #SIMON TAYLOR, add abs() so to make error msg if all weights -ve
         )(x)
     }
 
