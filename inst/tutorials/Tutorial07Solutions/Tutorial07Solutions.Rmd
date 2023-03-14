@@ -1,0 +1,573 @@
+---
+title: 'Tutorial 07: Data wrangling and cross validation (solutions)'
+author: Finn Lindgren
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: 'Statistical Computing: Lab tutorial 7'
+tutorial:
+  id: shinyapps.finnlindgren.StatCompTutorial07
+  version: 1.2
+in-header:
+- \newcommand{\bm}[1]{\boldsymbol{#1}}
+- \newcommand{\wh}[1]{\widehat{#1}}
+- \newcommand{\ol}[1]{\overline{#1}}
+- \newcommand{\wt}[1]{\widetilde{#1}}
+- \newcommand{\mv}[1]{\boldsymbol{#1}}
+- \newcommand{\proper}[1]{\mathsf{#1}}
+- \newcommand{\pP}{\proper{P}}
+- \newcommand{\pE}{\proper{E}}
+- \newcommand{\pVar}{\proper{Var}}
+- \newcommand{\pPo}{\proper{Poisson}}
+- \newcommand{\pN}{\proper{Normal}}
+- \newcommand{\pBin}{\proper{Bin}}
+- \newcommand{\pBeta}{\proper{Beta}}
+- \newcommand{\pGeom}{\proper{Geom}}
+- \newcommand{\pExp}{\proper{Exp}}
+- \newcommand{\pGamma}{\proper{Gamma}}
+- \newcommand{\mmd}{\mathrm{d}}
+- \newcommand{\md}{\,\mmd}
+---
+
+
+```{r setup, include=FALSE}
+.tutorial <- TRUE
+.solutions <- TRUE
+begin_sol <- function(sol = .solutions) {if (!sol) {"<!--\n"} else {"\n<hr />**Solution:**\n"}}
+end_sol <- function(sol = .solutions) {if (!sol) {"-->\n"} else {"\n<hr />\n"}}
+
+library(StatCompLab)
+if (.tutorial) {
+  library(learnr)
+  require(gradethis)
+  learnr::tutorial_options(
+    exercise.timelimit = 120,
+    exercise.checker = grade_learnr,
+    exercise.startover = TRUE,
+    exercise.diagnostics = TRUE,
+    exercise.completion = TRUE
+    #    exercise.error.check.code = exercise.error.check.code.
+  )
+}
+library(ggplot2)
+knitr::opts_chunk$set(
+  echo = FALSE,
+#  dev = "png",
+#  dev.args = list(type = "cairo-png"),
+  fig.width = 6
+)
+
+suppressPackageStartupMessages(library(tidyverse))
+theme_set(theme_bw())
+set.seed(1234L)
+```
+
+## Introduction
+
+In this lab session you will explore
+
+* Data wrangling; restructuring data frames
+* Graphical data exploration
+* Cross validation
+
+1. Open your github repository clone project from Lab 2 or 4
+2. During this lab, you can work in a `.R` file, but working with code chunks in a `.Rmd` is recommended.
+3. Make sure you update the `StatCompLab` package to version 21.7.0 or higher.
+
+`r begin_sol(!.solutions)`
+The accompanying `Tutorial07Solutions` tutorial/vignette documents contain the
+solutions explicitly, to make it easier to review the material after the workshops.
+`r end_sol(!.solutions)`
+
+Throughout this tutorial, you'll make use of the data wrangling and plotting
+tools in the `dplyr`, `magrittr`, `ggplot2` and other tidyverse packages,
+so start your code with `library(tidyverse)` and `library(StatCompLab)`.
+
+Note that the exercises in this tutorial build on each other, often with one solution being
+similar to previous solutions, with just a few additions and/or modifications.
+
+Some of the data wrangling
+functions used in the tutorial are
+
+* `mutate` to add or alter variables
+* `filter` to keep only rows fulfilling given criteria
+* `group_by` to perform analyses within subgroups defined by one or more variables
+* `summarise` to compute data summaries, usually with subgroups
+* `select` to keep only some variables
+* `left_join` to join two data frames together, based on common identifier variables
+* `pivot_wider` to split a value variable into new named variables based on a
+category variable
+* `pivot_longer` to gather several variables into a new single value variable, and
+the names stored in a new category variable
+* `%>%`, the "pipe" operator used to glue a sequence of operations together by feeding
+the result of an operation into the first argument of the following function call
+* `head` to view only the first few rows of a data frame. This can be useful when debugging
+a sequence of "piped" expressions, by placing it last in the pipe sequence
+* `pull` to extract the contents of a single variable
+
+Functions for plotting,
+
+* `ggplot` for initialising plots
+* `geom_point` for drawing points
+* `facet_wrap` for splitting a plot into "facet" plots, based on one or more
+category variables
+
+## Scottish weather data
+
+The Global Historical Climatology Network at <https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily> provides historical weather data collected from all over the globe. A subset of the daily resolution data set is available in the `StatCompLab package` containing data from eight weather stations in Scotland, covering the time period from 1 January 1960 to 31 December 2018. Some of the measurements are missing, either due to instrument problems or data collection issues.  Load the data with
+```{r, eval=TRUE,echo=TRUE}
+data(ghcnd_stations, package = "StatCompLab")
+data(ghcnd_values, package = "StatCompLab")
+```
+
+The `ghcnd_stations` data frame has 5 variables:
+
+* `ID`: The identifier code for each station
+* `Name`: The humanly readable station name
+* `Latitude`: The latitude of the station location, in degrees
+* `Longitude`: The longitude of the station location, in degrees
+* `Elevation`: The station elevation, in metres above sea level
+
+The station data set is small enough that you can view the whole thing,
+e.g. with `knitr::kable(ghcnd_stations)`.
+You can try to find some of the locations on a map (google maps an other online map
+systems can usually interpret latitude and longitude searches).
+
+`r begin_sol()`
+```{r, echo=.solutions,eval=.solutions}
+knitr::kable(ghcnd_stations)
+```
+`r end_sol()`
+
+
+The `ghcnd_values` data frame has 7 variables:
+
+* `ID`: The station identifier code for each observation
+* `Year`: The year the value was measured
+* `Month`: The month the value was measured
+* `Day`: The day of the month the value was measured
+* `DecYear`: "Decimal year", the measurement date converted to a fractional value,
+  where whole numbers correspond to 1 January, and fractional values correspond to
+  later dates within the year. This is useful for both plotting and modelling.
+* `Element`: One of "TMIN" (minimum temperature), "TMAX" (maximum temperature), or "PRCP" (precipitation), indicating what each value in the `Value` variable represents 
+* `Value`: Daily measured temperature (in degrees Celsius) or precipitation (in mm)
+
+The values data object has `r nrow(ghcnd_values)` rows, so we don't want to try
+to view the whole object directly. Instead, we can start by summarising it.
+
+Start by counting how many observations each station has, for each type of measurement.
+The shortest approach is to use the `count()` function. A more generalisable
+approach is to use the `group_by()`, `summarise()`, and n() functions. See the description
+on `?count` for how `count()` is connected to the others.
+To avoid having to create temporary named variables, end the pipe operations with
+a call to `knitr::kable()`, especially if you're working in an RMarkdown document.
+
+```{r sum1, exercise=TRUE}
+
+```
+```{r sum1-hint-1,eval=FALSE}
+# ghcnd_values %>%
+#   count(???) %>%
+#   knitr::kable()
+#   
+# ghcnd_values %>%
+#   group_by(???) %>%
+#   ???
+```
+```{r sum1-solution,eval=FALSE}
+ghcnd_values %>%
+  count(ID, Element) %>%
+  knitr::kable()
+```
+`r begin_sol()`
+```{r sum1-show,echo=.solutions,eval=.solutions,ref.label="sum1-solution",results=.solutions}
+```
+`r end_sol()`
+
+
+## Exploratory plotting
+
+Before, we only looked at the station data and weather measurements separately.
+When plotting, we would at least like to have access to the station _names_ instead
+of the _identifying codes_, to give a more humanly readable presentation.
+
+This can be accomplished with the `left_join()` function, that can add copies of
+the rows from one data frame to another, where one or more columns match.
+Create a new variable, `ghcnd` that for each observation contains both the
+measurements and the station data:
+```{r echo=TRUE,eval=TRUE,results=.solutions}
+ghcnd <- left_join(ghcnd_values, ghcnd_stations, by = "ID")
+head(ghcnd)
+```
+
+Now plot daily minimum and maximum temperature measurements connected by lines
+as a
+function of time (`DecYear`), with a
+different colour for each element, and a separate subplot for each station
+(`facet_wrap(~variablename)`),
+labeled by the station names.
+
+Again, avoid creating a temporary named variable. Instead, feed the initial data
+wrangling result into `ggplot()` directly.
+
+```{r sum2, exercise=TRUE}
+
+```
+```{r sum2-hint-1,eval=FALSE}
+ # OK to have aes() first in the ggplot() call, since the data part is provided via %>%
+ghcnd %>%
+  filter(???) %>%
+  ggplot(aes(???)) +
+  geom_???() +
+  facet_wrap(???)
+```
+```{r sum2-hint-2,eval=FALSE}
+ghcnd %>%
+  filter(Element %in% ???) %>%
+  ggplot(aes(DecYear, ???, colour = Element)) +
+  geom_???() +
+  facet_wrap(???)
+```
+```{r sum2-solution,eval=FALSE}
+ghcnd %>%
+  filter(Element %in% c("TMIN", "TMAX")) %>%
+  ggplot(aes(DecYear, Value, colour = Element)) +
+  geom_line() +
+  facet_wrap(~ Name)
+```
+`r begin_sol()`
+```{r sum2-show,echo=.solutions,eval=.solutions,ref.label="sum2-solution",results=.solutions}
+```
+`r end_sol()`
+
+
+Due to the amount of data, it's difficult to see clear patterns here.
+Produce two figures, one showing the yearly averages of TMIN and TMAX as points,
+and one showing the monthly seasonal averages (for months 1 through 12) of TMIN and TMAX, separately for each station.
+
+Again, avoid creating a temporary named variable. In the previous code, insert
+calls to `group_by()` and `summarise()`, and modify the x-values in the aesthetics.
+
+```{r sum3, exercise=TRUE}
+
+```
+```{r sum3-hint-1,eval=FALSE}
+ghcnd %>%
+  filter(???) %>%
+  group_by(???) %>%
+  summarise(???, .groups = "drop") %>%
+  ggplot(aes(???)) +
+  geom_???() +
+  facet_wrap(???)
+```
+```{r sum3-hint-2,eval=FALSE}
+# group by both ID and Name; they identify the same sets, and we want to keep both
+ghcnd %>%
+  filter(Element %in% ???) %>%
+  group_by(ID, Name, Element, Year) %>%
+  summarise(Value = mean(Value), .groups = "drop") %>%
+  ggplot(aes(Year, ???)) +
+  geom_???() +
+  facet_wrap(???)
+```
+```{r sum3-solution,eval=FALSE}
+ghcnd %>%
+  filter(Element %in% c("TMIN", "TMAX")) %>%
+  group_by(ID, Name, Element, Year) %>%
+  summarise(Value = mean(Value), .groups = "drop") %>%
+  ggplot(aes(Year, Value, colour = Element)) +
+  geom_point() +
+  facet_wrap(~ Name)
+```
+
+
+```{r sum4, exercise=TRUE}
+
+```
+```{r sum4-hint-1,eval=FALSE}
+ghcnd %>%
+  filter(???) %>%
+  group_by(???) %>%
+  summarise(???, .groups = "drop") %>%
+  ggplot(aes(???)) +
+  geom_???() +
+  facet_wrap(???)
+```
+```{r sum4-hint-2,eval=FALSE}
+# group by both ID and Name; they identify the same sets, and we want to keep both
+ghcnd %>%
+  filter(Element %in% ???) %>%
+  group_by(ID, Name, Element, Month) %>%
+  summarise(Value = mean(Value), .groups = "drop") %>%
+  ggplot(aes(Month, ???)) +
+  geom_???() +
+  facet_wrap(???)
+```
+```{r sum4-solution,eval=FALSE}
+ghcnd %>%
+  filter(Element %in% c("TMIN", "TMAX")) %>%
+  group_by(ID, Name, Element, Month) %>%
+  summarise(Value = mean(Value), .groups = "drop") %>%
+  ggplot(aes(Month, Value, colour = Element)) +
+  geom_point() +
+  facet_wrap(~ Name)
+```
+What are the common patterns in the yearly values, and in the monthly seasonal values?
+
+`r begin_sol()`
+The yearly averages all seem to have a slight increasing trend:
+```{r sum3-show,echo=.solutions,eval=.solutions,ref.label="sum3-solution",results=.solutions}
+```
+
+The monthly seasonal averages clearly show the seasonal pattern. The shapes are similar for all stations, but the average and amplitude varies a bit:
+```{r sum4-show,echo=.solutions,eval=.solutions,ref.label="sum4-solution",results=.solutions}
+```
+`r end_sol()`
+
+
+### Scatter plots
+
+If we want to do a scatter plot of TMIN and TMAX, we need to rearrange the data a bit.
+For this we can use the `pivot_wider` function, that can turn a _name_ variable and
+a _values_ variable into several named variable. Note that if only some measurement elements
+are present on a given day, NA's will be produced by default. Optionally, filter
+these rows out before calling `ggplot()`.
+
+Draw a scatterplot for daily TMIN vs TMAX for each station, with colour determined by the month.
+
+```{r sum5, exercise=TRUE}
+
+```
+```{r sum5-hint-1,eval=FALSE}
+ghcnd %>%
+  pivot_wider(???) %>%
+  filter(!is.na(???) & ???) %>%
+  ggplot(aes(TMIN, ???)) +
+  geom_???() +
+  facet_wrap(???)
+```
+```{r sum5-hint-2,eval=FALSE}
+ghcnd %>%
+  pivot_wider(names_from = ???, values_from = ???) %>%
+  filter(!is.na(TMIN) & !is.na(TMAX)) %>%
+  ggplot(aes(TMIN, TMAX, ???)) +
+  geom_???() +
+  facet_wrap(???)
+```
+```{r sum5-solution,eval=FALSE}
+ghcnd %>%
+  pivot_wider(names_from = Element, values_from = Value) %>%
+  filter(!is.na(TMIN) & !is.na(TMAX)) %>%
+  ggplot(aes(TMIN, TMAX, colour = factor(Month))) +
+  geom_point() +
+  facet_wrap(~ Name)
+```
+
+`r begin_sol()`
+```{r sum5-show,echo=.solutions,eval=.solutions,ref.label="sum5-solution",results=.solutions}
+```
+`r end_sol()`
+
+
+
+
+
+
+
+
+## Cross validation
+
+Choose one of the stations, and create a new data variable `data` from `ghcnd`
+with the yearly averages of TMIN as a column (as in the previous `pivot_wider` output),
+with missing values removed with `filter()`.
+
+```{r sum6, exercise=TRUE}
+
+```
+```{r sum6-hint-1,eval=FALSE}
+data <- ghcnd %>%
+  filter(???) %>%
+  pivot_wider(???) %>%
+  filter(???) %>%
+  group_by(???) %>%
+  summarise(???)
+```
+```{r sum6-hint-2,eval=FALSE}
+data <- ghcnd %>%
+  filter(ID == "UKE00105875") %>%
+  pivot_wider(names_from = Element, values_from = Value) %>%
+  filter(???) %>%
+  group_by(ID, Name, Year) %>%
+  summarise(???)
+```
+```{r sum6-solution,eval=FALSE}
+data <- ghcnd %>%
+  filter(ID == "UKE00105875") %>%
+  pivot_wider(names_from = Element, values_from = Value) %>%
+  filter(!is.na(TMIN)) %>%
+  group_by(ID, Name, Year) %>%
+  summarise(TMIN = mean(TMIN), .groups = "drop")
+```
+
+`r begin_sol()`
+```{r sum6-show,echo=.solutions,eval=TRUE,ref.label="sum6-solution",results=.solutions}
+```
+`r end_sol()`
+
+### Within-sample assessment
+
+Now, using the whole `data` estimate a linear model for TMIN, with `lm()` formula
+`TMIN ~ 1 + Year`, and compute the
+average 80% Interval score (use `proper_score()` that you used in lab 6)
+for prediction intervals for each of the TMIN observations in `data`.
+See `?predict.lm` for documentation for the `predict()` method for models estimated with `lm()`.
+
+```{r sum8, exercise=TRUE}
+
+```
+```{r sum8-hint-1,eval=FALSE}
+fit <- lm(???)
+pred <- predict(???)
+score0 <- proper_score(???)
+```
+```{r sum8-hint-2,eval=FALSE}
+fit <- lm(TMIN ~ 1 + Year, data = data)
+pred <- predict(???)
+score0 <- proper_score(???)
+```
+```{r sum8-hint-3,eval=FALSE}
+fit <- lm(TMIN ~ 1 + Year, data = data)
+pred <- predict(fit, newdata = data, interval = "prediction", level = 0.8)
+score0 <- proper_score("interval", data$TMIN, ???)
+```
+```{r sum8-solution,eval=FALSE}
+fit0 <- lm(TMIN ~ 1 + Year, data = data)
+pred0 <- predict(fit0, newdata = data,
+                 interval = "prediction", level = 0.8)
+score0 <- mean(proper_score(
+  "interval", data$TMIN,
+  lwr = pred0[, "lwr"], upr = pred0[,"upr"], alpha = 0.8))
+```
+
+`r begin_sol()`
+```{r sum8-show,echo=.solutions,eval=TRUE,ref.label="sum8-solution",results=.solutions}
+```
+`r end_sol()`
+
+### Cross validation
+
+We now want to compute the 5 average 80% Interval scores from 5-fold cross validation based on
+a random partition of the data into 5 approximately equal parts.
+
+First add a new column Group to data defining the partitioning, using `mutate()`.
+One approach is to compute a random permutation index vector,
+and then use the modulus operator `%%` to reduce it to 5 values, or `ceiling()` on scaled indices.
+
+```{r sum9, exercise=TRUE}
+
+```
+```{r sum9-hint-1,eval=FALSE}
+data <- 
+  data %>%
+  mutate(Group = ???, # Make a permuted index variable
+         Group = ???) # Convert the indices to 5 group index values
+```
+```{r sum9-hint-2,eval=FALSE}
+data <- 
+  data %>%
+  mutate(Group = sample(???, size = ???, replace = ???),
+         Group = ???)
+```
+```{r sum9-hint-3,eval=FALSE}
+data <- 
+  data %>%
+  mutate(Group = sample(seq_len(nrow(data)), size = nrow(data), replace = FALSE),
+         Group = ???
+```
+```{r sum9-solution,eval=FALSE}
+data <- 
+  data %>%
+  mutate(Group = sample(seq_len(nrow(data)), size = nrow(data), replace = FALSE),
+         Group = (Group %% 5) + 1)
+# Alternative:
+# data <- 
+#  data %>%
+#  mutate(Group = sample(seq_len(nrow(data)), size = nrow(data), replace = FALSE),
+#         Group = ceiling(Group / nrow(data) * 5))
+```
+
+`r begin_sol()`
+```{r sum9-show,echo=.solutions,eval=TRUE,ref.label="sum9-solution",results=.solutions}
+```
+`r end_sol()`
+
+
+Then loop over the partition groups, estimating the model leaving the group out, and then predicting and scoring predictions for the group.
+
+```{r sum10, exercise=TRUE}
+
+```
+```{r sum10-hint-1,eval=FALSE}
+scores <- numeric(5)
+for (grp in seq_len(5)) {
+  fit <- lm(TMIN ~ 1 + Year, data = data %>% ???)
+  pred <- predict(fit, newdata = ???,
+                     interval = "prediction", level = 0.8)
+  scores[grp] <- mean(proper_score(
+    "interval",
+    ???,
+    lwr = pred[, "lwr"], upr = pred[,"upr"], alpha = 0.8))
+}
+```
+```{r sum10-hint-2,eval=FALSE}
+scores <- numeric(5)
+for (grp in seq_len(5)) {
+  fit <- lm(TMIN ~ 1 + Year, data = data %>% filter(Group != grp))
+  pred <- predict(fit, newdata = ???,
+                     interval = "prediction", level = 0.8)
+  scores[grp] <- mean(proper_score(
+    "interval",
+    ???,
+    lwr = pred[, "lwr"], upr = pred[,"upr"], alpha = 0.8))
+}
+```
+```{r sum10-hint-3,eval=FALSE}
+scores <- numeric(5)
+for (grp in seq_len(5)) {
+  fit <- lm(TMIN ~ 1 + Year, data = data %>% filter(Group != grp))
+  pred <- predict(fit, newdata = data %>% filter(Group == grp),
+                     interval = "prediction", level = 0.8)
+  scores[grp] <- mean(proper_score(
+    "interval",
+    ???,
+    lwr = pred[, "lwr"], upr = pred[,"upr"], alpha = 0.8))
+}
+```
+```{r sum10-solution,eval=FALSE}
+scores <- numeric(5)
+for (grp in seq_len(5)) {
+  fit <- lm(TMIN ~ 1 + Year, data = data %>% filter(Group != grp))
+  pred <- predict(fit, newdata = data %>% filter(Group == grp),
+                     interval = "prediction", level = 0.8)
+  scores[grp] <- mean(proper_score(
+    "interval",
+    (data %>% filter(Group == grp)) %>% pull("TMIN"),
+    lwr = pred[, "lwr"], upr = pred[,"upr"], alpha = 0.8))
+}
+```
+Compare the resulting scores with the one based on the whole data set.
+Is the average cross validation score larger or smaller?
+
+`r begin_sol()`
+```{r sum10-show,echo=.solutions,eval=TRUE,ref.label="sum10-solution",results=.solutions}
+```
+
+The average cross validation score for this problem is usually larger than the one
+for the whole data set; it's is intended to reduce the risk of underestimating the
+prediction error, so this is what we would expect. Repeat the random group allocation
+to see how much it influences the cross validation score average.
+```{r echo=.solutions,results=.solutions}
+knitr::kable(data.frame("Whole data score" = score0,
+                        "Cross validation score" = mean(scores)))
+```
+`r end_sol()`
+
