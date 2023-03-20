@@ -8,8 +8,8 @@
 <meta name="description" content="Statistical Computing: Lab tutorial 8">
 <title>Tutorial 08: Floating point computations and least squares (solutions) • StatCompLab</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial 08: Floating point computations and least squares (solutions)">
 <meta property="og:description" content="Statistical Computing: Lab tutorial 8">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">22.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,10 +41,10 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2021/22): Simulation and sampling</a>
-    <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2021/22): Hints</a>
-    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2 (2021/22): Scottish weather</a>
-    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2021/22): Hints</a>
+    <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a>
+    <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a>
+    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a>
+    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a>
     <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
     <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
@@ -190,18 +190,18 @@ table.</p>
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">52.91ms</td>
-<td align="right">18.97762</td>
+<td align="right">52.75ms</td>
+<td align="right">18.98812</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
-<td align="right">9.33ms</td>
-<td align="right">106.67918</td>
+<td align="right">9.41ms</td>
+<td align="right">105.86539</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">8.84ms</td>
-<td align="right">112.77057</td>
+<td align="right">9.12ms</td>
+<td align="right">109.44619</td>
 </tr>
 </tbody>
 </table>
@@ -251,18 +251,18 @@ important. Define these new variables:</p>
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">19.77ms</td>
-<td align="right">50.17578</td>
+<td align="right">20.03ms</td>
+<td align="right">50.73696</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">20.11ms</td>
-<td align="right">49.96845</td>
+<td align="right">20.29ms</td>
+<td align="right">49.51617</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">1.19ms</td>
-<td align="right">834.60348</td>
+<td align="right">1.16ms</td>
+<td align="right">858.90218</td>
 </tr>
 </tbody>
 </table>
@@ -299,13 +299,13 @@ and one can likely express bounds for them in terms of
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">40.7ms</td>
-<td align="right">24.24601</td>
+<td align="right">44.8ms</td>
+<td align="right">18.84668</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">15.9ms</td>
-<td align="right">62.74410</td>
+<td align="right">16.8ms</td>
+<td align="right">59.44851</td>
 </tr>
 </tbody>
 </table>

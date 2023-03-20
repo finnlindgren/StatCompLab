@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,8 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a>
     <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a>
+    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a>
+    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a>
     <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
     <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
@@ -56,6 +58,9 @@
     <a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a>
     <a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a>
+    <a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a>
+    <a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a>
+    <a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a>
     <a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
     <a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a>
     <a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
@@ -189,10 +194,10 @@ quick to run:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          4.94s    4.94s     0.202    2.28GB    11.7 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     850.61ms 850.61ms     1.18     1.49GB    40.0 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         1.55ms   2.11ms   481.     229.67KB     2.00</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.93ms   6.83ms   143.     458.21KB     9.97</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          3.73s    3.73s     0.268    2.28GB    17.2 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     572.13ms 572.13ms     1.75     1.49GB    59.4 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         1.87ms    1.9ms   522.     229.67KB     1.99</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.85ms   6.05ms   159.     458.21KB    11.9</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -211,12 +216,12 @@ be used for this.</p>
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span></span>
-<span><span class="co">#&gt;        Name1     Name2      Name3</span></span>
-<span><span class="co">#&gt; 1 0.32745922 0.4552066 0.33413470</span></span>
-<span><span class="co">#&gt; 2 0.02107915 0.8607866 0.01085946</span></span>
-<span><span class="co">#&gt; 3 0.16363587 0.5528960 0.36151270</span></span>
-<span><span class="co">#&gt; 4 0.78164161 0.3479360 0.36092935</span></span>
-<span><span class="co">#&gt; 5 0.84892959 0.6016558 0.88659279</span></span></code></pre></div>
+<span><span class="co">#&gt;       Name1      Name2     Name3</span></span>
+<span><span class="co">#&gt; 1 0.6750576 0.98750847 0.4523912</span></span>
+<span><span class="co">#&gt; 2 0.9044505 0.04288637 0.2553132</span></span>
+<span><span class="co">#&gt; 3 0.9393061 0.12809996 0.8217801</span></span>
+<span><span class="co">#&gt; 4 0.7172619 0.56042746 0.5844126</span></span>
+<span><span class="co">#&gt; 5 0.2744922 0.37555232 0.4610487</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
@@ -231,8 +236,8 @@ package is usually used to construct simple summaries such as</p>
 <span>    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>    sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt;           mu    sigma</span></span>
-<span><span class="co">#&gt; 1 -0.2039442 1.049197</span></span></code></pre></div>
+<span><span class="co">#&gt;            mu    sigma</span></span>
+<span><span class="co">#&gt; 1 0.006233242 1.013216</span></span></code></pre></div>
 <p>But what if we have a function that computes <em>both</em>
 <code>mu</code> and <code>sigma</code>? If we make it return a
 data.frame, that can be used with <code>summarise</code>:</p>
@@ -247,8 +252,8 @@ data.frame, that can be used with <code>summarise</code>:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
 <span>    <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt;           mu    sigma</span></span>
-<span><span class="co">#&gt; 1 -0.2039442 1.049197</span></span></code></pre></div>
+<span><span class="co">#&gt;            mu    sigma</span></span>
+<span><span class="co">#&gt; 1 0.006233242 1.013216</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>

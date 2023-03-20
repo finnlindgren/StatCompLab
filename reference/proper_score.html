@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,8 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a>
     <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a>
+    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a>
+    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a>
     <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
     <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
@@ -39,6 +41,9 @@
     <a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a>
     <a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a>
     <a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a>
+    <a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a>
+    <a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a>
+    <a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a>
     <a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
     <a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a>
     <a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
@@ -145,11 +150,11 @@ with <code>obs[i]</code> equal to \(y_i\) and each prediction distribution
 <span class="r-in"><span>                          lwr <span class="op">=</span> <span class="va">F_lwr</span>, upr <span class="op">=</span> <span class="va">F_upr</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          se       ae       ds  interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  3.944399 1.986051 3.944399  9.608099</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2.951615 1.718026 2.124198  5.126206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.305621 0.552830 2.231182  7.689309</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.579813 1.256906 2.871327 10.252413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 10.982014 3.313912 3.658156 12.815516</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 6.5403596 2.557413 6.540360 15.321714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.2863074 0.535077 1.457871  5.126206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 3.4109129 1.846866 2.576215  7.689309</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 1.8710586 1.367866 2.889530 10.252413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 7.3283312 2.707089 3.512009 12.815516</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
