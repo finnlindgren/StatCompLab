@@ -1,0 +1,177 @@
+---
+title: 'StatComp Project 2: Scottish weather'
+author: ""
+output:
+  rmarkdown::html_vignette:
+    number_sections: no
+  pdf_document:
+    number_sections: no
+pkgdown:
+  number_sections: no
+description: 'Statistical Computing (2022/23): Coursework project 2'
+vignette: |
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{StatComp Project 2 (2021/22): Scottish weather}
+  %\VignetteEngine{knitr::rmarkdown}
+in-header:
+  - \newcommand{\bm}[1]{\boldsymbol{#1}}
+  - \newcommand{\wh}[1]{\widehat{#1}}
+  - \newcommand{\ol}[1]{\overline{#1}}
+  - \newcommand{\wt}[1]{\widetilde{#1}}
+  - \newcommand{\mv}[1]{\boldsymbol{#1}}
+  - \newcommand{\proper}[1]{\mathsf{#1}}
+  - \newcommand{\pP}{\proper{P}}
+  - \newcommand{\pE}{\proper{E}}
+  - \newcommand{\pVar}{\proper{Var}}
+  - \newcommand{\pPo}{\proper{Poisson}}
+  - \newcommand{\pN}{\proper{Normal}}
+  - \newcommand{\pBin}{\proper{Bin}}
+  - \newcommand{\pBeta}{\proper{Beta}}
+  - \newcommand{\pGeom}{\proper{Geom}}
+  - \newcommand{\pExp}{\proper{Exp}}
+  - \newcommand{\pGamma}{\proper{Gamma}}
+  - \newcommand{\mmd}{\mathrm{d}}
+  - \newcommand{\md}{\,\mmd}
+---
+
+
+Two main template files are available; modify these, but keep their names:
+
+  * a template RMarkdown document, `report.Rmd`,
+    that you should expand with your answers and solutions for this project assignment,
+  * a template `functions.R` file where you should place function definitions
+    needed by `report.Rmd`, with associated documentation.
+
+When knitting your report to produce the `report.html` file, ensure that both `report.Rmd` and `functions.R` are in the same folder and your working directory is set to this folder (run `getwd()` to check). If you need to change your working directory then navigate to your project folder under the `Files` panel, then click-on the settings cog icon in that panel and select `Set As Working Directory`.
+
+### Instructions:
+
+1. Make sure you include your name and student number in _both_ `report.Rmd` and `functions.R`.
+2. Code that displays results (e.g., as tables or figures) must be placed as code chunks in `report.Rmd`.
+3. Code in the template files includes an example of how to save and load results of long-running calculations.
+4. Code chunks are included in `report.Rmd` that load the function definitions from `functions.R` (your own function definitions).
+5. Appendix code chunks are included that display the code from `functions.R` without running it.
+6. Use the `styler` package Addin for restyling code for better and consistent readability works for both `.R` and `.Rmd` files.
+7. As in project 1, use `echo=TRUE` for analysis code chunks and `echo=FALSE` for table display and plot-generating code chunks.
+
+
+When submitting, include a generated html version of the report with the file name `report.html`. The project will be marked as a whole, between $0$ and $40$, using the marking guide posted on Learn.
+
+\newpage
+
+# Scottish weather data
+
+The Global Historical Climatology Network at <https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily> provides historical weather data collected from all over the globe. A subset of the daily resolution data set is available in the `StatCompLab package` containing data from eight weather stations in Scotland, covering the time period from 1 January 1960 to 31 December 2018. Some of the measurements are missing, either due to instrument problems or data collection issues.
+See `Tutorial07` for an exploratory introduction to the data, and techniques
+for wrangling the data.
+
+Load the data with
+```{r, eval=TRUE,echo=TRUE}
+data(ghcnd_stations, package = "StatCompLab")
+data(ghcnd_values, package = "StatCompLab")
+```
+
+The `ghcnd_stations` data frame has 5 variables:
+
+* `ID`: The identifier code for each station
+* `Name`: The humanly readable station name
+* `Latitude`: The latitude of the station location, in degrees
+* `Longitude`: The longitude of the station location, in degrees
+* `Elevation`: The station elevation, in metres above sea level
+
+The station data set is small enough that you can view the whole thing,
+e.g. with `knitr::kable(ghcnd_stations)`.
+You can try to find some of the locations on a map (Google maps and other online map
+systems can usually interpret latitude and longitude searches).
+
+
+The `ghcnd_values` data frame has 7 variables:
+
+* `ID`: The station identifier code for each observation
+* `Year`: The year the value was measured
+* `Month`: The month the value was measured
+* `Day`: The day of the month the value was measured
+* `DecYear`: "Decimal year", the measurement date converted to a fractional value,
+  where whole numbers correspond to 1 January, and fractional values correspond to
+  later dates within the year. This is useful for both plotting and modelling.
+* `Element`: One of "TMIN" (minimum temperature), "TMAX" (maximum temperature), or "PRCP" (precipitation), indicating what each value in the `Value` variable represents 
+* `Value`: Daily measured temperature (in degrees Celsius) or precipitation (in mm)
+
+
+# Task 1: Seasonal variability
+
+Note: For this first half of the assignment,
+you can essentially ignore that some of the data are missing; when defining averages,
+just take the average of whatever observations are available in the relevant data subset.
+If you construct averages with `group_by()` and `summarise()` & `mean()`,
+That will happen by itself.
+
+## Is precipitation seasonally varying?
+
+The daily precipitation data is more challenging to model than temperature because
+of the mix of zeros and positive values. Plot temperature and precipitation data to show the behaviour, e.g., during one of the years, for all the stations.  
+
+- From the plots, is there a seasonal effect for temperature ("TMIN" and "TMAX") and for precipitation ("PRCP")? e.g., is it colder in the winter than in the summer?
+
+Let winter be $\{\text{Jan, Feb, Mar, Oct, Nov, Dec}\}$, and let
+ summer be $\{\text{Apr, May, Jun, Jul, Aug, Sep}\}$. For easier code structure,
+ add this season information to the weather data object.
+
+Construct a Monte Carlo permutation test for the hypotheses:
+$$
+\begin{aligned}
+H_0:&\text{The rainfall distribution is the same in winter as in summer} \\
+H_1:&\text{The winter and summer distributions have different expected values}
+\end{aligned}
+$$
+Use $T=|\text{winter average} - \text{summer average}|$ as a test statistic and add a `Summer` column to the data
+that is `TRUE` for data in the defined summer months. 
+Compute separate p-values for each weather station and their respective Monte Carlo standard deviations.
+Construct a function `p_value_CI` to construct the interval.
+
+Collect the results into a suitable data structure, present and discuss the results.
+
+See Project2Hints for hints on constructing an approximate $95\%$ confidence interval for a p-value when most observed counts are zero.
+
+# Task 2: Spatial weather prediction
+
+For this second half of the project, you should first construct a version of the data set with a new variable, `Value_sqrt_avg`, defined as the square root of the monthly averaged precipitation values.
+As noted in the Project2Hints document (Handling non-Gaussian prediction), the precipitation values are very skewed with variance that increases with the mean value. Taking the square root of the monthly averages helps alleviate that issue, making a constant-variance model more plausible.
+
+## Estimation and prediction
+
+Here, you will define and estimate models for the square root of the monthly averaged precipitation values in Scotland.
+
+As a basic model ($M_0$) for the square root of monthly average precipitation is defined by:
+
+$M_0$: `Value_sqrt_avg ~ Intercept + Longitude + Latitude + Elevation + DecYear`
+
+
+Covariates such as the spatial coordinates, elevation, and suitable $\cos$ and $\sin$ functions are used to capture seasonal variability. By adding covariates $\cos(2\pi k t)$ and $\sin(2\pi k t)$ of frequency $k=1,2,\dots$
+we can also model the seasonal variability, defining models $M_1$, $M_2$, $M_3$,
+and $M_4$ where the predictor expression for model $M_K$ adds
+$$
+\sum_{k=1}^K \left[ \gamma_{c,k} \cos(2\pi k t) + \gamma_{s,k} \sin(2\pi k t) \right]
+$$
+to the linear predictor of $M_0$, where the coefficients $\gamma_{c,k}$ and $\gamma_{s,k}$ are to be estimated.
+The time variable $t$ is defined to be `DecYear` so that the lowest frequency $k=1$ corresponds to a cosine function with a period of one full year.  
+
+Organise your code so that you can easily change the input data without having to change the estimation code and predict for new locations and times.
+You'll need to be able to run the estimation for different subsets of the data, as well as for manually constructed
+covariate values, e.g., to illustrate prediction at a new location not present in the available weather data.
+
+- Estimate the model parameters for $M_0, M_1, M_2, M_3$ and $M_4$.
+
+- Present and discuss the different models and the results of the model estimation.
+
+## Assessment: Station and season differences
+
+We are interested in how well the model can predict precipitation at new locations.
+Therefore, construct a stratified cross-validation that groups the data by weather station
+and computes the prediction scores for each station, as well as the overall cross-validated average scores, aggregated to the 12 months of the year.
+
+Present and discuss the results of the score assessments for both Squared Error and Dawid-Sebastiani scores.
+
+- Is the model equally good at predicting the different stations?
+- Is the prediction accuracy the same across the whole year?
+
