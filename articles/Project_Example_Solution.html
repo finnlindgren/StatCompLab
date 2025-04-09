@@ -5,84 +5,70 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="StatCompLab">
 <title>StatComp Project Example Solution: Numerical Statistics • StatCompLab</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="StatComp Project Example Solution: Numerical Statistics">
-<meta property="og:description" content="StatCompLab">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="StatComp Project Example Solution: Numerical Statistics">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">25.4.9</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a>
-    <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a>
-    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a>
-    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a>
-    <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
-    <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
-    <a class="dropdown-item" href="../articles/Tutorial02Solutions.html">Tutorial 02: Optimization (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a>
-    <a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a>
-    <a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial06.html">Tutorial 06: Prediction assessment with proper scores</a>
-    <a class="dropdown-item" href="../articles/Tutorial06Solutions.html">Tutorial 06: Prediction assessment with proper scores (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a>
-    <a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a>
-    <a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a>
-    <a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a>
-    <a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
-    <a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a>
-    <a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
-    <a class="dropdown-item" href="../articles/T4sol.html">Tutorial 04: Uncertainty and integration (full solution)</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a></li>
+    <li><a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a></li>
+    <li><a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a></li>
+    <li><a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a></li>
+    <li><a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a></li>
+    <li><a class="dropdown-item" href="../articles/T4sol.html">Tutorial 04: Uncertainty and integration (full solution)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial02Solutions.html">Tutorial 02: Optimization (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial06.html">Tutorial 06: Prediction assessment with proper scores</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial06Solutions.html">Tutorial 06: Prediction assessment with proper scores (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/finnlindgren/StatCompLab/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/finnlindgren/StatCompLab/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -91,12 +77,13 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>StatComp Project Example Solution: Numerical Statistics</h1>
+
+      <h1>StatComp Project Example Solution: Numerical Statistics</h1>
                         <h4 data-toc-skip class="author">Finn Lindgren
 (s0000000, finnlindgren)</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/articles/Project_Example_Solution.Rmd" class="external-link"><code>vignettes/articles/Project_Example_Solution.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/articles/Project_Example_Solution.Rmd" class="external-link"><code>vignettes/articles/Project_Example_Solution.Rmd</code></a></small>
       <div class="d-none name"><code>Project_Example_Solution.Rmd</code></div>
     </div>
 
@@ -105,91 +92,151 @@
 <div class="section level2">
 <h2 id="archaeology-in-the-baltic-sea">Archaeology in the Baltic sea<a class="anchor" aria-label="anchor" href="#archaeology-in-the-baltic-sea"></a>
 </h2>
-<p>Pairs of counts <span class="math inline">\((Y_{j,1},Y_{j,2})\)</span> of left and right
-femurs from archaeological excavations are modelled as being
-conditionally independent realisations from <span class="math inline">\(\textrm{Binom}(N_j,\phi)\)</span>, where <span class="math inline">\(N_j\)</span> is the original number of people
-buried at each excavtion site, and <span class="math inline">\(\phi\)</span> is the probability of finding a
-buried femur. The prior distribution for each <span class="math inline">\(N_j\)</span>, <span class="math inline">\(j=1,\dots,J\)</span>, is <span class="math inline">\(\textrm{Geom}(\xi)\)</span>, where <span class="math inline">\(\xi=1/(1+1000)\)</span> (so that <span class="math inline">\(\textrm{E}(N_j)=1000\)</span> <em>a priori</em>),
-and for the detection probability, <span class="math inline">\(\phi\sim\textrm{Beta}(\frac{1}{2},\frac{1}{2})\)</span>.
-We denote <span class="math inline">\(\boldsymbol{N}=\{N_1,\dots,N_J\}\)</span> and
-<span class="math inline">\(\boldsymbol{Y}=\{(Y_{1,1},Y_{1,2}),\dots,(Y_{J,1},Y_{J,2})\}\)</span>.</p>
+<p>Pairs of counts
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mn>2</mn></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Y_{j,1},Y_{j,2})</annotation></semantics></math>
+of left and right femurs from archaeological excavations are modelled as
+being conditionally independent realisations from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Binom</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo>,</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\textrm{Binom}(N_j,\phi)</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>
+is the original number of people buried at each excavtion site, and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+is the probability of finding a buried femur. The prior distribution for
+each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>J</mi></mrow><annotation encoding="application/x-tex">j=1,\dots,J</annotation></semantics></math>,
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Geom</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>ξ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\textrm{Geom}(\xi)</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi><mo>=</mo><mn>1</mn><mi>/</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mn>1000</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\xi=1/(1+1000)</annotation></semantics></math>
+(so that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">E</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">\textrm{E}(N_j)=1000</annotation></semantics></math><em>a priori</em>), and for the detection probability,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>∼</mo><mtext mathvariant="normal">Beta</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>,</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\phi\sim\textrm{Beta}(\frac{1}{2},\frac{1}{2})</annotation></semantics></math>.
+We denote
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐍</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><msub><mi>N</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>N</mi><mi>J</mi></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\boldsymbol{N}=\{N_1,\dots,N_J\}</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐘</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>Y</mi><mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mi>…</mi><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mrow><mi>J</mi><mo>,</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>Y</mi><mrow><mi>J</mi><mo>,</mo><mn>2</mn></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\boldsymbol{Y}=\{(Y_{1,1},Y_{1,2}),\dots,(Y_{J,1},Y_{J,2})\}</annotation></semantics></math>.</p>
 <div class="section level3">
 <h3 id="joint-probability-function">Joint probability function<a class="anchor" aria-label="anchor" href="#joint-probability-function"></a>
 </h3>
-<p>Taking the product of the prior density for <span class="math inline">\(\phi\)</span>, the prior probabilities for <span class="math inline">\(N_j\)</span>, and the conditional observation
-probabilities for <span class="math inline">\(N_{j,i}\)</span> and
-integrating over <span class="math inline">\(\phi\)</span>, we get the
-joint probability function for <span class="math inline">\((\boldsymbol{N},\boldsymbol{Y})\)</span> <span class="math display">\[
+<p>Taking the product of the prior density for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>,
+the prior probabilities for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>,
+and the conditional observation probabilities for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub><annotation encoding="application/x-tex">N_{j,i}</annotation></semantics></math>
+and integrating over
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>,
+we get the joint probability function for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐍</mi><mo>,</mo><mi>𝐘</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\boldsymbol{N},\boldsymbol{Y})</annotation></semantics></math><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">P</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐍</mi><mo>,</mo><mi>𝐘</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup><msub><mi>p</mi><mi>ϕ</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></munderover><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>2</mn></munderover><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub><mo stretchy="false" form="prefix">|</mo><msub><mi>N</mi><mi>j</mi></msub><mo>,</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>ϕ</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup><mfrac><mrow><msup><mi>ϕ</mi><mrow><mi>a</mi><mo>−</mo><mn>1</mn></mrow></msup><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mi>b</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></munderover><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>2</mn></munderover><mrow><mo stretchy="true" form="prefix">(</mo><mfrac linethickness="0"><msub><mi>N</mi><mi>j</mi></msub><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><msup><mi>ϕ</mi><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub></msup><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><msub><mi>N</mi><mi>j</mi></msub><mo>−</mo><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub></mrow></msup><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>ϕ</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup><mfrac><mrow><msup><mi>ϕ</mi><mrow><mover><mi>a</mi><mo accent="true">̃</mo></mover><mo>−</mo><mn>1</mn></mrow></msup><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mover><mi>b</mi><mo accent="true">̃</mo></mover><mo>−</mo><mn>1</mn></mrow></msup></mrow><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>ϕ</mi><mspace width="0.167em"></mspace><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></munderover><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>2</mn></munderover><mrow><mo stretchy="true" form="prefix">(</mo><mfrac linethickness="0"><msub><mi>N</mi><mi>j</mi></msub><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 \textrm{P}(\boldsymbol{N},\boldsymbol{Y})
-&amp;= \int_0^1 p_\phi(\phi) \prod_{j=1}^J p(N_j) \prod_{i=1}^2
-p(Y_{j,i}|N_j,\phi)\,\mathrm{d}\phi \\
+&amp;= \int_0^1 p_\phi(\phi) \prod_{j=1}^J p(N_j) \prod_{i=1}^2 p(Y_{j,i}|N_j,\phi)\,\mathrm{d}\phi \\
 &amp;= \int_0^1 \frac{\phi^{a-1}(1-\phi)^{b-1}}{B(a,b)}
-  \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}}
-\phi^{Y_{j,i}}(1-\phi)^{N_j-Y_{j,i}}
+  \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} \phi^{Y_{j,i}}(1-\phi)^{N_j-Y_{j,i}}
   \,\mathrm{d}\phi \\
-&amp;= \int_0^1
-\frac{\phi^{\widetilde{a}-1}(1-\phi)^{\widetilde{b}-1}}{B(a,b)}
-\,\mathrm{d}\phi\,
+&amp;= \int_0^1 \frac{\phi^{\widetilde{a}-1}(1-\phi)^{\widetilde{b}-1}}{B(a,b)} \,\mathrm{d}\phi\,
   \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} ,
 \end{aligned}
-\]</span> where <span class="math inline">\(\widetilde{a} =
-a+\sum_{j=1}^J\sum_{i=1}^2 Y_{j,i}\)</span> and <span class="math inline">\(\widetilde{b} = b+\sum_{j=1}^J\sum_{i=1}^2 (N_j -
-Y_{j,i})\)</span>. Then the integral can be renormalised to an integral
-of the distribution probability density function for a <span class="math inline">\(\textrm{Beta}(\widetilde{a},\widetilde{b})\)</span>
-distribution: <span class="math display">\[
+</annotation></semantics></math> where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>a</mi><mo accent="true">̃</mo></mover><mo>=</mo><mi>a</mi><mo>+</mo><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></msubsup><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>2</mn></msubsup><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\widetilde{a} = a+\sum_{j=1}^J\sum_{i=1}^2 Y_{j,i}</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>b</mi><mo accent="true">̃</mo></mover><mo>=</mo><mi>b</mi><mo>+</mo><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></msubsup><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>2</mn></msubsup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo>−</mo><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\widetilde{b} = b+\sum_{j=1}^J\sum_{i=1}^2 (N_j - Y_{j,i})</annotation></semantics></math>.
+Then the integral can be renormalised to an integral of the distribution
+probability density function for a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Beta</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mover><mi>a</mi><mo accent="true">̃</mo></mover><mo>,</mo><mover><mi>b</mi><mo accent="true">̃</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\textrm{Beta}(\widetilde{a},\widetilde{b})</annotation></semantics></math>
+distribution:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mtext mathvariant="normal">P</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐍</mi><mo>,</mo><mi>𝐘</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mover><mi>a</mi><mo accent="true">̃</mo></mover><mo>,</mo><mover><mi>b</mi><mo accent="true">̃</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup><mfrac><mrow><msup><mi>ϕ</mi><mrow><mover><mi>a</mi><mo accent="true">̃</mo></mover><mo>−</mo><mn>1</mn></mrow></msup><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mover><mi>b</mi><mo accent="true">̃</mo></mover><mo>−</mo><mn>1</mn></mrow></msup></mrow><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mover><mi>a</mi><mo accent="true">̃</mo></mover><mo>,</mo><mover><mi>b</mi><mo accent="true">̃</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>ϕ</mi><mspace width="0.167em"></mspace><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></munderover><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>2</mn></munderover><mrow><mo stretchy="true" form="prefix">(</mo><mfrac linethickness="0"><msub><mi>N</mi><mi>j</mi></msub><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mover><mi>a</mi><mo accent="true">̃</mo></mover><mo>,</mo><mover><mi>b</mi><mo accent="true">̃</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>J</mi></munderover><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>2</mn></munderover><mrow><mo stretchy="true" form="prefix">(</mo><mfrac linethickness="0"><msub><mi>N</mi><mi>j</mi></msub><msub><mi>Y</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 \textrm{P}(\boldsymbol{N},\boldsymbol{Y})
 &amp;= \frac{B(\widetilde{a},\widetilde{b})}{B(a,b)}
-  \int_0^1
-\frac{\phi^{\widetilde{a}-1}(1-\phi)^{\widetilde{b}-1}}{B(\widetilde{a},\widetilde{b})}
+  \int_0^1 \frac{\phi^{\widetilde{a}-1}(1-\phi)^{\widetilde{b}-1}}{B(\widetilde{a},\widetilde{b})}
   \,\mathrm{d}\phi\,
   \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} \\
 &amp;= \frac{B(\widetilde{a},\widetilde{b})}{B(a,b)}
   \prod_{j=1}^J p(N_j) \prod_{i=1}^2 {N_j \choose Y_{j,i}} .
 \end{aligned}
-\]</span></p>
+</annotation></semantics></math></p>
 </div>
 <div class="section level3">
-<h3 id="credible-intervals-for-n_j-and-phi">Credible intervals for <span class="math inline">\(N_j\)</span> and
-<span class="math inline">\(\phi\)</span><a class="anchor" aria-label="anchor" href="#credible-intervals-for-n_j-and-phi"></a>
+<h3 id="credible-intervals-for-n_j-and-phi">Credible intervals for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math><a class="anchor" aria-label="anchor" href="#credible-intervals-for-n_j-and-phi"></a>
 </h3>
 <p>In order to obtain posterior credible intervals for the unknown
-quantities <span class="math inline">\(\boldsymbol{N}=\{N_1,\dots,N_J\}\)</span>, and
-<span class="math inline">\(\phi\)</span>, we implement an importance
-sampling method that sample each <span class="math inline">\(N_j\)</span> from a shifted Geometric distribution
-with smallest value equal to the smallest valid <span class="math inline">\(N_j\)</span>, given the observed counts, and
-expectation corresponding to <span class="math inline">\(\phi=1/4\)</span>. After sampling the <span class="math inline">\(\boldsymbol{N}\)</span> values, the corresponding
-importance weights <span class="math inline">\(w_k\)</span>, stored as
-<code>Log_Weights</code> equal to <span class="math inline">\(\log(w_k)\)</span> normalised by subtracting the
-larges <span class="math inline">\(\log(w_k)\)</span> value. Finally,
-<span class="math inline">\(\phi\)</span> values are sampled directly
-from the conditional posterior distribution <span class="math inline">\((\phi|\boldsymbol{N},\boldsymbol{Y})\sim\textrm{Beta}\left(\frac{1}{2}+\sum_{j,i}
-Y_{i,j},\frac{1}{2}+\sum_{j,i} (N_j-Y_{i,j})\right)\)</span>. The
-implementation is in the <code>arch_importance()</code> function in
+quantities
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐍</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><msub><mi>N</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>N</mi><mi>J</mi></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\boldsymbol{N}=\{N_1,\dots,N_J\}</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>,
+we implement an importance sampling method that sample each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>
+from a shifted Geometric distribution with smallest value equal to the
+smallest valid
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>,
+given the observed counts, and expectation corresponding to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>=</mo><mn>1</mn><mi>/</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">\phi=1/4</annotation></semantics></math>.
+After sampling the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐍</mi><annotation encoding="application/x-tex">\boldsymbol{N}</annotation></semantics></math>
+values, the corresponding importance weights
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>w</mi><mi>k</mi></msub><annotation encoding="application/x-tex">w_k</annotation></semantics></math>,
+stored as <code>Log_Weights</code> equal to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>w</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\log(w_k)</annotation></semantics></math>
+normalised by subtracting the larges
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>w</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\log(w_k)</annotation></semantics></math>
+value. Finally,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+values are sampled directly from the conditional posterior distribution
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mo stretchy="false" form="prefix">|</mo><mi>𝐍</mi><mo>,</mo><mi>𝐘</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∼</mo><mtext mathvariant="normal">Beta</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><msub><mo>∑</mo><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub><msub><mi>Y</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>,</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><msub><mo>∑</mo><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>N</mi><mi>j</mi></msub><mo>−</mo><msub><mi>Y</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(\phi|\boldsymbol{N},\boldsymbol{Y})\sim\textrm{Beta}\left(\frac{1}{2}+\sum_{j,i} Y_{i,j},\frac{1}{2}+\sum_{j,i} (N_j-Y_{i,j})\right)</annotation></semantics></math>.
+The implementation is in the <code>arch_importance()</code> function in
 <code>my_code.R</code> shown in the code appendix, and produces an
-importance sample of size <span class="math inline">\(K\)</span>. To
-achieve relatively reliable results, we use <span class="math inline">\(K=100000\)</span>, for each of <span class="math inline">\(J=1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(3\)</span>, and <span class="math inline">\(4\)</span>, which takes ca 4 seconds on my
-computer.</p>
+importance sample of size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>.
+To achieve relatively reliable results, we use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mn>100000</mn></mrow><annotation encoding="application/x-tex">K=100000</annotation></semantics></math>,
+for each of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">J=1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>4</mn><annotation encoding="application/x-tex">4</annotation></semantics></math>,
+which takes ca 4 seconds on my computer.</p>
 <p>First, we use <code>stat_ewcdf</code> to plot the emprirical
 cumulative distribution functions for the importance weighted posterior
-samples of <span class="math inline">\(N_1\)</span>, for <span class="math inline">\(J=1,\dots,4\)</span>. We can see that the random
-variability increases for larger <span class="math inline">\(J\)</span>,
+samples of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>,
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">J=1,\dots,4</annotation></semantics></math>.
+We can see that the random variability increases for larger
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math>,
 indicating a lower efficiency of the importance sampler. Also included
-is the CDF for the prior distribution for <span class="math inline">\(N_1\)</span>. Except for the lower end of the
-distribution, it’s not immediately clear what effect the observations
-have on the distribution.</p>
+is the CDF for the prior distribution for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>.
+Except for the lower end of the distribution, it’s not immediately clear
+what effect the observations have on the distribution.</p>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<p>Next we do a corresponding plot for <span class="math inline">\(\phi\)</span>. In contrast to <span class="math inline">\(N_1\)</span>, here it’s more clear that the more
-observation pairs we get, the more concentrated the distribution for
-<span class="math inline">\(\phi\)</span> gets. Each new observation
-pair also influences in particular the lower end of the distribution,
-with the lower quantiles clearly increasing for <span class="math inline">\(J=4\)</span> even though the upper quantiles
-remain relatively stable for <span class="math inline">\(J\geq
-2\)</span>.</p>
+<p>Next we do a corresponding plot for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>.
+In contrast to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>,
+here it’s more clear that the more observation pairs we get, the more
+concentrated the distribution for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+gets. Each new observation pair also influences in particular the lower
+end of the distribution, with the lower quantiles clearly increasing for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">J=4</annotation></semantics></math>
+even though the upper quantiles remain relatively stable for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">J\geq 2</annotation></semantics></math>.</p>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<p>Using <code>wquantile</code> to extract lower and upper <span class="math inline">\(5\%\)</span> quantiles we obtain approximate <span class="math inline">\(90\%\)</span> posterior credible intervals for
-<span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> as shown in the following table.</p>
+<p>Using <code>wquantile</code> to extract lower and upper
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">5\%</annotation></semantics></math>
+quantiles we obtain approximate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>90</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">90\%</annotation></semantics></math>
+posterior credible intervals for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+as shown in the following table.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="right">J</th>
@@ -257,31 +304,55 @@ remain relatively stable for <span class="math inline">\(J\geq
 </tr>
 </tbody>
 </table>
-<p>We can see that the credible intervals for <span class="math inline">\(N_1\)</span> are strongly linked to the
-information in the posterior distribution for <span class="math inline">\(\phi\)</span>. Interestingly, due to the lowering
-of the lower endpoint for <span class="math inline">\(\phi\)</span> for
-<span class="math inline">\(J=2\)</span> and <span class="math inline">\(3\)</span>, the width of the <span class="math inline">\(N_1\)</span> interval actually <em>increases</em>
-when we add the information from the second and third. This is stark
-contrast to our common intuition that would expect our uncertainty to
-decrease when we collect more data. The behaviour here is partly due to
-the random variability inherent in a small sample, but also due to the
-strong non-linearity of the estimation problem, where the products <span class="math inline">\(\phi N_j\)</span> are much easier to estimate than
-the individual <span class="math inline">\(\phi\)</span> and <span class="math inline">\(N_j\)</span> parameters. For <span class="math inline">\(J=4\)</span>, the interval width for <span class="math inline">\(N_1\)</span> finally decreases, as well as the
-width for the <span class="math inline">\(\phi\)</span> interval.
-Looking at the values of the observations, we can see that the <span class="math inline">\(J=4\)</span> case has much larger values than the
-other cases, which leads to it providing relatively more information
-about the <span class="math inline">\(\phi\)</span> parameter.</p>
+<p>We can see that the credible intervals for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>
+are strongly linked to the information in the posterior distribution for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>.
+Interestingly, due to the lowering of the lower endpoint for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">J=2</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>,
+the width of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>
+interval actually <em>increases</em> when we add the information from
+the second and third. This is stark contrast to our common intuition
+that would expect our uncertainty to decrease when we collect more data.
+The behaviour here is partly due to the random variability inherent in a
+small sample, but also due to the strong non-linearity of the estimation
+problem, where the products
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><msub><mi>N</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">\phi N_j</annotation></semantics></math>
+are much easier to estimate than the individual
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>
+parameters. For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">J=4</annotation></semantics></math>,
+the interval width for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>
+finally decreases, as well as the width for the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+interval. Looking at the values of the observations, we can see that the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">J=4</annotation></semantics></math>
+case has much larger values than the other cases, which leads to it
+providing relatively more information about the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+parameter.</p>
 <p>From a practical point of view, it’s clear that this estimation
 problem does not have an easy solution. Even with multiple excavations,
-and assuming that the model is appropriate and has the same value <span class="math inline">\(\phi\)</span> for <span class="math inline">\(\phi\)</span> for every excavation, we only gain a
-modest amount of additional information. On the positive side, if the
-model does a good job of approximating reality, then borrowing strength
-across multiple excavations does improve the estimates and uncertainty
-information for each excavation. For further improvements, one would
-likely need to more closely study the excavation precedures, to gain a
-better understanding of this data generating process, which might then
-lead to improved statistical methods and archaeologically relevant
-outcomes.</p>
+and assuming that the model is appropriate and has the same value
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+for every excavation, we only gain a modest amount of additional
+information. On the positive side, if the model does a good job of
+approximating reality, then borrowing strength across multiple
+excavations does improve the estimates and uncertainty information for
+each excavation. For further improvements, one would likely need to more
+closely study the excavation precedures, to gain a better understanding
+of this data generating process, which might then lead to improved
+statistical methods and archaeologically relevant outcomes.</p>
 </div>
 <div class="section level3">
 <h3 id="extra">Extra<a class="anchor" aria-label="anchor" href="#extra"></a>
@@ -291,8 +362,10 @@ outcomes.</p>
 </h4>
 <p>Using the method for computing effective importance sample size from
 later in the course we can see that even with the more efficient method,
-the sampling is very inefficient for <span class="math inline">\(J=4\)</span>, indicating that an improved choice
-of importance distribution for <span class="math inline">\(N_j\)</span>
+the sampling is very inefficient for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">J=4</annotation></semantics></math>,
+indicating that an improved choice of importance distribution for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>
 could improve the precision and accuracy of the results:</p>
 <table class="table">
 <thead><tr class="header">
@@ -324,13 +397,15 @@ could improve the precision and accuracy of the results:</p>
 </tbody>
 </table>
 <p>Here, <code>EffSampleSize</code> is the approximate effective sample
-size <span class="math inline">\((\sum_k w_k)^2/\sum w_k^2\)</span>, and
-<code>RelEff</code> is the relative efficiency, defined as the ratio
-between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</span>.</p>
+size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mo>∑</mo><mi>k</mi></msub><msub><mi>w</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mi>/</mi><mo>∑</mo><msubsup><mi>w</mi><mi>k</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">(\sum_k w_k)^2/\sum w_k^2</annotation></semantics></math>,
+and <code>RelEff</code> is the relative efficiency, defined as the ratio
+between <code>EffSampleSize</code> and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mn>100000</mn></mrow><annotation encoding="application/x-tex">K=100000</annotation></semantics></math>.</p>
 </div>
 <div class="section level4">
 <h4 id="profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp">Profile likelihood method for frequentist confidence interval for
-<span class="math inline">\(\textrm{Binom}(n,p)\)</span><a class="anchor" aria-label="anchor" href="#profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp"></a>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Binom</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>,</mo><mi>p</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\textrm{Binom}(n,p)</annotation></semantics></math><a class="anchor" aria-label="anchor" href="#profile-likelihood-method-for-frequentist-confidence-interval-for-textrmbinomnp"></a>
 </h4>
 <p><img src="Project_Example_Solution_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <pre><code><span><span class="co">## [1] 274</span></span></code></pre>
@@ -437,7 +512,10 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <div class="section level4">
 <h4 id="archaeology">Archaeology<a class="anchor" aria-label="anchor" href="#archaeology"></a>
 </h4>
-<p>Compute credible intervals for <span class="math inline">\(N_j\)</span> for different amounts of data, <span class="math inline">\(J\)</span>:</p>
+<p>Compute credible intervals for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>
+for different amounts of data,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xi</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">1001</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
@@ -448,14 +526,19 @@ between <code>EffSampleSize</code> and <span class="math inline">\(K=100000\)</s
 <span><span class="va">NW2</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span>
 <span><span class="va">NW3</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span>
 <span><span class="va">NW4</span> <span class="op">&lt;-</span> <span class="fu">arch_importance</span><span class="op">(</span><span class="va">K</span>, <span class="fu">arch_data</span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, <span class="va">xi</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span></code></pre></div>
-<p>For completeness, we compute all the credible intervals for <span class="math inline">\(N_j\)</span>, <span class="math inline">\(1\leq
-J\)</span>, for each <span class="math inline">\(J=1,\dots,4\)</span>,
-but the analysis focuses on <span class="math inline">\(N_1\)</span> and
-<span class="math inline">\(\phi\)</span>:</p>
+<p>For completeness, we compute all the credible intervals for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>j</mi></msub><annotation encoding="application/x-tex">N_j</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>J</mi></mrow><annotation encoding="application/x-tex">1\leq J</annotation></semantics></math>,
+for each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">J=1,\dots,4</annotation></semantics></math>,
+but the analysis focuses on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
-<span>  <span class="va">NW1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW1</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">reframe</span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -470,8 +553,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>  <span class="va">NW2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW2</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">reframe</span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -489,8 +572,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>  <span class="va">NW3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW3</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">reframe</span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -511,8 +594,8 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>        type <span class="op">=</span> <span class="fl">7</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">Log_Weights</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>  <span class="va">NW4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
+<span>  <span class="va">NW4</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">reframe</span><span class="op">(</span></span>
 <span>      J <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>      End <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lower"</span>, <span class="st">"Upper"</span><span class="op">)</span>,</span>
 <span>      N1 <span class="op">=</span> <span class="fu"><a href="../reference/wquantile.html">wquantile</a></span><span class="op">(</span><span class="va">N1</span>,</span>
@@ -537,47 +620,49 @@ but the analysis focuses on <span class="math inline">\(N_1\)</span> and
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Restructure the interval <code>data.frame</code> to focus on <span class="math inline">\(N_1\)</span> and <span class="math inline">\(\phi\)</span> only:</p>
+<p>Restructure the interval <code>data.frame</code> to focus on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+only:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">CI_</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_longer</span><span class="op">(</span></span>
 <span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">N1</span>, <span class="va">N2</span>, <span class="va">N3</span>, <span class="va">N4</span>, <span class="va">Phi</span><span class="op">)</span>,</span>
 <span>    names_to <span class="op">=</span> <span class="st">"Variable"</span>,</span>
 <span>    values_to <span class="op">=</span> <span class="st">"value"</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span></span>
 <span>    names_from <span class="op">=</span> <span class="va">End</span>,</span>
 <span>    values_from <span class="op">=</span> <span class="va">value</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Width <span class="op">=</span> <span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">CI_</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Variable</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N1"</span>, <span class="st">"Phi"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">Variable</span>, <span class="va">J</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">Lower</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>Width <span class="op">=</span> <span class="va">Upper</span> <span class="op">-</span> <span class="va">Lower</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">CI_</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Variable</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N1"</span>, <span class="st">"Phi"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">Variable</span>, <span class="va">J</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Finn Lindgren.</p>
+  <p>Developed by Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

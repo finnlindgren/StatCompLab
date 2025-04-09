@@ -5,84 +5,72 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Statistical Computing: Lab tutorial 8">
 <title>Tutorial 08: Floating point computations and least squares (solutions) • StatCompLab</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial 08: Floating point computations and least squares (solutions)">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial 08: Floating point computations and least squares (solutions)">
+<meta name="description" content="Statistical Computing: Lab tutorial 8">
 <meta property="og:description" content="Statistical Computing: Lab tutorial 8">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">25.4.9</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a>
-    <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a>
-    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a>
-    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a>
-    <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
-    <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
-    <a class="dropdown-item" href="../articles/Tutorial02Solutions.html">Tutorial 02: Optimization (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a>
-    <a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a>
-    <a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial06.html">Tutorial 06: Prediction assessment with proper scores</a>
-    <a class="dropdown-item" href="../articles/Tutorial06Solutions.html">Tutorial 06: Prediction assessment with proper scores (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a>
-    <a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a>
-    <a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a>
-    <a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a>
-    <a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
-    <a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a>
-    <a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
-    <a class="dropdown-item" href="../articles/T4sol.html">Tutorial 04: Uncertainty and integration (full solution)</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a></li>
+    <li><a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a></li>
+    <li><a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a></li>
+    <li><a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a></li>
+    <li><a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a></li>
+    <li><a class="dropdown-item" href="../articles/T4sol.html">Tutorial 04: Uncertainty and integration (full solution)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial02Solutions.html">Tutorial 02: Optimization (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial06.html">Tutorial 06: Prediction assessment with proper scores</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial06Solutions.html">Tutorial 06: Prediction assessment with proper scores (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/finnlindgren/StatCompLab/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/finnlindgren/StatCompLab/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -91,12 +79,13 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Tutorial 08: Floating point computations and least squares (solutions)</h1>
+
+      <h1>Tutorial 08: Floating point computations and least squares (solutions)</h1>
                         <h4 data-toc-skip class="author">Finn
 Lindgren</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/Tutorial08Solutions.Rmd" class="external-link"><code>vignettes/Tutorial08Solutions.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/Tutorial08Solutions.Rmd" class="external-link"><code>vignettes/Tutorial08Solutions.Rmd</code></a></small>
       <div class="d-none name"><code>Tutorial08Solutions.Rmd</code></div>
     </div>
 
@@ -119,7 +108,7 @@ with code chunks in a <code>.Rmd</code> is highly recommended.</li>
 </ol>
 <p>For measuring relative running times of different methods, we’ll use
 the <code>bench</code> package. You won’t need to load the package with
-<code>library</code>. Instead, check if <code><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">bench::mark()</a></code> runs
+<code>library</code>. Instead, check if <code><a href="https://bench.r-lib.org/reference/mark.html" class="external-link">bench::mark()</a></code> runs
 without errors. If it doesn’t, and it’s because the package is not
 installed, then install it with <code>install.packages("bench")</code>
 in the R Console.</p>
@@ -148,14 +137,19 @@ correct, e.g.<br></p>
 <pre><code><span><span class="co">## [1] 3.741657 3.741657</span></span></code></pre>
 <p>We will now take a look at the computational speed of matrix
 operations.</p>
-<p>First construct a vector <span class="math inline">\(\boldsymbol{b}\)</span> and matrix <span class="math inline">\(\boldsymbol{A}\)</span>:</p>
+<p>First construct a vector
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐛</mi><annotation encoding="application/x-tex">\boldsymbol{b}</annotation></semantics></math>
+and matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐀</mi><annotation encoding="application/x-tex">\boldsymbol{A}</annotation></semantics></math>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
 <span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span> <span class="op">*</span> <span class="va">m</span><span class="op">)</span>, <span class="va">n</span>, <span class="va">m</span><span class="op">)</span></span></code></pre></div>
-<p>Let’s check the speed difference between <span class="math inline">\(\boldsymbol{A}^\top\boldsymbol{b}\)</span> and
-<span class="math inline">\((\boldsymbol{b}^\top\boldsymbol{A})^\top\)</span>
+<p>Let’s check the speed difference between
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐀</mi><mi>⊤</mi></msup><mi>𝐛</mi></mrow><annotation encoding="application/x-tex">\boldsymbol{A}^\top\boldsymbol{b}</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>𝐛</mi><mi>⊤</mi></msup><mi>𝐀</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>⊤</mi></msup><annotation encoding="application/x-tex">(\boldsymbol{b}^\top\boldsymbol{A})^\top</annotation></semantics></math>
 (convince yourself that the two expressions would be equivalent in exact
 arithmetic, and possibly also in floating point arithmetic). The
 function <code><a href="https://rdrr.io/r/base/t.html" class="external-link">t()</a></code> construct the transpose of a matrix. Note that
@@ -165,17 +159,18 @@ on the operation. When <code>b</code> is a vector,
 <code>as.matrix(b)</code> is always a single-column matrix, and
 <code>t(b)</code> is a single-row matrix, but <code>b %*% A</code> is
 interpreted as <code>t(b) %*% A</code>.</p>
-<p>Which method for computing <span class="math inline">\(\boldsymbol{A}^\top \boldsymbol{b}\)</span> is
-faster? Use <code><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">bench::mark()</a></code> to compare the different ways of
-evaluating the expression. By extracting the variables
+<p>Which method for computing
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐀</mi><mi>⊤</mi></msup><mi>𝐛</mi></mrow><annotation encoding="application/x-tex">\boldsymbol{A}^\top \boldsymbol{b}</annotation></semantics></math>
+is faster? Use <code><a href="https://bench.r-lib.org/reference/mark.html" class="external-link">bench::mark()</a></code> to compare the different ways
+of evaluating the expression. By extracting the variables
 <code>expression</code>, <code>median</code>, and <code>itr/sec</code>
-from the <code><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">bench::mark()</a></code> output using the
+from the <code><a href="https://bench.r-lib.org/reference/mark.html" class="external-link">bench::mark()</a></code> output using the
 <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> function, we can summarise the results in a
 table.</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">b</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">A</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">b</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">A</span><span class="op">)</span></span>
@@ -190,18 +185,18 @@ table.</p>
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">52.75ms</td>
-<td align="right">18.98812</td>
+<td align="right">44.88ms</td>
+<td align="right">22.26850</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
-<td align="right">9.41ms</td>
-<td align="right">105.86539</td>
+<td align="right">10.62ms</td>
+<td align="right">91.39338</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">9.12ms</td>
-<td align="right">109.44619</td>
+<td align="right">9.95ms</td>
+<td align="right">100.27873</td>
 </tr>
 </tbody>
 </table>
@@ -221,7 +216,8 @@ the <code>kable</code> printing:</p>
 Transposing a matrix requires copying the values to new locations.
 Transposing a vector doesn’t require any copying.</p>
 <hr>
-<p>For <span class="math inline">\(\boldsymbol{A}\boldsymbol{B}\boldsymbol{b}\)</span>,
+<p>For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐀</mi><mi>𝐁</mi><mi>𝐛</mi></mrow><annotation encoding="application/x-tex">\boldsymbol{A}\boldsymbol{B}\boldsymbol{b}</annotation></semantics></math>,
 the order in which matrix&amp;vector multiplication is done is
 important. Define these new variables:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -236,7 +232,7 @@ important. Define these new variables:</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  <span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">b</span>,</span>
 <span>  <span class="op">(</span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">B</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">b</span>,</span>
 <span>  <span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">b</span><span class="op">)</span></span>
@@ -251,40 +247,47 @@ important. Define these new variables:</p>
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">20.03ms</td>
-<td align="right">50.73696</td>
+<td align="right">26.78ms</td>
+<td align="right">37.21115</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">20.29ms</td>
-<td align="right">49.51617</td>
+<td align="right">26.93ms</td>
+<td align="right">35.93895</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">1.16ms</td>
-<td align="right">858.90218</td>
+<td align="right">1.85ms</td>
+<td align="right">538.51883</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <p>The three versions should produce very similar numerical results
-(<code><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">bench::mark</a></code> will complain if they don’t) Which method is
+(<code><a href="https://bench.r-lib.org/reference/mark.html" class="external-link">bench::mark</a></code> will complain if they don’t) Which method is
 fastest? Why? Are the computed results the same?</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <p>One matrix-matrix multiplication is very expensive compared with
 matrix-vector multiplication. The results are numerically very close,
 and one can likely express bounds for them in terms of
-<code>.Machine$double.eps</code> and <span class="math inline">\(m,n,p\)</span>.</p>
+<code>.Machine$double.eps</code> and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>,</mo><mi>n</mi><mo>,</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">m,n,p</annotation></semantics></math>.</p>
 <hr>
-<p>For a square matrix <span class="math inline">\(\boldsymbol{A}\)</span> of size <span class="math inline">\(1000\times 1000\)</span>, compare the cost of
-<code>solve(A) %*% b</code> (Get the matrix inverse <span class="math inline">\(\boldsymbol{A}^{-1}\)</span>, then multiply with
-<span class="math inline">\(\boldsymbol{b}\)</span>) against the cost of
-<code>solve(A, b)</code> (Solve the linear system <span class="math inline">\(\boldsymbol{A}\boldsymbol{u}=\boldsymbol{b}\)</span>).</p>
+<p>For a square matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐀</mi><annotation encoding="application/x-tex">\boldsymbol{A}</annotation></semantics></math>
+of size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1000</mn><mo>×</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000\times 1000</annotation></semantics></math>,
+compare the cost of <code>solve(A) %*% b</code> (Get the matrix inverse
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>𝐀</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\boldsymbol{A}^{-1}</annotation></semantics></math>,
+then multiply with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐛</mi><annotation encoding="application/x-tex">\boldsymbol{b}</annotation></semantics></math>)
+against the cost of <code>solve(A, b)</code> (Solve the linear system
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐀</mi><mi>𝐮</mi><mo>=</mo><mi>𝐛</mi></mrow><annotation encoding="application/x-tex">\boldsymbol{A}\boldsymbol{u}=\boldsymbol{b}</annotation></semantics></math>).</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/solve.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">b</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/solve.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">b</span><span class="op">)</span>,</span>
 <span>  check <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># The results will differ by approximately 8e-13</span></span>
@@ -299,13 +302,13 @@ and one can likely express bounds for them in terms of
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">44.8ms</td>
-<td align="right">18.84668</td>
+<td align="right">44.9ms</td>
+<td align="right">21.13946</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">16.8ms</td>
-<td align="right">59.44851</td>
+<td align="right">23ms</td>
+<td align="right">41.65345</td>
 </tr>
 </tbody>
 </table>
@@ -317,12 +320,15 @@ and one can likely express bounds for them in terms of
 <p>You’ll now investigate some numerical issues when doing numerical
 least squares estimation.</p>
 <p>Run the following code that generates synthetic observations from a
-linear model <span class="math display">\[
+linear model
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>y</mi><mi>i</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mn>100.5</mn></mrow><mn>5</mn></mfrac><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mn>100.5</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><msub><mi>e</mi><mi>i</mi></msub><mo>,</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 y_i &amp;= \frac{x_i-100.5}{5} + (x_i-100.5)^2 + e_i,
 \end{aligned}
-\]</span> where <span class="math inline">\(e_i \sim \mathsf{Normal}(0,
-\sigma_e=0.1)\)</span>, independent, <span class="math inline">\(i=1,\dots,n=100\)</span>.</p>
+</annotation></semantics></math> where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>i</mi></msub><mo>∼</mo><mrow><mi>𝖭</mi><mi>𝗈</mi><mi>𝗋</mi><mi>𝗆</mi><mi>𝖺</mi><mi>𝗅</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><msub><mi>σ</mi><mi>e</mi></msub><mo>=</mo><mn>0.1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">e_i \sim \mathsf{Normal}(0, \sigma_e=0.1)</annotation></semantics></math>,
+independent,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>n</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">i=1,\dots,n=100</annotation></semantics></math>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Set the "seed" for the random number sequences, so we can</span></span>
 <span><span class="co">## reproduce exactly the same random numbers every time we run the code</span></span>
@@ -338,24 +344,30 @@ y_i &amp;= \frac{x_i-100.5}{5} + (x_i-100.5)^2 + e_i,
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Tutorial08Solutions_files/figure-html/unnamed-chunk-11-1.png" width="576"></p>
-<p>What are the true values of <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span> in the standardised model
-formulation, <span class="math display">\[
+<p>What are the true values of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>β</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\beta_0</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>β</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\beta_1</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>β</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\beta_2</annotation></semantics></math>
+in the standardised model formulation,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>y</mi><mi>i</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>μ</mi><mi>i</mi></msub><mo>+</mo><msub><mi>e</mi><mi>i</mi></msub><mo>=</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><msub><mi>β</mi><mn>2</mn></msub><msubsup><mi>x</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><msub><mi>e</mi><mi>i</mi></msub><mi>?</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 y_i &amp;= \mu_i + e_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + e_i ?
 \end{aligned}
-\]</span> Hint: Identify the values by matching the terms when expanding
-the initial model definition above.</p>
+</annotation></semantics></math> Hint: Identify the values by matching
+the terms when expanding the initial model definition above.</p>
 <hr>
 <p><strong>Solution:</strong></p>
-<p><span class="math display">\[
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>β</mi><mn>0</mn></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mo>−</mo><mfrac><mn>100.5</mn><mn>5</mn></mfrac><mo>+</mo><msup><mn>100.5</mn><mn>2</mn></msup><mo>=</mo><mn>10080.15</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>β</mi><mn>1</mn></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mn>1</mn><mn>5</mn></mfrac><mo>−</mo><mn>201</mn><mo>=</mo><mo>−</mo><mn>200.8</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>β</mi><mn>2</mn></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mn>1</mn></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 \beta_0 &amp;= -\frac{100.5}{5} + 100.5^2 = 10080.15 \\
 \beta_1 &amp;= \frac{1}{5} - 201 = -200.8 \\
 \beta_2 &amp;= 1
 \end{aligned}
-\]</span></p>
+</annotation></semantics></math></p>
 <hr>
-<p>Create a <code>beta_true</code> vector containing <span class="math inline">\((\beta_0, \beta_1, \beta_2)\)</span>:</p>
+<p>Create a <code>beta_true</code> vector containing
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>β</mi><mn>0</mn></msub><mo>,</mo><msub><mi>β</mi><mn>1</mn></msub><mo>,</mo><msub><mi>β</mi><mn>2</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\beta_0, \beta_1, \beta_2)</annotation></semantics></math>:</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -364,18 +376,23 @@ the initial model definition above.</p>
 <span><span class="co"># beta_1 = 1/5 - 201 = -200.8</span></span>
 <span><span class="co"># beta_2 = 1</span></span></code></pre></div>
 <hr>
-<p>Use these <span class="math inline">\(\beta\)</span>-values to plot
-the quadratic true model predictor function as a function of <span class="math inline">\(x\in[100,101]\)</span>, together with the
-observations, and the estimate provided by <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>. Since the
-observed <span class="math inline">\(x\)</span> values are relatively
-dense, we don’t necessarily need a special plot sequence of <span class="math inline">\(x\)</span> values, but can reuse the observed
-values, and the model predictions for those value can be obtained with
-the <code><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted()</a></code> method. In the <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> formula
-specification, use <code>+ I(x^2)</code> for the quadratic term. This
-tells <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> to first compute <code>x^2</code>, and then use
-the result as a new covariate. The <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> method can be
-interpreted as “use the computed value of this instead of other possible
-special meanings of the expression”.</p>
+<p>Use these
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>-values
+to plot the quadratic true model predictor function as a function of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mrow><mo stretchy="true" form="prefix">[</mo><mn>100</mn><mo>,</mo><mn>101</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x\in[100,101]</annotation></semantics></math>,
+together with the observations, and the estimate provided by
+<code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>. Since the observed
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+values are relatively dense, we don’t necessarily need a special plot
+sequence of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+values, but can reuse the observed values, and the model predictions for
+those value can be obtained with the <code><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted()</a></code> method. In
+the <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> formula specification, use <code>+ I(x^2)</code>
+for the quadratic term. This tells <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> to first compute
+<code>x^2</code>, and then use the result as a new covariate. The
+<code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> method can be interpreted as “use the computed value of
+this instead of other possible special meanings of the expression”.</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -392,13 +409,17 @@ special meanings of the expression”.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"Estimated"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Tutorial08Solutions_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
 <hr>
-<p>Use the <code>model.matrix(mod1)</code> function to extract the <span class="math inline">\(\boldsymbol{X}\)</span> matrix for the vector
-formulation of the model, <span class="math inline">\(\boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{e}\)</span>,
+<p>Use the <code>model.matrix(mod1)</code> function to extract the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\boldsymbol{X}</annotation></semantics></math>
+matrix for the vector formulation of the model,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐲</mi><mo>=</mo><mi>𝐗</mi><mi>𝛃</mi><mo>+</mo><mi>𝐞</mi></mrow><annotation encoding="application/x-tex">\boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{e}</annotation></semantics></math>,
 and store in <code>X1</code>. (See <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">?model.matrix</a></code> for more
 information). Then use the direct <em>normal equations</em> solve shown
-in Lecture 8, <span class="math inline">\((\boldsymbol{X}^\top\boldsymbol{X})^{-1}\boldsymbol{X}^\top\boldsymbol{y}\)</span>,
-to estimate the <span class="math inline">\(\beta\)</span> parameters.
-Does it work?</p>
+in Lecture 8,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>𝐗</mi><mi>⊤</mi></msup><mi>𝐗</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>𝐗</mi><mi>⊤</mi></msup><mi>𝐲</mi></mrow><annotation encoding="application/x-tex">(\boldsymbol{X}^\top\boldsymbol{X})^{-1}\boldsymbol{X}^\top\boldsymbol{y}</annotation></semantics></math>,
+to estimate the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+parameters. Does it work?</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -408,17 +429,20 @@ Does it work?</p>
 <span>  <span class="va">beta.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html" class="external-link">solve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">X1</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">X1</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">X1</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">data</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Error in solve.default(t(X1) %*% X1, t(X1) %*% data$y) : </span></span>
-<span><span class="co">##   system is computationally singular: reciprocal condition number = 3.98655e-19</span></span></code></pre>
+<span><span class="co">##   system is computationally singular: reciprocal condition number = 3.98647e-19</span></span></code></pre>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="shifted-covariate">Shifted covariate<a class="anchor" aria-label="anchor" href="#shifted-covariate"></a>
 </h2>
 <p>What if the whole model was shifted to the right, so that we were
-given <span class="math inline">\(x+1000\)</span> instead of the
-original <span class="math inline">\(x\)</span>-values? The model
-expression would still be able to represent the same quadratic
-expression but with different <span class="math inline">\(\beta\)</span>
+given
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">x+1000</annotation></semantics></math>
+instead of the original
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-values?
+The model expression would still be able to represent the same quadratic
+expression but with different
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
 values. Create a new data set:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data2</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -505,15 +529,18 @@ condition number?</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <p>In both cases the columns are virtually co-linear, which leads to a
-very small <span class="math inline">\(d_3\)</span> value, and therefore
-a large condition number.</p>
+very small
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>d</mi><mn>3</mn></msub><annotation encoding="application/x-tex">d_3</annotation></semantics></math>
+value, and therefore a large condition number.</p>
 <hr>
 <p>Since the linear model says simply that the expected value vector
-<span class="math inline">\(\mathsf{E}(\boldsymbol{y})\)</span> lies in
-the space spanned by the columns of <span class="math inline">\(\boldsymbol{X}\)</span>, one possibility is to
-attempt to arrive at a better conditioned <span class="math inline">\(\boldsymbol{X}\)</span> by linear rescaling and/or
-recombination of its columns. This is always equivalent to a linear
-re-parameterization.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝖤</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐲</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathsf{E}(\boldsymbol{y})</annotation></semantics></math>
+lies in the space spanned by the columns of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\boldsymbol{X}</annotation></semantics></math>,
+one possibility is to attempt to arrive at a better conditioned
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐗</mi><annotation encoding="application/x-tex">\boldsymbol{X}</annotation></semantics></math>
+by linear rescaling and/or recombination of its columns. This is always
+equivalent to a linear re-parameterization.</p>
 <p>Try this on the model matrix of the model that causes
 <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> to fail. In particular, for each column (except the
 intercept column) subtract the column mean (e.g., try the
@@ -553,8 +580,11 @@ explicitly computing and storing the transformation information is
 necessary.</p>
 <p>Compute the condition numbers for <code>X2</code> and
 <code>X3</code>. Also compute the correlation between column 2 and 3 of
-<code>X3</code> (subtract <span class="math inline">\(1\)</span> to see
-how close to <span class="math inline">\(1\)</span> it is).</p>
+<code>X3</code> (subtract
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>
+to see how close to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>
+it is).</p>
 <hr>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
@@ -600,30 +630,30 @@ data:</p>
 <p>Different methods for modifying the inputs and model definitions
 require different calculations for compensating in the model parameters,
 and has to be figured out for each case separately. The most common
-effect is to change the interpretation of the <span class="math inline">\(\beta_0\)</span> parameter.</p>
+effect is to change the interpretation of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>β</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\beta_0</annotation></semantics></math>
+parameter.</p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Finn Lindgren.</p>
+  <p>Developed by Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

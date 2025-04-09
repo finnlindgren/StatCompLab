@@ -5,84 +5,70 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="StatCompLab">
 <title>StatComp Project 1 (2022/23): Hints • StatCompLab</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="StatComp Project 1 (2022/23): Hints">
-<meta property="og:description" content="StatCompLab">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="StatComp Project 1 (2022/23): Hints">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">StatCompLab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">23.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">25.4.9</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a>
-    <a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a>
-    <a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a>
-    <a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a>
-    <a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a>
-    <a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a>
-    <a class="dropdown-item" href="../articles/Tutorial02Solutions.html">Tutorial 02: Optimization (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a>
-    <a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a>
-    <a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial06.html">Tutorial 06: Prediction assessment with proper scores</a>
-    <a class="dropdown-item" href="../articles/Tutorial06Solutions.html">Tutorial 06: Prediction assessment with proper scores (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a>
-    <a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a>
-    <a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a>
-    <a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a>
-    <a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a>
-    <a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a>
-    <a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a>
-    <a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a>
-    <a class="dropdown-item" href="../articles/T4sol.html">Tutorial 04: Uncertainty and integration (full solution)</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/Project_Example_Solution.html">StatComp Project Example Solution: Numerical Statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/Project_Example.html">StatComp Project Example: Numerical statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/Project01.html">StatComp Project 1 (2022/23): Simulation and sampling</a></li>
+    <li><a class="dropdown-item" href="../articles/Project01Hints.html">StatComp Project 1 (2022/23): Hints</a></li>
+    <li><a class="dropdown-item" href="../articles/Project02.html">StatComp Project 2: Scottish weather</a></li>
+    <li><a class="dropdown-item" href="../articles/Project02Hints.html">StatComp Project 2 (2022/23): Hints</a></li>
+    <li><a class="dropdown-item" href="../articles/Quiz1Solution.html">Quiz 1 Solution (StatComp 2021/22)</a></li>
+    <li><a class="dropdown-item" href="../articles/T4sol.html">Tutorial 04: Uncertainty and integration (full solution)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial01.html">Tutorial 01: R and linear models</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial01Solutions.html">Tutorial 01: R and linear models (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial02.html">Tutorial 02: Optimization</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial02Solutions.html">Tutorial 02: Optimization (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial03.html">Tutorial 03: Monte Carlo integration</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial03Solutions.html">Tutorial 03: Monte Carlo integration (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial04.html">Tutorial 04: Uncertainty and integration</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial04Solutions.html">Tutorial 04: Uncertainty and integration (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial06.html">Tutorial 06: Prediction assessment with proper scores</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial06Solutions.html">Tutorial 06: Prediction assessment with proper scores (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial07.html">Tutorial 07: Data wrangling and cross validation</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial07Solutions.html">Tutorial 07: Data wrangling and cross validation (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial08.html">Tutorial 08: Floating point computations and least squares</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial08Solutions.html">Tutorial 08: Floating point computations and least squares (solutions)</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial09.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling</a></li>
+    <li><a class="dropdown-item" href="../articles/Tutorial09Solutions.html">Tutorial 09: Bootstrap and Pareto smoothed importance sampling (solutions)</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/finnlindgren/StatCompLab/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/finnlindgren/StatCompLab/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -91,13 +77,14 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>StatComp Project 1 (2022/23): Hints</h1>
+
+      <h1>StatComp Project 1 (2022/23): Hints</h1>
                         <h4 data-toc-skip class="author">Finn
 Lindgren</h4>
             
             <h4 data-toc-skip class="date">2022-02-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/HEAD/vignettes/Project01Hints.Rmd" class="external-link"><code>vignettes/Project01Hints.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/finnlindgren/StatCompLab/blob/main/vignettes/Project01Hints.Rmd" class="external-link"><code>vignettes/Project01Hints.Rmd</code></a></small>
       <div class="d-none name"><code>Project01Hints.Rmd</code></div>
     </div>
 
@@ -183,7 +170,7 @@ quick to run:</p>
 <p>Benchmark timing comparisons:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10000</span></span>
-<span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  slow <span class="op">=</span> <span class="fu">slow_fun</span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,</span>
 <span>  better <span class="op">=</span> <span class="fu">better_fun</span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,</span>
 <span>  fast <span class="op">=</span> <span class="fu">fast_fun</span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,</span>
@@ -194,10 +181,10 @@ quick to run:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          3.73s    3.73s     0.268    2.28GB    17.2 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better     572.13ms 572.13ms     1.75     1.49GB    59.4 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         1.87ms    1.9ms   522.     229.67KB     1.99</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           5.85ms   6.05ms   159.     458.21KB    11.9</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> slow          3.63s    3.63s     0.276    2.28GB    16.0 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> better      560.5ms  560.5ms     1.78     1.49GB    67.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> fast         1.49ms   1.52ms   652.     191.38KB     2.00</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ok           4.33ms   4.44ms   216.     472.09KB    16.0</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -207,8 +194,10 @@ quick to run:</p>
 there are multiple columns with similar names, it can be convenient to
 dynamically generate column names. The <code><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste()</a></code> function can
 be used for this.</p>
-<p>For example, if we want a data.frame of size <span class="math inline">\(n\times m\)</span>, with column names
-<code>Name1</code>, <code>Name2</code>, etc, we can use</p>
+<p>For example, if we want a data.frame of size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n\times m</annotation></semantics></math>,
+with column names <code>Name1</code>, <code>Name2</code>, etc, we can
+use</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, <span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># Create a matrix with some values in it</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Name"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
@@ -216,12 +205,12 @@ be used for this.</p>
 <p>The resulting object looks like this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span></span>
-<span><span class="co">#&gt;       Name1      Name2     Name3</span></span>
-<span><span class="co">#&gt; 1 0.6750576 0.98750847 0.4523912</span></span>
-<span><span class="co">#&gt; 2 0.9044505 0.04288637 0.2553132</span></span>
-<span><span class="co">#&gt; 3 0.9393061 0.12809996 0.8217801</span></span>
-<span><span class="co">#&gt; 4 0.7172619 0.56042746 0.5844126</span></span>
-<span><span class="co">#&gt; 5 0.2744922 0.37555232 0.4610487</span></span></code></pre></div>
+<span><span class="co">#&gt;         Name1     Name2      Name3</span></span>
+<span><span class="co">#&gt; 1 0.080750138 0.4663935 0.87460066</span></span>
+<span><span class="co">#&gt; 2 0.834333037 0.4977774 0.17494063</span></span>
+<span><span class="co">#&gt; 3 0.600760886 0.2897672 0.03424133</span></span>
+<span><span class="co">#&gt; 4 0.157208442 0.7328820 0.32038573</span></span>
+<span><span class="co">#&gt; 5 0.007399441 0.7725215 0.40232824</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="multi-column-summarise-constructions">Multi-column summarise constructions<a class="anchor" aria-label="anchor" href="#multi-column-summarise-constructions"></a>
@@ -236,8 +225,8 @@ package is usually used to construct simple summaries such as</p>
 <span>    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>    sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt;            mu    sigma</span></span>
-<span><span class="co">#&gt; 1 0.006233242 1.013216</span></span></code></pre></div>
+<span><span class="co">#&gt;          mu    sigma</span></span>
+<span><span class="co">#&gt; 1 0.1311013 1.062345</span></span></code></pre></div>
 <p>But what if we have a function that computes <em>both</em>
 <code>mu</code> and <code>sigma</code>? If we make it return a
 data.frame, that can be used with <code>summarise</code>:</p>
@@ -252,15 +241,16 @@ data.frame, that can be used with <code>summarise</code>:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
 <span>    <span class="fu">my_fun</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt;            mu    sigma</span></span>
-<span><span class="co">#&gt; 1 0.006233242 1.013216</span></span></code></pre></div>
+<span><span class="co">#&gt;          mu    sigma</span></span>
+<span><span class="co">#&gt; 1 0.1311013 1.062345</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="avoiding-unnecessary-for-loops">Avoiding unnecessary for-loops<a class="anchor" aria-label="anchor" href="#avoiding-unnecessary-for-loops"></a>
 </h2>
 <p>Since most operations and functions in R are vectorised, the code can
 often be written in a clear way by avoiding unnecessary for-loops. As a
-simple example, say that we want to compute <span class="math inline">\(\sum_{k=1}^{100} \cos(k)\)</span>.</p>
+simple example, say that we want to compute
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>100</mn></msubsup><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>k</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\sum_{k=1}^{100} \cos(k)</annotation></semantics></math>.</p>
 <p>A for-loop solution of the style that would be a good solution in a
 high performance low-level language like C might look like this:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -307,11 +297,10 @@ instead.</p>
 &amp;= 2\exp(2x+3y)
 \end{align*}</code></pre>
 <p>Result:</p>
-<p><span class="math display">\[\begin{align*}
-\frac{\partial}{\partial x}f(x, y) &amp;= \frac{\partial}{\partial
-x}\exp(2x+3y) \\
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mfrac><mi>∂</mi><mrow><mi>∂</mi><mi>x</mi></mrow></mfrac><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mi>∂</mi><mrow><mi>∂</mi><mi>x</mi></mrow></mfrac><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>3</mn><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mn>2</mn><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>3</mn><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+\frac{\partial}{\partial x}f(x, y) &amp;= \frac{\partial}{\partial x}\exp(2x+3y) \\
 &amp;= 2\exp(2x+3y)
-\end{align*}\]</span></p>
+\end{align*}</annotation></semantics></math></p>
 </div>
 <div class="section level4">
 <h4 id="example-2">Example 2<a class="anchor" aria-label="anchor" href="#example-2"></a>
@@ -323,38 +312,35 @@ x}\exp(2x+3y) \\
 \end{aligned}
 $$</code></pre>
 <p>Result:</p>
-<p><span class="math display">\[
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mfrac><mi>∂</mi><mrow><mi>∂</mi><mi>x</mi></mrow></mfrac><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mi>∂</mi><mrow><mi>∂</mi><mi>x</mi></mrow></mfrac><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>3</mn><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mn>2</mn><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>3</mn><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
-\frac{\partial}{\partial x}f(x, y) &amp;= \frac{\partial}{\partial
-x}\exp(2x+3y) \\
+\frac{\partial}{\partial x}f(x, y) &amp;= \frac{\partial}{\partial x}\exp(2x+3y) \\
 &amp;= 2\exp(2x+3y)
 \end{aligned}
-\]</span></p>
+</annotation></semantics></math></p>
 </div>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Finn Lindgren.</p>
+  <p>Developed by Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

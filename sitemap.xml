@@ -1,117 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/404.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Project01.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Project01Hints.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Project02.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Project02Hints.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Project_Example.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Project_Example_Solution.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Quiz1Solution.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/T4sol.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial01.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial01Solutions.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial02.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial02Solutions.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial03.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial03Solutions.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial04.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial04Solutions.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial06.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial06Solutions.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial07.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial07Solutions.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial08.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial08Solutions.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial09.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial09Solutions.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/index.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/StatEwcdf.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/arch_loglike.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/filament1_estimate.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/filament1_predict.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/optimisation.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/proper_score.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/stat_ewcdf.html</loc>
-  </url>
-  <url>
-    <loc>https://finnlindgren.github.io/StatCompLab/reference/wquantile.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://finnlindgren.github.io/StatCompLab/404.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/LICENSE.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Project01.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Project01Hints.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Project02.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Project02Hints.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Project_Example.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Project_Example_Solution.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Quiz1Solution.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/T4sol.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial01.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial01Solutions.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial02.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial02Solutions.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial03.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial03Solutions.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial04.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial04Solutions.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial06.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial06Solutions.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial07.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial07Solutions.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial08.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial08Solutions.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial09.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/Tutorial09Solutions.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/articles/index.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/authors.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/index.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/StatEwcdf.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/arch_loglike.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/filament1_estimate.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/filament1_predict.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/index.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/optimisation.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/proper_score.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/stat_ewcdf.html</loc></url>
+<url><loc>https://finnlindgren.github.io/StatCompLab/reference/wquantile.html</loc></url>
 </urlset>
+
