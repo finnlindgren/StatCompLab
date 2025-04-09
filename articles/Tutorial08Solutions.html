@@ -185,18 +185,18 @@ table.</p>
 <tbody>
 <tr class="odd">
 <td align="left">t(A) %*% b</td>
-<td align="right">44.88ms</td>
-<td align="right">22.26850</td>
+<td align="right">44ms</td>
+<td align="right">22.49966</td>
 </tr>
 <tr class="even">
 <td align="left">t(t(b) %*% A)</td>
-<td align="right">10.62ms</td>
-<td align="right">91.39338</td>
+<td align="right">10.36ms</td>
+<td align="right">96.49608</td>
 </tr>
 <tr class="odd">
 <td align="left">t(b %*% A)</td>
-<td align="right">9.95ms</td>
-<td align="right">100.27873</td>
+<td align="right">9.75ms</td>
+<td align="right">100.85960</td>
 </tr>
 </tbody>
 </table>
@@ -247,18 +247,18 @@ important. Define these new variables:</p>
 <tbody>
 <tr class="odd">
 <td align="left">A %<em>% B %</em>% b</td>
-<td align="right">26.78ms</td>
-<td align="right">37.21115</td>
+<td align="right">26.76ms</td>
+<td align="right">36.0692</td>
 </tr>
 <tr class="even">
 <td align="left">(A %<em>% B) %</em>% b</td>
-<td align="right">26.93ms</td>
-<td align="right">35.93895</td>
+<td align="right">26.75ms</td>
+<td align="right">36.2397</td>
 </tr>
 <tr class="odd">
 <td align="left">A %<em>% (B %</em>% b)</td>
-<td align="right">1.85ms</td>
-<td align="right">538.51883</td>
+<td align="right">1.82ms</td>
+<td align="right">526.9319</td>
 </tr>
 </tbody>
 </table>
@@ -302,13 +302,13 @@ against the cost of <code>solve(A, b)</code> (Solve the linear system
 <tbody>
 <tr class="odd">
 <td align="left">solve(A) %*% b</td>
-<td align="right">44.9ms</td>
-<td align="right">21.13946</td>
+<td align="right">47ms</td>
+<td align="right">20.88432</td>
 </tr>
 <tr class="even">
 <td align="left">solve(A, b)</td>
-<td align="right">23ms</td>
-<td align="right">41.65345</td>
+<td align="right">22.5ms</td>
+<td align="right">42.78060</td>
 </tr>
 </tbody>
 </table>
