@@ -126,7 +126,7 @@ StatEwcdf <- ggplot2::ggproto(
       data_ecdf <- ecdf(data$x)(x)
     } else {
       data_ecdf <-
-        spatstat.geom::ewcdf(
+        spatstat.univar::ewcdf(
           data$x,
           weights = data$weights / sum(abs(data$weights))  #SIMON TAYLOR, add abs() so to make error msg if all weights -ve
         )(x)

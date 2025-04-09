@@ -1,7 +1,7 @@
 Package: StatCompLab
 Type: Package
 Title: Workshop Material For UoE Statistical Computing
-Version: 23.9.0
+Version: 25.4.9
 Authors@R: 
     person(given = "Finn",
            family = "Lindgren",
@@ -13,7 +13,7 @@ License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.2
 Remotes:
   rstudio/gradethis
 Depends:
@@ -26,6 +26,7 @@ Imports:
     knitr,
     rmarkdown,
     spatstat.geom,
+    spatstat.univar,
     ggplot2,
     patchwork,
     tidyverse,
